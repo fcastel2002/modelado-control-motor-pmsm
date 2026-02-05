@@ -124,31 +124,196 @@ disp(eig_mec_90);
 disp('(Nota: Si aparece un 0 o valor muy bajo, indica pérdida de rigidez restauradora)');
 
 
+%% =========================================================================
+%  CASO C: MODELO NOMINAL DE DISEÑO (SIN GRAVEDAD)
+%  Este es el modelo que "verá" el PID asumiendo Feedforward perfecto.
 % =========================================================================
-% CASO C: MODELO DE DISEÑO (Fase 3) - Sin Gravedad
-% =========================================================================
-disp(' ');
-disp('=== CASO C: Modelo de Diseño para Control (Sin Gravedad) ===');
-% Eliminamos manualmente el término de gravedad (A21) para el diseño del PID
-A_design = A_90; 
-A_design(2,1) = 0; % Borramos el acople de posición (Gravedad anulada)
 
+% 1. Tomamos la matriz del PEOR CASO DE INERCIA (90 grados)
+%    (Esto asegura que usemos J_eq máximo, lo cual es conservador y seguro)
+A_design = A_90; 
+
+% 2. ELIMINACIÓN DE LA GRAVEDAD (Linearization by Feedback)
+%    La gravedad es el término A(2,1) que vincula Posición -> Velocidad.
+%    Al hacerlo cero, desacoplamos la posición de la aceleración.
+A_design(2,1) = 0; 
+
+% 3. CREACIÓN DEL OBJETO LTI
+%    Nota: La matriz B es la misma (la potencia del motor no cambia)
 sys_design = ss(A_design, B_90, eye(6), 0);
 
-disp('Modelo sys_design creado. Listo para usar en pidtune o sisotool.');
-
-%% 4. VISUALIZACIÓN
-figure('Name', 'Comparación de Polos');
-hold on;
-h1 = pzmap(sys_0);
-h2 = pzmap(sys_90);
-legend('0 Grados (Péndulo)', '90 Grados (Masa Pura)');
-title('Comparación de Dinámica: 0 vs 90 grados');
-grid on;
+% 4. MATRICES PARA SIMULINK
+A_design_sim = A_design;
+B_design_sim = B_90;
 
 disp(' ');
-disp('--- FINALIZADO ---');
-disp('Variables creadas en el Workspace:');
-disp('  sys_0      -> Para análisis de estabilidad en vertical');
-disp('  sys_90     -> Para análisis en carga máxima');
-disp('  sys_design -> Para cálculo de ganancias PID (Fase 3)');
+disp('=== MODELO DE DISEÑO CREADO (sys_design) ===');
+disp('-> Se ha eliminado el término de rigidez gravitacional (A21=0).');
+disp('-> Este modelo representa una Inercia Pura + Fricción.');
+disp('-> Listo para usar en Simulink y PID Tuner.');
+
+%% 4. VISUALIZACIÓN TOTAL (Matriz Panorámica vs Zoom)
+%  Generamos 6 gráficos: 
+%  - Arriba: Escala completa para ver polos Eléctricos lejanos.
+%  - Abajo: Zoom para ver polos Mecánicos cercanos.
+
+figure('Name', 'Analisis de Polos: Macro vs Micro', 'Color', 'w', 'Position', [50, 50, 1400, 700]);
+
+% --- DATOS ---
+p0   = pole(sys_0);      % Azul
+p90  = pole(sys_90);     % Rojo
+pDes = pole(sys_design); % Magenta
+
+% Estilo
+msize = 8; lw = 1.5;
+
+% Límites para el ZOOM (Fila de abajo)
+zoom_x = [-4, 1];   % Eje Real cerca del origen
+zoom_y = [-5, 5];   % Eje Imag (Oscilación)
+
+% =========================================================================
+% FILA 1: VISTA PANORÁMICA (Para ver los Polos Eléctricos Lejanos)
+% =========================================================================
+
+% CASO 0° (PANORAMA)
+subplot(2, 3, 1); hold on; grid on; box on;
+plot(real(p0), imag(p0), 'bx', 'MarkerSize', msize, 'LineWidth', lw);
+title('0° (VISTA COMPLETA)', 'FontWeight', 'bold');
+xlabel('Eje Real (Grandes valores)'); ylabel('Eje Imag');
+xlim('auto'); ylim('auto'); % Deja que Matlab muestre todo el rango
+
+% CASO 90° (PANORAMA)
+subplot(2, 3, 2); hold on; grid on; box on;
+plot(real(p90), imag(p90), 'ro', 'MarkerSize', msize, 'LineWidth', lw);
+title('90° (VISTA COMPLETA)', 'FontWeight', 'bold');
+xlim('auto'); ylim('auto');
+
+% CASO DISEÑO (PANORAMA)
+subplot(2, 3, 3); hold on; grid on; box on;
+plot(real(pDes), imag(pDes), 'm+', 'MarkerSize', msize+2, 'LineWidth', lw);
+title('DISEÑO (VISTA COMPLETA)', 'FontWeight', 'bold');
+xlim('auto'); ylim('auto');
+
+% =========================================================================
+% FILA 2: VISTA ZOOM (Para ver la Dinámica Mecánica)
+% =========================================================================
+
+% CASO 0° (ZOOM)
+subplot(2, 3, 4); hold on; grid on; box on;
+plot(real(p0), imag(p0), 'bx', 'MarkerSize', msize+2, 'LineWidth', lw);
+xline(0, 'k--'); yline(0, 'k--');
+title('0° (ZOOM MECÁNICO)', 'Color', 'b');
+xlabel('Eje Real (Cerca de 0)'); ylabel('Eje Imag');
+xlim(zoom_x); ylim(zoom_y); % FORZAMOS ZOOM
+text(-2, 2, 'Oscilación Visible', 'FontSize', 8, 'BackgroundColor', 'w');
+
+% CASO 90° (ZOOM)
+subplot(2, 3, 5); hold on; grid on; box on;
+plot(real(p90), imag(p90), 'ro', 'MarkerSize', msize+2, 'LineWidth', lw);
+xline(0, 'k--'); yline(0, 'k--');
+title('90° (ZOOM MECÁNICO)', 'Color', 'r');
+xlabel('Eje Real'); 
+xlim(zoom_x); ylim(zoom_y); 
+
+% CASO DISEÑO (ZOOM)
+subplot(2, 3, 6); hold on; grid on; box on;
+plot(real(pDes), imag(pDes), 'm+', 'MarkerSize', msize+4, 'LineWidth', lw);
+xline(0, 'k--'); yline(0, 'k--');
+title('DISEÑO (ZOOM MECÁNICO)', 'Color', 'm');
+xlabel('Eje Real'); 
+xlim(zoom_x); ylim(zoom_y);
+text(-2, 1, 'Integrador (0,0)', 'FontSize', 8, 'BackgroundColor', 'w');
+
+sgtitle('MAPA COMPLETO DE POLOS: Arriba (Eléctricos) vs. Abajo (Mecánicos)', 'FontSize', 16);
+
+disp(' ');
+disp('--- ANÁLISIS GENERADO ---');
+disp('-> FILA SUPERIOR: Mira el Eje X negativo. Ahí verás los polos eléctricos lejanos.');
+disp('   (Nota: Los polos mecánicos se ven amontonados en el cero, es normal).');
+disp('-> FILA INFERIOR: Es un microscopio al origen. Ahí verás la estabilidad real.');
+
+%% 5. CONFIGURACIÓN DE VALIDACIÓN Y ENTORNO DE SIMULACIÓN
+%  Selección del escenario de validación para el diagrama de Simulink.
+%  Permite alternar entre la validación del punto de operación (física)
+%  y la validación del modelo nominal de diseño (control).
+
+% --- Gestión de variables para Simulink (Corrección de Tipos) ---
+if exist('parametros_sistema_completo.mlx', 'file')
+    clear T_amb; T_amb = 20; % Asegura valor numérico (double) en vez de simbólico
+end
+T_ld = 0; % Inicializamos perturbación externa en cero
+
+fprintf('\n================================================================\n');
+fprintf('   SELECCIÓN DE ESCENARIO DE VALIDACIÓN (MODELO VS PLANTA)\n');
+fprintf('================================================================\n');
+fprintf(' [1] ESCENARIO A: Modelo Completo (Gravedad como Dinámica Interna)\n');
+fprintf('     -> Punto de Operación: 90 grados (Equilibrio Inestable).\n');
+fprintf('     -> Objetivo: Validar linealización de la física (Jacobianos).\n');
+fprintf('     -> Resultado esperado: Divergencia leve por no-linealidad.\n');
+fprintf('\n');
+fprintf(' [2] ESCENARIO B: Modelo Nominal (Gravedad como Perturbación)\n');
+fprintf('     -> Punto de Operación: Dinámica Incremental (Inercial).\n');
+fprintf('     -> Objetivo: Validar modelo para diseño de control (Feedforward).\n');
+fprintf('     -> Resultado esperado: Coincidencia exacta (Rampas superpuestas).\n');
+fprintf('----------------------------------------------------------------\n');
+
+% Validación de entrada para evitar errores si das Enter sin querer
+opcion_valida = false;
+while ~opcion_valida
+    opcion_validacion = input('-> Seleccione el escenario (1 o 2): ');
+    if opcion_validacion == 1 || opcion_validacion == 2
+        opcion_valida = true;
+    else
+        disp('Error: Por favor ingrese 1 o 2.');
+    end
+end
+
+if opcion_validacion == 1
+    %% CONFIGURACIÓN ESCENARIO A: GRAVEDAD INCLUIDA
+    disp('>> Configurando simulación: MODELO COMPLETO (90°) ...');
+    
+    % 1. Matrices del Modelo LTI (Incluye término A21 de gravedad)
+    A_sim = sys_90.A;
+    B_sim = sys_90.B;
+    
+    % 2. Configuración de la Planta No Lineal
+    k_g_interna = 1;           % HABILITA la realimentación interna de gravedad
+    th_init     = val_th_m_90; % Condición Inicial: 90 grados
+    
+    % 3. Condiciones de Equilibrio (Bias)
+    % Se inyecta el voltaje necesario para sostener la carga
+    v_q_eq = R_sREF * val_i_q_90;
+    U_bias = [v_q_eq; 0; 0];  
+    
+    % 4. Ajuste de Observación (Offset)
+    % Resta el equilibrio para que la gráfica empiece en 0
+    X_bias = [val_th_m_90; 0; val_i_q_90; 0; 0; 20]; 
+
+else
+    %% CONFIGURACIÓN ESCENARIO B: GRAVEDAD COMO PERTURBACIÓN (DESACOPLADA)
+    disp('>> Configurando simulación: MODELO NOMINAL DE DISEÑO ...');
+    disp('   (Se asume compensación perfecta de gravedad para validar J_eq)');
+    
+    % 1. Matrices del Modelo LTI (Sin término A21)
+    % Usamos el modelo sys_design que creaste en la Sección C
+    A_sim = sys_design.A;
+    B_sim = sys_design.B;         
+    
+    % 2. Configuración de la Planta No Lineal
+    k_g_interna = 0;          % DESACOPLA la gravedad interna (se trata como d(t)=0)
+    th_init     = 0;          % Condición Inicial: 0 (Incremental)
+    
+    % 3. Condiciones de Equilibrio
+    U_bias = [0; 0; 0];       % Sin esfuerzo de sostenimiento (Equilibrio natural)
+    
+    % 4. Ajuste de Observación
+    X_bias = zeros(6,1);      % Sin offset
+end
+
+% Matrices de Salida y Paso Directo (Comunes para ambos casos)
+C_sim = eye(6);
+D_sim = zeros(6,3);
+
+disp(' ');
+disp('-> Entorno configurado exitosamente.');
+disp('-> Variables listas: A_sim, B_sim, U_bias, X_bias, k_g_interna, th_init');
