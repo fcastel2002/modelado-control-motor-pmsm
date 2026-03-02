@@ -44,7 +44,7 @@ fprintf('-> Configurando parámetros para: [%s]\n', nombre_esc);
 % --- EJECUCIÓN DEL ARCHIVO DE PARÁMETROS ---
 % Al correr esto, el script 'parametros_sistema_completo' detectará
 % la variable 'ESCENARIO' y actuará en consecuencia.
-run('parametros_sistema_completo.mlx'); 
+run('parametros_sistema_completo.m'); 
 
 % --- REPORTE DE VALORES CARGADOS ---
 fprintf('-> Parámetros físicos actualizados exitosamente.\n');

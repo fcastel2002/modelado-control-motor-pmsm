@@ -1,0 +1,109 @@
+% ============================================================================
+% CONTENIDO DESCARTADO / BORRADOR ANTERIOR - Sección LTI
+% Extraído de latex.md para limpieza del informe principal.
+% Este contenido fue reemplazado por la sección "Linealización por
+% Retroalimentación NL: Modelo LTI equivalente" en el informe final.
+% ============================================================================
+
+% ------------ LTI (versión anterior, basada en linealización Jacobiana) -----
+
+\subsection{Análisis del Modelo Lineal Invariante en el Tiempo (LTI)}
+Si bien el modelo LPV (\textit{Linear Parameter Varying}) presentado anteriormente describe la dinámica global del accionamiento, el diseño y sintonización de controladores lineales clásicos requiere validar el comportamiento del sistema mediante modelos LTI locales. Estos modelos representan la dinámica incremental alrededor de puntos de equilibrio específicos ($\mathbf{x}_{0}$), obtenidos mediante la técnica de linealización Jacobiana.
+
+A continuación, se detalla la deducción analítica de los términos de la matriz del sistema y se evalúa la estabilidad a lazo abierto.
+
+\subsubsection{Linealización del Torque Gravitacional}
+La principal fuente de no linealidad en el subsistema mecánico es el torque gravitacional reflejado al eje del motor, $f_g(\theta_m)$. Para incorporar este efecto en la matriz de estado $\mathbf{A}$, se aplica la expansión en Serie de Taylor de primer orden alrededor de un ángulo de operación $\theta_{0}$:
+
+\begin{equation}
+    f_g(\theta_m) = -\frac{g \cdot k_l}{J_{eq} \cdot r} \sin\left(\frac{\theta_m}{r}\right) \approx f_g(\theta_{0}) + \underbrace{\left. \frac{\partial f_g}{\partial \theta_m} \right|_{\theta_{0}}}_{A_{2,1}} (\theta_m - \theta_{0})
+\end{equation}
+
+El término derivativo define el coeficiente de \textbf{rigidez dinámica} ($A_{2,1}$) en la matriz de estado:
+\begin{equation} \label{eq:stiffness}
+    A_{2,1}(\theta_{0}) = \frac{\partial f_g}{\partial \theta_m} = -\frac{g \cdot k_l}{J_{eq} \cdot r^2} \cos\left(\frac{\theta_{0}}{r}\right)
+\end{equation}
+La Ecuación \eqref{eq:stiffness} demuestra que la estabilidad natural del brazo depende de su posición geométrica, variando proporcionalmente al coseno del ángulo de carga.
+
+\subsubsection{Matriz de Estado Jacobiana Completa}
+Evaluando las derivadas parciales para el vector de estados completo $\mathbf{x} = [\theta_m, \omega_m, i_{qs}^r, i_{ds}^r, i_{0s}, T_s]^T$, y considerando un punto de equilibrio mecánico estático ($\omega_{m0}=0$), se obtiene la estructura simbólica de la matriz del sistema $\mathbf{A} \in \mathbb{R}^{6 \times 6}$.
+
+\begingroup
+\renewcommand{\arraystretch}{1.8}
+\begin{equation} \footnotesize
+\mathbf{A} =
+\begin{bmatrix}
+0 & 1 & 0 & 0 & 0 & 0 \\
+A_{2,1} & -\frac{b_{eq}}{J_{eq}} & \frac{3 P_p \lambda_r}{2 J_{eq}} & 0 & 0 & 0 \\
+0 & -\frac{P_p \lambda_r}{L_q} & -\frac{R_{s0}}{L_q} & 0 & 0 & \Psi_{qT} \\
+0 & 0 & 0 & -\frac{R_{s0}}{L_d} & 0 & \Psi_{dT} \\
+0 & 0 & 0 & 0 & -\frac{R_{s0}}{L_{ls}} & 0 \\
+0 & 0 & \frac{3 R_{s0} i_{q0}}{C_{ts}} & \frac{3 R_{s0} i_{d0}}{C_{ts}} & 0 & \Gamma_{th}
+\end{bmatrix}
+\end{equation}
+\endgroup
+
+Donde $R_{s0}$ es la resistencia a la temperatura de equilibrio. Los términos de acoplamiento térmico-eléctrico se definen como $\Psi_{xT} = -\frac{i_{x0} R_{ref} \alpha_{cu}}{L_x}$ (para $x=q,d$).
+
+El autovalor del subsistema térmico ($\Gamma_{th}$) determina la estabilidad térmica:
+\begin{equation}
+    \Gamma_{th} = \frac{1}{C_{ts}} \left[ \frac{3}{2} R_{s,ref} \alpha_{cu} (i_{q0}^2 + i_{d0}^2) - \frac{1}{R_{th}} \right]
+\end{equation}
+Dado que el término de disipación pasiva ($1/R_{th}$) domina sobre la generación incremental de calor para el rango operativo, se verifica que $\Gamma_{th} < 0$, garantizando la ausencia de embalamiento térmico (\textit{thermal runaway}).
+
+\subsubsection{Evaluación en Puntos de Operación Críticos}
+Para caracterizar la respuesta dinámica, se calculan los autovalores del subsistema mecánico (submatriz $2\times2$ superior izquierda) en dos configuraciones extremas:
+
+\vspace{0.3cm}
+
+\textbf{Caso A: Equilibrio Estable ($\theta_l = 0^\circ$)} \\
+Corresponde al brazo suspendido verticalmente. Al evaluar \eqref{eq:stiffness} con $\cos(0)=1$, el término de rigidez es máximo y negativo (fuerza restauradora).
+\begin{itemize}
+    \item \textbf{Autovalores:} $\lambda_{1,2} = -0.3345 \pm j 3.5865$
+    \item \textbf{Análisis:} La parte real negativa confirma estabilidad asintótica. La parte imaginaria indica una respuesta \textbf{subamortiguada} (comportamiento de péndulo).
+\end{itemize}
+
+\vspace{0.2cm}
+
+\textbf{Caso B: Carga Máxima ($\theta_l = 90^\circ$)} \\
+Corresponde al brazo horizontal. Aquí $\cos(\pi/2)=0$, anulando el término $A_{2,1}$.
+\begin{itemize}
+    \item \textbf{Autovalores:} $\lambda_{1} = 0 \quad ; \quad \lambda_{2} = -0.6689$
+    \item \textbf{Análisis:} La aparición de un polo en el origen indica la pérdida de rigidez dinámica. El sistema se comporta localmente como un \textbf{integrador puro} (masa inercial con fricción), situándose en el límite de estabilidad marginal.
+\end{itemize}
+
+\subsubsection{Conclusión y Modelo de Diseño}
+El análisis revela una variación drástica en la dinámica: el sistema pasa de ser un oscilador ($0^\circ$) a un integrador ($90^\circ$). Diseñar un controlador lineal fijo para una planta con polos móviles resulta subóptimo.
+
+Por tanto, para la etapa de diseño se adoptará una estrategia de \textbf{Linealización por Feedback (Feedforward)}. Al compensar el término gravitacional $g(\theta)$ mediante software, se fuerza al sistema a comportarse según el \textit{Modelo de Diseño Nominal} (inercia pura invariante):
+\begin{equation}
+    G_{mec}(s) = \frac{1}{J_{eq}s + b_{eq}}
+\end{equation}
+
+% ------------ Ley de Control Mínima (versión anterior) ----------------------
+
+\subsection{Restricción o Ley de Control Mínima}
+Se pretende encontrar la acción mínima para desacoplar el flujo del torque electromagnético, para ello es necesario que la proyección del flujo sobre el eje directo sea nula.
+\begin{equation*}
+    T_e(t) = \frac{3}{2}P_p(\phi_di_{qs}^r-\phi_qi_{ds}^r)
+\end{equation*}
+Ya que \[\phi_d = \phi_{PM} +L_di_d, \ \phi_q = L_qi_q\]
+Basta con cumplir la condición de \(i_{ds} = 0\) con tal de lograr dicho objetivo, cuando imponemos dicha condición podemos, desarrollar la ecuación que rige a esta corriente.
+\[i_{ds} \equiv 0 \implies \dot i_{ds} = 0 \]
+\begin{equation}\label{eq:v_ds minima}
+    v_{ds}^r= - L_qi_{qs}^r\omega_r(t)
+\end{equation}
+Como las únicas entradas manipulables en nuestro sistema son los voltajes \(v_a, v_b,v_c\) , es necesario, para lograr la suposición de \(i_{ds}^r=0\), imponer en la entrada \(v_{ds}^r\) la ecuación \ref{eq:v_ds minima} mediante la Transformación Inversa de Park.
+
+\subsubsection{Modelo de la dinámica \textit{residual}}
+Si no se cumple la condición inicial esperada para \(i_{ds}^r \) (\(i_{ds}^r(t_0) = 0\) es de esperarse que esta presente cierta dinámica "\textit{residual}", para analizarla, simplemente tomamos de \eqref{eq:equaciones de estado} la dinámica de la corriente en eje directo, tal que:
+\begin{equation}\label{eq:corriente id}
+    \frac{di_{ds}^r}{dt} = \frac{1}{L_d}\Big[v_{ds}^r - R_s(T_s^\circ(t))i_{ds}^r+L_qi_{ds}^r\omega_r\Big]
+\end{equation}
+Dada \eqref{eq:v_ds minima} es posible cancelar:
+    \[\frac{di_{ds}^r}{dt} = \frac{1}{L_d}\Big[\cancel{v_{ds}^r} - R_s(T_s^\circ(t))i_{ds}^r+ \cancel{L_qi_{ds}^r\omega_r}\Big]\]
+Lo que resulta en una EDO de primer orden:
+    \begin{equation}\label{eq:edo corriente id}
+        \frac{di_{ds}^r(t)}{dt} = -\frac{1}{L_d} R_s(T_s^\circ(t))i_{ds}^r(t)
+    \end{equation}
+Resolviendo \eqref{eq:edo corriente id} se encuentra que \[ i_{ds}^r(t) = i_{ds}^r(0) \ e^{-\frac{R_s(t)}{L_d}\cdot t}\]

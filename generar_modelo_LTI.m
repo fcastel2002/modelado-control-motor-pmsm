@@ -5,7 +5,7 @@
 clearvars; clc; close all;
 
 %% 1. Cargar Parámetros Físicos
-if exist('parametros_sistema_completo.mlx', 'file')
+if exist('parametros_sistema_completo.m', 'file')
     parametros_sistema_completo;
     disp('-> Parámetros físicos cargados exitosamente.');
 else
@@ -238,7 +238,7 @@ disp('-> FILA INFERIOR: Es un microscopio al origen. Ahí verás la estabilidad 
 %  y la validación del modelo nominal de diseño (control).
 
 % --- Gestión de variables para Simulink (Corrección de Tipos) ---
-if exist('parametros_sistema_completo.mlx', 'file')
+if exist('parametros_sistema_completo.m', 'file')
     clear T_amb; T_amb = 20; % Asegura valor numérico (double) en vez de simbólico
 end
 T_ld = 0; % Inicializamos perturbación externa en cero
