@@ -57,17 +57,39 @@ polos_totales = zeros(6, num_points); % Almacena 6 polos por iteración
 
 for k = 1:num_points
     i_dsO_actual = Ids_vals(k);
-    
+    i_qsO = (b_eq*w_mO + g * k_l * sin(theta_mO/r) + 1/r * T_ld) / ...
+            (1.5 * P_p * (lambda_r + (L_d - L_q)*i_dsO_actual));
     % Actualizamos el x_op particular para esta evaluación
+    I_cu2 = i_qsO^2 + i_dsO_actual^2 + 2*i_0sO^2; % Corriente eficaz al cuadrado
+    R_sO = R_sREF*(1+a_cu*(TsO-T_sREF));
+    K_loss = 1.5 * R_sO * I_cu2;                % Calor nominal
+    
+    % Despeje analítico de TsO:
+   % TsO = K_loss*R_ts_amb+T_amb;
     x_op = [theta_mO; w_mO; i_qsO; i_dsO_actual; i_0sO; TsO];
     
     % Obtener la matriz AO para este conjunto LPV
     AO_actual = calcular_matriz_AO(x_op, params);
-    
-    % Calcular los autovalores y organizarlos para seguir ramas de forma más estable
-    autovalores = sort(eig(AO_actual), 'ComparisonMethod', 'real');
-    
-    polos_totales(:, k) = autovalores;
+    polos_nuevos = eig(AO_actual);
+    if k == 1
+        polos_totales(:,k) = sort(polos_nuevos,'ComparisonMethod', 'real');
+    else
+        polos_viejos = polos_totales(:,k-1);
+        for rama = 1:6
+            % Calcular distancia desde el polo de la rama actual a todos los polos nuevos
+            distancias = abs(polos_nuevos - polos_viejos(rama));
+            
+            % Encontrar el más cercano
+            [~, idx_min] = min(distancias);
+            
+            % Asignarlo a la matriz de resultados
+            polos_totales(rama, k) = polos_nuevos(idx_min);
+            
+            % Marcar el polo usado con Inf para que no vuelva a ser seleccionado por otra rama
+            polos_nuevos(idx_min) = Inf;
+        end
+    end
+    fprintf('I_ds = %6.2f A  |  i_qsO = %8.4f A  |  TsO = %10.2f °C\n', i_dsO_actual, i_qsO, TsO);
 end
 
 %% 5. Gráficas y Resultados
