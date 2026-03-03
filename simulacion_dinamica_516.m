@@ -284,35 +284,157 @@ end
 
 sgtitle('Tensiones de Fase (Coordenadas abc) - Modelo NL', 'FontSize', 14, 'FontWeight', 'bold');
 
-% --- Figura 8: Curvas paramétricas ---
-fig8 = figure('Name', 'Curvas Paramétricas', 'Color', 'w', 'Position', [350 50 1200 500]);
+% --- Figura 8: Torque vs Velocidad (Cuadrantes de Operación) - GRÁFICA INDEPENDIENTE ---
+fig8 = figure('Name', 'Torque vs Velocidad - Cuadrantes de Operación', ...
+    'Color', 'w', 'Position', [100 50 1100 780]);
 
-% Torque vs Velocidad (plano de operación)
-subplot(1,2,1); hold on; grid on;
-for k = 1:3
-    % Torque electromagnético del NL
-    T_em = kt .* res_nl{k}(:,3);  % T_em = kt * i_qs (con i_ds ≈ 0)
-    omega_m = res_nl{k}(:,2);
-    plot(omega_m, T_em, '-', 'Color', case_colors{k}, 'LineWidth', 1.2);
+hold on; grid on; grid minor; box on;
+set(gca, 'FontSize', 11, 'GridAlpha', 0.3, 'MinorGridAlpha', 0.15);
+
+% === Datos del caso principal (k=1, i_ds(0) = 0 A) ===
+T_em_main = kt .* res_nl{1}(:,3);
+omega_m_main = res_nl{1}(:,2);
+
+% === Casos secundarios k=2,3 como referencia en fondo ===
+colors_bg = {[0.75 0.75 0.95], [0.75 0.95 0.75]};  % Azul/verde claros
+for k = 2:3
+    T_em_bg = kt .* res_nl{k}(:,3);
+    omega_bg = res_nl{k}(:,2);
+    plot(omega_bg, T_em_bg, '-', 'Color', colors_bg{k-1}, 'LineWidth', 1.0, ...
+        'DisplayName', ['Ref: ', case_names{k}]);
 end
-xlabel('\omega_m [rad/s]'); ylabel('T_{em} [N.m]');
-title('Torque vs Velocidad (Cuadrantes de Operación)', 'FontSize', 12);
-legend(case_names, 'Location', 'best');
-xline(0, 'k--'); yline(0, 'k--');
 
-% i_ds vs i_qs (plano de corrientes)
-subplot(1,2,2); hold on; grid on;
+% === Definición de transitorios (10 segmentos) ===
+t_ev = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, t_final];
+n_tr = length(t_ev) - 1;
+
+trans_names = { ...
+    'Trans. 1:  v_{qs}^* \rightarrow +19.6 V', ...
+    'Trans. 2:  T_{ld} \rightarrow +6.28 Nm', ...
+    'Trans. 3:  T_{ld} \rightarrow -6.28 Nm', ...
+    'Trans. 4:  v_{qs}^* \rightarrow 0 V', ...
+    'Trans. 5:  T_{ld} \rightarrow 0 Nm', ...
+    'Trans. 6:  v_{qs}^* \rightarrow -19.6 V', ...
+    'Trans. 7:  T_{ld} \rightarrow +6.28 Nm', ...
+    'Trans. 8:  T_{ld} \rightarrow -6.28 Nm', ...
+    'Trans. 9:  v_{qs}^* \rightarrow 0 V', ...
+    'Trans. 10: T_{ld} \rightarrow 0 Nm'};
+
+% Paleta de colores distinguibles (cálidos T1-T5, fríos T6-T10)
+cmap_tr = [ ...
+    0.84 0.15 0.16;   % T1  rojo
+    0.99 0.55 0.24;   % T2  naranja
+    0.17 0.63 0.17;   % T3  verde
+    0.12 0.47 0.71;   % T4  azul
+    0.58 0.40 0.74;   % T5  violeta
+    0.09 0.75 0.81;   % T6  cian
+    0.89 0.47 0.76;   % T7  rosa
+    0.55 0.34 0.29;   % T8  marrón
+    0.80 0.73 0.13;   % T9  oliva
+    0.35 0.35 0.35];  % T10 gris oscuro
+
+% Estilos de línea alternados para mayor distinción
+line_styles = {'-', '-', '-', '-', '-', '--', '--', '--', '--', '--'};
+
+% === Plotear cada transitorio ===
+eq_pts = zeros(n_tr + 1, 2);  % [omega_m, T_em] puntos de equilibrio
+eq_pts(1,:) = [0, 0];         % P_0: reposo inicial
+
+for s = 1:n_tr
+    if s < n_tr
+        idx_s = find(t_sim >= t_ev(s) & t_sim < t_ev(s+1));
+    else
+        idx_s = find(t_sim >= t_ev(s) & t_sim <= t_ev(s+1));
+    end
+
+    plot(omega_m_main(idx_s), T_em_main(idx_s), line_styles{s}, ...
+        'Color', cmap_tr(s,:), 'LineWidth', 2.2, 'DisplayName', trans_names{s});
+
+    % Guardar punto de equilibrio (final del segmento)
+    eq_pts(s+1,:) = [omega_m_main(idx_s(end)), T_em_main(idx_s(end))];
+
+    % Flecha de dirección en punto medio (quiver)
+    mid = round(length(idx_s) * 0.45);
+    step = max(1, round(length(idx_s) * 0.02));
+    if mid > step && mid + step <= length(idx_s)
+        dx = omega_m_main(idx_s(mid+step)) - omega_m_main(idx_s(mid-step));
+        dy = T_em_main(idx_s(mid+step)) - T_em_main(idx_s(mid-step));
+        quiver(omega_m_main(idx_s(mid)), T_em_main(idx_s(mid)), dx, dy, 1.5, ...
+            'Color', cmap_tr(s,:), 'LineWidth', 1.8, 'MaxHeadSize', 3, ...
+            'HandleVisibility', 'off');
+    end
+end
+
+% === Puntos de equilibrio (diamantes) ===
+plot(eq_pts(1,1), eq_pts(1,2), 'kp', 'MarkerSize', 16, ...
+    'MarkerFaceColor', [0.2 0.8 0.2], 'LineWidth', 1.5, ...
+    'DisplayName', 'P_0: Inicio (reposo)');
+
+for s = 1:n_tr
+    plot(eq_pts(s+1,1), eq_pts(s+1,2), 'd', 'Color', cmap_tr(s,:), ...
+        'MarkerSize', 9, 'MarkerFaceColor', cmap_tr(s,:), 'LineWidth', 1.0, ...
+        'HandleVisibility', 'off');
+end
+
+% Agregar un solo marcador representativo para la leyenda
+plot(NaN, NaN, 'kd', 'MarkerSize', 9, 'MarkerFaceColor', [1 0.84 0], ...
+    'LineWidth', 1.0, 'DisplayName', 'Puntos de equilibrio (P_1..P_{10})');
+
+% Etiquetas de puntos de equilibrio
+for s = 0:n_tr
+    % Desplazamientos para evitar solapamiento
+    if eq_pts(s+1,1) >= 0; ox = 1.5; else; ox = -1.5; end
+    if eq_pts(s+1,2) >= 0; oy = 0.003; else; oy = -0.003; end
+    text(eq_pts(s+1,1) + ox, eq_pts(s+1,2) + oy, ...
+        sprintf('P_{%d}', s), 'FontSize', 8.5, 'FontWeight', 'bold', ...
+        'Color', [0.1 0.1 0.1], 'BackgroundColor', [1 1 1 0.7], ...
+        'Margin', 1, 'HorizontalAlignment', 'center');
+end
+
+% === Ejes de cuadrantes ===
+xline(0, 'k-', 'LineWidth', 1.8, 'HandleVisibility', 'off');
+yline(0, 'k-', 'LineWidth', 1.8, 'HandleVisibility', 'off');
+
+% === Etiquetas de cuadrantes ===
+ax_lims = axis;
+margin_x = 0.70;  margin_y = 0.82;
+text( abs(ax_lims(2))*margin_x,  abs(ax_lims(4))*margin_y, ...
+    {'{\bf Cuadrante I}', 'Motor (+\omega, +T)'}, ...
+    'FontSize', 10, 'Color', [0.4 0.4 0.4], 'HorizontalAlignment', 'center');
+text(-abs(ax_lims(2))*margin_x,  abs(ax_lims(4))*margin_y, ...
+    {'{\bf Cuadrante II}', 'Freno Reg. (-\omega, +T)'}, ...
+    'FontSize', 10, 'Color', [0.4 0.4 0.4], 'HorizontalAlignment', 'center');
+text(-abs(ax_lims(2))*margin_x, -abs(ax_lims(4))*margin_y, ...
+    {'{\bf Cuadrante III}', 'Motor (-\omega, -T)'}, ...
+    'FontSize', 10, 'Color', [0.4 0.4 0.4], 'HorizontalAlignment', 'center');
+text( abs(ax_lims(2))*margin_x, -abs(ax_lims(4))*margin_y, ...
+    {'{\bf Cuadrante IV}', 'Freno Reg. (+\omega, -T)'}, ...
+    'FontSize', 10, 'Color', [0.4 0.4 0.4], 'HorizontalAlignment', 'center');
+
+% === Formato final ===
+xlabel('\omega_m [rad/s]', 'FontSize', 13, 'FontWeight', 'bold');
+ylabel('T_{em} [N \cdot m]', 'FontSize', 13, 'FontWeight', 'bold');
+title({'Torque Electromagn\''etico vs Velocidad Angular - Cuadrantes de Operaci\''on'; ...
+       'Modelo NL con Ley de Control (caso i_{ds}(0) = 0 A)'}, ...
+    'FontSize', 13, 'FontWeight', 'bold');
+
+lgd = legend('Location', 'eastoutside', 'FontSize', 8.5, 'Box', 'on');
+title(lgd, 'Transitorios y Referencias', 'FontSize', 9);
+
+% --- Figura 8b: Trayectoria en Plano de Corrientes (gráfica separada) ---
+fig8b = figure('Name', 'Plano de Corrientes i_ds vs i_qs', 'Color', 'w', ...
+    'Position', [200 80 900 600]);
+
+hold on; grid on; box on;
 for k = 1:3
     plot(res_nl{k}(:,3), res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.2);
-    % Marcar inicio
-    plot(res_nl{k}(1,3), res_nl{k}(1,4), 'o', 'Color', case_colors{k}, 'MarkerSize', 8, 'MarkerFaceColor', case_colors{k});
+    plot(res_nl{k}(1,3), res_nl{k}(1,4), 'o', 'Color', case_colors{k}, ...
+        'MarkerSize', 8, 'MarkerFaceColor', case_colors{k}, 'HandleVisibility', 'off');
 end
-xlabel('i_{qs} [A]'); ylabel('i_{ds} [A]');
-title('Trayectoria en Plano de Corrientes (i_{ds} vs i_{qs})', 'FontSize', 12);
+xlabel('i_{qs} [A]', 'FontSize', 12); ylabel('i_{ds} [A]', 'FontSize', 12);
+title('Trayectoria en Plano de Corrientes (i_{ds} vs i_{qs}) - Modelo NL', 'FontSize', 13, 'FontWeight', 'bold');
 legend(case_names, 'Location', 'best');
-xline(0, 'k--'); yline(0, 'k--');
-
-sgtitle('Curvas Paramétricas - Modelo NL', 'FontSize', 14, 'FontWeight', 'bold');
+xline(0, 'k--', 'HandleVisibility', 'off'); yline(0, 'k--', 'HandleVisibility', 'off');
 
 % --- Figura 9: Ángulo de torque del rotor ---
 fig9 = figure('Name', 'Ángulo de Torque', 'Color', 'w', 'Position', [400 100 900 400]);
@@ -541,7 +663,8 @@ fprintf('  Fig 4:  estados_NL_exclusivos.png\n');
 fprintf('  Fig 5:  vds_forzada.png\n');
 fprintf('  Fig 6:  corrientes_abc_NL.png\n');
 fprintf('  Fig 7:  tensiones_abc_NL.png\n');
-fprintf('  Fig 8:  curvas_parametricas.png\n');
+fprintf('  Fig 8:  torque_vs_velocidad_cuadrantes.png\n');
+fprintf('  Fig 8b: plano_corrientes_ids_vs_iqs.png\n');
 fprintf('  Fig 9:  angulo_torque.png\n');
 fprintf('  Fig 10: comparacion_ids.png\n');
 fprintf('  Fig 11: field_forcing_weakening.png\n');
