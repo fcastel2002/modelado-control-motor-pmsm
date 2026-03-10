@@ -1,0 +1,4 @@
+Uno puede hacer una animación de la trayectoria. hagamosla
+Es ideal que uno pueda entenderlo y explicarlo! cada etapa. Ver bien el script.
+
+Rounge Kuta, variar los parámetros para que calcule bien.

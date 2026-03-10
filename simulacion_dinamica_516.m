@@ -453,106 +453,167 @@ sgtitle('Evolución del Ángulo de Torque del Rotor (\delta = atan2(i_{ds}, i_{q
     'FontSize', 12, 'FontWeight', 'bold');
 
 %% =====================================================================
-%  SECCIÓN (b): MÉTRICAS DE TRANSITORIO
+%  SECCIÓN (b): MÉTRICAS DE TRANSITORIO (10 transitorios, caso i_ds(0)=0)
 %  =====================================================================
 fprintf('\n=== SECCIÓN (b): MÉTRICAS DE TRANSITORIO ===\n');
 
-% Analizamos el primer transitorio (pulso positivo de v_qs: t=0.1s a t=0.7s)
-% para omega_m (velocidad) e i_qs (corriente)
+% Instantes de conmutación y descripción de cada evento
+t_events = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, t_final];
+event_names = { ...
+    'v_{qs}^* -> +19.6V', ...
+    'T_{ld} -> +6.28Nm',  ...
+    'T_{ld} -> -6.28Nm',  ...
+    'v_{qs}^* -> 0V',     ...
+    'T_{ld} -> 0Nm',      ...
+    'v_{qs}^* -> -19.6V', ...
+    'T_{ld} -> +6.28Nm',  ...
+    'T_{ld} -> -6.28Nm',  ...
+    'v_{qs}^* -> 0V',     ...
+    'T_{ld} -> 0Nm'};
 
-fprintf('\n%-20s | %-12s | %-12s | %-12s | %-12s | %-12s\n', ...
-    'Caso', 'w_ss [rad/s]', 'iq_ss [A]', 'tr [ms]', 'ts [ms]', 'Mp [%%]');
-fprintf('%s\n', repmat('-', 1, 85));
+% Usamos caso k=1 (i_ds(0) = 0) del modelo LTI
+y_lti_nom = res_lti{1};  % [theta_m, omega_m, i_qs, i_ds]
 
-for k = 1:3
-    % Extraer segmento del primer pulso positivo
-    idx_start = find(t_sim >= 0.1, 1);
-    idx_end   = find(t_sim >= 0.7, 1);
-    t_seg  = t_sim(idx_start:idx_end) - t_sim(idx_start);
+fprintf('\n--- Métricas por transitorio (modelo LTI, i_ds(0) = 0 A) ---\n');
+fprintf('%-6s | %-25s | %10s | %10s | %10s | %10s | %8s\n', ...
+    'Trans', 'Evento', 'w_end', 'iq_ss', 'tr_iq', 'ts_iq', 'Mp_iq');
+fprintf('%-6s | %-25s | %10s | %10s | %10s | %10s | %8s\n', ...
+    '', '', '[rad/s]', '[A]', '[ms]', '[ms]', '[%]');
+fprintf('%s\n', repmat('-', 1, 95));
 
-    % Velocidad (LTI)
-    w_seg = res_lti{k}(idx_start:idx_end, 2);
-    w_ss  = w_seg(end);  % Valor estacionario (aproximado)
+% Almacenar para LaTeX
+metricas = NaN(10, 5);  % [w_end, iq_ss, tr_iq, ts_iq, Mp_iq]
+latex_rows = strings(10, 1);
 
-    % Corriente iq (LTI)
-    iq_seg = res_lti{k}(idx_start:idx_end, 3);
-    iq_ss  = iq_seg(end);
-
-    % Tiempo de crecimiento (10% a 90% del valor final de velocidad)
-    if abs(w_ss) > 1e-10
-        t10 = t_seg(find(abs(w_seg) >= 0.1*abs(w_ss), 1));
-        t90 = t_seg(find(abs(w_seg) >= 0.9*abs(w_ss), 1));
-        if ~isempty(t10) && ~isempty(t90)
-            tr = (t90 - t10) * 1000;  % [ms]
-        else
-            tr = NaN;
-        end
+for s = 1:10
+    idx_ini = find(t_sim >= t_events(s), 1);
+    if s < 10
+        idx_fin = find(t_sim < t_events(s+1), 1, 'last');
     else
-        tr = NaN;
+        idx_fin = length(t_sim);
+    end
+    if isempty(idx_fin) || idx_fin < idx_ini
+        idx_fin = length(t_sim);
     end
 
-    % Tiempo de establecimiento (±1% del valor final)
-    if abs(w_ss) > 1e-10
-        settled = abs(w_seg - w_ss) <= 0.01 * abs(w_ss);
+    t_seg = t_sim(idx_ini:idx_fin) - t_sim(idx_ini);
+
+    % --- omega_m: valor al final del segmento ---
+    w_seg = y_lti_nom(idx_ini:idx_fin, 2);
+    w_end = w_seg(end);
+
+    % --- i_qs: métricas de transitorio ---
+    vqs_prev = u_vqs(max(idx_ini - 1, 1));
+    vqs_post = u_vqs(idx_ini);
+    hubo_escalon_vqs = abs(vqs_post - vqs_prev) > 1e-9;
+    iq_seg = y_lti_nom(idx_ini:idx_fin, 3);
+    iq_ini = iq_seg(1);    % valor inicial del segmento
+    iq_ss = vqs_post / R_s0;  % valor de régimen teórico del eje q
+    delta_iq = iq_ss - iq_ini;  % cambio total teórico
+
+    if hubo_escalon_vqs && abs(delta_iq) > 1e-6
+        % Tiempo de crecimiento: 10% a 90% del cambio
+        iq_10 = iq_ini + 0.1 * delta_iq;
+        iq_90 = iq_ini + 0.9 * delta_iq;
+        if delta_iq > 0
+            idx_10 = find(iq_seg >= iq_10, 1);
+            idx_90 = find(iq_seg >= iq_90, 1);
+        else
+            idx_10 = find(iq_seg <= iq_10, 1);
+            idx_90 = find(iq_seg <= iq_90, 1);
+        end
+        if ~isempty(idx_10) && ~isempty(idx_90) && idx_90 > idx_10
+            tr_iq = (t_seg(idx_90) - t_seg(idx_10)) * 1000;
+        else
+            tr_iq = NaN;
+        end
+
+        % Tiempo de establecimiento: ±1% respecto al valor de régimen teórico
+        banda = 0.01 * abs(delta_iq);
+        settled = abs(iq_seg - iq_ss) <= banda;
         idx_settled = find(settled, 1, 'first');
-        % Verificar que se mantiene
         if ~isempty(idx_settled) && all(settled(idx_settled:end))
-            ts_val = t_seg(idx_settled) * 1000;  % [ms]
+            ts_iq = t_seg(idx_settled) * 1000;
         else
-            ts_val = NaN;
+            ts_iq = NaN;
         end
+
+        % Sobrepico respecto al cambio
+        if delta_iq > 0
+            Mp_iq = (max(iq_seg) - iq_ss) / abs(delta_iq) * 100;
+        else
+            Mp_iq = (min(iq_seg) - iq_ss) / delta_iq * 100;  % delta_iq < 0
+        end
+        if Mp_iq < 0.01; Mp_iq = 0; end
     else
-        ts_val = NaN;
+        tr_iq = NaN;
+        ts_iq = NaN;
+        Mp_iq = NaN;
     end
 
-    % Sobrepico
-    if abs(w_ss) > 1e-10
-        Mp = (max(abs(w_seg)) - abs(w_ss)) / abs(w_ss) * 100;
-    else
-        Mp = NaN;
-    end
+    metricas(s,:) = [w_end, iq_ss, tr_iq, ts_iq, Mp_iq];
 
-    fprintf('%-20s | %12.4f | %12.4f | %12.2f | %12.2f | %12.2f\n', ...
-        case_names{k}, w_ss, iq_ss, tr, ts_val, Mp);
+    tr_txt = '--';
+    ts_txt = '--';
+    mp_txt = '--';
+    if ~isnan(tr_iq), tr_txt = sprintf('%.2f', tr_iq); end
+    if ~isnan(ts_iq), ts_txt = sprintf('%.2f', ts_iq); end
+    if ~isnan(Mp_iq), mp_txt = sprintf('%.2f', Mp_iq); end
+
+    fprintf('  %2d   | %-25s | %10.2f | %10.4f | %10s | %10s | %8s\n', ...
+        s, event_names{s}, w_end, iq_ss, tr_txt, ts_txt, mp_txt);
+
+    latex_rows(s) = sprintf([ ...
+        '%d & $%s$ & %6.0f & %6.2f & %s & %s & %s \\\\'], ...
+        s, strrep(event_names{s}, '->', '\to '), w_end, iq_ss, ...
+        strrep(tr_txt, '.', '{,}'), strrep(ts_txt, '.', '{,}'), strrep(mp_txt, '.', '{,}'));
 end
 
-fprintf('\n-> Nota: Las métricas son para el 1er pulso positivo (t=0.1s a 0.7s) del modelo LTI.\n');
-fprintf('   La velocidad crece como rampa (integrador), el transitorio rápido es de i_qs.\n');
-
-% Influencia relativa de v_qs vs T_ld
 fprintf('\n--- Influencia relativa de las acciones externas ---\n');
-fprintf('v_qs* actúa directamente sobre i_qs (modo rápido eléctrico, tau_e = L_q/R_s = %.2f ms)\n', L_q/R_s0*1000);
-fprintf('T_ld  actúa sobre omega_m (modo lento mecánico, tau_m = J_eq/b_eq = %.2f s)\n', J_eq/b_eq);
-fprintf('=> v_qs domina la dinámica de corriente; T_ld perturba la dinámica mecánica.\n');
+fprintf('tau_e = L_q/R_s0 = %.2f ms (dinámica eléctrica rápida de i_qs)\n', L_q/R_s0*1000);
+fprintf('t_s(1%%) teorico = tau_e * ln(100) = %.2f ms\n', L_q/R_s0 * log(100) * 1000);
+fprintf('\n--- Filas LaTeX sugeridas para la tabla ---\n');
+for s = 1:10
+    fprintf('%s\n', latex_rows(s));
+end
+fprintf('tau_m = J_eq/b_eq = %.2f s  (dinámica mecánica lenta de omega_m)\n', J_eq/b_eq);
+fprintf('Ratio tau_m/tau_e ≈ %.0f:1\n', (J_eq/b_eq)/(L_q/R_s0));
+fprintf('=> v_qs* domina la corriente i_qs (respuesta rápida, ~5*tau_e ≈ %.1f ms)\n', 5*L_q/R_s0*1000);
+fprintf('=> T_ld perturba omega_m directamente (respuesta lenta, ~5*tau_m ≈ %.1f s)\n', 5*J_eq/b_eq);
+fprintf('=> Los escalones de v_qs* producen cambios abruptos en i_qs; los de T_ld no afectan i_qs.\n');
 
 %% =====================================================================
 %  SECCIÓN (c): COMPARACIÓN i_ds(t) PARA LOS 3 CASOS
 %  =====================================================================
 fprintf('\n=== SECCIÓN (c): EFECTO DE i_ds(0) ===\n');
 
-fig10 = figure('Name', 'Comparación i_ds(t)', 'Color', 'w', 'Position', [450 100 1000 600]);
-
-% Comparación en LTI
-subplot(2,1,1); hold on; grid on;
-for k = 1:3
-    plot(t_sim, res_lti{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.5);
-end
-ylabel('i_{ds} [A]'); title('Modelo LTI Aumentado', 'FontSize', 12);
-legend(case_names, 'Location', 'northeast');
-xlim([0 t_final]);
-
-% Comparación en NL
-subplot(2,1,2); hold on; grid on;
+% --- Figura 10a: i_ds(t) modelo NL - 3 condiciones iniciales ---
+fig10a = figure('Name', 'i_ds NL - 3 casos', 'Color', 'w', 'Position', [450 100 900 400]);
+hold on; grid on; box on;
 for k = 1:3
     plot(t_sim, res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.5);
 end
-ylabel('i_{ds} [A]'); xlabel('Tiempo [s]');
-title('Modelo No Lineal', 'FontSize', 12);
+ylabel('i_{ds}^r [A]', 'FontSize', 12); xlabel('Tiempo [s]', 'FontSize', 12);
+title('Corriente i_{ds}^r(t) - Modelo NL: efecto de la condición inicial', 'FontSize', 13, 'FontWeight', 'bold');
 legend(case_names, 'Location', 'northeast');
-xlim([0 t_final]);
+xlim([0 0.1]);  % Zoom a los primeros 100 ms donde ocurre el decaimiento
 
-sgtitle('Comparación de i_{ds}(t) para Distintas Condiciones Iniciales', ...
-    'FontSize', 14, 'FontWeight', 'bold');
+exportgraphics(fig10a, 'imagenes/sim_ids_NL_3casos.png', 'Resolution', 300);
+fprintf('   -> Exportada: imagenes/sim_ids_NL_3casos.png\n');
+
+% --- Figura 10b: i_ds(t) modelo LTI - 3 condiciones iniciales ---
+fig10b = figure('Name', 'i_ds LTI - 3 casos', 'Color', 'w', 'Position', [500 100 900 400]);
+hold on; grid on; box on;
+for k = 1:3
+    plot(t_sim, res_lti{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.5);
+end
+ylabel('i_{ds}^r [A]', 'FontSize', 12); xlabel('Tiempo [s]', 'FontSize', 12);
+title('Corriente i_{ds}^r(t) - Modelo LTI: efecto de la condición inicial', 'FontSize', 13, 'FontWeight', 'bold');
+legend(case_names, 'Location', 'northeast');
+xlim([0 0.1]);  % Zoom a los primeros 100 ms
+
+exportgraphics(fig10b, 'imagenes/sim_ids_LTI_3casos.png', 'Resolution', 300);
+fprintf('   -> Exportada: imagenes/sim_ids_LTI_3casos.png\n');
 
 % Constante de tiempo de decaimiento
 tau_ids = L_d / R_s0;
@@ -611,24 +672,45 @@ for j = 1:2
     res_ff_lti{j} = y_lti_3;
 end
 
-% --- Figura 11: Field Forcing/Weakening - Estados ---
-fig11 = figure('Name', 'Field Forcing/Weakening', 'Color', 'w', 'Position', [500 50 1300 800]);
+% --- Figura 11: Field Forcing/Weakening - i_ds (gráfico principal para informe) ---
+fig11 = figure('Name', 'Field Forcing/Weakening - i_ds', 'Color', 'w', 'Position', [500 50 900 450]);
+hold on; grid on; box on;
+
+% Caso base NL (sin v_ds*)
+plot(t_sim, res_nl{1}(:,4), 'k-', 'LineWidth', 1.5, 'DisplayName', 'Base NL (v_{ds}^*=0)');
+plot(t_sim, res_lti{1}(:,4), 'k--', 'LineWidth', 1.2, 'DisplayName', 'Base LTI');
+
+% Field forcing NL y LTI
+plot(t_sim, res_ff{1}(:,4), 'r-', 'LineWidth', 1.5, 'DisplayName', 'FF NL (v_{ds}^*=+1.96V)');
+plot(t_sim, res_ff_lti{1}(:,4), 'r--', 'LineWidth', 1.2, 'DisplayName', 'FF LTI');
+
+% Field weakening NL y LTI
+plot(t_sim, res_ff{2}(:,4), 'b-', 'LineWidth', 1.5, 'DisplayName', 'FW NL (v_{ds}^*=-1.96V)');
+plot(t_sim, res_ff_lti{2}(:,4), 'b--', 'LineWidth', 1.2, 'DisplayName', 'FW LTI');
+
+ylabel('i_{ds}^r [A]', 'FontSize', 12); xlabel('Tiempo [s]', 'FontSize', 12);
+title({'Field Forcing / Weakening: efecto sobre i_{ds}^r(t)'; ...
+       'Comparación Modelo NL vs LTI (i_{ds}^r(0) = 0 A)'}, ...
+    'FontSize', 13, 'FontWeight', 'bold');
+legend('Location', 'best', 'FontSize', 9);
+xlim([0 t_final]);
+
+exportgraphics(fig11, 'imagenes/sim_ff_ids.png', 'Resolution', 300);
+fprintf('   -> Exportada: imagenes/sim_ff_ids.png\n');
+
+% --- Figura 11b: Field Forcing/Weakening - Todos los estados (referencia) ---
+fig11b = figure('Name', 'Field Forcing/Weakening - Todos', 'Color', 'w', 'Position', [550 50 1300 800]);
 
 vars_plot = {'\theta_m [rad]', '\omega_m [rad/s]', 'i_{qs} [A]', 'i_{ds} [A]'};
 
 for v = 1:4
     subplot(2,2,v); hold on; grid on;
 
-    % Caso base (sin v_ds*)
-    plot(t_sim, res_nl{1}(:,v), 'k-', 'LineWidth', 1, 'DisplayName', 'Base (v_{ds}^*=0)');
+    plot(t_sim, res_nl{1}(:,v), 'k-', 'LineWidth', 1, 'DisplayName', 'Base NL');
     plot(t_sim, res_lti{1}(:,v), 'k--', 'LineWidth', 1, 'DisplayName', 'Base LTI');
-
-    % Field forcing (NL y LTI)
-    plot(t_sim, res_ff{1}(:,v), 'r-', 'LineWidth', 1.2, 'DisplayName', 'FF NL (+1.96V)');
+    plot(t_sim, res_ff{1}(:,v), 'r-', 'LineWidth', 1.2, 'DisplayName', 'FF NL');
     plot(t_sim, res_ff_lti{1}(:,v), 'r--', 'LineWidth', 1.2, 'DisplayName', 'FF LTI');
-
-    % Field weakening (NL y LTI)
-    plot(t_sim, res_ff{2}(:,v), 'b-', 'LineWidth', 1.2, 'DisplayName', 'FW NL (-1.96V)');
+    plot(t_sim, res_ff{2}(:,v), 'b-', 'LineWidth', 1.2, 'DisplayName', 'FW NL');
     plot(t_sim, res_ff_lti{2}(:,v), 'b--', 'LineWidth', 1.2, 'DisplayName', 'FW LTI');
 
     ylabel(vars_plot{v});
@@ -654,20 +736,24 @@ fprintf('  -> Efecto simétrico opuesto\n');
 %  RESUMEN FINAL
 %  =====================================================================
 fprintf('\n========================================\n');
-fprintf('  FIGURAS GENERADAS (guardar manualmente)\n');
+fprintf('  FIGURAS GENERADAS\n');
 fprintf('========================================\n');
-fprintf('  Fig 1:  senales_entrada.png\n');
-fprintf('  Fig 2:  estados_mecanicos_NLvsLTI.png\n');
-fprintf('  Fig 3:  corrientes_qd_NLvsLTI.png\n');
-fprintf('  Fig 4:  estados_NL_exclusivos.png\n');
-fprintf('  Fig 5:  vds_forzada.png\n');
-fprintf('  Fig 6:  corrientes_abc_NL.png\n');
-fprintf('  Fig 7:  tensiones_abc_NL.png\n');
-fprintf('  Fig 8:  torque_vs_velocidad_cuadrantes.png\n');
-fprintf('  Fig 8b: plano_corrientes_ids_vs_iqs.png\n');
-fprintf('  Fig 9:  angulo_torque.png\n');
-fprintf('  Fig 10: comparacion_ids.png\n');
-fprintf('  Fig 11: field_forcing_weakening.png\n');
+fprintf('  Fig 1:   senales_entrada (referencia)\n');
+fprintf('  Fig 2:   estados_mecanicos_NLvsLTI (referencia)\n');
+fprintf('  Fig 3:   corrientes_qd_NLvsLTI (referencia)\n');
+fprintf('  Fig 4:   estados_NL_exclusivos (referencia)\n');
+fprintf('  Fig 5:   vds_forzada (referencia)\n');
+fprintf('  Fig 6:   corrientes_abc_NL (referencia)\n');
+fprintf('  Fig 7:   tensiones_abc_NL (referencia)\n');
+fprintf('  Fig 8:   torque_vs_velocidad_cuadrantes (referencia)\n');
+fprintf('  Fig 8b:  plano_corrientes_ids_vs_iqs (referencia)\n');
+fprintf('  Fig 9:   angulo_torque (referencia)\n');
+fprintf('  -----------------------------------------------\n');
+fprintf('  EXPORTADAS AUTOMÁTICAMENTE a imagenes/:\n');
+fprintf('  Fig 10a: sim_ids_NL_3casos.png   (Sub-ítem c)\n');
+fprintf('  Fig 10b: sim_ids_LTI_3casos.png  (Sub-ítem c)\n');
+fprintf('  Fig 11:  sim_ff_ids.png          (Sub-ítem d)\n');
+fprintf('  Fig 11b: field_forcing_todos (referencia)\n');
 fprintf('========================================\n');
 fprintf('¡Simulación completada exitosamente!\n');
 
