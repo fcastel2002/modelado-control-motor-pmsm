@@ -51,7 +51,7 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2026-01-16T20:15:43Z</dcterms:created>
   <dc:creator>Francisco</dc:creator>
   <cp:lastModifiedBy>Francisco</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-04-09T17:23:38Z</dcterms:modified>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-04-09T20:44:23Z</dcterms:modified>
   <cp:revision>32.0</cp:revision>
   <cp:version>R2025b</cp:version>
 </cp:coreProperties>
@@ -6604,8 +6604,6 @@ perfil trapezoidal aceleracion1/MATLAB Function</P>
   <P Name="viewLimits">[0 156.75 0 153.75]</P>
   <P Name="screen">[1 1 3600 1200 1.180555555555556]</P>
   <P Name="viewObj">69</P>
-  <P Name="visible">1</P>
-  <subviewS/>
   <P Name="ssIdHighWaterMark">10</P>
   <P Name="decomposition">CLUSTER_CHART</P>
   <P Name="type">EML_CHART</P>
@@ -53964,7 +53962,7 @@ to Degrees</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">301</P>
+    <P Name="ZOrder">303</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -54044,7 +54042,7 @@ p, li { white-space: pre-wrap; }
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">302</P>
+    <P Name="ZOrder">304</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -54153,10 +54151,10 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="IsTabbed" Class="logical">1</P>
           <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
           <P Name="LoadSaveID" Class="char">0</P>
-          <P Name="Extents" Class="double">[1751.0, 601.0]</P>
+          <P Name="Extents" Class="double">[1751.0, 813.0]</P>
           <P Name="ZoomFactor" Class="double">1.75</P>
-          <P Name="Offset" Class="double">[-1787.9862648298149, 3343.2818150777857]</P>
-          <P Name="SceneRectInView" Class="double">[-1787.9862648298149, 3343.2818150777857, 1000.5714285714286, 343.42857142857144]</P>
+          <P Name="Offset" Class="double">[-1787.9862648298149, 3282.7103865063573]</P>
+          <P Name="SceneRectInView" Class="double">[-1787.9862648298149, 3282.7103865063573, 1000.5714285714286, 464.57142857142856]</P>
         </Object>
         <Object ObjectID="6">
           <P Name="IsActive" Class="logical">0</P>
@@ -54668,8 +54666,8 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="UserData" Class="char"/>
           <P Name="Floating" Class="logical">0</P>
           <P Name="DockPosition" Class="char">Right</P>
-          <P Name="Width" Class="int32">672</P>
-          <P Name="Height" Class="int32">846</P>
+          <P Name="Width" Class="int32">640</P>
+          <P Name="Height" Class="int32">480</P>
           <P Name="Minimized" Class="char">Off</P>
         </Object>
         <Object ObjectID="57">
@@ -54693,12 +54691,12 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="UserData" Class="char">0</P>
           <P Name="Floating" Class="logical">0</P>
           <P Name="DockPosition" Class="char">Right</P>
-          <P Name="Width" Class="int32">672</P>
-          <P Name="Height" Class="int32">199</P>
+          <P Name="Width" Class="int32">254</P>
+          <P Name="Height" Class="int32">846</P>
           <P Name="Minimized" Class="char">Unset</P>
         </Object>
       </Array>
-      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAACqAAADi/wCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAtQAAA4sAAABjAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAjAD///8AAAABAAACpAAAA2r8AgAAAAL7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAB5AAADagAAAI0A////+wAAAEIARwBMAFUARQAyADoARABEAEcAIABDAG8AbQBwAG8AbgBlAG4AdAAvAFMAeQBtAGIAbwBsAE0AYQBuAGEAZwBlAHIAAAACQwAAAOMAAAAgAP///wAAAAMAAAeAAAAA0PwBAAAABfwAAAAfAAAHQAAAAAAA////+v////8BAAAAAPwAAAAfAAAHQAAAAAAA////+v////8BAAAAAPwAAAAmAAAHMgAAAAAA////+v////8BAAAAAPwAAAAAAAAGSAAAAAAA////+v////8BAAAAAPv/////AQAAAAAAAAeAAAACeQD///8AAAeAAAAClgAAAAEAAAACAAAAAQAAAAL8AAAAAwAAAAAAAAAAAAAAAQAAAAAAAAADAAAAAA==</P>
+      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAACqAAADi/wCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAtQAAA4sAAABjAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAjAD///8AAAABAAACpAAAA2r8AgAAAAL7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAB5AAADagAAAawA////+wAAAEIARwBMAFUARQAyADoARABEAEcAIABDAG8AbQBwAG8AbgBlAG4AdAAvAFMAeQBtAGIAbwBsAE0AYQBuAGEAZwBlAHIAAAACQwAAAOMAAAAgAP///wAAAAMAAAeAAAAA0PwBAAAABfwAAAAfAAAHQAAAAAAA////+v////8BAAAAAPwAAAAfAAAHQAAAAAAA////+v////8BAAAAAPwAAAAmAAAHMgAAAAAA////+v////8BAAAAAPwAAAAAAAAGSAAAAAAA////+v////8BAAAAAPv/////AAAAAAD/////AAACeQD///8AAAeAAAADagAAAAEAAAACAAAAAQAAAAL8AAAAAwAAAAAAAAAAAAAAAQAAAAAAAAADAAAAAA==</P>
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">dfb79cc3-4aa4-41b6-9607-6dc5d9b020f6</P>
     </Object>
