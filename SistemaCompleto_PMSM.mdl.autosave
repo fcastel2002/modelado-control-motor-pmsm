@@ -59496,6 +59496,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4612.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[-1, -8, 1921, 1041]</P>
+  <P Name="ZoomFactor">150</P>
   <Block BlockType="Inport" Name="Tld [N.m]" SID="4613">
     <P Name="Position">[635, 103, 665, 117]</P>
     <P Name="ZOrder">473</P>
@@ -61294,6 +61295,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4721.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[-1, -8, 1921, 1041]</P>
+  <P Name="Open">on</P>
   <P Name="ZoomFactor">175</P>
   <Block BlockType="Inport" Name="θ" SID="4722">
     <P Name="Position">[-25, 18, 5, 32]</P>
@@ -61344,7 +61346,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4721.xml
   <Block BlockType="UnitDelay" Name="Unit Delay" SID="5022">
     <P Name="Position">[125, 43, 160, 77]</P>
     <P Name="ZOrder">5989</P>
-    <P Name="SampleTime">0.001</P>
+    <P Name="SampleTime">T_s</P>
     <P Name="HasFrameUpgradeWarning">on</P>
   </Block>
   <Block BlockType="ZeroOrderHold" Name="Zero-Order&#xA;Hold1" SID="4756">
@@ -71277,12 +71279,12 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
         <Object ObjectID="5">
           <P Name="IsActive" Class="logical">1</P>
           <P Name="IsTabbed" Class="logical">1</P>
-          <P Name="ViewObjType" Class="char">StudioAdapterBlock</P>
-          <P Name="LoadSaveID" Class="char">5020</P>
-          <P Name="Extents" Class="double">[1366.0, 601.0]</P>
-          <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[0.0, 0.0]</P>
-          <P Name="SceneRectInView" Class="double">[0.0, 0.0, 0.0, 0.0]</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">4721</P>
+          <P Name="Extents" Class="double">[1577.0, 601.0]</P>
+          <P Name="ZoomFactor" Class="double">1.75</P>
+          <P Name="Offset" Class="double">[-141.8515333284231, -94.852285154275165]</P>
+          <P Name="SceneRectInView" Class="double">[-141.8515333284231, -94.852285154275165, 901.14285714285711, 343.42857142857144]</P>
         </Object>
         <Object ObjectID="6">
           <P Name="IsActive" Class="logical">0</P>
@@ -71290,9 +71292,9 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
           <P Name="LoadSaveID" Class="char">4612</P>
           <P Name="Extents" Class="double">[1577.0, 601.0]</P>
-          <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[796.61479819959266, 663.22182233006731]</P>
-          <P Name="SceneRectInView" Class="double">[796.61479819959266, 663.22182233006731, 1577.0, 601.0]</P>
+          <P Name="ZoomFactor" Class="double">1.5</P>
+          <P Name="Offset" Class="double">[1101.814798199593, 734.35515566340064]</P>
+          <P Name="SceneRectInView" Class="double">[1101.814798199593, 734.35515566340064, 1051.3333333333333, 400.66666666666669]</P>
         </Object>
         <Object ObjectID="7">
           <P Name="IsActive" Class="logical">0</P>
@@ -71388,23 +71390,13 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">4721</P>
-          <P Name="Extents" Class="double">[1577.0, 601.0]</P>
-          <P Name="ZoomFactor" Class="double">1.75</P>
-          <P Name="Offset" Class="double">[-141.8515333284231, -94.852285154275165]</P>
-          <P Name="SceneRectInView" Class="double">[-141.8515333284231, -94.852285154275165, 901.14285714285711, 343.42857142857144]</P>
-        </Object>
-        <Object ObjectID="17">
-          <P Name="IsActive" Class="logical">0</P>
-          <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
           <P Name="LoadSaveID" Class="char">4934</P>
           <P Name="Extents" Class="double">[1577.0, 601.0]</P>
           <P Name="ZoomFactor" Class="double">1.5</P>
           <P Name="Offset" Class="double">[-8.9976831406248721, -37.9573459420198]</P>
           <P Name="SceneRectInView" Class="double">[-8.9976831406248721, -37.9573459420198, 1051.3333333333333, 400.66666666666669]</P>
         </Object>
-        <Object ObjectID="18">
+        <Object ObjectID="17">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -71413,6 +71405,16 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="ZoomFactor" Class="double">1.0</P>
           <P Name="Offset" Class="double">[-409.25000000000006, -70.25]</P>
           <P Name="SceneRectInView" Class="double">[-409.25000000000006, -70.25, 1577.0, 601.0]</P>
+        </Object>
+        <Object ObjectID="18">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">StudioAdapterBlock</P>
+          <P Name="LoadSaveID" Class="char">5020</P>
+          <P Name="Extents" Class="double">[1366.0, 601.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[0.0, 0.0]</P>
+          <P Name="SceneRectInView" Class="double">[0.0, 0.0, 0.0, 0.0]</P>
         </Object>
         <Object ObjectID="19">
           <P Name="IsActive" Class="logical">0</P>
@@ -72174,7 +72176,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
         <Object ObjectID="94">
           <P Name="Type" Class="char">GLUE2:DDG Component</P>
           <P Name="ID" Class="char">SymbolManager</P>
-          <P Name="Visible" Class="logical">1</P>
+          <P Name="Visible" Class="logical">0</P>
           <P Name="CreateCallback" Class="char">Stateflow.Interface.Panel.createSymbolManagerComponent</P>
           <P Name="UserData" Class="char">0</P>
           <P Name="Floating" Class="logical">0</P>
@@ -72184,7 +72186,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Minimized" Class="char">Unset</P>
         </Object>
       </Array>
-      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAACqAAADavwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAeQAAA2oAAABjAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAjAD///8AAAABAAAAzwAAA2r8AgAAAAL7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAB5AAADagAAAawA////+wAAAEIARwBMAFUARQAyADoARABEAEcAIABDAG8AbQBwAG8AbgBlAG4AdAAvAFMAeQBtAGIAbwBsAE0AYQBuAGEAZwBlAHIBAAAAeQAAA2oAAAAgAP///wAAAAMAAAX/AAAA0PwBAAAABfwAAAAfAAAHQAAAAAAA////+v////8BAAAAAPwAAAAfAAAHQAAAAAAA////+v////8BAAAAAPwAAAAmAAAHMgAAAAAA////+v////8BAAAAAPwAAAAAAAAGSAAAAAAA////+v////8BAAAAAPv/////AQAAAK4AAAX/AAACeQD///8AAAX/AAAClgAAAAEAAAACAAAAAQAAAAL8AAAAAwAAAAAAAAAAAAAAAQAAAAAAAAADAAAAAA==</P>
+      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAACqAAADavwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAeQAAA2oAAABjAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAjAD///8AAAABAAAAzwAAA2r8AgAAAAL7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAB5AAADagAAAawA////+wAAAEIARwBMAFUARQAyADoARABEAEcAIABDAG8AbQBwAG8AbgBlAG4AdAAvAFMAeQBtAGIAbwBsAE0AYQBuAGEAZwBlAHIAAAAAeQAAA2oAAAAgAP///wAAAAMAAAbSAAAA0PwBAAAABfwAAAAfAAAHQAAAAAAA////+v////8BAAAAAPwAAAAfAAAHQAAAAAAA////+v////8BAAAAAPwAAAAmAAAHMgAAAAAA////+v////8BAAAAAPwAAAAAAAAGSAAAAAAA////+v////8BAAAAAPv/////AQAAAK4AAAbSAAACeQD///8AAAbSAAAClgAAAAEAAAACAAAAAQAAAAL8AAAAAwAAAAAAAAAAAAAAAQAAAAAAAAADAAAAAA==</P>
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">dfb79cc3-4aa4-41b6-9607-6dc5d9b020f6</P>
     </Object>
