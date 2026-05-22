@@ -1,8 +1,6 @@
 \documentclass[12pt, a4paper,journal, onecolumn, compsoc]{IEEEtran}
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -19,6 +17,7 @@
 \usepackage[RPvoltages]{circuitikz}
 \usepackage{thmtools}
 \usepackage{thm-restate}
+\usepackage[titletoc,title]{appendix}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -139,12 +138,12 @@ inversor trifásico al estator de la máquina PMSM y 1 sensor de temperatura en 
 \noindent\rule{\textwidth}{0.4pt}
 
 \section{Introducción}
-El presente trabajo constituye el Proyecto Global Integrador del espacio curricular "Automática y Máquinas Eléctricas", cuyo objetivo principal es la integración de conocimientos y competencias fundamentales mediante su aplicación en un sistema mecatrónico, de acuerdo con las especificaciones de la guía de trabajo de la cátedra~\cite{guia_trabajo}.
-El sistema bajo estudio consiste en un accionamiento eléctrico de cuatro cuadrantes compuesto por una máquina de corriente alterna trifásica sincrónica con excitación por imanes permanentes (PMSM), alimentada por un inversor electrónico. Este sistema acciona, a través de un reductor de velocidad, una carga mecánica correspondiente a una articulación de un brazo manipulador robótico elemental de un grado de libertad (péndulo rígido), adaptada del modelo clásico presentado en~\cite{kelly_robot}.
+El presente trabajo constituye el Proyecto Global Integrador del espacio curricular "Automática y Máquinas Eléctricas", cuyo objetivo principal es la integración de conocimientos y competencias fundamentales mediante su aplicación en un sistema mecatrónico.
+El sistema bajo estudio consiste en un accionamiento eléctrico de cuatro cuadrantes compuesto por una máquina de corriente alterna trifásica sincrónica con excitación por imanes permanentes (PMSM), alimentada por un inversor electrónico. Este sistema acciona, a través de un reductor de velocidad, una carga mecánica correspondiente a una articulación de un brazo manipulador robótico elemental de un grado de libertad (péndulo rígido).
 El alcance del proyecto abarca el modelado matemático, la simulación en Matlab/Simulink, y el diseño y análisis de desempeño de un sistema de control automático de posición y movimientos.
 
 \section{Análisis, Modelado y Simulación del subsistema físico a Lazo Abierto}
-Modelado de la carga mecánica, péndulo rígido de 1 g.d.l.~\cite{kelly_robot}, fijo a una base en el sistema de referencia inercial, sometido a la fuerza de gravedad \(g\) con carga útil variable.
+Modelado de la carga mecánica, péndulo rígido de 1 g.d.l., fijo a una base en el sistema de referencia inercial, sometido a la fuerza de gravedad \(g\) con carga útil variable.
 
 % 1. ECUACIONES DEL PÉNDULO
 \begin{align}
@@ -1477,11 +1476,11 @@ Se construyó un modelo en Simulink con dos subsistemas en paralelo: el modelo N
 \subsubsection{Respuesta del estado interno (Sub-ítem a)}
 \label{sec:sim_item_a}
 
-Se presentan los resultados de la simulación para el caso nominal $i_{ds}^r(0) = 0$~A, comparando las salidas del modelo NL (6 estados) y del modelo LTI aumentado (4 estados) ante las mismas señales de excitación. Los efectos de $i_{ds}^r(0) \neq 0$ se analizan por separado en el Sub-ítem~c. En las siguientes simulaciones se consideró $T_{amb}=20\,^\circ$C y, en el modelo LTI aumentado, se utilizó $R_s = R_{sREF} = 1{,}02\ \Omega$ constante (valor nominal a $20\,^\circ$C, consistente con el desacoplamiento térmico del modelo lineal equivalente).
+Se presentan los resultados de la simulación para el caso nominal $i_{ds}^r(0) = 0$A, comparando las salidas del modelo NL (6 estados) y del modelo LTI aumentado (4 estados) ante las mismas señales de excitación. Los efectos de $i_{ds}^r(0) \neq 0$ se analizan por separado en el Sub-ítem~c. En las siguientes siulaciones se consideró $T_{amb}=20°$ y en el LTI aumentado se consideró R_s promedio entre 
 
 \textbf{Posición angular $\theta_m(t)$}
 
-La posición angular crece como rampa durante los pulsos de tensión, consecuencia directa del integrador puro ($\dot{\theta}_m = \omega_m$). Alcanza un máximo de $\approx 250$~rad en $t \approx 0.7$~s, que se mantiene hasta $t \approx 1.1$~s (durante $v_{qs}^* = 0$)  y retorna hacia cero durante el pulso negativo de $v_{qs}^*$. Ambos modelos presentan excelente concordancia. \textcolor{red}{ACTUALIZAR IMAGENES DE ESTA SECCION (JOACO HOY JUEVES O VIERNES).}
+La posición angular crece como rampa durante los pulsos de tensión, consecuencia directa del integrador puro ($\dot{\theta}_m = \omega_m$). Alcanza un máximo de $\approx 250$~rad en $t \approx 0.7$~s, que se mantiene hasta $t \approx 1.1$~s (durante $v_{qs}^* = 0$)  y retorna hacia cero durante el pulso negativo de $v_{qs}^*$. Ambos modelos presentan excelente concordancia. \textcolor{red}{La pequeña diferencia residual al final (offset constante una vez que $\theta_m$ regresa cerca de cero) se debe a la acumulación del error integrado entre las velocidades de ambos modelos, efecto inherente a la presencia del integrador puro en la planta.}
 
 \begin{figure}[H]
     \centering
@@ -1576,7 +1575,7 @@ El sistema recorre los cuatro cuadrantes durante la secuencia completa de pulsos
 
 \textbf{Ángulo de Carga $\delta(t)$}
 
-El ángulo de carga $\delta(t)$ es el que representa al desfasaje electromagnético entre el ángulo eléctrico $\theta_{ev}$ del rotor respecto a la posición angular del rotor en cordenadas eléctricas $\theta_r$. Donde se utiliza como referencia electrica, la posición del voltaje $V_{as}$, que es constante en estado estacionario.
+El ángulo de carga $\delta(t)$ es el que representa al desfasaje electromagnético entre el ángulo eléctrico $\theta_{ev}$ del rotor respecto a la posicion angular del rotor en cordenadas eléctricas $\theta_r$. Donde se utiliza como referencia electrica, la posición del voltaje $V_{as}$, que es constante en estado estacionario.
 \begin{equation}\label{eq:angulo_carga}
     \delta(t) \equiv \theta_{ev}(t)-\theta_r(t) = \int_0^t[\omega_e(\xi)-\omega_r(\xi)]d\xi +[\theta_e(0)-\theta_r(0)]
 \end{equation}
@@ -1884,6 +1883,7 @@ Para el sistema electromagnético la unica forma de variar el torque es a traves
 Como se dijo, la idea principal es obtener una consigna de corriente, donde, aplicando Control Vectorial, se conseguirá una consigna de corriente en cuadratura $i_{qs}^{r*}$. Si despejamos de la ecuación \eqref{eq:torque_electromagnetico}.
     \begin{equation*}
             T_m^*(t) = \frac{3}{2} P_p \cdot \lambda'^r_m \cdot i^r_{qs}(t) + \frac{3}{2} P_p (L_d-L_q)\cdot i^r_{ds}(t)\cdot i^{r*}_{qs}(t)
+            \label{eq:torque_electromagnetico}
     \end{equation*}
 \begin{gather*}
 i_{qs}^{r*}(t)=
@@ -2010,7 +2010,7 @@ Por lo tanto, para el caso nominal, las ganancias del controlador resultan:
 
 
 
-\subsection{Incorporación y diseño de Observador de Estado de Orden reducido para $\theta_m(t)$ y $\omega_m(t)$}
+\subsection{Incorporación y diseño de Observador de Estado de Orden reducido para $\theta_m(t)$ y $\omega_n(t)$}
 Se pretende estimar la velocidad del motor a partir del sensado de la posición, suponiendo por lo tanto, que no se dispone de un tacómetro. Esta estimación es posible debido al análisis que se realizó anteriormente (\textit{Controlabilidad y Observabilidad}) donde también se demuestra que no es observable la posición a partir de la velocidad.
 \subsubsection{Modelo del subsistema mecánico}
 Para implementar un observador de orden reducido no es necesario plantear todas las ecuaciones de estado, en este caso, el único subsistema involucrado en la estimación es el mecánico, que, si consideramos que ya se desacopló el término $-b_{eq}\omega_n(t)$ nos queda:
@@ -2041,33 +2041,27 @@ y(t) =
 \bm{x}(t)
 \end{gather*}
 Donde:
-\begin{gather*}
+\begin{equation*}
 \bm{\dot x}(t)=
 \begin{bmatrix}
-    \dot\theta_m(t) \\ \dot\omega_m(t)
-\end{bmatrix},
-\quad
+    \dot\theta_m(t) \\\dot\omega_m(t)
+\end{bmatrix}    ;\ \ 
 \bm{x}(t)=
 \begin{bmatrix}
-    \theta_m(t) \\ \omega_m(t)
-\end{bmatrix},
-\quad
-\bm{x}(0)=
-\begin{bmatrix}
-    \theta_m(0) \\ \omega_m(0)
-\end{bmatrix}, \\[6pt]
-u(t)=T_m'(t),
-\quad
-y(t)=\theta_m(t),
-\quad
+    \theta_m(t) \\\omega_m(t)
+\end{bmatrix}; \ \
+u(t) = T_m'(t); \ \
+\bm{x}(0) = \begin{bmatrix}
+    \theta_m(0) \\\omega_m(0)
+\end{bmatrix};\ \
+y(t) = \theta_m(t);\ \  
 A=\begin{bmatrix}
-    0 & 1\\ 0 & 0
-\end{bmatrix},
-\quad
+    0 & 1\\ 0 &0
+\end{bmatrix}; \ \
 C=\begin{bmatrix}
-    1 & 0
-\end{bmatrix}.
-\end{gather*}
+    1 &0
+\end{bmatrix}
+\end{equation*}
     
 \subsubsection{Diseño del observador}
     El observador de estados reducido se basará en el observador de Luenberger, cuya dinámica sigue una Ley de Control proporcional al error entre la salida medida y la estimada.
@@ -2150,14 +2144,14 @@ C=\begin{bmatrix}
         \includegraphics[width=1\linewidth]{imagenes/torque_pos_relacion.png}
         \caption{Torque neto aplicado por la articulación para seguir la consigna de posición.}
     \end{figure}
-Podemos concluir a través de las distintas gráficas que el sistema sigue la consigna de forma esperada. Aun así, todavía quedan problemas que solucionar, como por ejemplo, los picos de corriente que se producen en los transitorios.
+Podemos concluir a traves de las distintas gráficas que el sistema sigue la consigna de forma esperada. Aun así, todavia quedan problemas que solucionar, como por ejemplo, los picos de corriente que se producen en los transitorios.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{imagenes/picos_corriente_trapz_pos.png}
     \caption{Picos de corriente rms en transitorios}
 \end{figure}
 \subsubsection{Rechazo a perturbaciones $T_{ld}$ en escalón}
-Se eligió una combinación de escalones para hacer más evidente el efecto del torque de perturbación y la \textit{performance} del controlador al seguir la consigna de posición.
+Se eligió una combinación de escalones para hacer mas evidente el efecto del torque de perturbación y la \textit{performance} del controlador al seguir la consgina de posición.
 \[
 T_{ld}(t)=
 \begin{cases}
@@ -2219,22 +2213,22 @@ Inicialmente se propuso implementar perfil trapezoidal de la velocidad, obtenien
     \caption{En este caso, con un Tiempo de Rampa de $t=0.1s$, puede verse como la corriente pico apenas supera los $0.4 A$ }
 \end{figure}
 El perfil de velocidad se desarrolló implementando un generador de trayectorias, es decir que se permite ingresar una \textit{matriz de consigna de posición} y luego mediante un bloque MATLAB Function se vectoriza el vector de tiempo y de puntos en el espacio, mas detalles en el Anexo ~\ref{anexo:gen_trayectorias} .
-Como era de esperarse, aunque la implementación del perfil de velocidad trapezoidal corrigiera bastante el problema, las discontinuidades en la corriente, y por lo tanto en la aceleración, producían Jerk \textit{infinito}, lo que en una articulación real sería inaceptable. Por lo que se expandió el Generador de Trayectorias a la generación de un perfil trapezoidal de la aceleración, obteniendo el siguiente resultado.
+Como era de esperarse, aunque la implementacion del perfil de velocidad trapezoidal corrigiera bastante el problema, las discontinuidades en la corriente, y por lo tanto en la aceleración producían Jerk \textit{infinito}, lo que en una articulación real seria inaceptable, por lo que se expandio el Generador de Trayectorias a la generador de un perfil trapezoidal de la aceleración, obteniendo el siguiente resultado.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{imagenes/perfil_trap_accel_comp.png}
     \caption{Elminación de los picos no derivables de la corriente, o aceleración}
 \end{figure}
 
-\subsection{Mejora del observador mecánico ante perturbaciones constantes (Punto 5.2.5.b)}
+\section*{Mejora del observador mecanico ante perturbaciones constantes}
 
-El observador mecánico originalmente implementado para el punto 5.2.3 responde a la estructura clásica de Luenberger para el subsistema mecánico simplificado, utilizando como variable medida la posición angular del eje del motor $\theta_m(t)$ y reconstruyendo la velocidad angular $\omega_m(t)$ a partir del modelo y del error de salida. Dado que la consigna establece ubicar los polos del observador en
+El observador mecanico originalmente implementado para el punto 5.2.3 responde a la estructura clasica de Luenberger para el subsistema mecanico simplificado, utilizando como variable medida la posicion angular del eje del motor $\theta_m(t)$ y reconstruyendo la velocidad angular $\omega_m(t)$ a partir del modelo y del error de salida. Dado que la consigna establece ubicar los polos del observador en
 \[
 p_{obs\,1,2}=-3200\ \text{rad/s},
 \]
-se adoptó inicialmente el observador de segundo orden como diseño base.
+se adopto inicialmente el observador de segundo orden como diseño base.
 
-Partiendo del modelo mecánico simplificado utilizado para el diseño,
+Partiendo del modelo mecanico simplificado utilizado para el diseño,
 \begin{equation}
 \dot{\theta}_m(t)=\omega_m(t), 
 \qquad
@@ -2253,13 +2247,13 @@ el observador base queda dado por:
 \end{aligned}
 \end{equation}
 
-Definiendo el error de estimación como
+Definiendo el error de estimacion como
 \begin{equation}
 e_\theta(t)=\theta_m(t)-\hat{\theta}_m(t),
 \qquad
 e_\omega(t)=\omega_m(t)-\hat{\omega}_m(t),
 \end{equation}
-la dinámica del error para el observador base queda:
+la dinamica del error para el observador base queda:
 \begin{equation}
 \begin{bmatrix}
 \dot e_\theta(t)\\
@@ -2276,7 +2270,7 @@ e_\omega(t)
 \end{bmatrix}.
 \end{equation}
 
-Por lo tanto, el polinomio característico asociado es
+Por lo tanto, el polinomio caracteristico asociado es
 \begin{equation}
 p_{obs}(s)=s^2+K_{e\theta}s+K_{e\omega}.
 \end{equation}
@@ -2293,16 +2287,16 @@ K_{e\theta}=6400,
 K_{e\omega}=3200^2=1.024\times10^7.
 \end{equation}
 
-Con estas ganancias, el observador reconstruye adecuadamente la velocidad en transitorios y presenta una rapidez de convergencia suficientemente mayor que la dinámica dominante del controlador externo. No obstante, al verificar el comportamiento exigido en el punto 5.2.5.b, se observa que ante perturbaciones de carga cuasi-estacionarias aparece un error de estimación de régimen permanente distinto de cero. Esto indica que, aunque el observador base es estable y rápido, no rechaza completamente perturbaciones constantes o pequeños sesgos de modelado.
+Con estas ganancias, el observador reconstruye adecuadamente la velocidad en transitorios y presenta una rapidez de convergencia suficientemente mayor que la dinamica dominante del controlador externo. No obstante, al verificar el comportamiento exigido en el punto 5.2.5.b, se observa que ante perturbaciones de carga cuasi-estacionarias aparece un error de estimacion de regimen permanente distinto de cero. Esto indica que, aunque el observador base es estable y rapido, no rechaza completamente perturbaciones constantes o pequenos sesgos de modelado.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.78\linewidth]{imagenes/5_2_5_B_error_observador.png}
-    \caption{Error de offset observado con el observador mecánico de segundo orden sin acción integral, ante perturbaciones de carga cuasi-estacionarias.}
+    \caption{Error de offset observado con el observador mecanico de segundo orden sin accion integral, ante perturbaciones de carga cuasi-estacionarias.}
     \label{fig:obs_offset_original}
 \end{figure}
 
-En consecuencia, el observador de segundo orden se conserva como paso intermedio de diseño correspondiente al punto 5.2.3, pero no como solución definitiva para el punto 5.2.5.b. Para eliminar este offset se propone aumentar el observador con una acción integral del error de posición.
+En consecuencia, el observador de segundo orden se conserva como paso intermedio de diseño correspondiente al punto 5.2.3, pero no como solucion definitiva para el punto 5.2.5.b. Para eliminar este offset se propone aumentar el observador con una accion integral del error de posicion.
 
 Se define un nuevo estado auxiliar $z(t)$ como:
 \begin{equation}
@@ -2312,7 +2306,7 @@ e_{\theta}(t)=\theta_m(t)-\hat{\theta}_m(t),
 \dot z(t)=e_{\theta}(t).
 \end{equation}
 
-De esta manera, el observador mecánico aumentado queda:
+De esta manera, el observador mecanico aumentado queda:
 \begin{equation}
 \label{eq:obs_integral}
 \begin{aligned}
@@ -2322,7 +2316,7 @@ De esta manera, el observador mecánico aumentado queda:
 \end{aligned}
 \end{equation}
 
-En esta formulación, el término $K_{ei}z(t)$ introduce una corrección integral sobre el error de posición. Físicamente, esto permite compensar perturbaciones mecánicas aproximadamente constantes o incertidumbres de modelado que, en el observador base, se manifestaban como un sesgo persistente en la velocidad estimada y, por integración, también en la posición estimada.
+En esta formulacion, el termino $K_{ei}z(t)$ introduce una correccion integral sobre el error de posicion. Fisicamente, esto permite compensar perturbaciones mecanicas aproximadamente constantes o incertidumbres de modelado que, en el observador base, se manifestaban como un sesgo persistente en la velocidad estimada y, por integracion, tambien en la posicion estimada.
 
 Definiendo ahora el vector de error aumentado
 \begin{equation}
@@ -2333,7 +2327,7 @@ e_\omega(t)\\
 z(t)
 \end{bmatrix},
 \end{equation}
-la dinámica del error queda gobernada por
+la dinamica del error queda gobernada por
 \begin{equation}
 \dot{\mathbf e}_a(t)=
 \underbrace{
@@ -2345,7 +2339,7 @@ la dinámica del error queda gobernada por
 }_{\mathbf A_{obs,a}}
 \mathbf e_a(t),
 \end{equation}
-cuyo polinomio característico resulta
+cuyo polinomio caracteristico resulta
 \begin{equation}
 \label{eq:polinomio_obs_integral}
 p_{obs,a}(s)=s^3+K_{e\theta}s^2+K_{e\omega}s+K_{ei}.
@@ -2356,7 +2350,7 @@ Para conservar aproximadamente la misma rapidez principal de convergencia que en
 p_{1,2,3}=-3200\ \text{rad/s}.
 \end{equation}
 
-Así, el polinomio deseado es
+Asi, el polinomio deseado es
 \begin{equation}
 p_{des,a}(s)=(s+3200)^3
 =s^3+9600\,s^2+3.072\times10^7\,s+3.2768\times10^{10}.
@@ -2372,46 +2366,45 @@ K_{e\omega}=3.072\times10^7,
 K_{ei}=3.2768\times10^{10}.
 \end{equation}
 
-Desde el punto de vista de implementación en Simulink, esta mejora se incorpora mediante una rama adicional en paralelo:
+Desde el punto de vista de implementacion en Simulink, esta mejora se incorpora mediante una rama adicional en paralelo:
 \begin{enumerate}
-    \item se calcula el error de posición $e_{\theta}(t)=\theta_m(t)-\hat{\theta}_m(t)$;
-
+    \item se calcula el error de posicion $e_{\theta}(t)=\theta_m(t)-\hat{\theta}_m(t)$;
     \item dicho error alimenta un integrador $1/s$, cuya salida es el estado $z(t)$;
     \item la salida $z(t)$ se multiplica por la ganancia $K_{ei}$;
-    \item la señal $K_{ei}z(t)$ se suma en la ecuación de $\dot{\hat{\omega}}_m(t)$ junto con el término de modelo y la corrección proporcional $K_{e\omega}e_{\theta}(t)$;
-    \item la velocidad estimada $\hat{\omega}_m(t)$ se integra para obtener $\hat{\theta}_m(t)$, cerrando la realimentación del observador.
+    \item la senal $K_{ei}z(t)$ se suma en la ecuacion de $\dot{\hat{\omega}}_m(t)$ junto con el termino de modelo y la correccion proporcional $K_{e\omega}e_{\theta}(t)$;
+    \item la velocidad estimada $\hat{\omega}_m(t)$ se integra para obtener $\hat{\theta}_m(t)$, cerrando la realimentacion del observador.
 \end{enumerate}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.92\linewidth]{imagenes/5_2_5_B_diagrama_bloques_observador.png}
-    \caption{Diagrama de bloques del observador mecánico aumentado con acción integral implementado en Simulink. El error de posición $e_{\theta}(t)=\theta_m(t)-\hat{\theta}_m(t)$ alimenta tanto las ramas proporcionales como la rama integral, cuya salida corrige la dinámica de $\dot{\hat{\omega}}_m(t)$ para eliminar el error estacionario de estimación.}
+    \caption{Diagrama de bloques del observador mecanico aumentado con accion integral implementado en Simulink. El error de posicion $e_{\theta}(t)=\theta_m(t)-\hat{\theta}_m(t)$ alimenta tanto las ramas proporcionales como la rama integral, cuya salida corrige la dinamica de $\dot{\hat{\omega}}_m(t)$ para eliminar el error estacionario de estimacion.}
     \label{fig:obs_bloques_integral}
 \end{figure}
 
-En la práctica, esta estructura puede interpretarse también como una estimación implícita de una perturbación mecánica constante o de un \textit{bias} equivalente no modelado. Sin embargo, independientemente de esa interpretación física, la conclusión relevante para el presente trabajo es que la incorporación del estado integral elimina el error estacionario de estimación frente a perturbaciones constantes de carga.
+En la practica, esta estructura puede interpretarse tambien como una estimacion implicita de una perturbacion mecanica constante o de un \textit{bias} equivalente no modelado. Sin embargo, independientemente de esa interpretacion fisica, la conclusion relevante para el presente trabajo es que la incorporacion del estado integral elimina el error estacionario de estimacion frente a perturbaciones constantes de carga.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.78\linewidth]{imagenes/5_2_5_B_observador_sin_offset.png}
-    \caption{Respuesta del observador aumentado con acción integral. Se observa la desaparición del error de offset en régimen permanente.}
+    \caption{Respuesta del observador aumentado con accion integral. Se observa la desaparicion del error de offset en regimen permanente.}
     \label{fig:obs_offset_corregido}
 \end{figure}
 
-Comparando las Fig.~\ref{fig:obs_offset_original} y \ref{fig:obs_offset_corregido}, se verifica que el agregado del estado integral corrige el error de estimación de régimen permanente sin perder una rapidez de convergencia compatible con el resto de la arquitectura de control. Por este motivo, el observador mecánico aumentado con acción integral se adopta como solución final para el punto 5.2.5.b.
+Comparando las Fig.~\ref{fig:obs_offset_original} y \ref{fig:obs_offset_corregido}, se verifica que el agregado del estado integral corrige el error de estimacion de regimen permanente sin perder una rapidez de convergencia compatible con el resto de la arquitectura de control. Por este motivo, el observador mecanico aumentado con accion integral se adopta como solucion final para el punto 5.2.5.b.
 
-\subsection{Comportamiento térmico del motor (Punto 5.2.5.c)}
+\subsection*{Punto 5.2.5.c: comportamiento termico del motor}
 
-Para verificar el comportamiento térmico del accionamiento en operación repetitiva, se aplicó de manera cíclica la consigna final de posición adoptada en el trabajo, compuesta por un trapecio de 15 s de duración: rampa de subida entre 0 y 5 s, mantenimiento entre 5 y 10 s, y rampa de bajada entre 10 y 15 s. Sobre esta condición de funcionamiento se consideró una temperatura ambiente de
+Para verificar el comportamiento termico del accionamiento en operacion repetitiva, se aplico de manera ciclica la consigna final de posicion adoptada en el trabajo, compuesta por un trapecio de 15 s de duracion: rampa de subida entre 0 y 5 s, mantenimiento entre 5 y 10 s, y rampa de bajada entre 10 y 15 s. Sobre esta condicion de funcionamiento se considero una temperatura ambiente de
 \[
 T_{amb}=25^\circ\text{C}
 \]
-y un torque de perturbación máximo de
+y un torque de perturbacion maximo de
 \[
 T_{Ld}=5\ \text{Nm}.
 \]
 
-La simulación se ejecutó repitiendo sucesivamente dicho ciclo, de modo de evaluar la evolución de la temperatura del bobinado del estator \(T_s^\circ(t)\). Dado que cada ciclo tiene una duración de 15 s, el instante en que se supera la temperatura máxima admisible
+La simulacion se ejecuto repitiendo sucesivamente dicho ciclo, de modo de evaluar la evolucion de la temperatura del bobinado del estator \(T_s^\circ(t)\). Dado que cada ciclo tiene una duracion de 15 s, el instante en que se supera la temperatura maxima admisible
 \[
 T_{s,\max}=115^\circ\text{C}
 \]
@@ -2419,21 +2412,21 @@ ocurre a los
 \[
 t=225.9\ \text{s},
 \]
-lo que corresponde a aproximadamente 15 ciclos completos y 0.9 s del ciclo número 16.
+lo que corresponde a aproximadamente 15 ciclos completos y 0.9 s del ciclo numero 16.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{imagenes/5_2_5_C_comportamiento_termico.png}
-    \caption{Evolución de la temperatura del bobinado \(T_s^\circ(t)\) bajo operación repetitiva, considerando \(T_{amb}=25^\circ\text{C}\), \(T_{Ld}=5\,\text{Nm}\) y la consigna trapezoidal de posición utilizada en el trabajo. Se observa que la temperatura supera el límite admisible \(T_{s,\max}=115^\circ\text{C}\) a los 225.9 s.}
+    \caption{Evolucion de la temperatura del bobinado \(T_s^\circ(t)\) bajo operacion repetitiva, considerando \(T_{amb}=25^\circ\text{C}\), \(T_{Ld}=5\,\text{Nm}\) y la consigna trapezoidal de posicion utilizada en el trabajo. Se observa que la temperatura supera el limite admisible \(T_{s,\max}=115^\circ\text{C}\) a los 225.9 s.}
     \label{fig:termico_525c}
 \end{figure}
 
-Por lo tanto, para las condiciones analizadas, el sistema no satisface el requerimiento térmico de operación continua repetitiva, ya que la temperatura del bobinado excede el valor máximo permitido antes de alcanzar el equilibrio térmico. En consecuencia, esta condición de trabajo no resulta admisible desde el punto de vista térmico.
+Por lo tanto, para las condiciones analizadas, el sistema no satisface el requerimiento termico de operacion continua repetitiva, ya que la temperatura del bobinado excede el valor maximo permitido antes de alcanzar el equilibrio termico. En consecuencia, esta condicion de trabajo no resulta admisible desde el punto de vista termico.
 %-------------
 \subsubsection{Evaluación de desempeño utilizando sensores no ideales ($G\neq 1$)}
 En esta sección se pretende evaluar el desempeño del sistema asumiendo una función de transferencia para los sensores de modo que se comporten como filtros pasa bajos, para ello en la consigna se detalla un punto de partida para los polos de las funciones de transferencia a aplicar mediante el modelo de SS.
 
-Se reemplaza entonces el modelo ideal de medición $G(s)=1$ por modelos dinámicos equivalentes de filtros pasa bajos con ganancia unitaria, implementados en espacio de estados. Los sensores afectados son las corrientes de fase, la posición angular del rotor y la medición de temperatura del estator, con los parámetros indicados en la consigna~\cite{guia_trabajo}.
+Se reemplaza entonces el modelo ideal de medición $G(s)=1$ por modelos dinámicos equivalentes de filtros pasa bajos con ganancia unitaria, implementados en espacio de estados. Los sensores afectados son las corrientes de fase, la posición angular del rotor y la medición de temperatura del estator, con los parámetros indicados en la consigna :contentReference[oaicite:0]{index=0}.
 
 \subsubsection*{Polos requeridos para cada sensor}
 
@@ -2700,24 +2693,24 @@ para el sensor de temperatura.
 En todos los casos, la entrada $u(t)$ corresponde a la variable física real a medir, mientras que la salida $y(t)$ representa la señal efectivamente medida por el sensor no ideal. Para evitar transitorios artificiales al inicio de la simulación, las condiciones iniciales de cada filtro deben fijarse de forma consistente con el valor inicial de la magnitud medida.
 
 \subsubsection*{Simulación con sensores no ideales}
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{imagenes/sensores_no_ideales_1.png}
-    \caption{\textit{Arriba Posición y Velocidad, debajo corriente en eje en cuadratura.}Puede verse el efecto del modelo en SS de los sensores, donde le es imposible seguir la consigna de posición. ($T_{ld} = 5 \ [Nm]$)}
+    \caption{\textit{Arriba Posicion y Velocidad, debajo corriente en eje en cuadratura.}Puede verse el efecto del modelo en SS de los sensores, donde le es imposible seguir la consigna de posición. ($T_{ld} = 5 \ [Nm]$)}
     \label{fig:sens_pos_1}
 \end{figure}
-Es interesante observar en la Fig.~\ref{fig:sens_pos_1} cómo, con los polos elegidos para el modelo, los sensores no son lo suficientemente rápidos respecto a la dinámica del lazo de corriente, lo que era de esperarse: si recordamos el diseño del modulador de corriente, se habían elegido $p_{a,b,c}=-5000 \ [rad/s]$, por lo que modelar los sensores de corriente con $p_{sens,abc}=-6000 \ [rad/s]$ no resulta lo suficientemente más rápido que la dinámica del sistema. Lo mismo ocurre con los polos del observador. Es por eso que se propone aumentar estos polos de forma conjunta, es decir, $\omega_n\prime  = N \cdot \omega_n;\ N=1,2,3\ldots$
+Es interesante observar en la Fig \ref{fig:sens_pos_1} como con los polos elegidos para el modelo son completamente irracionales, lo que era de esperarse, ya que si recordamos el diseño del modulador de corriente, se habian elegido $p_{a,b,c}=-5000 \ [rad/s]$, por lo que, modelar los sensores en este caso de corriente, con $p_{sens,abc}=-6000 \ [rad/s]$ no es lo suficientemente mas rapido que la dinámica del sistema, pasa lo mismo con los polos del observador. Es por eso que se propone aumentar estos polos de forma conjunta, es decir, $\omega_n\prime  = N \cdot \omega_n ;\ N=1,2,3...$
 Luego de experimentos, se obtienen resultados aceptables con $N=3$ (Fig. \ref{fig:sens_pos_2}). Lo que indicaría que los sensores a utilizar en nuestro accionamiento deberian presentar una respuesta por lo menos 3 veces más rápida que los del modelo que se especificaron inicialmente en la consigna.
  \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{imagenes/sensores_no_ideales_2.png}
-    \caption{\textit{Arriba Posición y Velocidad, debajo corriente en eje en cuadratura.} Puede verse como ya el accionamiento sigue con éxito la consigna de solicitada sin oscilaciones producidas por los retardos de los sensores. ($T_{ld} = 5 \ [Nm]$)}
+    \caption{\textit{Arriba Posicion y Velocidad, debajo corriente en eje en cuadratura.} Puede verse como ya el accionamiento sigue con éxito la consigna de solicitada sin oscilaciones producidas por los retardos de los sensores. ($T_{ld} = 5 \ [Nm]$)}
     \label{fig:sens_pos_2}
 \end{figure}
 \subsubsection*{Análisis de respuesta simulando no idealidad de inversor trifásico de tensión}
 En un accionamiento físico real, el inversor está restringido por las limitaciones dinámicas de los dispositivos semiconductores de conmutación (como los transistores MOSFETs o IGBTs) y por el nivel máximo de energía que puede proveer su fuente de alimentación de corriente continua.
 Para evaluar de manera fidedigna cómo estas limitaciones degradan el desempeño del sistema, se reemplaza el bloque ideal por un modelo equivalente estructurado en el Espacio de Estados (SS) que incorpora dos restricciones físicas fundamentales: un ancho de banda limitado y la saturación estricta de la tensión.
-Se propone a priori, simular esta limitación como un filtro pasa bajo de segundo orden con amortiguación crítica ($\zeta = 1$) y $\omega_n = 6000 \ [rad/s]$, con lo que, siguiendo el desarrollo del punto anterior, las matrices $A_v$ y $B_v$ del Espacio de Estados quedarían:
+Se propone a priori, simular esta limitación como un filtro pasa bajo de segundo orden con amortiguación crítica ($\zeta = 1$)y $\omega_n = 6000 \ [rad/s]$, lo que siguiendo el desarrollo del punto antrerior, las matrices $A_v$ $B_v$ del Espacio de Estados quedarían:
 \begin{equation*}
     A_v=
     \begin{bmatrix}
@@ -2739,14 +2732,14 @@ Se propone a priori, simular esta limitación como un filtro pasa bajo de segund
  \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{imagenes/inversor_no_ideal_6000.png}
-    \caption{\textit{Arriba Posición y Velocidad, debajo corriente en eje en cuadratura.} Puede verse como el inversor no es lo suficientemente rapido. ($T_{ld} = 5 \ [Nm]$, $\omega_n = 6000 \ [rad/s]$)}
+    \caption{\textit{Arriba Posicion y Velocidad, debajo corriente en eje en cuadratura.} Puede verse como el inversor no es lo suficientemente rapido. ($T_{ld} = 5 \ [Nm]$, $\omega_n = 6000 \ [rad/s]$)}
     \label{fig:inv_trifasico_6000}
 \end{figure}
-Como era de esperarse, la rapidez propuesta inicialmente no es suficiente, ya que es solo un $20\%$ más rápida que el lazo de corriente. Se propone, siguiendo el mismo procedimiento que en el modelado de los sensores, duplicar la rapidez de respuesta del inversor a $\omega_n\prime = 12000 \ [rad/s]$.
+Como era de esperarse, la rapides propuesta inicialmente no es suficiente, ya que es solo un $20\%$ más rápido que el lazo de corriente. Se propone, siguiendo el mismo procedimiento que en el modelado de los sensores, duplicar la rapidez de respuesta del inversor a $\omega_n\prime = 12000 \ [rad/s]$
  \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{imagenes/inversor_no_ideal_12000.png}
-    \caption{\textit{Arriba Posición y Velocidad, debajo corriente en eje en cuadratura.} Finalmente se consigue un rendimiento satisfactorio y cumplimiento con las demás condiciones de operación al mismo tiempo.  ($T_{ld} = 5 \ [Nm]$, $\omega_n = 12000 \ [rad/s]$)}
+    \caption{\textit{Arriba Posicion y Velocidad, debajo corriente en eje en cuadratura.} Finalmente se consigue un rendimiento satisfactorio y cumplimiento con las demás condiciones de operación al mismo tiempo.  ($T_{ld} = 5 \ [Nm]$, $\omega_n = 12000 \ [rad/s]$)}
     \label{fig:inv_trifasico_12000}
 \end{figure}
 \section{Discretización del Controlador}
@@ -2793,28 +2786,15 @@ Por otro lado, los bloques netamente algebraicos como el Modulador de Torque y e
 \end{figure}
 \section{Codificación del Software de Control}
 
-Con el fin de validar la viabilidad de la implementación física del sistema diseñado, se procedió a reemplazar el diagrama de bloques del controlador discreto por código programado en lenguaje de texto estructurado (lenguaje MATLAB) encapsulado dentro de un bloque \textit{MATLAB Function}~\cite{guia_trabajo}. Este procedimiento emula rigurosamente la programación de bajo nivel que se llevaría a cabo en un microcontrolador industrial o Procesador Digital de Señales (DSP) en una aplicación mecatrónica real.
+Con el fin de validar la viabilidad de la implementación física del sistema diseñado, se procedió a reemplazar el diagrama de bloques del controlador discreto por código programado en lenguaje de texto estructurado (lenguaje MATLAB) encapsulado dentro de un bloque \textit{MATLAB Function} [1]. Este procedimiento emula rigurosamente la programación de bajo nivel que se llevaría a cabo en un microcontrolador industrial o Procesador Digital de Señales (DSP) en una aplicación mecatrónica real [1].
 
 El desarrollo del algoritmo de control se estructuró acatando los siguientes lineamientos fundamentales para sistemas embebidos de tiempo real:
 
 \begin{itemize}
-    \item \textbf{Precálculo de variables y optimización computacional:} Para garantizar que el procesador pueda ejecutar la totalidad del lazo de control dentro del estricto margen de tiempo impuesto por el período de muestreo $T_s$, es mandatorio realizar el precálculo de todas las variables que no dependen del instante de ejecución actual~\cite{guia_trabajo}. Esto abarca constantes como los coeficientes del integrador de Tustin ($T_s/2$) y la inicialización de la cinemática del generador de trayectorias. A nivel de software, esto se implementó declarando variables de memoria estática (tipo \texttt{persistent}), las cuales se calculan y almacenan exclusivamente durante el primer ciclo de reloj ($t=0$), evitando sobrecargar la unidad aritmético-lógica en cada paso de integración.
-    \item \textbf{Arquitectura modular y funciones escalares:} El código fuente fue documentado y organizado empleando funciones escalares desagregadas~\cite{guia_trabajo}. Esto permite que el flujo de ejecución sea claro, secuencial y determinístico. En cada interrupción del reloj discreto, el algoritmo ejecuta de forma secuencial: 1) La actualización del Planificador de Trayectorias, 2) La estimación a través del Observador de Estado Reducido, 3) El cálculo de la ley de control de movimiento PID, 4) La resolución del Modulador de Torque y corrientes, y finalmente 5) Las Transformaciones de Park inversas para sintetizar y exportar las consignas de tensión trifásica hacia el retentor de orden cero (ZOH).
-    \item \textbf{Validación de desempeño:} Una vez finalizada la codificación, se procedió a ensayar el bloque estructurado en lazo cerrado contra el modelo de la planta física continua. Para validar matemáticamente su correcto funcionamiento, se comparó su comportamiento dinámico frente al del modelo en bloques discretos obtenido en la etapa previa~\cite{guia_trabajo}. Las curvas de respuesta de posición, velocidad, torque electromagnético y corrientes de fase de ambos enfoques deben presentar un solapamiento exacto, garantizando así la ausencia de retardos temporales, errores de cuantización introducidos por el código o discrepancias algebraicas.
+    \item \textbf{Precálculo de variables y optimización computacional:} Para garantizar que el procesador pueda ejecutar la totalidad del lazo de control dentro del estricto margen de tiempo impuesto por el período de muestreo $T_s$, es mandatorio realizar el precálculo de todas las variables que no dependen del instante de ejecución actual [1]. Esto abarca constantes como los coeficientes del integrador de Tustin ($T_s/2$) y la inicialización de la cinemática del generador de trayectorias. A nivel de software, esto se implementó declarando variables de memoria estática (tipo \texttt{persistent}), las cuales se calculan y almacenan exclusivamente durante el primer ciclo de reloj ($t=0$), evitando sobrecargar la unidad aritmético-lógica en cada paso de integración.
+    \item \textbf{Arquitectura modular y funciones escalares:} El código fuente fue documentado y organizado empleando funciones escalares desagregadas [1]. Esto permite que el flujo de ejecución sea claro, secuencial y determinístico. En cada interrupción del reloj discreto, el algoritmo ejecuta de forma secuencial: 1) La actualización del Planificador de Trayectorias, 2) La estimación a través del Observador de Estado Reducido, 3) El cálculo de la ley de control de movimiento PID, 4) La resolución del Modulador de Torque y corrientes, y finalmente 5) Las Transformaciones de Park inversas para sintetizar y exportar las consignas de tensión trifásica hacia el retentor de orden cero (ZOH).
+    \item \textbf{Validación de desempeño:} Una vez finalizada la codificación, se procedió a ensayar el bloque estructurado en lazo cerrado contra el modelo de la planta física continua. Para validar matemáticamente su correcto funcionamiento, se comparó su comportamiento dinámico frente al del modelo en bloques discretos obtenido en la etapa previa [1]. Las curvas de respuesta de posición, velocidad, torque electromagnético y corrientes de fase de ambos enfoques deben presentar un solapamiento exacto, garantizando así la ausencia de retardos temporales, errores de cuantización introducidos por el código o discrepancias algebraicas.
 \end{itemize}
-
-\section{Conclusiones}
-
-El presente trabajo abordó el modelado, análisis y diseño de un sistema de control de posición y movimiento para un accionamiento eléctrico basado en un motor sincrónico de imanes permanentes (PMSM) acoplado, mediante un reductor planetario de relación $r=120{:}1$, a una carga mecánica del tipo péndulo rígido de un grado de libertad. A partir del modelo no lineal completo de seis estados en coordenadas rotóricas $qd0$, se derivó un modelo LTI equivalente aumentado de cuatro estados mediante una linealización por retroalimentación NL de estado, empleando una ley mínima sobre $v_{ds}^{r}$ y una ley complementaria sobre $v_{qs}^{r}$ que cancelan en forma exacta los acoplamientos electromagnéticos cruzados. La simulación dinámica comparativa frente a la secuencia de pulsos de tensión y torque de carga prevista en la guía verificó la equivalencia entre el modelo no lineal y el LTI aumentado, así como el carácter transitorio de la dinámica residual de $i_{ds}^{r}$ ante condiciones iniciales no nulas, con constante de tiempo $\tau_d = L_d/R_s \approx 6{,}5$~ms.
-
-Los análisis estructurales mostraron que $i_{ds}^{r}$ es simultáneamente no controlable desde $v_{qs}^{r}$ y no observable desde $\theta_m$, lo que justifica formalmente la cancelación polo-cero detectada en las funciones de transferencia y permitió diseñar un observador reducido de la parte mecánica a partir únicamente del sensor de posición, sin pérdida de información estructural relevante. Sobre esta base se diseñó un controlador en cascada compuesto por un modulador de torque con desacoplamiento completo y precomputo del par gravitatorio y viscoso, lazos proporcionales de corriente con polo en $-5000$ rad/s y un controlador PID externo sintonizado por el método de separación de anchos de banda con $\zeta = 0{,}75$ y $\omega_n = 800$~rad/s. El observador mecánico se ubicó originalmente con polos dobles en $-3200$~rad/s y, posteriormente, debió aumentarse con acción integral para eliminar el error estacionario de estimación frente a perturbaciones constantes de carga, ubicando tres polos reales iguales en $-3200$~rad/s.
-
-La verificación de desempeño puso de manifiesto varias limitaciones operativas del sistema diseñado. En primer lugar, ante consignas de posición con discontinuidades en aceleración o velocidad, las corrientes de fase superan las especificaciones nominales, por lo que se incorporó un generador de trayectorias con perfil trapezoidal de aceleración (curva en S) que respeta las restricciones del inversor y del motor. En segundo lugar, bajo operación cíclica con $T_{\mathrm{amb}}=25\,^\circ$C y $T_{Ld}=5$~Nm, la temperatura del bobinado supera el límite admisible de $115\,^\circ$C a los $225{,}9$~s ($\approx 15$ ciclos completos), indicando que el accionamiento no satisface el requerimiento térmico de operación continua repetitiva bajo esas condiciones. En tercer lugar, el modelado realista de sensores e inversor como filtros pasa bajos en espacio de estados evidenció que las dinámicas especificadas en la guía no son lo suficientemente rápidas: fue necesario escalar los polos de los sensores en un factor $N=3$ y duplicar el ancho de banda del inversor hasta $\omega_n^{\prime}=12000$~rad/s para no degradar el desempeño del controlador.
-
-Finalmente, se completó la transición a tiempo discreto mediante la regla de Tustin con $T_s \leq 1{,}25\times 10^{-4}$~s, discretizando los integradores del PID externo y del observador y modelando la frontera digital-analógica con retenedores de orden cero. La codificación del controlador completo en una \textit{MATLAB Function} estructurada permitió validar su equivalencia con el diseño en bloques, sentando las bases para una eventual implementación física sobre microcontrolador o DSP.
-
-Como líneas de mejora se identifican: la incorporación de una estrategia de campo orientado con maximización del par por amperio (MTPA), la implementación de un esquema de disipación térmica activa o la reformulación del ciclo de trabajo para garantizar la operación continua admisible, la evaluación cuantitativa de la robustez del controlador ante la variación máxima de los parámetros de carga $J_l$ y $b_l$, y la validación experimental del controlador discretizado sobre una plataforma física.
-
 \bibliographystyle{ieeetr}
 \bibliography{references}
 
@@ -2826,7 +2806,7 @@ Como líneas de mejora se identifican: la incorporación de una estrategia de ca
 
 
 
-\appendices
+\begin{appendices}
 \section{Generador de Trayectorias paramétricamente suavizadas mediante interpolación lineal}
 \subsection{Descripción General}
 Para el control de posición del motor sincrónico de imanes permanentes (PMSM), se incorporó un \textbf{Generador de Trayectorias} en el esquema de control. Este bloque tiene como objetivo principal suavizar las transiciones entre los distintos puntos de consigna espaciales, generando referencias continuas y derivables de posición ($\theta_{ref}$), velocidad ($\omega_{ref}$) y aceleración ($\alpha_{ref}$) en función del tiempo. 
@@ -2847,9 +2827,10 @@ El bloque procesa los siguientes parámetros para generar las señales en tiempo
     \item $t$: Tiempo actual de simulación [s].
     \item \texttt{consigna\_posicion}: Matriz de $N \times 2$ donde la primera columna contiene los instantes de tiempo (nodos temporales) y la segunda indica las posiciones angulares objetivo para cada nodo.
     \item $t_{r1}$ (\texttt{t\_rampa\_vel}): Tiempo total asignado a la fase completa de aceleración (o desaceleración).
-    \item $t_{r2}$ (\texttt{t\_rampa\_acel}): Fracción de tiempo dedicada exclusivamente al incremento o decremento lineal de la aceleración (fase de \textit{jerk} distinto de cero).
+    \item $t_{r2}$ (\texttt{t\_rampa\_acel}): Fracción de tiempo dedicada exclusivamente al incremento/decremento lineal de la aceleración (fase de \textit{jerk} distinto de cero).
 \end{itemize}
 
 A nivel algorítmico y para optimizar la carga computacional en cada paso de integración de la simulación, el sistema precalcula las distancias relativas entre nodos ($\Delta q$), las duraciones de los tramos ($\Delta t$), la velocidad máxima requerida ($h_1$) y la aceleración máxima ($h_2$) una única vez durante el primer ciclo de ejecución, operando luego mediante la evaluación temporal sobre estos límites preestablecidos.
 \label{anexo:gen_trayectorias}
+\end{appendices}
 \end{document}
