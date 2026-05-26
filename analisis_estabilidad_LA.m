@@ -13,7 +13,7 @@ else
     error('No se encuentra "parametros_sistema_completo.m".');
 end
 
-R_s0 = R_sREF;
+R_s0 = R_sREF * (1 + 3.9e-3*(29.5-20));   % R_s en el punto de operacion termico T_s=29.5C (media de la sim 5.1.6), NO a 20C. = 1.058 Ohm
 
 %% 2. MODELO LTI AUMENTADO (4x4) - NOMINAL
 % Estado: x = [theta_m; omega_m; i_qs; i_ds]
@@ -210,7 +210,7 @@ for i = 1:N_Rs
 end
 
 % Flecha indicando dirección de aumento de Rs
-annotation('textarrow', [0.32 0.25], [0.75 0.65], ...
+annotation('textarrow', [0.40 0.27], [0.75 0.65], ...
     'String', 'R_s \uparrow', 'FontSize', 11);
 
 xline(0, 'k-', 'LineWidth', 0.5);

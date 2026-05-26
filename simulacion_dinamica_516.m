@@ -14,7 +14,7 @@ else
     error('No se encuentra "parametros_sistema_completo.m".');
 end
 
-R_s0 = R_sREF;          % Resistencia nominal (punto de operación T_s = 20°C)
+R_s0 = R_sREF * (1 + 3.9e-3*(29.5-20));   % R_s en operacion T_s=29.5C (media de la sim 5.1.6), NO a 20C. = 1.058 Ohm
 kt   = 1.5 * P_p * lambda_r;  % Constante de torque electromagnético
 
 %% 2. DEFINICIÓN DE SEÑALES DE ENTRADA
@@ -414,27 +414,32 @@ text( abs(ax_lims(2))*margin_x, -abs(ax_lims(4))*margin_y, ...
 % === Formato final ===
 xlabel('\omega_m [rad/s]', 'FontSize', 13, 'FontWeight', 'bold');
 ylabel('T_{em} [N \cdot m]', 'FontSize', 13, 'FontWeight', 'bold');
-title({'Torque Electromagn\''etico vs Velocidad Angular - Cuadrantes de Operaci\''on'; ...
+title({'Torque Electromagnético vs Velocidad Angular - Cuadrantes de Operación'; ...
        'Modelo NL con Ley de Control (caso i_{ds}(0) = 0 A)'}, ...
     'FontSize', 13, 'FontWeight', 'bold');
 
 lgd = legend('Location', 'eastoutside', 'FontSize', 8.5, 'Box', 'on');
 title(lgd, 'Transitorios y Referencias', 'FontSize', 9);
+exportgraphics(fig8, 'imagenes/sim_torque_vs_velocidad.png', 'Resolution', 150);
 
-% --- Figura 8b: Trayectoria en Plano de Corrientes (gráfica separada) ---
+% --- Figura 8b: Trayectoria en Plano de Corrientes (3 casos en paneles separados) ---
 fig8b = figure('Name', 'Plano de Corrientes i_ds vs i_qs', 'Color', 'w', ...
-    'Position', [200 80 900 600]);
+    'Position', [200 40 700 850]);
 
-hold on; grid on; box on;
 for k = 1:3
-    plot(res_nl{k}(:,3), res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.2);
+    subplot(3,1,k); hold on; grid on; box on;
+    plot(res_nl{k}(:,3), res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.4);
     plot(res_nl{k}(1,3), res_nl{k}(1,4), 'o', 'Color', case_colors{k}, ...
-        'MarkerSize', 8, 'MarkerFaceColor', case_colors{k}, 'HandleVisibility', 'off');
+        'MarkerSize', 9, 'MarkerFaceColor', case_colors{k}, 'HandleVisibility', 'off');
+    xline(0, 'k--', 'HandleVisibility', 'off'); yline(0, 'k--', 'HandleVisibility', 'off');
+    ylabel('i_{ds} [A]', 'FontSize', 11);
+    title(case_names{k}, 'FontSize', 12, 'FontWeight', 'bold');
+    ylim([-0.6 0.6]);   % i_ds es chico: fijamos escala comun para apreciar el decaimiento
 end
-xlabel('i_{qs} [A]', 'FontSize', 12); ylabel('i_{ds} [A]', 'FontSize', 12);
-title('Trayectoria en Plano de Corrientes (i_{ds} vs i_{qs}) - Modelo NL', 'FontSize', 13, 'FontWeight', 'bold');
-legend(case_names, 'Location', 'best');
-xline(0, 'k--', 'HandleVisibility', 'off'); yline(0, 'k--', 'HandleVisibility', 'off');
+xlabel('i_{qs} [A]', 'FontSize', 12);   % solo en el panel inferior
+sgtitle('Trayectoria en Plano de Corrientes (i_{ds} vs i_{qs}) - Modelo NL', ...
+    'FontSize', 13, 'FontWeight', 'bold');
+exportgraphics(fig8b, 'imagenes/sim_ids_vs_iqs.png', 'Resolution', 150);
 
 % --- Figura 9: Ángulo de torque del rotor ---
 fig9 = figure('Name', 'Ángulo de Torque', 'Color', 'w', 'Position', [400 100 900 400]);

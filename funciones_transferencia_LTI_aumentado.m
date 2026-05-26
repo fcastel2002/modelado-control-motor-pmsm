@@ -35,7 +35,7 @@ fprintf('\n========================================\n');
 fprintf('  MODELO LTI EQUIVALENTE AUMENTADO\n');
 fprintf('========================================\n');
 
-R_s0 = R_sREF;  % Resistencia a temperatura nominal
+R_s0 = R_sREF * (1 + 3.9e-3*(29.5-20));  % R_s en operacion T_s=29.5C (media), NO a 20C. = 1.058 Ohm
 
 % --- Matriz de Estado A (4x4) ---
 %   x = [theta_m; omega_m; i_qs; i_ds]
