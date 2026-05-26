@@ -39,7 +39,7 @@ tld_func = @(t) T_LD_AMP * ( ...
 
 A_aug = [0,    1,          0,          0;
          0, -b_eq/J_eq,  kt/J_eq,      0;
-         0,    0,       -R_s0/L_q,      0;
+         0, -lambda_r*P_p/L_q, -R_s0/L_q,  0;   % back-EMF (lambda_m*P_p): acopla i_qs con omega_m -> par complejo zeta=0.527
          0,    0,          0,    -R_s0/L_d];
 
 B_aug = [0,         0;
@@ -479,15 +479,16 @@ event_names = { ...
 % Usamos caso k=1 (i_ds(0) = 0) del modelo LTI
 y_lti_nom = res_lti{1};  % [theta_m, omega_m, i_qs, i_ds]
 
-fprintf('\n--- Métricas por transitorio (modelo LTI, i_ds(0) = 0 A) ---\n');
-fprintf('%-6s | %-25s | %10s | %10s | %10s | %10s | %8s\n', ...
-    'Trans', 'Evento', 'w_end', 'iq_ss', 'tr_iq', 'ts_iq', 'Mp_iq');
-fprintf('%-6s | %-25s | %10s | %10s | %10s | %10s | %8s\n', ...
-    '', '', '[rad/s]', '[A]', '[ms]', '[ms]', '[%]');
+fprintf('\n--- Métricas por transitorio sobre omega_m (modelo LTI, i_ds(0) = 0 A) ---\n');
+fprintf('%-5s | %-20s | %8s | %6s | %6s | %6s | %6s | %8s | %8s\n', ...
+    'Trans', 'Evento', 'wm_ss', 'Mp[%]', 'tp[ms]', 'tr[ms]', 'ts[ms]', 'iqs_pic', 'iqs_reg');
 fprintf('%s\n', repmat('-', 1, 95));
 
-% Almacenar para LaTeX
-metricas = NaN(10, 5);  % [w_end, iq_ss, tr_iq, ts_iq, Mp_iq]
+% Modo electromecanico dominante (par complejo de A_aug, zeta=0.527)
+ev    = eig(A_aug);
+ev_c  = ev(abs(imag(ev)) > 1e-6);
+wn_em = abs(ev_c(1));   zeta_em = -real(ev_c(1))/wn_em;
+
 latex_rows = strings(10, 1);
 
 for s = 1:10
@@ -501,91 +502,46 @@ for s = 1:10
         idx_fin = length(t_sim);
     end
 
-    t_seg = t_sim(idx_ini:idx_fin) - t_sim(idx_ini);
+    t_seg  = t_sim(idx_ini:idx_fin) - t_sim(idx_ini);
+    w_seg  = y_lti_nom(idx_ini:idx_fin, 2);   % omega_m
+    iq_seg = y_lti_nom(idx_ini:idx_fin, 3);   % i_qs
 
-    % --- omega_m: valor al final del segmento ---
-    w_seg = y_lti_nom(idx_ini:idx_fin, 2);
-    w_end = w_seg(end);
-
-    % --- i_qs: métricas de transitorio ---
-    vqs_prev = u_vqs(max(idx_ini - 1, 1));
-    vqs_post = u_vqs(idx_ini);
-    hubo_escalon_vqs = abs(vqs_post - vqs_prev) > 1e-9;
-    iq_seg = y_lti_nom(idx_ini:idx_fin, 3);
-    iq_ini = iq_seg(1);    % valor inicial del segmento
-    iq_ss = vqs_post / R_s0;  % valor de régimen teórico del eje q
-    delta_iq = iq_ss - iq_ini;  % cambio total teórico
-
-    if hubo_escalon_vqs && abs(delta_iq) > 1e-6
-        % Tiempo de crecimiento: 10% a 90% del cambio
-        iq_10 = iq_ini + 0.1 * delta_iq;
-        iq_90 = iq_ini + 0.9 * delta_iq;
-        if delta_iq > 0
-            idx_10 = find(iq_seg >= iq_10, 1);
-            idx_90 = find(iq_seg >= iq_90, 1);
-        else
-            idx_10 = find(iq_seg <= iq_10, 1);
-            idx_90 = find(iq_seg <= iq_90, 1);
-        end
-        if ~isempty(idx_10) && ~isempty(idx_90) && idx_90 > idx_10
-            tr_iq = (t_seg(idx_90) - t_seg(idx_10)) * 1000;
-        else
-            tr_iq = NaN;
-        end
-
-        % Tiempo de establecimiento: ±1% respecto al valor de régimen teórico
-        banda = 0.01 * abs(delta_iq);
-        settled = abs(iq_seg - iq_ss) <= banda;
-        idx_settled = find(settled, 1, 'first');
-        if ~isempty(idx_settled) && all(settled(idx_settled:end))
-            ts_iq = t_seg(idx_settled) * 1000;
-        else
-            ts_iq = NaN;
-        end
-
-        % Sobrepico respecto al cambio
-        if delta_iq > 0
-            Mp_iq = (max(iq_seg) - iq_ss) / abs(delta_iq) * 100;
-        else
-            Mp_iq = (min(iq_seg) - iq_ss) / delta_iq * 100;  % delta_iq < 0
-        end
-        if Mp_iq < 0.01; Mp_iq = 0; end
+    % --- Metricas sobre omega_m (variable subamortiguada, par complejo) ---
+    w0  = w_seg(1);
+    wss = mean(w_seg(max(end-19,1):end));      % velocidad de regimen del segmento
+    if abs(wss - w0) > 1e-3
+        S  = stepinfo(w_seg - w0, t_seg, wss - w0, 'SettlingTimeThreshold', 0.01);
+        Mp = S.Overshoot;  tp = S.PeakTime*1e3;  tr = S.RiseTime*1e3;  ts = S.SettlingTime*1e3;
     else
-        tr_iq = NaN;
-        ts_iq = NaN;
-        Mp_iq = NaN;
+        Mp = NaN; tp = NaN; tr = NaN; ts = NaN;
     end
 
-    metricas(s,:) = [w_end, iq_ss, tr_iq, ts_iq, Mp_iq];
+    % --- i_qs: pico y regimen (es un pico de torque que decae, NO un primer orden) ---
+    [~, im] = max(abs(iq_seg));
+    iq_pico = iq_seg(im);
+    iq_reg  = mean(iq_seg(max(end-19,1):end));
 
-    tr_txt = '--';
-    ts_txt = '--';
-    mp_txt = '--';
-    if ~isnan(tr_iq), tr_txt = sprintf('%.2f', tr_iq); end
-    if ~isnan(ts_iq), ts_txt = sprintf('%.2f', ts_iq); end
-    if ~isnan(Mp_iq), mp_txt = sprintf('%.2f', Mp_iq); end
+    fprintf('  %2d  | %-20s | %8.1f | %6.1f | %6.1f | %6.1f | %6.1f | %8.2f | %8.3f\n', ...
+        s, event_names{s}, wss, Mp, tp, tr, ts, iq_pico, iq_reg);
 
-    fprintf('  %2d   | %-25s | %10.2f | %10.4f | %10s | %10s | %8s\n', ...
-        s, event_names{s}, w_end, iq_ss, tr_txt, ts_txt, mp_txt);
-
-    latex_rows(s) = sprintf([ ...
-        '%d & $%s$ & %6.0f & %6.2f & %s & %s & %s \\\\'], ...
-        s, strrep(event_names{s}, '->', '\to '), w_end, iq_ss, ...
-        strrep(tr_txt, '.', '{,}'), strrep(ts_txt, '.', '{,}'), strrep(mp_txt, '.', '{,}'));
+    f1 = @(x) strrep(sprintf('%.1f', x), '.', '{,}');
+    f2 = @(x) strrep(sprintf('%.2f', x), '.', '{,}');
+    latex_rows(s) = sprintf('%d & $%s$ & $%s$ & $%s$ & $%s$ & $%s$ & $%s$ & $%s$ & $%s$ \\\\', ...
+        s, strrep(event_names{s}, '->', '\to '), f1(wss), f1(Mp), f1(tp), f1(tr), f1(ts), f2(iq_pico), f2(iq_reg));
 end
 
-fprintf('\n--- Influencia relativa de las acciones externas ---\n');
-fprintf('tau_e = L_q/R_s0 = %.2f ms (dinámica eléctrica rápida de i_qs)\n', L_q/R_s0*1000);
-fprintf('t_s(1%%) teorico = tau_e * ln(100) = %.2f ms\n', L_q/R_s0 * log(100) * 1000);
-fprintf('\n--- Filas LaTeX sugeridas para la tabla ---\n');
+fprintf('\n--- Filas LaTeX sugeridas (coinciden con la tabla del informe) ---\n');
 for s = 1:10
     fprintf('%s\n', latex_rows(s));
 end
-fprintf('tau_m = J_eq/b_eq = %.2f s  (dinámica mecánica lenta de omega_m)\n', J_eq/b_eq);
-fprintf('Ratio tau_m/tau_e ≈ %.0f:1\n', (J_eq/b_eq)/(L_q/R_s0));
-fprintf('=> v_qs* domina la corriente i_qs (respuesta rápida, ~5*tau_e ≈ %.1f ms)\n', 5*L_q/R_s0*1000);
-fprintf('=> T_ld perturba omega_m directamente (respuesta lenta, ~5*tau_m ≈ %.1f s)\n', 5*J_eq/b_eq);
-fprintf('=> Los escalones de v_qs* producen cambios abruptos en i_qs; los de T_ld no afectan i_qs.\n');
+
+fprintf('\n--- Influencia relativa de las acciones externas ---\n');
+fprintf('Modo electromecanico dominante: zeta = %.3f, w_n = %.1f rad/s (par complejo de A_aug).\n', zeta_em, wn_em);
+fprintf('=> v_qs* es dominante: lleva omega_m a la velocidad de vacio con sobrepico ~%.0f%%, y produce el pico de i_qs.\n', ...
+    exp(-pi*zeta_em/sqrt(1-zeta_em^2))*100);
+fprintf('=> T_ld perturba omega_m y TAMBIEN desplaza i_qs en regimen (la corriente debe suministrar el par de carga T_ld/r).\n');
+fprintf('=> NO hay escalas tau_e/tau_m separadas: la back-EMF las fusiona en el modo complejo (tau ~ %.0f ms).\n', ...
+    1/abs(real(ev_c(1)))*1000);
 
 %% =====================================================================
 %  SECCIÓN (c): COMPARACIÓN i_ds(t) PARA LOS 3 CASOS

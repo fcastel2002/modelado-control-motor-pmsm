@@ -262,7 +262,7 @@ tal que:
     \end{equation}
     Reemplazando \(T_d(t)\) de \eqref{Eq1} en  \eqref{EqJm}:
     \begin{equation}
-        J_{eq}\frac{d\omega_m}{dt}=T_m-b_m\omega_m-\frac{1}{r}\Big(g\cdot k_l \sin{\Big(\frac{\theta_m(t)}{r}\Big)} + T_{ld}(t)\Big)
+        J_{eq}\frac{d\omega_m}{dt}=T_m-b_{eq}\omega_m-\frac{1}{r}\Big(g\cdot k_l \sin{\Big(\frac{\theta_m(t)}{r}\Big)} + T_{ld}(t)\Big)
     \end{equation}
     \begin{gather}
         J_{eq} = J_m +\frac{J_l}{r^2}\\
@@ -742,7 +742,7 @@ El modelo global LPV toma la forma:
 
 
 \subsection{Linealización por Retroalimentación NL: Modelo LTI equivalente}
-El objetivo de esta sección es obtener un modelo Lineal Invariante en el Tiempo (LTI) a partir de la planta no lineal, aplicando estrategias de Control Vectorial con campo orientado. Para lograr esto, se imponen restricciones matemáticas en las entradas manipuladas mediante retroalimentación de estado, buscando desacoplar los canales de flujo magnético y torque. Para el modelo LTI, se asume la dinámica térmica como lineal ($R_s = R_{s0}$ constante). Además, la no linealidad gravitacional de la carga se separa explícitamente de la matriz de estado, tratándola como una perturbación externa a ser compensada.
+El objetivo de esta sección es obtener un modelo Lineal Invariante en el Tiempo (LTI) a partir de la planta no lineal, aplicando estrategias de Control Vectorial con campo orientado. Para lograr esto, se imponen restricciones matemáticas en las entradas manipuladas mediante retroalimentación de estado, buscando desacoplar los canales de flujo magnético y torque. Para el modelo LTI, se asume la dinámica térmica como lineal, con $R_s = R_{s0} = 1{,}058\ \Omega$ constante, evaluada a la temperatura media de operación del estator ($\approx 29{,}5\,^\circ$C) y no al valor de referencia $R_{sREF} = 1{,}02\ \Omega$ a $20\,^\circ$C. Además, la no linealidad gravitacional de la carga se separa explícitamente de la matriz de estado, tratándola como una perturbación externa a ser compensada.
 
 \subsubsection{Restricción o Ley de Control Mínima en el eje $d$}
 Para lograr el desacoplamiento de flujo y torque, se impone el requisito de mantener la corriente del eje directo nula: $i_{ds}^r(t) \equiv 0$. Analizando la ecuación diferencial de dicho estado:
@@ -765,11 +765,11 @@ Aplicando las leyes de control obtenidas \eqref{eq:vds_minima} y \eqref{eq:vqs_c
     \dfrac{d\theta_m(t)}{dt} = \omega_m(t) \\
     \vspace{0.2cm}
     \dfrac{d\omega_m(t)}{dt} = \dfrac{1}{J_{eq}}\Big[\frac{3 P_p \lambda'_m}{2} i_{qs}(t) - b_{eq} \omega_m(t) - \frac{1}{r} T_{ld}(t) - \frac{g\cdot k_l}{r} \sin\left(\frac{\theta_m(t)}{r}\right)\Big] \\
-    \dfrac{di_{qs}(t)}{dt} = \dfrac{1}{L_q}\Big[-P_p \lambda'_m \omega_m(t) - R_{sREF}\cdot i_{qs}(t) + v_{qs}(t)\Big]
+    \dfrac{di_{qs}(t)}{dt} = \dfrac{1}{L_q}\Big[-P_p \lambda'_m \omega_m(t) - R_{s0}\cdot i_{qs}(t) + v_{qs}(t)\Big]
 \end{cases}
 \end{equation}
 Aunque se desprecie el efecto del subsistema térmico en la dinámica del modelo LTI, es interesante seguir estudiando la temperatura del estator en la simulación, por lo que también se considera la siguiente ecuación
-\[\dfrac{dT_s(t)}{dt} = \dfrac{1}{C_{ts}}\Big[\frac{3}{2}R_{sREF}\cdot i_{qs}^2(t)-\frac{1}{R_{ts-amb}}\big(T_s(t) - T_{amb}(t)\big)\Big]\]
+\[\dfrac{dT_s(t)}{dt} = \dfrac{1}{C_{ts}}\Big[\frac{3}{2}R_{s0}\cdot i_{qs}^2(t)-\frac{1}{R_{ts-amb}}\big(T_s(t) - T_{amb}(t)\big)\Big]\]
 Definiendo el vector de estados nominal $\mathbf{x}_{LTI} = [\theta_m, \omega_m, i_{qs}]^T$, la representación matricial de estado (separando explícitamente las perturbaciones de carga y gravedad) resulta:
 
 \begingroup
@@ -875,9 +875,9 @@ El \textbf{Modelo LTI Aumentado} de cuarto orden resultante es:
     \dfrac{d\theta_m(t)}{dt} = \omega_m(t) \\
     \vspace{0.2cm}
     \dfrac{d\omega_m(t)}{dt} = \dfrac{1}{J_{eq}}\Big[\frac{3 P_p \lambda'_m}{2} i_{qs}(t) - b_{eq} \omega_m(t) - \frac{1}{r} T_{ld}(t) - \frac{g\cdot k_l}{r} \sin\left(\frac{\theta_m(t)}{r}\right)\Big] \\
-    \dfrac{di_{qs}(t)}{dt} = \dfrac{1}{L_q}\Big[-P_p \lambda'_m \omega_m(t) - R_{sREF}\cdot i_{qs}(t) + v_{qs}(t)\Big] \\
-    \dfrac{di_{ds}(t)}{dt} = \dfrac{-R_{sREF}}{L_d}i_{ds}(t)\\
-    \dfrac{dT_s(t)}{dt} = \dfrac{1}{C_{ts}}\Big[\frac{3}{2}R_{sREF}\cdot \big(i_{qs}^2(t)+i_{ds}^2(t)\big)-\frac{1}{R_{ts-amb}}\big(T_s(t) - T_{amb}(t)\big)\Big]
+    \dfrac{di_{qs}(t)}{dt} = \dfrac{1}{L_q}\Big[-P_p \lambda'_m \omega_m(t) - R_{s0}\cdot i_{qs}(t) + v_{qs}(t)\Big] \\
+    \dfrac{di_{ds}(t)}{dt} = \dfrac{-R_{s0}}{L_d}i_{ds}(t)\\
+    \dfrac{dT_s(t)}{dt} = \dfrac{1}{C_{ts}}\Big[\frac{3}{2}R_{s0}\cdot \big(i_{qs}^2(t)+i_{ds}^2(t)\big)-\frac{1}{R_{ts-amb}}\big(T_s(t) - T_{amb}(t)\big)\Big]
 \end{cases}
 \end{equation}
 \begingroup
@@ -1199,7 +1199,7 @@ $\lambda_4$ & $-160{,}3$ & Residual $i_{ds}^r$ & --- & $\tau_d = 6{,}24$ ms \\
 
     \item \textbf{$G_2(s) = \theta_m / T_{ld}$:} Posee un cero real negativo en:
     \begin{equation}
-        z_1 = -\frac{R_{s0}}{L_q} = -175{,}9 \text{ rad/s} \qquad (\tau_z = 5{,}7 \text{ ms})
+        z_1 = -\frac{R_{s0}}{L_q} = -182{,}4 \text{ rad/s} \qquad (\tau_z = 5{,}48 \text{ ms})
     \end{equation}
     Este cero se ubica muy cerca del polo electromecánico dominante. Físicamente, representa que el subsistema eléctrico ($L_q$, $R_{s0}$) ``absorbe'' parcialmente las perturbaciones de torque antes de que estas se transmitan completamente a la posición, actuando como un filtro natural de alta frecuencia sobre la perturbación.
 \end{itemize}
@@ -1477,7 +1477,7 @@ Se construyó un modelo en Simulink con dos subsistemas en paralelo: el modelo N
 \subsubsection{Respuesta del estado interno (Sub-ítem a)}
 \label{sec:sim_item_a}
 
-Se presentan los resultados de la simulación para el caso nominal $i_{ds}^r(0) = 0$~A, comparando las salidas del modelo NL (6 estados) y del modelo LTI aumentado (4 estados) ante las mismas señales de excitación. Los efectos de $i_{ds}^r(0) \neq 0$ se analizan por separado en el Sub-ítem~c. En las siguientes simulaciones se consideró $T_{amb}=20\,^\circ$C y, en el modelo LTI aumentado, se utilizó $R_s = R_{sREF} = 1{,}02\ \Omega$ constante (valor nominal a $20\,^\circ$C, consistente con el desacoplamiento térmico del modelo lineal equivalente).
+Se presentan los resultados de la simulación para el caso nominal $i_{ds}^r(0) = 0$~A, comparando las salidas del modelo NL (6 estados) y del modelo LTI aumentado (4 estados) ante las mismas señales de excitación. Los efectos de $i_{ds}^r(0) \neq 0$ se analizan por separado en el Sub-ítem~c. En las siguientes simulaciones se consideró $T_{amb}=20\,^\circ$C y, en el modelo LTI aumentado, se utilizó $R_s = R_{s0} = 1{,}058\ \Omega$ constante, evaluada a la temperatura media de operación del estator ($\approx 29{,}5\,^\circ$C) y no al valor de referencia $R_{sREF}=1{,}02\ \Omega$ a $20\,^\circ$C, consistente con el desacoplamiento térmico del modelo lineal equivalente.
 
 \textbf{Posición angular $\theta_m(t)$}
 
@@ -1501,7 +1501,7 @@ El error de seguimiento se mantiene acotado por debajo de $0{,}21$~rad durante t
 
 \textbf{Velocidad angular $\omega_m(t)$.}
 
-La velocidad responde con dinámica dominada por la constante de tiempo mecánica $\tau_m = J_{eq}/b_{eq} \approx 0{,}90$~s. Durante el pulso positivo de $v_{qs}^*$ ($0{,}1$--$0{,}7$~s), $\omega_m$ crece hasta $\approx +400$~rad/s, modulada por las perturbaciones de torque de carga $T_{ld}$. Durante el pulso negativo ($1{,}1$--$1{,}7$~s), la respuesta es simétrica, alcanzando $\approx -400$~rad/s. La concordancia NL--LTI es excelente: el error (Fig.~\ref{fig:sim_omega_m_error}) es prácticamente nulo en régimen permanente ($<0{,}5$~rad/s) y solo presenta picos transitorios de hasta $\approx 9$~rad/s en los instantes de conmutación, que se extinguen en milisegundos. Dichos picos corresponden a la dinámica no lineal residual que el modelo LTI no reproduce durante los cambios bruscos de excitación, y representan menos del $2{,}3\%$ del valor de la señal.
+La velocidad está gobernada por el \textbf{modo electromecánico subamortiguado} del sistema (par de polos complejos $\lambda_{2,3} = -91{,}7 \pm j148$, $\zeta = 0{,}527$, $\omega_n = 174$~rad/s, hallado en el análisis de estabilidad a lazo abierto). Ante el escalón de $v_{qs}^*$, $\omega_m$ acelera hasta su \textbf{velocidad de vacío} ($\approx +405$~rad/s para $+19{,}6$~V, valor en que la fuerza contraelectromotriz $\lambda'_m P_p \omega_m$ equilibra la tensión aplicada), \textbf{con un sobrepico de $\approx 14\%$} propio del amortiguamiento $\zeta = 0{,}527$ y un tiempo de establecimiento ($\pm 1\%$) de $\approx 50$~ms. No domina la constante mecánica $\tau_m = J_{eq}/b_{eq} \approx 0{,}90$~s: la realimentación electromagnética (back-EMF más par) fusiona los modos eléctrico y mecánico en una resonancia rápida ($\tau \approx 11$~ms). Durante el pulso negativo ($1{,}1$--$1{,}7$~s) la respuesta es simétrica ($\approx -405$~rad/s). La concordancia NL--LTI es excelente: el error (Fig.~\ref{fig:sim_omega_m_error}) es prácticamente nulo en régimen permanente ($<0{,}5$~rad/s) y solo presenta picos $\leq 9$~rad/s en las conmutaciones, que se extinguen en milisegundos.
 
 \begin{figure}[H]
     \centering
@@ -1519,7 +1519,7 @@ La velocidad responde con dinámica dominada por la constante de tiempo mecánic
 
 \textbf{Corriente $i_{qs}(t)$.}
 
-La corriente $i_{qs}$ responde rápidamente a los escalones de $v_{qs}^*$ con constante de tiempo eléctrica $\tau_e = L_q/R_{s0} \approx 5{,}48$~ms, alcanzando su valor de régimen en $\approx 5\tau_e \approx 27{,}4$~ms. Se observan picos de $\approx \pm 10$~A. Ambos modelos se solapan casi perfectamente: el error (Fig.~\ref{fig:sim_iqs_error}) es nulo en régimen ($<0{,}05$~A) y presenta picos transitorios de hasta $\approx 0{,}26$~A únicamente en las conmutaciones (menos del $2{,}6\%$ del pico de corriente), confirmando que las leyes de control NL linealizan efectivamente el sistema. Dado que para $i_{ds}^r = 0$ el torque electromagnético se reduce a $T_{em} = k_t \cdot i_{qs}$ (con $k_t = \tfrac{3}{2} P_p \lambda_r$), la forma de onda de $T_{em}(t)$ es directamente proporcional a $i_{qs}(t)$.
+Ante el escalón de $v_{qs}^*$, $i_{qs}$ \textbf{no se establece en} $v_{qs}^*/R_{s0}$: es un \textbf{pico de torque transitorio} ($\approx \pm 10{,}4$~A) que decae hasta un valor de régimen pequeño ($\approx 0{,}1$~A) a medida que $\omega_m$ crece y la fuerza contraelectromotriz $\lambda'_m P_p \omega_m$ equilibra la tensión (en vacío la corriente solo debe vencer la fricción $b_{eq}\omega_m$). El pico de $\approx \pm 10{,}4$~A es el valor relevante frente a la corriente máxima del motor ($I_{s,\max} = 2$~A rms), que este ensayo a lazo abierto supera ampliamente. Ambos modelos se solapan casi perfectamente: el error (Fig.~\ref{fig:sim_iqs_error}) es nulo en régimen y presenta picos $\leq 0{,}26$~A solo en las conmutaciones, confirmando que las leyes de control NL linealizan efectivamente el sistema. Dado que para $i_{ds}^r = 0$ el torque electromagnético se reduce a $T_{em} = k_t \cdot i_{qs}$ (con $k_t = \tfrac{3}{2} P_p \lambda_r$), la forma de onda de $T_{em}(t)$ es proporcional a $i_{qs}(t)$.
 
 \begin{figure}[H]
     \centering
@@ -1541,7 +1541,7 @@ Para la condición inicial $i_{ds}^r(0) = 0$~A, la corriente de eje $d$ permanec
 
 \textbf{Temperatura del estator $T_s(t)$.}
 
-La temperatura crece levemente respecto de $T_{amb} = 20\,^\circ$C debido a las pérdidas resistivas $P_{Cu} = \tfrac{3}{2}R_s(i_{qs}^2 + i_{ds}^{r\,2})$. El cambio es mínimo dado que la constante de tiempo térmica $\tau_{th} = R_{ts\text{-}amb} \cdot C_{ts} \approx 120$~s es muy superior a la duración de la simulación ($2{,}2$~s). Este resultado justifica la hipótesis del modelo LTI de utilizar $R_s = R_{sREF}$ constante: la variación de resistencia por efecto térmico es despreciable en esta escala temporal. Nótese que el modelo LTI aumentado (4 estados) \textbf{no incluye} la temperatura como variable de estado, ya que asume $R_s$ constante por diseño.
+La temperatura crece levemente respecto de $T_{amb} = 20\,^\circ$C debido a las pérdidas resistivas $P_{Cu} = \tfrac{3}{2}R_s(i_{qs}^2 + i_{ds}^{r\,2})$. El cambio es mínimo dado que la constante de tiempo térmica $\tau_{th} = R_{ts\text{-}amb} \cdot C_{ts} \approx 120$~s es muy superior a la duración de la simulación ($2{,}2$~s). Este resultado justifica la hipótesis del modelo LTI de utilizar $R_s = R_{s0}$ constante: la variación de resistencia por efecto térmico es despreciable en esta escala temporal. Nótese que el modelo LTI aumentado (4 estados) \textbf{no incluye} la temperatura como variable de estado, ya que asume $R_s$ constante por diseño.
 
 \begin{figure}[H]
     \centering
@@ -1641,53 +1641,53 @@ Por lo tanto para obtener el ángulo $\theta_{ev}$ basta con aplicar la funcion 
 \subsubsection{Métricas de transitorio (Sub-ítem b)}
 \label{sec:sim_item_b}
 
-Se determinan las métricas de los 10 transitorios para el caso nominal $i_{ds}^r(0) = 0$~A del modelo LTI aumentado. La Tabla~\ref{tab:metricas_trans} presenta, para cada evento de conmutación, el valor de $\omega_m$ al final del segmento temporal correspondiente, el valor de régimen teórico de $i_{qs}$, y las métricas de transitorio de $i_{qs}$ (tiempo de crecimiento $t_r$, tiempo de asentamiento $t_s$ y sobrepico $M_p$).
+Se determinan las métricas de los 10 transitorios para el caso nominal $i_{ds}^r(0) = 0$~A del modelo LTI aumentado. Dado que la variable subamortiguada es la \textbf{velocidad} $\omega_m$ (gobernada por el par de polos complejos $\zeta = 0{,}527$, $\omega_n = 174$~rad/s), las métricas de sobrepico $M_p$, tiempo de pico $t_p$, tiempo de crecimiento 10--90\% $t_r$ y tiempo de establecimiento $\pm 1\%$ $t_s$ se miden \textbf{sobre $\omega_m$}. Se reporta además el valor de régimen $\omega_{m,ss}$ y, para la corriente, sus valores pico y de régimen (la corriente es un pico de torque que decae, no un escalón de primer orden). La Tabla~\ref{tab:metricas_trans} resume los resultados extraídos de la simulación.
 
-Dado que la dinámica mecánica es mucho más lenta que la eléctrica, $\omega_m$ no alcanza en la práctica su valor de régimen dentro de cada segmento de 200~ms ($\tau_m = J_{eq}/b_{eq} = 0{,}90$~s $\gg 0{,}2$~s), por lo que se reporta el valor instantáneo al final de cada intervalo. En contraste, $i_{qs}$ sigue una dinámica de primer orden con $\tau_e = L_q/R_{s0} = 5{,}48$~ms y alcanza la banda de $\pm 1\,\%$ en $t_s = \tau_e \ln(100) \approx 25{,}3$~ms, permitiendo medir métricas de transitorio estándar.
+Gracias al acoplamiento electromagnético, $\omega_m$ \textbf{sí alcanza} su valor de régimen dentro de cada segmento de 200~ms ($t_s \approx 50$~ms $\ll 0{,}2$~s), con el sobrepico característico de $\zeta = 0{,}527$. No rige aquí la lenta constante mecánica $\tau_m = J_{eq}/b_{eq} = 0{,}90$~s, que correspondería al subsistema mecánico desacoplado de la realimentación back-EMF.
 
 \begin{table}[H]
     \centering
-    \caption{Métricas de transitorio para cada evento de conmutación (modelo LTI, $i_{ds}^r(0) = 0$~A).}
+    \caption{Métricas de transitorio para cada evento de conmutación (modelo LTI aumentado, $i_{ds}^r(0) = 0$~A). $M_p$, $t_p$, $t_r$ y $t_s$ medidos sobre $\omega_m$.}
     \label{tab:metricas_trans}
     \renewcommand{\arraystretch}{1.15}
-    \footnotesize
-    \begin{tabular}{|c|l|r|r|r|r|r|}
+    \scriptsize
+    \begin{tabular}{|c|l|r|r|r|r|r|r|r|}
         \hline
-        \textbf{Trans.} & \textbf{Evento} & $\omega_m(t_f)$ & $i_{qs,ss}$ & $t_{r,i_{qs}}$ & $t_{s,i_{qs}}$ & $M_{p,i_{qs}}$ \\
-         & & [rad/s] & [A] & [ms] & [ms] & [\%] \\
+        \textbf{Tr.} & \textbf{Evento} & $\omega_{m,ss}$ & $M_p$ & $t_p$ & $t_r$ & $t_s$ & $i_{qs}^{pico}$ & $i_{qs}^{reg}$ \\
+         & & [rad/s] & [\%] & [ms] & [ms] & [ms] & [A] & [A] \\
         \hline
-        1 & $v_{qs}^* \to +19{,}6$~V   &  11792  & 18{,}53  & 12{,}0 & 25{,}3 & 0 \\
-        2 & $T_{ld} \to +6{,}28$~Nm    &  21064  & 18{,}53  & --     & --     & -- \\
-        3 & $T_{ld} \to -6{,}28$~Nm    &  29440  & 18{,}53  & --     & --     & -- \\
-        4 & $v_{qs}^* \to 0$~V         &  24358  &  0{,}00  & 12{,}0 & 25{,}3 & 0 \\
-        5 & $T_{ld} \to 0$~Nm          &  19512  &  0{,}00  & --     & --     & -- \\
-        6 & $v_{qs}^* \to -19{,}6$~V   &   3838  & $-$18{,}53 & 12{,}0 & 25{,}3 & 0 \\
-        7 & $T_{ld} \to +6{,}28$~Nm    &  $-$9492  & $-$18{,}53 & --     & --     & -- \\
-        8 & $T_{ld} \to -6{,}28$~Nm    & $-$19222 & $-$18{,}53 & --     & --     & -- \\
-        9 & $v_{qs}^* \to 0$~V         & $-$15224 &  0{,}00  & 12{,}0 & 25{,}3 & 0 \\
-       10 & $T_{ld} \to 0$~Nm          & $-$10914 &  0{,}00  & --     & --     & -- \\
+        1  & $v_{qs}^* \to +19{,}6$~V & $405{,}5$ & $14{,}3$ & $21{,}3$ & $9{,}7$ & $50{,}1$ & $10{,}39$ & $0{,}12$ \\
+        2  & $T_{ld} \to +6{,}28$~Nm & $389{,}6$ & $25{,}6$ & $14{,}4$ & $5{,}8$ & $45{,}7$ & $0{,}95$ & $0{,}85$ \\
+        3  & $T_{ld} \to -6{,}28$~Nm & $421{,}4$ & $25{,}6$ & $14{,}3$ & $5{,}8$ & $45{,}7$ & $0{,}85$ & $-0{,}60$ \\
+        4  & $v_{qs}^* \to 0$~V & $15{,}9$ & $14{,}3$ & $21{,}3$ & $9{,}7$ & $50{,}1$ & $-10{,}99$ & $-0{,}72$ \\
+        5  & $T_{ld} \to 0$~Nm & $0{,}0$ & $25{,}6$ & $14{,}3$ & $5{,}8$ & $45{,}7$ & $-0{,}72$ & $0{,}00$ \\
+        6  & $v_{qs}^* \to -19{,}6$~V & $-405{,}5$ & $14{,}3$ & $21{,}2$ & $9{,}7$ & $50{,}1$ & $-10{,}39$ & $-0{,}12$ \\
+        7  & $T_{ld} \to +6{,}28$~Nm & $-421{,}4$ & $25{,}6$ & $14{,}4$ & $5{,}8$ & $45{,}7$ & $0{,}70$ & $0{,}60$ \\
+        8  & $T_{ld} \to -6{,}28$~Nm & $-389{,}6$ & $25{,}6$ & $14{,}4$ & $5{,}8$ & $45{,}7$ & $-1{,}05$ & $-0{,}85$ \\
+        9  & $v_{qs}^* \to 0$~V & $15{,}9$ & $14{,}3$ & $21{,}3$ & $9{,}7$ & $50{,}1$ & $9{,}55$ & $-0{,}72$ \\
+        10 & $T_{ld} \to 0$~Nm & $0{,}0$ & $25{,}6$ & $14{,}4$ & $5{,}8$ & $45{,}7$ & $-0{,}72$ & $0{,}00$ \\
         \hline
     \end{tabular}
 
     \vspace{2mm}
-    \scriptsize $t_f$: instante final de cada segmento. $i_{qs,ss}=v_{qs}^*/R_{s0}$: valor de régimen teórico del eje $q$. ``--'': métrica no aplicable porque el evento no modifica $v_{qs}^*$.
+    \scriptsize $\omega_{m,ss}$: velocidad de régimen del segmento. $M_p$, $t_p$ (pico), $t_r$ (10--90\%) y $t_s$ ($\pm1\%$): métricas sobre $\omega_m$. $i_{qs}^{pico}$/$i_{qs}^{reg}$: valor pico y de régimen de la corriente de eje $q$.
 \end{table}
 
 \textbf{Observaciones:}
 \begin{itemize}
-    \item La corriente $i_{qs}$ presenta respuesta de \textbf{primer orden pura} ($M_p = 0$\,\%) con $t_r = 12{,}0$~ms y $t_s = 25{,}3$~ms, consistentes con $\tau_e = L_q/R_{s0} = 5{,}48$~ms: en particular, $t_r \approx \tau_e \ln 9$ y $t_s(1\,\%) \approx \tau_e \ln 100$. Estos valores son \textbf{idénticos} para todos los escalones de $v_{qs}^*$ (transitorios 1, 4, 6, 9), confirmando la linealidad del sistema.
+    \item Ante los escalones de $v_{qs}^*$ (transitorios 1, 4, 6, 9), $\omega_m$ alcanza la velocidad de vacío ($\approx \pm 405$~rad/s) con un \textbf{sobrepico de $\approx 14{,}3\%$}, tiempo de pico $\approx 21$~ms y establecimiento ($\pm 1\%$) $\approx 50$~ms, consistentes con el par de polos complejos $\zeta = 0{,}527$, $\omega_n = 174$~rad/s. La corriente $i_{qs}$ \textbf{no} se establece en $v_{qs}^*/R_{s0}$: es un \textbf{pico de torque} ($\approx \pm 10{,}4$~A) que decae a $\approx 0{,}1$~A al crecer la velocidad y aparecer la fuerza contraelectromotriz.
 
-    \item Los eventos de $T_{ld}$ \textbf{no afectan} a $i_{qs}$ (métricas no aplicables), confirmando el desacoplamiento estructural: $T_{ld}$ entra por la ecuación mecánica y no tiene camino hacia la dinámica eléctrica del eje $q$.
+    \item Los eventos de $T_{ld}$ producen una excursión de velocidad menor (de $\pm 16$ a $\pm 32$~rad/s respecto del valor previo) con el mismo modo subamortiguado, y \textbf{sí modifican} $i_{qs}$ en régimen ($\approx \pm 0{,}6$--$0{,}85$~A por cada $6{,}28$~Nm): la corriente de operación debe suministrar el torque de carga referido $T_{ld}/r$. Es decir, en este modelo a lazo abierto los ejes \textbf{no} están completamente desacoplados.
 \end{itemize}
 
 \textbf{Influencia relativa de las acciones externas:}
 
 \begin{itemize}
-    \item \textbf{Tensión $v_{qs}^*(t)$}: actúa directamente sobre $i_{qs}$ con dinámica rápida ($\tau_e = 5{,}48$~ms). Es la acción \textbf{dominante}: genera $T_{em} = k_t \cdot i_{qs}$, que impulsa la dinámica mecánica a través del integrador.
+    \item \textbf{Tensión $v_{qs}^*(t)$}: es la acción \textbf{dominante}. Fija la velocidad de vacío del motor (donde la back-EMF equilibra la tensión aplicada) y produce el pico de corriente/torque ($\approx \pm 10{,}4$~A); la respuesta de $\omega_m$ es subamortiguada (sobrepico $\approx 14\%$).
 
-    \item \textbf{Torque de carga $T_{ld}(t)$}: actúa directamente sobre $\omega_m$ a través de la ecuación mecánica ($\tau_m = J_{eq}/b_{eq} = 0{,}90$~s). Es una perturbación que modifica la trayectoria de velocidad sin alterar $i_{qs}$.
+    \item \textbf{Torque de carga $T_{ld}(t)$}: perturba la velocidad (excursión moderada) y desplaza el punto de operación de la corriente. No introduce una escala temporal distinta: excita el mismo modo electromecánico complejo.
 
-    \item La separación de escalas temporales ($\tau_m/\tau_e \approx 164$) explica por qué las corrientes responden casi instantáneamente a cambios de tensión, mientras que la velocidad presenta transitorios mucho más lentos.
+    \item A diferencia de una lectura desacoplada, el sistema \textbf{no} exhibe dos escalas separadas (eléctrica $\tau_e$ y mecánica $\tau_m$): la realimentación back-EMF fusiona ambas en una \textbf{resonancia electromecánica subamortiguada} ($\zeta = 0{,}527$, $\omega_n = 174$~rad/s, $\tau \approx 11$~ms), que se observa tanto en $\omega_m$ como en $i_{qs}$.
 \end{itemize}
 
 % =====================================================================
@@ -1828,10 +1828,12 @@ Obteniendo si reemplazamos:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{imagenes/desacop_realimentacion_fisicas_naturales.png}
+    \caption{Implementación en Simulink del desacoplamiento de las retroalimentaciones físicas naturales: las tensiones de referencia $v_{qd0s}^{r*}$ cancelan las caídas resistivas $R_s(T_s^\circ)\,i$, la fuerza contraelectromotriz y los acoplamientos cruzados entre los ejes $q$ y $d$.}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{imagenes/desacop_realimentacion_fisicas_naturales_bloque.png}
+    \caption{Bloque (subsistema) equivalente del desacoplamiento de retroalimentaciones físicas naturales.}
 \end{figure}
 \subsubsection{Comparación: desacoplamiento de retroalimentaciones físicas naturales vs. linealización por retroalimentación NL}
 
@@ -1901,10 +1903,12 @@ Queremos los polos en $p_{1,2,3} = -5000 \ [\frac{rad}{s}]$, por lo tanto las ga
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{imagenes/mod_corriente.png}
+    \caption{Lazos de control de corriente $i_{qd0s}^{r}$ con acción proporcional, ubicando los polos del lazo interno en $p_i=-5000$~rad/s.}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.2\textwidth]{imagenes/mod_corriente_subsystem.png}
+    \caption{Subsistema del modulador (lazo proporcional) de corrientes.}
 \end{figure}
 \subsection{Incorporación de Consigna de Torque: Modulador de Torque}
 Para el sistema electromagnético la unica forma de variar el torque es a traves de la corriente, por lo tanto para incorporar esta nueva variable manipulada, es necesario diseñar un simple Modulador de Torque, que traducirá nuestra consigna a una consigna de corriente $i_{qs}^{r*}$. Se propone entonces, aplicar una consigna de \textit{Torque Mecánico}, para que, al momento de aplicar la consigna, no sea necesario tener en cuenta la fricción y la gravedad, por lo que implementamos un \textit{precomputed torque}.
@@ -1913,7 +1917,7 @@ Para el sistema electromagnético la unica forma de variar el torque es a traves
 \end{equation}
 Como se dijo, la idea principal es obtener una consigna de corriente, donde, aplicando Control Vectorial, se conseguirá una consigna de corriente en cuadratura $i_{qs}^{r*}$. Si despejamos de la ecuación \eqref{eq:torque_electromagnetico}.
     \begin{equation*}
-            T_m^*(t) = \frac{3}{2} P_p \cdot \lambda'^r_m \cdot i^r_{qs}(t) + \frac{3}{2} P_p (L_d-L_q)\cdot i^r_{ds}(t)\cdot i^{r*}_{qs}(t)
+            T_m^*(t) = \frac{3}{2} P_p \cdot \lambda'^r_m \cdot i^{r*}_{qs}(t) + \frac{3}{2} P_p (L_d-L_q)\cdot i^r_{ds}(t)\cdot i^{r*}_{qs}(t)
     \end{equation*}
 \begin{gather*}
 i_{qs}^{r*}(t)=
@@ -2043,10 +2047,10 @@ Por lo tanto, para el caso nominal, las ganancias del controlador resultan:
 \subsection{Incorporación y diseño de Observador de Estado de Orden reducido para $\theta_m(t)$ y $\omega_m(t)$}
 Se pretende estimar la velocidad del motor a partir del sensado de la posición, suponiendo por lo tanto, que no se dispone de un tacómetro. Esta estimación es posible debido al análisis que se realizó anteriormente (\textit{Controlabilidad y Observabilidad}) donde también se demuestra que no es observable la posición a partir de la velocidad.
 \subsubsection{Modelo del subsistema mecánico}
-Para implementar un observador de orden reducido no es necesario plantear todas las ecuaciones de estado, en este caso, el único subsistema involucrado en la estimación es el mecánico, que, si consideramos que ya se desacopló el término $-b_{eq}\omega_n(t)$ nos queda:
+Para implementar un observador de orden reducido no es necesario plantear todas las ecuaciones de estado, en este caso, el único subsistema involucrado en la estimación es el mecánico, que, si consideramos que ya se desacopló el término $-b_{eq}\omega_m(t)$ nos queda:
 \begin{gather}
 \begin{aligned}
-    \dot\theta_m(t) &= \omega_n(t) \\
+    \dot\theta_m(t) &= \omega_m(t) \\
     \dot \omega_m(t) &= \frac{1}{J_{eq}}\Big(T'_m(t)-\frac{T_l(t)}{r}\Big)
 \end{aligned}
 \end{gather}
@@ -2228,10 +2232,12 @@ La primer variable que puede apreciarse que supera los límites de operación es
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{imagenes/pos_voltaje_saturado.png}
+    \caption{Seguimiento de posición con saturación de tensión del inversor en $39{,}19$~V.}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{imagenes/pos_voltaje_nosaturado.png}
+    \caption{Seguimiento de posición sin saturación de tensión (caso de referencia).}
 \end{figure}
 Como puede verse en la \ref{fig:corrientes_voltaje} aunque se reduce bastante el tamaño del pico de corriente y además no cambia el error de posición entre la simulación con voltaje saturado, aun así no es suficiente para cumplir con las especificaciones de corriente.
 Posteriormente se propone saturar la consigna de corriente en el modulador de torque, para que al menos no se imponga una corriente que desde un principio supere la corriente pico del motor.
@@ -2785,8 +2791,8 @@ Para posibilitar la implementación física del algoritmo de control en un micro
 
 El primer paso crítico en este diseño es la determinación del período de muestreo $T_s$. Según el criterio práctico de diseño de sistemas de control digital, la frecuencia de muestreo $f_s = 1/T_s$ debe ser al menos 10 veces mayor que el ancho de banda del lazo de control más rápido, garantizando así que no se degrade la estabilidad global del sistema . En la arquitectura desarrollada, el lazo proporcional de corrientes posee la dinámica más veloz con un ancho de banda $BW_{cont} = 796 \ \mathrm{Hz}$ . Por consiguiente, el período de muestreo nominal exigido se calcula como:
 \begin{equation}
-    T_s \leq \frac{1}{10 \cdot 796} \approx 1.25 \times 10^{-4} \ \mathrm{s}
-\end{equation}.
+    T_s \leq \frac{1}{10 \cdot 796} \approx 1.25 \times 10^{-4} \ \mathrm{s}.
+\end{equation}
 
 \subsection{Método de Integración de Tustin}
 Para llevar a cabo la discretización de los elementos con inercia dinámica, específicamente los bloques integradores ($1/s$), se emplea el método de Tustin, también conocido como aproximación bilineal o regla de integración trapezoidal . Este método destaca por su robustez analítica frente a otros métodos numéricos, dado que mapea todo el semiplano izquierdo del plano complejo $s$ estrictamente dentro del círculo unitario en el plano $z$, lo que asegura que si el sistema en tiempo continuo es estable, su equivalente discreto también lo será .
@@ -2794,17 +2800,17 @@ Para llevar a cabo la discretización de los elementos con inercia dinámica, es
 Físicamente, el método aproxima la integral temporal de una señal calculando el área bajo la curva mediante el trazado de trapecios (líneas rectas) entre dos instantes de muestreo consecutivos . Matemáticamente, la transformación bilineal de Tustin se define sustituyendo el operador continuo de Laplace $s$ por su equivalente discreto dependiente del período de muestreo:
 \begin{equation}
     s \approx \frac{2}{T_s} \frac{1 - z^{-1}}{1 + z^{-1}}
-\end{equation}.
+\end{equation}
 
 Al aplicar esta sustitución a la función de transferencia de un integrador puro ($H(s) = 1/s$), se obtiene la función de transferencia en el dominio $z$:
 \begin{equation}
     H(z) = \frac{Y(z)}{X(z)} = \frac{T_s}{2} \left( \frac{1 + z^{-1}}{1 - z^{-1}} \right)
-\end{equation} .
+\end{equation}
 
 Aplicando la transformada $Z$ inversa a esta expresión, se obtiene la ley de actualización (o ecuación en diferencias recursiva) que el microprocesador debe ejecutar secuencialmente en cada paso de cálculo $k$:
 \begin{equation}
     y[k] = y[k-1] + \frac{T_s}{2} \big( x[k] + x[k-1] \big)
-\end{equation} .
+\end{equation}
 Donde $x[k]$ y $x[k-1]$ representan la entrada muestreada actual y pasada al integrador, mientras que $y[k]$ y $y[k-1]$ representan la salida (área acumulada) actual y pasada, respectivamente.
 
 \subsubsection{Implementación en la Arquitectura de Control}
