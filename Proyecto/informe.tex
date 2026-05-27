@@ -30,7 +30,7 @@
 
 
 \fancyhf{}
-\fancyhead[C]{\small UNCuyo -- Ingeniería Mecatrónica / Mendoza -- Argentina. Espacio Curricular 311:\\ AUTOMÁTICA Y MÁQUINAS ELÉCTRICAS / PROYECTO GLOBAL INTEGRADOR.\\ Año: 2025. Alumnos: Calderón, Joaquín - Castel, Francisco. Fecha: 19 de Febrero 2026.}
+\fancyhead[C]{\small UNCuyo -- Ingeniería Mecatrónica / Mendoza -- Argentina. Espacio Curricular 311:\\ AUTOMÁTICA Y MÁQUINAS ELÉCTRICAS / PROYECTO GLOBAL INTEGRADOR.\\ Año: 2025. Alumnos: Calderón, Joaquín - Castel, Francisco. Fecha: 28/05/2026.}
 \fancyfoot[C]{\small Pág. \thepage \hspace{1pt} de \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -94,7 +94,7 @@
                       & Joaquín Calderón \\
                       & \texttt{calderon.joaquin@uncuyo.edu.ar} \\[12pt]
     \textbf{Año lectivo:} & 2025 \\[8pt]
-    \textbf{Fecha:} & 19 de Febrero de 2026 \\[8pt]
+    \textbf{Fecha:} & 28/05/2026 \\[8pt]
     \textbf{Lugar:} & Mendoza, Argentina \\
 \end{tabular}
 
@@ -115,16 +115,10 @@
 \noindent\textbf{\large Abstract}
 \vspace{4pt}
 
-\noindent\textit{Modelado, simulación, diseño y análisis de desempeño de un Sistema de Control Automático de
-Posición y Movimientos para un Accionamiento Eléctrico de 4 cuadrantes, compuesto por: máquina
-eléctrica de corriente alterna (CA) trifásica sincrónica con excitación por imanes permanentes (PMSM),
-alimentada por un inversor electrónico trifásico desde fuente de tensión continua (CC); reductor de
-velocidad con engranajes planetarios conectado a la carga mecánica; retroalimentación con 1 sensor
-de posición en el eje del motor más 3 sensores de corriente instantánea de fases en la salida del
-inversor trifásico al estator de la máquina PMSM y 1 sensor de temperatura en el devanados de estator.}
+\noindent\textit{This work presents the modeling, simulation and design of a position and motion control system for an electric drive based on a three-phase permanent-magnet synchronous motor (PMSM), coupled through a planetary gear reducer ($r=120$:1) to a one-degree-of-freedom rigid-pendulum mechanical load. A complete six-state nonlinear model in rotor $qd0$ coordinates is developed (including the stator thermal dynamics), and a four-state augmented LTI model is obtained through nonlinear state-feedback linearization, using the minimal ($v_{ds}=-L_q i_{qs}\omega_r$) and complementary ($v_{qs}=v_{qs}^{*}+\omega_r L_d i_{ds}$) decoupling control laws. The equivalence between both models is validated through comparative dynamic simulation, verifying the agreement of the responses to voltage and load-torque pulse sequences that span the four operating quadrants. The effect of nonzero initial conditions $i_{ds}^{r}(0)\neq 0$ and of $d$-axis voltage injection (field forcing/weakening) is analyzed. A cascade motion controller with a torque modulator is then designed on the LTI model, and its performance is evaluated by simulation under several operating scenarios.}
 
 \vspace{6pt}
-\noindent\textbf{Keywords:} accionamiento CA, simulación, térmico, cascada, control, modelado.
+\noindent\textbf{Keywords:} AC drive, PMSM, field-oriented control, feedback linearization, cascade control, thermal model, simulation.
 
 \vspace{8pt}
 \noindent\rule{\textwidth}{0.4pt}
@@ -142,6 +136,8 @@ inversor trifásico al estator de la máquina PMSM y 1 sensor de temperatura en 
 El presente trabajo constituye el Proyecto Global Integrador del espacio curricular "Automática y Máquinas Eléctricas", cuyo objetivo principal es la integración de conocimientos y competencias fundamentales mediante su aplicación en un sistema mecatrónico, de acuerdo con las especificaciones de la guía de trabajo de la cátedra~\cite{guia_trabajo}.
 El sistema bajo estudio consiste en un accionamiento eléctrico de cuatro cuadrantes compuesto por una máquina de corriente alterna trifásica sincrónica con excitación por imanes permanentes (PMSM), alimentada por un inversor electrónico. Este sistema acciona, a través de un reductor de velocidad, una carga mecánica correspondiente a una articulación de un brazo manipulador robótico elemental de un grado de libertad (péndulo rígido), adaptada del modelo clásico presentado en~\cite{kelly_robot}.
 El alcance del proyecto abarca el modelado matemático, la simulación en Matlab/Simulink, y el diseño y análisis de desempeño de un sistema de control automático de posición y movimientos.
+
+El informe se organiza como sigue. En primer lugar se desarrolla el modelado, análisis y simulación del sistema físico a lazo abierto: el modelo mecánico equivalente de un grado de libertad referido al eje del motor, el modelo no lineal completo de la máquina PMSM en coordenadas $qd0$ con su dinámica térmica, sus linealizaciones (modelo LPV y modelo LTI equivalente aumentado obtenido por retroalimentación no lineal), los análisis de estabilidad, observabilidad y controlabilidad, y la simulación dinámica comparativa entre los modelos no lineal y LTI. A continuación se presenta el diseño del controlador de movimiento en cascada con modulador de torque (control vectorial), incluyendo el desacoplamiento de las realimentaciones físicas, los lazos de control de corriente, el controlador PID externo de posición y velocidad, y el observador de estado reducido, junto con su simulación en tiempo continuo. Luego se verifica el desempeño del accionamiento frente a las especificaciones de operación (límites de corriente y tensión, comportamiento térmico y respuesta no ideal de sensores e inversor). Posteriormente se discretiza el controlador completo mediante el método de Tustin y se lo codifica en una \textit{MATLAB Function}. Finalmente se exponen las conclusiones y, en el Anexo, el generador de trayectorias paramétricamente suavizadas.
 
 \section{Análisis, Modelado y Simulación del subsistema físico a Lazo Abierto}
 Modelado de la carga mecánica, péndulo rígido de 1 g.d.l.~\cite{kelly_robot}, fijo a una base en el sistema de referencia inercial, sometido a la fuerza de gravedad \(g\) con carga útil variable.
@@ -207,7 +203,7 @@ Es evidente que la relación cinemática viene dada por:
         \hline
         \multicolumn{4}{|c|}{\textbf{Límites de Operación (Especificaciones)}} \\
         \hline
-        $n_{l,nom}$ & Velocidad nominal de carga & 60 & rpm \\
+        $n_{l,nom}$ & Velocidad nominal de carga & 55 & rpm \\
         $T_{q,nom}$ & Torque nominal de salida & 17.0 & Nm \\
         $T_{q,max}$ & Torque máximo (pico) & 45.0 & Nm \\
         \hline
@@ -2042,7 +2038,52 @@ Por lo tanto, para el caso nominal, las ganancias del controlador resultan:
 \end{aligned}
 \end{equation*}
 
+\subsubsection{Ubicación de los polos en el plano $s$ y migración ante variación de carga}
 
+La Fig.~\ref{fig:mapa_polos_522} ubica en el plano $s$ los polos de las tres dinámicas que conviven en la arquitectura en cascada, para el diseño nominal:
+\begin{itemize}
+    \item \textbf{Planta a lazo abierto} (modelo LTI aumentado): el integrador en $s=0$, el par electromecánico en $-91{,}7 \pm j148$ y el polo residual de $i_{ds}^r$ en $-160{,}3$~rad/s.
+    \item \textbf{Lazos de corriente} (proporcionales): $-5000$~rad/s en los tres ejes.
+    \item \textbf{PID de movimiento} (lazo cerrado, diseño nominal): un polo real en $-800$~rad/s y un par complejo en $-600 \pm j529$~rad/s ($\zeta = 0{,}75$, $\omega_n = 800$~rad/s), raíces de $J_{eq}(s+\omega_n)(s^2+2\zeta\omega_n s + \omega_n^2)$.
+\end{itemize}
+
+Se verifica la \textbf{separación de escalas} que sustenta el diseño en cascada: los polos del lazo externo de movimiento ($\approx 800$~rad/s) son sensiblemente más lentos que los lazos de corriente ($5000$~rad/s) y, a la vez, más rápidos que la dinámica dominante de la planta original ($\omega_n \approx 174$~rad/s). Esto justifica diseñar cada lazo suponiendo que el lazo interior es prácticamente instantáneo.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/mapa_polos_5_2_2.png}
+    \caption{Polos en el plano $s$: planta a lazo abierto (cruces), lazos de corriente (cuadrado, $-5000$) y polos de lazo cerrado del PID de movimiento (círculos, $-800$ y $-600\pm j529$). Izquierda: vista completa (separación de escalas); derecha: zoom planta vs.\ PID.}
+    \label{fig:mapa_polos_522}
+\end{figure}
+
+\textbf{Migración ante variación extrema de los parámetros de carga.} El controlador se sintoniza con la inercia nominal $J_{eq}$ ($m_l = 0$). Como la inercia equivalente \textbf{no} se reajusta en línea (las ganancias $b_a$, $K_{sa}$, $K_{sia}$ son fijas), un cambio en la masa de carga $m_l \in [0;\,1{,}5]$~kg modifica $J_{eq}$ y corre los polos de lazo cerrado, que pasan a ser las raíces de $J_{eq}\,s^3 + b_a s^2 + K_{sa} s + K_{sia}$. La variación de la fricción de carga $b_l$, en cambio, no afecta esta migración: el modulador de torque compensa $b_{eq}\,\omega_m$ por prealimentación, de modo que el efecto dominante de la carga sobre el lazo cerrado proviene de la inercia $J_{eq}$, que no se compensa. La Tabla~\ref{tab:migracion_pid} y la Fig.~\ref{fig:migracion_pid} resumen el resultado.
+
+\begin{table}[H]
+\centering
+\caption{Migración de los polos de lazo cerrado del PID ante variación de $m_l$ (ganancias fijas nominales).}
+\label{tab:migracion_pid}
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$m_l$ [kg] & $J_{eq}$ [kg$\cdot$m$^2$] & Par complejo [rad/s] & Polo real [rad/s] & $\zeta$ \\
+\hline
+\textbf{0,00} & $\mathbf{1{,}98\times10^{-5}}$ & $\mathbf{-600{,}0 \pm j\,529{,}2}$ & $\mathbf{-800{,}0}$ & $\mathbf{0{,}750}$ \\
+0,50 & $2{,}85\times10^{-5}$ & $-421{,}7 \pm j\,687{,}9$ & $-546{,}6$ & $0{,}523$ \\
+1,00 & $3{,}72\times10^{-5}$ & $-294{,}1 \pm j\,696{,}5$ & $-477{,}1$ & $0{,}389$ \\
+\textbf{1,50} & $\mathbf{4{,}58\times10^{-5}}$ & $\mathbf{-212{,}6 \pm j\,677{,}7}$ & $\mathbf{-438{,}2}$ & $\mathbf{0{,}299}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{imagenes/migracion_polos_pid.png}
+    \caption{Migración de los polos de lazo cerrado del PID al variar $m_l$ de $0$ a $1{,}5$~kg con ganancias fijas (colorbar en $m_l$). El nominal ($m_l=0$) se marca con círculo y el peor caso ($m_l=1{,}5$) con cuadrado.}
+    \label{fig:migracion_pid}
+\end{figure}
+
+Del análisis se desprende que, al aumentar la carga, los polos de lazo cerrado se \textbf{acercan al eje imaginario} y el \textbf{amortiguamiento cae de $\zeta=0{,}75$ a $\zeta\approx0{,}30$}, mientras que la frecuencia natural se mantiene aproximadamente constante ($\omega_n \approx 710$--$825$~rad/s). Es decir, con ganancias fijas el sistema permanece estable en todo el rango de carga, pero la respuesta se vuelve \textbf{notablemente más oscilatoria} en el peor caso ($m_l=1{,}5$~kg). Esto justificaría, si se exigiera conservar el amortiguamiento especificado en todo el rango, un esquema de control robusto o el agendado de las ganancias con la inercia estimada.
 
 \subsection{Incorporación y diseño de Observador de Estado de Orden reducido para $\theta_m(t)$ y $\omega_m(t)$}
 Se pretende estimar la velocidad del motor a partir del sensado de la posición, suponiendo por lo tanto, que no se dispone de un tacómetro. Esta estimación es posible debido al análisis que se realizó anteriormente (\textit{Controlabilidad y Observabilidad}) donde también se demuestra que no es observable la posición a partir de la velocidad.
@@ -2177,7 +2218,7 @@ C=\begin{bmatrix}
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\linewidth]{imagenes/overshoot_transitorio_trap_pos.png}
-        \caption{Overshoot del tansitorio rampa-meseta de la posición de la articulación}
+        \caption{Overshoot del transitorio rampa-meseta de la posición de la articulación}
     \end{figure}
     \begin{figure}[H]
         \centering
@@ -2239,7 +2280,7 @@ La primer variable que puede apreciarse que supera los límites de operación es
     \includegraphics[width=1\linewidth]{imagenes/pos_voltaje_nosaturado.png}
     \caption{Seguimiento de posición sin saturación de tensión (caso de referencia).}
 \end{figure}
-Como puede verse en la \ref{fig:corrientes_voltaje} aunque se reduce bastante el tamaño del pico de corriente y además no cambia el error de posición entre la simulación con voltaje saturado, aun así no es suficiente para cumplir con las especificaciones de corriente.
+Como puede verse en la Fig.~\ref{fig:corrientes_voltaje} aunque se reduce bastante el tamaño del pico de corriente y además no cambia el error de posición entre la simulación con voltaje saturado, aun así no es suficiente para cumplir con las especificaciones de corriente.
 Posteriormente se propone saturar la consigna de corriente en el modulador de torque, para que al menos no se imponga una corriente que desde un principio supere la corriente pico del motor.
 \begin{figure}[H]
     \centering
@@ -2259,7 +2300,7 @@ Como era de esperarse, aunque la implementación del perfil de velocidad trapezo
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{imagenes/perfil_trap_accel_comp.png}
-    \caption{Elminación de los picos no derivables de la corriente, o aceleración}
+    \caption{Eliminación de los picos no derivables de la corriente, o aceleración}
 \end{figure}
 
 \subsection{Mejora del observador mecánico ante perturbaciones constantes (Punto 5.2.5.b)}
