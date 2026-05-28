@@ -199,7 +199,7 @@ Es evidente que la relación cinemática viene dada por:
         $C_{ts}$ & Capacitancia térmica estator & 0.818 & $\text{J}/^\circ\text{C}$ \\
         $R_{ts-amb}$ & Resistencia térmica estator-ambiente & 146.7 & $^\circ\text{C}/\text{W}$ \\
         $\alpha_{Cu}$ & Coef. temp. del cobre & $3.9 \times 10^{-3}$ & $1/^\circ\text{C}$ \\
-        $T_{amb}$ & Temperatura ambiente & 20 & $^\circ\text{C}$ \\
+        $T_{amb}$ & Temperatura ambiente (operación) & 25 & $^\circ\text{C}$ \\
         \hline
         \multicolumn{4}{|c|}{\textbf{Límites de Operación (Especificaciones)}} \\
         \hline
@@ -1420,7 +1420,7 @@ El estado $i_{ds}^r$ es simultáneamente no controlable y no observable, confirm
 \subsection{Simulación Dinámica: Modelo NL vs LTI Aumentado}
 \label{sec:sim_dinamica}
 
-Se realiza una simulación en el dominio del tiempo comparando la respuesta del \textbf{modelo no lineal completo} (6 estados, con leyes de control NL de desacoplamiento mínima y complementaria) contra el \textbf{modelo LTI aumentado} (4 estados), implementados en MATLAB/Simulink. La simulación se ejecuta para tres condiciones iniciales: $i_{ds}^r(0) \in \{0,\; +0{,}5,\; -0{,}5\}$ A, manteniendo el resto del estado inicial en cero y $T_{amb} = 20\,^\circ$C.
+Se realiza una simulación en el dominio del tiempo comparando la respuesta del \textbf{modelo no lineal completo} (6 estados, con leyes de control NL de desacoplamiento mínima y complementaria) contra el \textbf{modelo LTI aumentado} (4 estados), implementados en MATLAB/Simulink. La simulación se ejecuta para tres condiciones iniciales: $i_{ds}^r(0) \in \{0,\; +0{,}5,\; -0{,}5\}$ A, manteniendo el resto del estado inicial en cero y $T_{amb} = 25\,^\circ$C.
 
 \subsubsection{Señales de excitación}
 
@@ -1473,7 +1473,7 @@ Se construyó un modelo en Simulink con dos subsistemas en paralelo: el modelo N
 \subsubsection{Respuesta del estado interno (Sub-ítem a)}
 \label{sec:sim_item_a}
 
-Se presentan los resultados de la simulación para el caso nominal $i_{ds}^r(0) = 0$~A, comparando las salidas del modelo NL (6 estados) y del modelo LTI aumentado (4 estados) ante las mismas señales de excitación. Los efectos de $i_{ds}^r(0) \neq 0$ se analizan por separado en el Sub-ítem~c. En las siguientes simulaciones se consideró $T_{amb}=20\,^\circ$C y, en el modelo LTI aumentado, se utilizó $R_s = R_{s0} = 1{,}058\ \Omega$ constante, evaluada a la temperatura media de operación del estator ($\approx 29{,}5\,^\circ$C) y no al valor de referencia $R_{sREF}=1{,}02\ \Omega$ a $20\,^\circ$C, consistente con el desacoplamiento térmico del modelo lineal equivalente.
+Se presentan los resultados de la simulación para el caso nominal $i_{ds}^r(0) = 0$~A, comparando las salidas del modelo NL (6 estados) y del modelo LTI aumentado (4 estados) ante las mismas señales de excitación. Los efectos de $i_{ds}^r(0) \neq 0$ se analizan por separado en el Sub-ítem~c. En las siguientes simulaciones se consideró $T_{amb}=25\,^\circ$C y, en el modelo LTI aumentado, se utilizó $R_s = R_{s0} = 1{,}058\ \Omega$ constante, evaluada a la temperatura media de operación del estator ($\approx 29{,}5\,^\circ$C) y no al valor de referencia $R_{sREF}=1{,}02\ \Omega$ a $20\,^\circ$C, consistente con el desacoplamiento térmico del modelo lineal equivalente.
 
 \textbf{Posición angular $\theta_m(t)$}
 
@@ -1537,7 +1537,7 @@ Para la condición inicial $i_{ds}^r(0) = 0$~A, la corriente de eje $d$ permanec
 
 \textbf{Temperatura del estator $T_s(t)$.}
 
-La temperatura crece levemente respecto de $T_{amb} = 20\,^\circ$C debido a las pérdidas resistivas $P_{Cu} = \tfrac{3}{2}R_s(i_{qs}^2 + i_{ds}^{r\,2})$. El cambio es mínimo dado que la constante de tiempo térmica $\tau_{th} = R_{ts\text{-}amb} \cdot C_{ts} \approx 120$~s es muy superior a la duración de la simulación ($2{,}2$~s). Este resultado justifica la hipótesis del modelo LTI de utilizar $R_s = R_{s0}$ constante: la variación de resistencia por efecto térmico es despreciable en esta escala temporal. Nótese que el modelo LTI aumentado (4 estados) \textbf{no incluye} la temperatura como variable de estado, ya que asume $R_s$ constante por diseño.
+La temperatura crece levemente respecto de $T_{amb} = 25\,^\circ$C debido a las pérdidas resistivas $P_{Cu} = \tfrac{3}{2}R_s(i_{qs}^2 + i_{ds}^{r\,2})$. El cambio es mínimo dado que la constante de tiempo térmica $\tau_{th} = R_{ts\text{-}amb} \cdot C_{ts} \approx 120$~s es muy superior a la duración de la simulación ($2{,}2$~s). Este resultado justifica la hipótesis del modelo LTI de utilizar $R_s = R_{s0}$ constante: la variación de resistencia por efecto térmico es despreciable en esta escala temporal. Nótese que el modelo LTI aumentado (4 estados) \textbf{no incluye} la temperatura como variable de estado, ya que asume $R_s$ constante por diseño.
 
 \begin{figure}[H]
     \centering
@@ -1858,23 +1858,27 @@ Al diseñar el Modulador de Torque Equivalente encargado del desacoplamiento, su
     \item \textbf{Uso de valor nominal (resistencia constante):} 
     Si el controlador asume un valor nominal constante (típicamente el medido a temperatura ambiente), la compensación interna pierde exactitud a medida que la temperatura del devanado aumenta y se aleja del punto de referencia. En consecuencia, la tensión calculada para compensar la caída resistiva resulta insuficiente frente a la caída de tensión real en una máquina caliente.
 \end{itemize}
+
+Concretamente, en las simulaciones de esta sección el caso ``$R_s$ constante'' emplea $R_s(25\,^\circ\text{C}) \approx 1{,}04\ \Omega$ (la resistencia evaluada a la temperatura ambiente de operación), mientras que el caso ``$R_s$ variable'' actualiza $R_s(T_s(t)) = R_{sREF}\,[1+\alpha_{Cu}(T_s-20)]$ con la medición del sensor de temperatura. La planta NL conserva su $R_s(T_s(t))$ real en ambos casos, por lo que la diferencia entre las curvas refleja únicamente el error de compensación del controlador.
 %insertar aqui graficas
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{imagenes/comp_torque_rs.png}
-    \caption{Evolución temporal del par neto ($T_{\text{neto}}$) en [N.m]. Se contrasta el comportamiento bajo condiciones de resistencia estatórica constante (RS Cte., línea amarilla) y resistencia estatórica variable (RS Variable, línea azul).}
+    \caption{Evolución temporal del par neto ($T_{\text{neto}}$) en [N.m]. Se contrasta el comportamiento con resistencia estatórica constante (RS Cte., línea roja) y con resistencia estatórica variable (RS Variable, línea azul).}
     \label{fig:comparacion_torque_neto_RS}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{imagenes/comp_velocidad_rs.png}
-    \caption{Comportamiento de la velocidad angular mecánica ($\omega_m(t)$) en [rad/s] en función del tiempo. Se comparan las respuestas del sistema operando con resistencia estatórica constante (RS Cte., línea azul) y con resistencia estatórica variable (RS Variable, línea roja).}
+    \caption{Comportamiento de la velocidad angular mecánica ($\omega_m(t)$) en [rad/s] en función del tiempo. Se comparan las respuestas con resistencia estatórica constante (RS Cte., línea roja) y con resistencia estatórica variable (RS Variable, línea azul).}
     \label{fig:comparacion_velocidad_angular_RS}
 \end{figure}
 El impacto de no compensar la variación térmica se manifiesta en una degradación del desempeño global del sistema. Esta inexactitud en la cancelación resistiva produce un error en estado estacionario en las corrientes internas y, consecuentemente, en el torque electromagnético generado.
 
 Como puede verse en la Fig. \ref{fig:comparacion_torque_neto_RS} y \ref{fig:comparacion_velocidad_angular_RS} este déficit sostenido de torque aplicado tiene una repercusión directa y acumulativa sobre el comportamiento mecánico. Al entregar un par ligeramente inferior al demandado por la consigna, se genera una divergencia progresiva en las curvas de velocidad angular. La trayectoria de velocidad del sistema que opera con un controlador de resistencia constante se desvía de forma creciente respecto de la trayectoria ideal, lo que evidencia la necesidad de un modelado térmico preciso para garantizar el desempeño exigido en regímenes de operación prolongados.
+
+Cuantitativamente, al cabo de $4$~s con $R_s$ constante el torque neto entregado presenta un déficit cercano al $15\%$ respecto del caso con $R_s$ variable; dicho déficit, al integrarse en la dinámica mecánica, se traduce en un error en la posición del rotor $\theta_m$ de aproximadamente $4\%$. Esto confirma que estimar $R_s(T_s(t))$ en el controlador mejora apreciablemente la exactitud del desacoplamiento en regímenes prolongados, mientras que el uso de un valor constante resulta aceptable solo para intervalos cortos o cuando la deriva térmica es pequeña.
 \subsection{Diseño de los Lazos de Control de Corrientes $\bm{i}_{qd0s}^r$}
 Dado que nuestra planta es de tipo 1 es posible aplicar una simple Ley de Control proporcional para lograr un error de estado estacionario nulo, por lo que podemos plantear:
 \begin{equation}
