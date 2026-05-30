@@ -60,8 +60,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2026-01-16T20:15:43Z</dcterms:created>
   <dc:creator>Francisco</dc:creator>
   <cp:lastModifiedBy>Francisco</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-05-30T18:08:43Z</dcterms:modified>
-  <cp:revision>36.1</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-05-30T21:21:55Z</dcterms:modified>
+  <cp:revision>36.2</cp:revision>
   <cp:version>R2025b</cp:version>
 </cp:coreProperties>
 
@@ -937,7 +937,7 @@ run(&quot;parametros_sistema_completo.mlx&quot;)</P>
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:36.1&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:36.2&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -4577,14 +4577,14 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
   <Object ObjectID="1" ClassName="Simulink.ConfigSet">
     <P Name="ExtraOptions" Class="char"/>
     <P Name="Name" Class="char">Configuration</P>
-    <P Name="CurrentDlgPage" Class="char">Solver</P>
+    <P Name="CurrentDlgPage" Class="char">Diagnostics/Data Validity</P>
     <P Name="ConfigPrmDlgPosition" Class="double">[71.0, 71.0, 900.0, 710.0]</P>
     <P Name="Description" Class="char"/>
     <P Name="Version" Class="char">25.0.0</P>
     <Array PropName="Components" Type="Simulink.ConfigComponent" Dimension="10*1">
       <Object ObjectID="2" ClassName="Simulink.SolverCC">
         <P Name="StartTime" Class="char">0.0</P>
-        <P Name="StopTime" Class="char">2</P>
+        <P Name="StopTime" Class="char">20</P>
         <P Name="AbsTol" Class="char">auto</P>
         <P Name="AutoScaleAbsTol" Class="char">on</P>
         <P Name="FixedStep" Class="char">auto</P>
@@ -4766,7 +4766,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="SaveWithDisabledLinksMsg" Class="char">warning</P>
         <P Name="SaveWithParameterizedLinksMsg" Class="char">warning</P>
         <P Name="CheckSSInitialOutputMsg" Class="char">on</P>
-        <P Name="UnderspecifiedInitializationDetection" Class="char">Classic</P>
+        <P Name="UnderspecifiedInitializationDetection" Class="char">Simplified</P>
         <P Name="MergeDetectMultiDrivingBlocksExec" Class="char">none</P>
         <P Name="CheckExecutionContextPreStartOutputMsg" Class="char">off</P>
         <P Name="SignalResolutionControl" Class="char">UseLocalSettings</P>
@@ -5421,9 +5421,9 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
     "GraphicalInterface":{
         "ExternalFileReferences":[
             {
-                "Path":"$bdroot\/Radians to Degrees6",
+                "Path":"$bdroot\/Radians to Degrees4",
                 "Reference":"simulink_extras\/Transformations\/Radians\nto Degrees",
-                "SID":"5010",
+                "SID":"4106",
                 "Type":"LIBRARY_BLOCK"
             }
         ],
@@ -6793,6 +6793,7 @@ __MWOPC_PART_BEGIN__ /simulink/plugins/LogicAnalyzerPlugin.xml
 <?xml version="1.0" encoding="utf-8"?>
 <LogicAnalyzerPlugin>
   <P Name="LogicAnalyzerGraphicalSettings">{&quot;cursors&quot;:{&quot;activeCursor&quot;:0,&quot;lockedCursors&quot;:[],&quot;startingCursor&quot;:0,&quot;times&quot;:[0]},&quot;global&quot;:{&quot;axesTheme&quot;:&quot;Black&quot;},&quot;panels&quot;:[{&quot;height&quot;:100,&quot;startingTrace&quot;:0,&quot;traces&quot;:[{&quot;blockSID&quot;:&quot;1755&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;13bf4f6b-6d11-4c4b-912d-d61ef96f23c9&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2583&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2683&quot;,&quot;outputPortIndex&quot;:5,&quot;signalId&quot;:&quot;3dfb078b-3e36-4175-a2fb-ccde38e92c87&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2686&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2946&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;76508bd7-9e6d-4652-a8e7-012ddaa26baf&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;1758&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2091&quot;,&quot;outputPortIndex&quot;:9,&quot;signalId&quot;:&quot;eb66ddbf-bab5-476b-b0ff-2941950da684&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;1758&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2085&quot;,&quot;outputPortIndex&quot;:3,&quot;signalId&quot;:&quot;6cd41dfc-b71c-4762-a3dd-3cacb1cd54e5&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2686&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2951&quot;,&quot;outputPortIndex&quot;:6,&quot;signalId&quot;:&quot;87e3aded-c105-4a93-8c90-5e13b9782801&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2960&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;331050d9-4ff6-4857-8620-381b53b4c89c&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2962&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;320413e2-a8d6-448f-8bc1-f8e878516d4c&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2686&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2947&quot;,&quot;outputPortIndex&quot;:2,&quot;signalId&quot;:&quot;133caac1-ce00-4428-9435-93cb46b744ab&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2686&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2948&quot;,&quot;outputPortIndex&quot;:3,&quot;signalId&quot;:&quot;6f5abd70-faf7-45c1-8801-e24abd5663b7&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2686&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2949&quot;,&quot;outputPortIndex&quot;:4,&quot;signalId&quot;:&quot;f3c148dc-efa9-48c2-8317-288a7baf188d&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2973&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;ddb32e38-4ad8-4d7f-a5f6-19f47dd52de1&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2583&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2681&quot;,&quot;outputPortIndex&quot;:3,&quot;signalId&quot;:&quot;5e33eb09-94a9-4320-b1f9-32c77d0eadc8&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2686&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2950&quot;,&quot;outputPortIndex&quot;:5,&quot;signalId&quot;:&quot;b9c3314e-f34d-4011-ac58-028a8734a3d8&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2686&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2952&quot;,&quot;outputPortIndex&quot;:7,&quot;signalId&quot;:&quot;c4408ba0-062c-4b25-aefd-168b2d013b7f&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2576&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;502c2870-173d-4df5-a1b8-9c9da58d8b38&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2686&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2953&quot;,&quot;outputPortIndex&quot;:8,&quot;signalId&quot;:&quot;f9ec1b8a-ce70-47ec-b6dd-d3d22acf0bc6&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2583&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2679&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;9207b52d-50b7-4ea8-9eb8-52d3bd19410a&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2686&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2954&quot;,&quot;outputPortIndex&quot;:9,&quot;signalId&quot;:&quot;34a88092-983f-4c91-8df0-8b0615de6884&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2583&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2680&quot;,&quot;outputPortIndex&quot;:2,&quot;signalId&quot;:&quot;58247515-0a95-4e4a-a95e-5f00a8d3d1c6&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;1758&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2089&quot;,&quot;outputPortIndex&quot;:7,&quot;signalId&quot;:&quot;b112c895-6c39-483b-8006-45f6cfcde3d2&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;1758&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2084&quot;,&quot;outputPortIndex&quot;:2,&quot;signalId&quot;:&quot;629f15d2-ad1a-41ca-b56a-06853c2778ca&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2583&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2682&quot;,&quot;outputPortIndex&quot;:4,&quot;signalId&quot;:&quot;80bc1c1b-5b8a-4526-8048-7bdc67ed3e74&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;1758&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2087&quot;,&quot;outputPortIndex&quot;:5,&quot;signalId&quot;:&quot;8bba3526-10e2-490d-8050-3fab50105fed&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2583&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2684&quot;,&quot;outputPortIndex&quot;:6,&quot;signalId&quot;:&quot;8206cc12-3447-4d6a-af1a-af1807ae8fb3&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2583&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2685&quot;,&quot;outputPortIndex&quot;:7,&quot;signalId&quot;:&quot;02f3116f-bc84-43d0-9f0a-3871d880e079&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2581&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;c384e140-2144-4c58-bb84-418b8c16a0e3&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;1758&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2083&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;d04cb00b-2720-4d4b-af05-40c7d935ce40&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;1758&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2086&quot;,&quot;outputPortIndex&quot;:4,&quot;signalId&quot;:&quot;5d8e540c-5f7c-499e-817a-3cbd74644d58&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;1758&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2090&quot;,&quot;outputPortIndex&quot;:8,&quot;signalId&quot;:&quot;2560db93-ce1f-4ec2-bb4f-edd09982a9ba&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;1758&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;2088&quot;,&quot;outputPortIndex&quot;:6,&quot;signalId&quot;:&quot;1f0f228a-1ceb-40ab-9e0b-5dc1012b45bc&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2967&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;7d1871ac-b2e3-4e06-8ebf-69ba1209d52c&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2575&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;328dfce7-5eda-4b6d-bccd-7bd7270832dd&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2578&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;167f3a01-7695-4944-9fec-dd8cdd6bfb25&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2577&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;8093c652-c8f8-45f7-8dc9-3a721b6ff1b4&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2975&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;0936f17b-3b71-4be9-87d8-b1ddaab172c6&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2974&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;e8e7fcd0-b4f3-44f8-8414-077e118d5200&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2990&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;45836e35-6841-4cbb-aa2f-70dbb888d150&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2984&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:2,&quot;signalId&quot;:&quot;66f8fae3-b003-4fcd-b98d-1d66a5e293d3&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2993&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:1,&quot;signalId&quot;:&quot;ccedde28-9951-4a61-bf52-b6cce352d1b0&quot;,&quot;type&quot;:&quot;wave&quot;},{&quot;blockSID&quot;:&quot;2984&quot;,&quot;name&quot;:&quot;&quot;,&quot;outportBlockSID&quot;:&quot;&quot;,&quot;outputPortIndex&quot;:3,&quot;signalId&quot;:&quot;aba2ce6c-118c-4fcb-9d2d-f37ff101e8b7&quot;,&quot;type&quot;:&quot;wave&quot;}],&quot;yOffset&quot;:0}],&quot;timeAxis&quot;:{&quot;pixelsPerSecond&quot;:58.6},&quot;trigger&quot;:{&quot;enabled&quot;:false,&quot;mode&quot;:&quot;once&quot;,&quot;samples&quot;:200,&quot;signals&quot;:{},&quot;stages&quot;:[{&quot;conditions&quot;:[],&quot;operator&quot;:&quot;AND&quot;}]}}</P>
+  <P Name="LogicAnalyzerSignalOrdering">9afd43c5-4a22-4c37-bdb0-5dd81517601b,3cf90a32-4166-4fe1-ad51-c8d411566030,ade870af-c0fb-47aa-8814-f50a684f5c3a,d775095d-3956-4553-9749-9795d27b469b,4f5fe660-5cc9-4174-9034-2667ab00e336,3b728f13-59a2-4d57-9e75-b298d326259a,8bba3526-10e2-490d-8050-3fab50105fed,7f3e9f7d-ed78-42cc-9ac2-0330d4e43ab0,dc6a8806-5ab5-44ad-a967-ae1902c51ec4,bf3cc1b3-c2f9-4c92-9b2d-549a7a57c0f1,a84dd552-8a84-4946-bc6a-6e95331751cc,f7a009af-381d-4d51-8289-6527de942ea7,67ca1bd0-a343-4db7-b11d-e197897cf97f,2db76c2f-1d22-40f8-a0bc-8d2d6ae51672,dc4e2938-bca5-43e4-b07d-4ca9019ffe7d,31e18083-249d-4861-bb1a-8af2387a41a4,320413e2-a8d6-448f-8bc1-f8e878516d4c,331050d9-4ff6-4857-8620-381b53b4c89c,550800a5-5900-437b-99c3-cfd9e991942f,c384e140-2144-4c58-bb84-418b8c16a0e3,084ef79a-5621-4fd9-950d-e1b2bae2d490,f3ac4ffd-376a-4dee-b062-05981e14dfe8,4f30eb56-a55e-4540-85e8-4d6daf199757,593a844d-0bf9-49e8-85c4-16af110ba206,038c4002-418a-4fab-a691-755ed399ff9e,b74e1579-040e-47fc-ac57-08b9678f84ca,76508bd7-9e6d-4652-a8e7-012ddaa26baf,133caac1-ce00-4428-9435-93cb46b744ab,6f5abd70-faf7-45c1-8801-e24abd5663b7,f3c148dc-efa9-48c2-8317-288a7baf188d,b9c3314e-f34d-4011-ac58-028a8734a3d8,87e3aded-c105-4a93-8c90-5e13b9782801,c4408ba0-062c-4b25-aefd-168b2d013b7f,f9ec1b8a-ce70-47ec-b6dd-d3d22acf0bc6,34a88092-983f-4c91-8df0-8b0615de6884,9207b52d-50b7-4ea8-9eb8-52d3bd19410a,58247515-0a95-4e4a-a95e-5f00a8d3d1c6,5e33eb09-94a9-4320-b1f9-32c77d0eadc8,80bc1c1b-5b8a-4526-8048-7bdc67ed3e74,3dfb078b-3e36-4175-a2fb-ccde38e92c87,8206cc12-3447-4d6a-af1a-af1807ae8fb3,02f3116f-bc84-43d0-9f0a-3871d880e079,727859d7-f294-462e-84ed-f33c7f77728c,2e1ad464-b3f8-441e-b45d-51bc8a5b4c09,03608d3a-9c48-42b1-beae-b3026b1d78a7,c0debc11-a331-47f9-90f9-8f8ff2efe16e,c361cb50-8ff2-4d32-8c1c-0771b74b9f95,93922bbe-fe7b-46a8-80da-46946e99d365,cc88c121-900a-49eb-b50c-f471e0695200,09bbd1ba-482e-448b-b5ad-f41b248a94a2,4b611e32-c2f2-4cfc-8ae7-ac8925690fc5,ad6bb389-8b90-4181-8351-6873fce6b39b,527a974f-3577-4b16-a4ac-c6334d14e792,ad8b1050-6166-4485-a96f-3bc0a45c6f32,79a42ae0-94db-4e69-ab25-9da9df8aba9b,a89b2275-5f25-49c7-b971-2899115c3143,6357da33-9fd8-4604-a944-78754e5eb2f5,d60b81b0-e1f5-4131-b5cd-c5903f905742,b0c742ef-5c92-4815-93eb-4db1bc758632,8e77d893-0c33-42f5-93b6-a225988c3f01,d04cb00b-2720-4d4b-af05-40c7d935ce40,629f15d2-ad1a-41ca-b56a-06853c2778ca,6cd41dfc-b71c-4762-a3dd-3cacb1cd54e5,5d8e540c-5f7c-499e-817a-3cbd74644d58,1f0f228a-1ceb-40ab-9e0b-5dc1012b45bc,b112c895-6c39-483b-8006-45f6cfcde3d2,2560db93-ce1f-4ec2-bb4f-edd09982a9ba,eb66ddbf-bab5-476b-b0ff-2941950da684,bdd0f68a-3366-4129-be72-a39393f9a1c6,06c71fb6-27df-4572-b212-ff79f12fb9c2,cefc5e6d-81fe-4af7-8f8b-412b38a52182,8e81c562-f48b-4595-b9dd-d78a5721167b,bc8525ad-703b-4690-98e2-38e0d0b40e7a,f94d08ee-44d8-4798-a067-e072236d1655,8c65443e-9fa4-418f-b709-9a6af376529a,06347dfd-36ab-4dd0-b7bd-11011773077d,9011ba83-0903-4017-980f-eb79e499851b,106f8282-01c0-423c-bae9-9fe823ab9693,7cf1c50f-e561-492a-9648-f0483e049176,38f4a1a7-5bc1-4d47-9170-870fe31bea97,923ef6e7-d775-4217-afca-cc6f1f465d89,c5c15d69-2866-4f25-b7ba-e7434585a8c9,964a3d8a-4e8b-4e43-b101-e7f63e00874c,7d1871ac-b2e3-4e06-8ebf-69ba1209d52c,4c8f3bb1-150d-49ba-aca0-0f7897153db1,3c5b44a5-a927-454d-83a2-b7d97c6b1249,13bf4f6b-6d11-4c4b-912d-d61ef96f23c9,e353d064-e2fd-4148-b17e-98b351e47e26,a5ec8ac9-384d-419e-99f4-8ba77771654c,e3e5f429-8bbe-4d3f-a6ac-fc6c4adf6f79,ccedde28-9951-4a61-bf52-b6cce352d1b0,caecde38-0ea4-4417-a1e4-f33ca41c361d,d8b51b5b-edb9-439b-acbf-241a1c7c4cf2,0c604a1c-408a-4529-8553-4dd6f70c1683,58e3b615-4d6b-4eac-8186-beb4ac1ab080,328dfce7-5eda-4b6d-bccd-7bd7270832dd,bce073d1-510c-4e83-9d18-53202e555664,0721a105-289c-40a7-a1a7-0d11b874802c,a4adfb87-c546-4ce7-a558-519beb85dc07,87843364-f0ac-48c6-8203-6f14b19da735,8bbacc54-73ff-4617-a55d-9357a01f6003,d666f821-3ef1-46fb-aab5-4fdcc9c2c1c6,07ee1ba8-b396-4943-ac38-c114bb789149,8525b2db-3261-4175-b369-8a0231aff858,9d99f1f7-635e-42ea-8d6c-755e546d8f06,2010e6bb-36e3-4588-a2fb-fd8702dc3cf8,167f3a01-7695-4944-9fec-dd8cdd6bfb25,502c2870-173d-4df5-a1b8-9c9da58d8b38,d73b3f67-6e51-4285-97c9-4ec93d19c46c,c5811f3d-4f53-4bf1-8695-3a9da6f013e3,8093c652-c8f8-45f7-8dc9-3a721b6ff1b4,5f46fa59-0a38-4a35-91af-d3677a7c1389,9ff9dc5c-6ef9-45d3-ac38-19e81797d548,9eb9aaf3-b7e3-4bd7-93b6-6fd7dd5a2633,f7b1cf07-7c72-4e67-9b79-71180b5427db,cb5b0e30-7898-449f-b6b3-d2bacb05be9d,b00b69da-283e-438d-81c0-5362a7dbfe80,e2bd37a2-263a-4ddd-9e63-6004cfd39a90,9921f97e-141d-47c6-9052-cc77748e3ef4,35634c24-0555-4205-96b8-0773b48813fc,abb2eab1-d4a9-41fc-aef3-7a1bc44d255a,1555b2e3-280e-4b58-9056-f7a0ccc78152,da8fb973-6edb-4010-8f0c-f6ab6e0d143b,66f8fae3-b003-4fcd-b98d-1d66a5e293d3,0936f17b-3b71-4be9-87d8-b1ddaab172c6,08921300-4580-490c-a6aa-f99a3c852e77,fa3482d4-d634-433a-8ee3-e9daa2f8beca,e8e7fcd0-b4f3-44f8-8414-077e118d5200,ce8e16a7-b46c-4e52-a2bf-d80c481704c3,1088b03a-38ed-4679-8dee-ee828987c330,ddb32e38-4ad8-4d7f-a5f6-19f47dd52de1,788b66a7-b055-47f5-b17a-ac64577486d3,5cf338eb-6935-44c2-a9b4-23d1b2b085fa,c0352947-3dd8-4659-8131-3ebb26daf916,5705af5d-0a24-4de1-96cc-018c8a059ba8,aba2ce6c-118c-4fcb-9d2d-f37ff101e8b7,73e4eea0-c054-4fe3-8d56-b0f7a6ff0386,d34cd48f-0b0e-4af1-a618-ecd480721910,09aba6b7-3e5d-4f48-984b-d5402c0368d4,771527b8-7a17-4ef0-9b1b-70bb6ec8403b,8d7f932d-1707-4dba-8856-32233f8f161a,fb641f8e-4d35-4bc4-9f0f-4e1c6e2a250c,8a9b47b1-6c02-4021-b602-96e9a6a0a601,29bea99f-51c9-46e9-b387-488107c64ae7,ea660c14-e7eb-4b32-89c3-404da73144f2,c212d99d-9f1c-440e-845b-e0bc45cb604f,77d83636-aa52-4ca6-87e4-a61361cfde51,156d666d-838c-4052-8240-feb314c851b6,0d15364a-4550-4d9d-8bed-f52f1d388195,9055912e-7c71-402f-9573-2fda04c52a10,86ac4519-acf6-456f-b2a6-7918a803a397,3815ba95-0471-4985-8411-844ed547ec1b,91d6a5b8-2aad-4b11-ae76-4b9aa619f7c0,4380b2a2-a6b6-4ad1-ba2d-bd9f19ea203c,f8cf7b07-f07f-4e18-9085-1755a9966d9b,a795b76c-6943-41f8-8081-43cb16624914,9c593984-0baf-410e-8ae6-86bcb9d270b3,daff45b1-84bb-4d26-b388-440a9b9daa82,52fd492c-5e90-4df9-a773-def5620337f2,fb84bf8a-8301-4a7f-b9e3-47b86cf12be1,e9ce16f7-d976-42f6-b1c7-5431e4e5ab9e,52708a32-d0dc-4d1e-a4f4-66ed7b2ae591,b6a8a19e-899f-4b39-b331-8f6c54bdb81c,ad99755c-2789-4b12-81f5-52b3219274dd,f7000369-1a86-49a0-bab1-8eae99c906e4,8cdc7aae-adf5-4e8c-83ef-5113e6e35e45,2413b1b1-f7ed-4434-9fed-7c02fb104702,b50ad9d2-b6b5-4f87-a670-66b743d5d796,b6dc9385-e8a8-4036-979f-d0fc27e68319,4b3edaf8-7e62-4eb6-8b1d-a39d845d1b30,65d73ac6-eb51-4961-b081-9cb57e2fa8f2,c489099b-5a56-4334-a924-dd9c57b05a4a,f7517601-e7ce-4793-af1d-4058ce1f8e7e,0e9c2134-a265-4ab2-9324-59da84be70f1,0c6e432e-36cb-4da5-8379-d760fb038109,8bf87c8c-3e0a-45f6-b0ef-ff7ac094dd86,6cae1720-384c-41c3-b03d-150cdaea9b12,74c63bc2-c0a9-4cf7-8d3b-e5c859d88a4a,17272991-7333-4a4b-8c4a-1db34d7729bc,d562f9e5-820f-4799-b365-d80a6a60d89e</P>
 </LogicAnalyzerPlugin>
 
 __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
@@ -6850,6 +6851,7 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
           <rates type="sltp.mm.core.Rate" uuid="6a56d8a1-c425-4b3a-ad4d-473f59e82858">
             <annotation>FiM</annotation>
             <color>2105376255</color>
+            <hasBlocks>true</hasBlocks>
             <rateIndex>1</rateIndex>
             <rateSpec type="sltp.mm.core.RateSpec">
               <offset>1.0</offset>
@@ -6866,16 +6868,6 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
               <period>.0001</period>
             </rateSpec>
             <sti>2</sti>
-          </rates>
-          <rates type="sltp.mm.core.Rate" uuid="43867aa2-639c-44fa-9298-7f740deee410">
-            <annotation>D2</annotation>
-            <color>986198527</color>
-            <hasBlocks>true</hasBlocks>
-            <rateIndex>3</rateIndex>
-            <rateSpec type="sltp.mm.core.RateSpec">
-              <period>.001</period>
-            </rateSpec>
-            <sti>3</sti>
           </rates>
         </tasks>
       </subgraph>
@@ -6913,6 +6905,7 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleEditor.xml
         </rates>
         <rates type="sltp.mm.syntax.RateData">
           <color>#7d7d7d</color>
+          <hasBlocks>true</hasBlocks>
           <rate>[0, 1]</rate>
           <title>FiM</title>
         </rates>
@@ -6921,12 +6914,6 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleEditor.xml
           <hasBlocks>true</hasBlocks>
           <rate>0.0001</rate>
           <title>D1</title>
-        </rates>
-        <rates type="sltp.mm.syntax.RateData">
-          <color>#3ac831</color>
-          <hasBlocks>true</hasBlocks>
-          <rate>0.001</rate>
-          <title>D2</title>
         </rates>
         <title>Cont</title>
         <type>base</type>
@@ -31813,7 +31800,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_2686.xml
     <P Name="BackgroundColor">[0.670588, 1.000000, 0.847059]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">9</P>
+    <P Name="ZOrder">12</P>
     <P Name="FontSize">8</P>
     <P Name="FontWeight">bold</P>
   </Annotation>
@@ -31828,7 +31815,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_2686.xml
     <P Name="BackgroundColor">[0.650980, 0.650980, 0.650980]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">7</P>
+    <P Name="ZOrder">10</P>
     <P Name="FontSize">12</P>
     <P Name="FontWeight">bold</P>
   </Annotation>
@@ -31842,7 +31829,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_2686.xml
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">8</P>
+    <P Name="ZOrder">11</P>
     <P Name="FontSize">18</P>
     <P Name="FontWeight">bold</P>
   </Annotation>
@@ -59658,6 +59645,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4612.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[-1, -8, 1921, 1041]</P>
+  <P Name="Open">on</P>
   <P Name="ZoomFactor">125</P>
   <Block BlockType="Inport" Name="Tld [N.m]" SID="4613">
     <P Name="Position">[725, 103, 755, 117]</P>
@@ -59686,8 +59674,29 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4612.xml
     <P Name="NameLocation">top</P>
     <P Name="ContentPreviewEnabled">on</P>
     <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">wm_est</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="PropagatedSignals">V_c* [V]</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="PropagatedSignals">V_b* [V]</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="PropagatedSignals">V_a* [V]</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="PropagatedSignals">Acleracion Ref</P>
+      </Port>
+      <Port Type="out" Index="6">
+        <P Name="PropagatedSignals">Trayectoria Velocidad Brazo</P>
+      </Port>
       <Port Type="out" Index="8">
         <P Name="PropagatedSignals">T_neto [N.m]</P>
+      </Port>
+      <Port Type="out" Index="9">
+        <P Name="PropagatedSignals">θl*(t) [rad]</P>
       </Port>
     </PortProperties>
     <System Ref="system_5408"/>
@@ -60134,7 +60143,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4612.xml
     <P Name="BackgroundColor">[0.650980, 0.650980, 0.650980]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">120</P>
+    <P Name="ZOrder">121</P>
     <P Name="FontSize">12</P>
     <P Name="FontWeight">bold</P>
   </Annotation>
@@ -60144,7 +60153,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4617.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[-1, -8, 1921, 1041]</P>
-  <P Name="ZoomFactor">175</P>
+  <P Name="ZoomFactor">124</P>
   <Block BlockType="Inport" Name="ωm[rad/s]" SID="4618">
     <P Name="Position">[-195, 373, -165, 387]</P>
     <P Name="ZOrder">5958</P>
@@ -60877,7 +60886,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4703.xml
   <P Name="SystemRect">[-135.460938, 38.371123, 586.460938, 431.628877]</P>
   <P Name="ZoomFactor">200</P>
   <Block BlockType="Inport" Name="ωm[rad/s]" SID="4704">
-    <P Name="Position">[62, 163, 92, 177]</P>
+    <P Name="Position">[60, 163, 90, 177]</P>
     <P Name="ZOrder">512</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -60886,7 +60895,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4703.xml
     </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="θm [rad]" SID="4705">
-    <P Name="Position">[62, 208, 92, 222]</P>
+    <P Name="Position">[60, 208, 90, 222]</P>
     <P Name="ZOrder">513</P>
     <P Name="Port">2</P>
     <PortProperties>
@@ -60896,7 +60905,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4703.xml
     </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="T_m*&apos;[N.m]" SID="4706">
-    <P Name="Position">[62, 118, 92, 132]</P>
+    <P Name="Position">[60, 118, 90, 132]</P>
     <P Name="ZOrder">511</P>
     <P Name="Port">3</P>
     <PortProperties>
@@ -60906,7 +60915,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4703.xml
     </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="i_ds [A]" SID="4707">
-    <P Name="Position">[62, 253, 92, 267]</P>
+    <P Name="Position">[60, 253, 90, 267]</P>
     <P Name="ZOrder">514</P>
     <P Name="Port">4</P>
     <PortProperties>
@@ -60916,7 +60925,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4703.xml
     </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="g[m/s2]" SID="5030">
-    <P Name="Position">[62, 298, 92, 312]</P>
+    <P Name="Position">[60, 298, 90, 312]</P>
     <P Name="ZOrder">530</P>
     <P Name="Port">5</P>
   </Block>
@@ -60928,7 +60937,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4703.xml
   </Block>
   <Block BlockType="SubSystem" Name="MATLAB Function" SID="5103">
     <PortCounts in="6" out="1"/>
-    <P Name="Position">[177, 167, 362, 283]</P>
+    <P Name="Position">[175, 167, 360, 283]</P>
     <P Name="ZOrder">532</P>
     <P Name="ErrorFcn">Stateflow.Translate.translate</P>
     <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
@@ -60943,7 +60952,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4703.xml
     <System Ref="system_5103"/>
   </Block>
   <Block BlockType="Outport" Name="i_qs*" SID="4719">
-    <P Name="Position">[402, 218, 432, 232]</P>
+    <P Name="Position">[400, 218, 430, 232]</P>
     <P Name="ZOrder">526</P>
   </Block>
   <Line>
@@ -63487,7 +63496,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4934.xml
   <P Name="SystemRect">[-54.000000, 62.000000, 485.000000, 391.000000]</P>
   <P Name="ZoomFactor">265</P>
   <Block BlockType="Inport" Name="f_a" SID="4935">
-    <P Name="Position">[82, 128, 112, 142]</P>
+    <P Name="Position">[80, 128, 110, 142]</P>
     <P Name="ZOrder">419</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -63496,7 +63505,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4934.xml
     </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="f_b" SID="4936">
-    <P Name="Position">[82, 173, 112, 187]</P>
+    <P Name="Position">[80, 173, 110, 187]</P>
     <P Name="ZOrder">420</P>
     <P Name="Port">2</P>
     <PortProperties>
@@ -63506,7 +63515,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4934.xml
     </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="f_c" SID="4937">
-    <P Name="Position">[82, 218, 112, 232]</P>
+    <P Name="Position">[80, 218, 110, 232]</P>
     <P Name="ZOrder">421</P>
     <P Name="Port">3</P>
     <PortProperties>
@@ -63516,7 +63525,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4934.xml
     </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="θ_r" SID="4938">
-    <P Name="Position">[82, 263, 112, 277]</P>
+    <P Name="Position">[80, 263, 110, 277]</P>
     <P Name="ZOrder">422</P>
     <P Name="Port">4</P>
     <PortProperties>
@@ -63533,7 +63542,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4934.xml
   </Block>
   <Block BlockType="SubSystem" Name="MATLAB Function" SID="5109">
     <PortCounts in="5" out="3"/>
-    <P Name="Position">[182, 147, 282, 303]</P>
+    <P Name="Position">[180, 147, 280, 303]</P>
     <P Name="ZOrder">431</P>
     <P Name="ErrorFcn">Stateflow.Translate.translate</P>
     <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
@@ -63554,16 +63563,16 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4934.xml
     <System Ref="system_5109"/>
   </Block>
   <Block BlockType="Outport" Name="f_q" SID="4961">
-    <P Name="Position">[332, 168, 362, 182]</P>
+    <P Name="Position">[330, 168, 360, 182]</P>
     <P Name="ZOrder">423</P>
   </Block>
   <Block BlockType="Outport" Name="f_d" SID="4962">
-    <P Name="Position">[332, 218, 362, 232]</P>
+    <P Name="Position">[330, 218, 360, 232]</P>
     <P Name="ZOrder">424</P>
     <P Name="Port">2</P>
   </Block>
   <Block BlockType="Outport" Name="f_0" SID="4963">
-    <P Name="Position">[332, 268, 362, 282]</P>
+    <P Name="Position">[330, 268, 360, 282]</P>
     <P Name="ZOrder">425</P>
     <P Name="Port">3</P>
   </Block>
@@ -63620,7 +63629,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4967.xml
   <P Name="SystemRect">[-136.500000, 63.652749, 597.500000, 463.347251]</P>
   <P Name="ZoomFactor">196</P>
   <Block BlockType="Inport" Name="θ_r" SID="4968">
-    <P Name="Position">[77, 308, 107, 322]</P>
+    <P Name="Position">[75, 308, 105, 322]</P>
     <P Name="ZOrder">422</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -63629,7 +63638,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4967.xml
     </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="f_q" SID="4969">
-    <P Name="Position">[77, 173, 107, 187]</P>
+    <P Name="Position">[75, 173, 105, 187]</P>
     <P Name="ZOrder">419</P>
     <P Name="Port">2</P>
     <PortProperties>
@@ -63639,7 +63648,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4967.xml
     </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="f_d" SID="4970">
-    <P Name="Position">[77, 218, 107, 232]</P>
+    <P Name="Position">[75, 218, 105, 232]</P>
     <P Name="ZOrder">420</P>
     <P Name="Port">3</P>
     <PortProperties>
@@ -63649,7 +63658,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4967.xml
     </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="f_0" SID="4971">
-    <P Name="Position">[77, 263, 107, 277]</P>
+    <P Name="Position">[75, 263, 105, 277]</P>
     <P Name="ZOrder">421</P>
     <P Name="Port">4</P>
     <PortProperties>
@@ -63666,7 +63675,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4967.xml
   </Block>
   <Block BlockType="SubSystem" Name="MATLAB Function" SID="5111">
     <PortCounts in="5" out="3"/>
-    <P Name="Position">[177, 155, 317, 385]</P>
+    <P Name="Position">[175, 155, 315, 385]</P>
     <P Name="ZOrder">431</P>
     <P Name="ErrorFcn">Stateflow.Translate.translate</P>
     <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
@@ -63687,16 +63696,16 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_4967.xml
     <System Ref="system_5111"/>
   </Block>
   <Block BlockType="Outport" Name="f_a" SID="4991">
-    <P Name="Position">[367, 188, 397, 202]</P>
+    <P Name="Position">[365, 188, 395, 202]</P>
     <P Name="ZOrder">423</P>
   </Block>
   <Block BlockType="Outport" Name="f_b" SID="4992">
-    <P Name="Position">[367, 263, 397, 277]</P>
+    <P Name="Position">[365, 263, 395, 277]</P>
     <P Name="ZOrder">424</P>
     <P Name="Port">2</P>
   </Block>
   <Block BlockType="Outport" Name="f_c" SID="4993">
-    <P Name="Position">[367, 338, 397, 352]</P>
+    <P Name="Position">[365, 338, 395, 352]</P>
     <P Name="ZOrder">425</P>
     <P Name="Port">3</P>
   </Block>
@@ -65150,8 +65159,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_5408.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[-1, -8, 1921, 1041]</P>
-  <P Name="Open">on</P>
-  <P Name="ZoomFactor">80</P>
+  <P Name="ZoomFactor">50</P>
   <Block BlockType="Inport" Name="R_s" SID="5415">
     <P Name="Position">[705, 198, 735, 212]</P>
     <P Name="ZOrder">6000</P>
@@ -65180,16 +65188,31 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_5408.xml
     <P Name="Position">[1170, 88, 1200, 102]</P>
     <P Name="ZOrder">5996</P>
     <P Name="Port">4</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">I_a,med [A]</P>
+      </Port>
+    </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="I_b,med [A]" SID="5412">
     <P Name="Position">[1185, 118, 1215, 132]</P>
     <P Name="ZOrder">5997</P>
     <P Name="Port">5</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">I_b,med [A]</P>
+      </Port>
+    </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="I_c,med [A]" SID="5413">
     <P Name="Position">[1205, 148, 1235, 162]</P>
     <P Name="ZOrder">5998</P>
     <P Name="Port">6</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">I_c,med [A]</P>
+      </Port>
+    </PortProperties>
   </Block>
   <Block BlockType="Inport" Name="g[m/s2]" SID="5416">
     <P Name="Position">[980, 583, 1010, 597]</P>
@@ -65817,7 +65840,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_5408.xml
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">34</P>
+    <P Name="ZOrder">35</P>
     <P Name="FontSize">24</P>
   </Annotation>
 </System>
@@ -66777,6 +66800,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <System>
   <P Name="Location">[-1, -8, 1921, 1041]</P>
   <P Name="SystemRect">[-4304.000000, -1062.000000, -168.000000, 4526.000000]</P>
+  <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
   <P Name="SIDHighWatermark">6162</P>
   <Block BlockType="Constant" Name="Constant" SID="485">
@@ -66873,7 +66897,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   <Block BlockType="Constant" Name="Constant19" SID="3740">
     <P Name="Position">[-2005, 3475, -1975, 3505]</P>
     <P Name="ZOrder">6115</P>
-    <P Name="Commented">on</P>
     <P Name="Value">0</P>
   </Block>
   <Block BlockType="Constant" Name="Constant2" SID="1032">
@@ -66885,7 +66908,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   <Block BlockType="Constant" Name="Constant20" SID="3741">
     <P Name="Position">[-2050, 3410, -2020, 3440]</P>
     <P Name="ZOrder">6127</P>
-    <P Name="Commented">on</P>
     <P Name="Value">5</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -66896,7 +66918,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   <Block BlockType="Constant" Name="Constant21" SID="3742">
     <P Name="Position">[-1290, 3383, -1230, 3417]</P>
     <P Name="ZOrder">6122</P>
-    <P Name="Commented">on</P>
     <P Name="Value">Is_rms_max</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -66907,7 +66928,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   <Block BlockType="Constant" Name="Constant22" SID="3743">
     <P Name="Position">[-1290, 3345, -1260, 3375]</P>
     <P Name="ZOrder">6123</P>
-    <P Name="Commented">on</P>
     <P Name="Value">Is_rms_nom</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -66957,11 +66977,13 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   <Block BlockType="Constant" Name="Constant27" SID="4603">
     <P Name="Position">[-2015, 4315, -1985, 4345]</P>
     <P Name="ZOrder">6141</P>
+    <P Name="Commented">on</P>
     <P Name="Value">0</P>
   </Block>
   <Block BlockType="Constant" Name="Constant28" SID="4604">
     <P Name="Position">[-2060, 4250, -2030, 4280]</P>
     <P Name="ZOrder">6151</P>
+    <P Name="Commented">on</P>
     <P Name="Value">5</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -66972,6 +66994,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   <Block BlockType="Constant" Name="Constant29" SID="4605">
     <P Name="Position">[-1300, 4223, -1240, 4257]</P>
     <P Name="ZOrder">6147</P>
+    <P Name="Commented">on</P>
     <P Name="Value">Is_rms_max</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -66988,6 +67011,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   <Block BlockType="Constant" Name="Constant30" SID="4606">
     <P Name="Position">[-1300, 4185, -1270, 4215]</P>
     <P Name="ZOrder">6148</P>
+    <P Name="Commented">on</P>
     <P Name="Value">Is_rms_nom</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -67108,7 +67132,6 @@ Radians</P>
   <Block BlockType="DotProduct" Name="Dot Product3" SID="3744">
     <P Name="Position">[-1495, 3432, -1465, 3463]</P>
     <P Name="ZOrder">6119</P>
-    <P Name="Commented">on</P>
     <P Name="OutDataTypeStr">Inherit: Inherit via internal rule</P>
   </Block>
   <Block BlockType="DotProduct" Name="Dot Product4" SID="4128">
@@ -67120,6 +67143,7 @@ Radians</P>
   <Block BlockType="DotProduct" Name="Dot Product5" SID="4607">
     <P Name="Position">[-1505, 4272, -1475, 4303]</P>
     <P Name="ZOrder">6144</P>
+    <P Name="Commented">on</P>
     <P Name="OutDataTypeStr">Inherit: Inherit via internal rule</P>
   </Block>
   <Block BlockType="Gain" Name="Gain" SID="1737">
@@ -67164,7 +67188,6 @@ Radians</P>
   <Block BlockType="Gain" Name="Gain12" SID="3745">
     <P Name="Position">[-1550, 3385, -1520, 3415]</P>
     <P Name="ZOrder">6116</P>
-    <P Name="Commented">on</P>
     <P Name="Gain">1/r</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -67175,7 +67198,6 @@ Radians</P>
   <Block BlockType="Gain" Name="Gain13" SID="3746">
     <P Name="Position">[-1320, 3429, -1260, 3471]</P>
     <P Name="ZOrder">6121</P>
-    <P Name="Commented">on</P>
     <P Name="Gain">1/sqrt(2)</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -67186,7 +67208,6 @@ Radians</P>
   <Block BlockType="Gain" Name="Gain14" SID="3747">
     <P Name="Position">[-1575, 3405, -1545, 3435]</P>
     <P Name="ZOrder">6125</P>
-    <P Name="Commented">on</P>
     <P Name="Gain">1/r</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -67197,7 +67218,6 @@ Radians</P>
   <Block BlockType="Gain" Name="Gain15" SID="3748">
     <P Name="Position">[-1525, 3540, -1465, 3580]</P>
     <P Name="ZOrder">6126</P>
-    <P Name="Commented">on</P>
     <P Name="Gain">1/J_eq</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -67261,8 +67281,9 @@ Radians</P>
     </PortProperties>
   </Block>
   <Block BlockType="Gain" Name="Gain20" SID="4608">
-    <P Name="Position">[-1560, 4225, -1530, 4255]</P>
+    <P Name="Position">[-1550, 4220, -1520, 4250]</P>
     <P Name="ZOrder">6142</P>
+    <P Name="Commented">on</P>
     <P Name="Gain">1/r</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -67273,6 +67294,7 @@ Radians</P>
   <Block BlockType="Gain" Name="Gain21" SID="4609">
     <P Name="Position">[-1330, 4269, -1270, 4311]</P>
     <P Name="ZOrder">6146</P>
+    <P Name="Commented">on</P>
     <P Name="Gain">1/sqrt(2)</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -67281,8 +67303,9 @@ Radians</P>
     </PortProperties>
   </Block>
   <Block BlockType="Gain" Name="Gain22" SID="4610">
-    <P Name="Position">[-1585, 4245, -1555, 4275]</P>
+    <P Name="Position">[-1575, 4240, -1545, 4270]</P>
     <P Name="ZOrder">6149</P>
+    <P Name="Commented">on</P>
     <P Name="Gain">1/r</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -67291,8 +67314,9 @@ Radians</P>
     </PortProperties>
   </Block>
   <Block BlockType="Gain" Name="Gain23" SID="4611">
-    <P Name="Position">[-1535, 4380, -1475, 4420]</P>
+    <P Name="Position">[-1525, 4375, -1465, 4415]</P>
     <P Name="ZOrder">6150</P>
+    <P Name="Commented">on</P>
     <P Name="Gain">1/J_eq</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -67824,8 +67848,9 @@ Radians</P>
   </Block>
   <Block BlockType="SubSystem" Name="Modelo Global NL&#xA;perfil trapezoidal aceleracion y codificado" SID="4612">
     <PortCounts in="3" out="10"/>
-    <P Name="Position">[-1865, 4229, -1670, 4431]</P>
+    <P Name="Position">[-1855, 4224, -1660, 4426]</P>
     <P Name="ZOrder">6140</P>
+    <P Name="Commented">on</P>
     <P Name="ContentPreviewEnabled">on</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -67873,7 +67898,6 @@ Radians</P>
     <PortCounts in="3" out="10"/>
     <P Name="Position">[-1855, 3389, -1660, 3591]</P>
     <P Name="ZOrder">6114</P>
-    <P Name="Commented">on</P>
     <P Name="ContentPreviewEnabled">on</P>
     <PortProperties>
       <Port Type="out" Index="1">
@@ -68185,7 +68209,6 @@ to Degrees</P>
     <PortCounts in="1" out="1"/>
     <P Name="Position">[-1455, 3385, -1425, 3415]</P>
     <P Name="ZOrder">6117</P>
-    <P Name="Commented">on</P>
     <P Name="LibraryVersion">16.0</P>
     <P Name="SourceBlock">simulink_extras/Transformations/Radians
 to Degrees</P>
@@ -68219,8 +68242,9 @@ to Degrees</P>
   </Block>
   <Block BlockType="Reference" Name="Radians&#xA;to Degrees6" SID="5010">
     <PortCounts in="1" out="1"/>
-    <P Name="Position">[-1465, 4225, -1435, 4255]</P>
+    <P Name="Position">[-1455, 4220, -1425, 4250]</P>
     <P Name="ZOrder">6143</P>
+    <P Name="Commented">on</P>
     <P Name="LibraryVersion">16.0</P>
     <P Name="SourceBlock">simulink_extras/Transformations/Radians
 to Degrees</P>
@@ -68584,7 +68608,6 @@ to Degrees</P>
   <Block BlockType="Sqrt" Name="Sqrt3" SID="4109">
     <P Name="Position">[-1420, 3435, -1390, 3465]</P>
     <P Name="ZOrder">6120</P>
-    <P Name="Commented">on</P>
     <PortProperties>
       <Port Type="out" Index="1">
         <P Name="Name">I_stator</P>
@@ -68604,6 +68627,7 @@ to Degrees</P>
   <Block BlockType="Sqrt" Name="Sqrt5" SID="5011">
     <P Name="Position">[-1430, 4275, -1400, 4305]</P>
     <P Name="ZOrder">6145</P>
+    <P Name="Commented">on</P>
     <PortProperties>
       <Port Type="out" Index="1">
         <P Name="Name">I_stator</P>
@@ -70989,7 +71013,7 @@ to Degrees</P>
     <P Name="ZOrder">1252</P>
     <P Name="Labels">[0, 0]</P>
     <P Name="Src">4604#out:1</P>
-    <P Name="Points">[50, 0; 0, -5; 94, 0; 0, 5]</P>
+    <P Name="Points">[50, 0; 0, -5]</P>
     <P Name="Dst">4612#in:1</P>
   </Line>
   <Line>
@@ -71003,7 +71027,7 @@ to Degrees</P>
     <P Name="ZOrder">1256</P>
     <P Name="Labels">[0, 0]</P>
     <P Name="Src">4612#out:3</P>
-    <P Name="Points">[115, 0]</P>
+    <P Name="Points">[105, 0; 0, 5]</P>
     <Branch>
       <P Name="ZOrder">1255</P>
       <P Name="Points">[0, 15]</P>
@@ -71017,7 +71041,7 @@ to Degrees</P>
   <Line>
     <P Name="ZOrder">1257</P>
     <P Name="Src">4603#out:1</P>
-    <P Name="Points">[10, 0; 0, -50; 78, 0; 0, 50]</P>
+    <P Name="Points">[10, 0; 0, -50; 81, 0; 0, 45]</P>
     <P Name="Dst">4612#in:2</P>
   </Line>
   <Line>
@@ -71159,7 +71183,7 @@ to Degrees</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">745</P>
+    <P Name="ZOrder">763</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -71227,7 +71251,7 @@ vs LTI Equivalente Aumentado
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">746</P>
+    <P Name="ZOrder">764</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -71322,7 +71346,7 @@ p, li { white-space: pre-wrap; }
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">747</P>
+    <P Name="ZOrder">765</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -71339,7 +71363,7 @@ p, li { white-space: pre-wrap; }
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">748</P>
+    <P Name="ZOrder">766</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -71356,7 +71380,7 @@ p, li { white-space: pre-wrap; }
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">749</P>
+    <P Name="ZOrder">767</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -71374,7 +71398,7 @@ p, li { white-space: pre-wrap; }
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">753</P>
+    <P Name="ZOrder">771</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -71392,7 +71416,7 @@ p, li { white-space: pre-wrap; }
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">752</P>
+    <P Name="ZOrder">770</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -71410,7 +71434,7 @@ p, li { white-space: pre-wrap; }
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">751</P>
+    <P Name="ZOrder">769</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -71428,7 +71452,7 @@ p, li { white-space: pre-wrap; }
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">750</P>
+    <P Name="ZOrder">768</P>
     <P Name="FontName">Arial</P>
     <P Name="FontSize">36</P>
     <P Name="FontWeight">bold</P>
@@ -71457,24 +71481,54 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
         <Object ObjectID="5">
           <P Name="IsActive" Class="logical">1</P>
           <P Name="IsTabbed" Class="logical">1</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">5408</P>
-          <P Name="Extents" Class="double">[1501.0, 813.0]</P>
-          <P Name="ZoomFactor" Class="double">0.8</P>
-          <P Name="Offset" Class="double">[-219.06019536907252, 137.44612796535819]</P>
-          <P Name="SceneRectInView" Class="double">[-219.06019536907252, 137.44612796535819, 1876.25, 1016.25]</P>
+          <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
+          <P Name="LoadSaveID" Class="char">0</P>
+          <P Name="Extents" Class="double">[1501.0, 574.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-2365.2827151637666, 3205.4591634965582]</P>
+          <P Name="SceneRectInView" Class="double">[-2365.2827151637666, 3205.4591634965582, 1501.0, 574.0]</P>
         </Object>
         <Object ObjectID="6">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">1</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
           <P Name="LoadSaveID" Class="char">2686</P>
-          <P Name="Extents" Class="double">[1501.0, 813.0]</P>
-          <P Name="ZoomFactor" Class="double">0.93959311424100156</P>
-          <P Name="Offset" Class="double">[366.52308247456949, -120.28578026137399]</P>
-          <P Name="SceneRectInView" Class="double">[366.52308247456949, -120.28578026137399, 1597.5, 865.26815456362431]</P>
+          <P Name="Extents" Class="double">[1751.0, 813.0]</P>
+          <P Name="ZoomFactor" Class="double">0.93959311424100145</P>
+          <P Name="Offset" Class="double">[233.48677334732088, -120.28578026137399]</P>
+          <P Name="SceneRectInView" Class="double">[233.48677334732088, -120.28578026137399, 1863.5726182544972, 865.26815456362431]</P>
         </Object>
         <Object ObjectID="7">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">1</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">4612</P>
+          <P Name="Extents" Class="double">[1501.0, 574.0]</P>
+          <P Name="ZoomFactor" Class="double">1.25</P>
+          <P Name="Offset" Class="double">[631.71098758384449, -6.2099254320318664]</P>
+          <P Name="SceneRectInView" Class="double">[631.71098758384449, -6.2099254320318664, 1200.8, 459.2]</P>
+        </Object>
+        <Object ObjectID="8">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">4617</P>
+          <P Name="Extents" Class="double">[1501.0, 574.0]</P>
+          <P Name="ZoomFactor" Class="double">1.2355473554735548</P>
+          <P Name="Offset" Class="double">[-459.18012119989396, 231.57523664847696]</P>
+          <P Name="SceneRectInView" Class="double">[-459.18012119989396, 231.57523664847696, 1214.8461921353908, 464.57142857142856]</P>
+        </Object>
+        <Object ObjectID="9">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">5408</P>
+          <P Name="Extents" Class="double">[1501.0, 574.0]</P>
+          <P Name="ZoomFactor" Class="double">0.5</P>
+          <P Name="Offset" Class="double">[-685.743528702406, -171.25387203464197]</P>
+          <P Name="SceneRectInView" Class="double">[-685.743528702406, -171.25387203464197, 3002.0, 1148.0]</P>
+        </Object>
+        <Object ObjectID="10">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -71484,27 +71538,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-264.109375, -71.264836547843231]</P>
           <P Name="SceneRectInView" Class="double">[-264.109375, -71.264836547843231, 1501.0, 813.0]</P>
         </Object>
-        <Object ObjectID="8">
-          <P Name="IsActive" Class="logical">0</P>
-          <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
-          <P Name="LoadSaveID" Class="char">0</P>
-          <P Name="Extents" Class="double">[1501.0, 813.0]</P>
-          <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-2496.4686290129052, 4027.2961771398941]</P>
-          <P Name="SceneRectInView" Class="double">[-2496.4686290129052, 4027.2961771398941, 1501.0, 813.0]</P>
-        </Object>
-        <Object ObjectID="9">
-          <P Name="IsActive" Class="logical">0</P>
-          <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">4612</P>
-          <P Name="Extents" Class="double">[1501.0, 813.0]</P>
-          <P Name="ZoomFactor" Class="double">1.25</P>
-          <P Name="Offset" Class="double">[631.71098758384449, -6.2099254320318664]</P>
-          <P Name="SceneRectInView" Class="double">[631.71098758384449, -6.2099254320318664, 1200.8, 650.4]</P>
-        </Object>
-        <Object ObjectID="10">
+        <Object ObjectID="11">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -71514,7 +71548,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-429.99999999999994, -138.16666666666669]</P>
           <P Name="SceneRectInView" Class="double">[-429.99999999999994, -138.16666666666669, 1000.6666666666666, 542.0]</P>
         </Object>
-        <Object ObjectID="11">
+        <Object ObjectID="12">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -71523,16 +71557,6 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="ZoomFactor" Class="double">2.6540540540540536</P>
           <P Name="Offset" Class="double">[-54.477329441908928, 111.15551273763629]</P>
           <P Name="SceneRectInView" Class="double">[-54.477329441908928, 111.15551273763629, 565.54989816700618, 306.32382892057029]</P>
-        </Object>
-        <Object ObjectID="12">
-          <P Name="IsActive" Class="logical">0</P>
-          <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">4617</P>
-          <P Name="Extents" Class="double">[1501.0, 813.0]</P>
-          <P Name="ZoomFactor" Class="double">1.75</P>
-          <P Name="Offset" Class="double">[-280.61416798934141, 231.57523664847693]</P>
-          <P Name="SceneRectInView" Class="double">[-280.61416798934141, 231.57523664847693, 857.71428571428567, 464.57142857142856]</P>
         </Object>
         <Object ObjectID="13">
           <P Name="IsActive" Class="logical">0</P>
@@ -72496,7 +72520,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Minimized" Class="char">Unset</P>
         </Object>
       </Array>
-      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAD2AAADavwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAeQAAA2oAAABjAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAjAD///8AAAABAAAAzwAAA2r8AgAAAAL7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAB5AAADagAAAawA////+wAAAEIARwBMAFUARQAyADoARABEAEcAIABDAG8AbQBwAG8AbgBlAG4AdAAvAFMAeQBtAGIAbwBsAE0AYQBuAGEAZwBlAHIAAAAAeQAAA2oAAAAgAP///wAAAAMAAAaGAAAA6/wBAAAABfwAAAD6AAAGhgAAAAAA////+v////8BAAAAAfv/////AAAAAAD/////AAACeQD////8AAAAHwAAB0AAAAAAAP////r/////AQAAAAD8AAAAJgAABzIAAAAAAP////r/////AQAAAAD8AAAAAAAABkgAAAAAAP////r/////AQAAAAD8AAAA/gAACkIAAAAAAP////r/////AQAAAAH7AAAANgBHAEwAVQBFADIAOgBTAHAAcgBlAGEAZABTAGgAZQBlAHQALwBNAG8AZABlAGwARABhAHQAYQAAAAAA/////wAAARgA////AAAGhgAAA2oAAAABAAAAAgAAAAEAAAAC/AAAAAMAAAAAAAAAAAAAAAEAAAAAAAAAAwAAAAA=</P>
+      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAD2AAADavwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQBAAAAeQAAA2oAAABjAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAjAD///8AAAABAAAAzwAAA2r8AgAAAAL7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAB5AAADagAAAawA////+wAAAEIARwBMAFUARQAyADoARABEAEcAIABDAG8AbQBwAG8AbgBlAG4AdAAvAFMAeQBtAGIAbwBsAE0AYQBuAGEAZwBlAHIAAAAAeQAAA2oAAAAgAP///wAAAAMAAAaGAAAA6/wBAAAABfwAAAD6AAAGhgAAAnkA////+gAAAAABAAAAAfv/////AQAAAAD/////AAACeQD////8AAAAHwAAB0AAAAAAAP////r/////AQAAAAD8AAAAJgAABzIAAAAAAP////r/////AQAAAAD8AAAAAAAABkgAAAAAAP////r/////AQAAAAD8AAAA/gAACkIAAAAAAP////r/////AQAAAAH7AAAANgBHAEwAVQBFADIAOgBTAHAAcgBlAGEAZABTAGgAZQBlAHQALwBNAG8AZABlAGwARABhAHQAYQAAAAAA/////wAAARgA////AAAGhgAAAnsAAAABAAAAAgAAAAEAAAAC/AAAAAMAAAAAAAAAAAAAAAEAAAAAAAAAAwAAAAA=</P>
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">dfb79cc3-4aa4-41b6-9607-6dc5d9b020f6</P>
     </Object>
