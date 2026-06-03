@@ -1,0 +1,5 @@
+\babel@toc {spanish}{}\relax 
+\beamer@subsectionintoc {0}{1}{Presentación del problema}{4}{0}{0}
+\beamer@subsectionintoc {0}{2}{Subsistema mecánico equivalente}{10}{0}{0}
+\beamer@subsectionintoc {0}{3}{Subsistema electromagnético en coordenadas qd0}{18}{0}{0}
+\beamer@subsectionintoc {0}{4}{Subsistema térmico y modelo NL global}{25}{0}{0}
