@@ -68,8 +68,98 @@
 \headcommand {\beamer@framepages {30}{30}}
 \headcommand {\slideentry {0}{4}{7}{31/31}{Subsistema térmico y modelo NL global}{0}}
 \headcommand {\beamer@framepages {31}{31}}
-\headcommand {\beamer@partpages {1}{31}}
 \headcommand {\beamer@subsectionpages {25}{31}}
-\headcommand {\beamer@sectionpages {1}{31}}
-\headcommand {\beamer@documentpages {31}}
-\headcommand {\gdef \inserttotalframenumber {31}}
+\headcommand {\beamer@subsectionentry {0}{0}{5}{32}{Validacion a lazo abierto del modelo no lineal}}
+\headcommand {\slideentry {0}{5}{1}{32/32}{Validacion a lazo abierto del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {32}{32}}
+\headcommand {\slideentry {0}{5}{2}{33/33}{Validacion a lazo abierto del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {33}{33}}
+\headcommand {\beamer@subsectionpages {32}{33}}
+\headcommand {\beamer@subsectionentry {0}{0}{6}{34}{Linealización del modelo no lineal}}
+\headcommand {\slideentry {0}{6}{1}{34/34}{Linealización del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {34}{34}}
+\headcommand {\slideentry {0}{6}{2}{35/35}{Linealización del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {35}{35}}
+\headcommand {\slideentry {0}{6}{3}{36/36}{Linealización del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {36}{36}}
+\headcommand {\slideentry {0}{6}{4}{37/37}{Linealización del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {37}{37}}
+\headcommand {\slideentry {0}{6}{5}{38/38}{Linealización del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {38}{38}}
+\headcommand {\slideentry {0}{6}{6}{39/39}{Linealización del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {39}{39}}
+\headcommand {\slideentry {0}{6}{7}{40/40}{Linealización del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {40}{40}}
+\headcommand {\slideentry {0}{6}{8}{41/41}{Linealización del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {41}{41}}
+\headcommand {\slideentry {0}{6}{9}{42/42}{Linealización del modelo no lineal}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\beamer@subsectionpages {34}{42}}
+\headcommand {\beamer@subsectionentry {0}{0}{7}{43}{Modelo LTI aumentado e implementación}}
+\headcommand {\slideentry {0}{7}{1}{43/43}{Modelo LTI aumentado e implementación}{0}}
+\headcommand {\beamer@framepages {43}{43}}
+\headcommand {\slideentry {0}{7}{2}{44/44}{Modelo LTI aumentado e implementación}{0}}
+\headcommand {\beamer@framepages {44}{44}}
+\headcommand {\slideentry {0}{7}{3}{45/45}{Modelo LTI aumentado e implementación}{0}}
+\headcommand {\beamer@framepages {45}{45}}
+\headcommand {\slideentry {0}{7}{4}{46/46}{Modelo LTI aumentado e implementación}{0}}
+\headcommand {\beamer@framepages {46}{46}}
+\headcommand {\slideentry {0}{7}{5}{47/47}{Modelo LTI aumentado e implementación}{0}}
+\headcommand {\beamer@framepages {47}{47}}
+\headcommand {\slideentry {0}{7}{6}{48/48}{Modelo LTI aumentado e implementación}{0}}
+\headcommand {\beamer@framepages {48}{48}}
+\headcommand {\slideentry {0}{7}{7}{49/49}{Modelo LTI aumentado e implementación}{0}}
+\headcommand {\beamer@framepages {49}{49}}
+\headcommand {\slideentry {0}{7}{8}{50/50}{Modelo LTI aumentado e implementación}{0}}
+\headcommand {\beamer@framepages {50}{50}}
+\headcommand {\slideentry {0}{7}{9}{51/51}{Modelo LTI aumentado e implementación}{0}}
+\headcommand {\beamer@framepages {51}{51}}
+\headcommand {\beamer@subsectionpages {43}{51}}
+\headcommand {\beamer@subsectionentry {0}{0}{8}{52}{Variaciones de corriente en eje d y funciones de transferencia}}
+\headcommand {\slideentry {0}{8}{1}{52/52}{Variaciones de corriente en eje d y funciones de transferencia}{0}}
+\headcommand {\beamer@framepages {52}{52}}
+\headcommand {\slideentry {0}{8}{2}{53/53}{Variaciones de corriente en eje d y funciones de transferencia}{0}}
+\headcommand {\beamer@framepages {53}{53}}
+\headcommand {\slideentry {0}{8}{3}{54/54}{Variaciones de corriente en eje d y funciones de transferencia}{0}}
+\headcommand {\beamer@framepages {54}{54}}
+\headcommand {\slideentry {0}{8}{4}{55/55}{Variaciones de corriente en eje d y funciones de transferencia}{0}}
+\headcommand {\beamer@framepages {55}{55}}
+\headcommand {\slideentry {0}{8}{5}{56/56}{Variaciones de corriente en eje d y funciones de transferencia}{0}}
+\headcommand {\beamer@framepages {56}{56}}
+\headcommand {\slideentry {0}{8}{6}{57/57}{Variaciones de corriente en eje d y funciones de transferencia}{0}}
+\headcommand {\beamer@framepages {57}{57}}
+\headcommand {\slideentry {0}{8}{7}{58/58}{Variaciones de corriente en eje d y funciones de transferencia}{0}}
+\headcommand {\beamer@framepages {58}{58}}
+\headcommand {\slideentry {0}{8}{8}{59/59}{Variaciones de corriente en eje d y funciones de transferencia}{0}}
+\headcommand {\beamer@framepages {59}{59}}
+\headcommand {\slideentry {0}{8}{9}{60/60}{Variaciones de corriente en eje d y funciones de transferencia}{0}}
+\headcommand {\beamer@framepages {60}{60}}
+\headcommand {\beamer@subsectionpages {52}{60}}
+\headcommand {\beamer@subsectionentry {0}{0}{9}{61}{Variaciones paramétricas y propiedades estructurales}}
+\headcommand {\slideentry {0}{9}{1}{61/61}{Variaciones paramétricas y propiedades estructurales}{0}}
+\headcommand {\beamer@framepages {61}{61}}
+\headcommand {\slideentry {0}{9}{2}{62/62}{Variaciones paramétricas y propiedades estructurales}{0}}
+\headcommand {\beamer@framepages {62}{62}}
+\headcommand {\slideentry {0}{9}{3}{63/63}{Variaciones paramétricas y propiedades estructurales}{0}}
+\headcommand {\beamer@framepages {63}{63}}
+\headcommand {\slideentry {0}{9}{4}{64/64}{Variaciones paramétricas y propiedades estructurales}{0}}
+\headcommand {\beamer@framepages {64}{64}}
+\headcommand {\beamer@subsectionpages {61}{64}}
+\headcommand {\beamer@subsectionentry {0}{0}{10}{65}{Observabilidad y controlabilidad}}
+\headcommand {\slideentry {0}{10}{1}{65/65}{Observabilidad y controlabilidad}{0}}
+\headcommand {\beamer@framepages {65}{65}}
+\headcommand {\slideentry {0}{10}{2}{66/66}{Observabilidad y controlabilidad}{0}}
+\headcommand {\beamer@framepages {66}{66}}
+\headcommand {\slideentry {0}{10}{3}{67/67}{Observabilidad y controlabilidad}{0}}
+\headcommand {\beamer@framepages {67}{67}}
+\headcommand {\slideentry {0}{10}{4}{68/68}{Observabilidad y controlabilidad}{0}}
+\headcommand {\beamer@framepages {68}{68}}
+\headcommand {\slideentry {0}{10}{5}{69/69}{Observabilidad y controlabilidad}{0}}
+\headcommand {\beamer@framepages {69}{69}}
+\headcommand {\slideentry {0}{10}{6}{70/70}{Observabilidad y controlabilidad}{0}}
+\headcommand {\beamer@framepages {70}{70}}
+\headcommand {\beamer@partpages {1}{70}}
+\headcommand {\beamer@subsectionpages {65}{70}}
+\headcommand {\beamer@sectionpages {1}{70}}
+\headcommand {\beamer@documentpages {70}}
+\headcommand {\gdef \inserttotalframenumber {70}}

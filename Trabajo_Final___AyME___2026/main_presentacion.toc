@@ -3,3 +3,9 @@
 \beamer@subsectionintoc {0}{2}{Subsistema mecánico equivalente}{10}{0}{0}
 \beamer@subsectionintoc {0}{3}{Subsistema electromagnético en coordenadas qd0}{18}{0}{0}
 \beamer@subsectionintoc {0}{4}{Subsistema térmico y modelo NL global}{25}{0}{0}
+\beamer@subsectionintoc {0}{5}{Validacion a lazo abierto del modelo no lineal}{32}{0}{0}
+\beamer@subsectionintoc {0}{6}{Linealización del modelo no lineal}{34}{0}{0}
+\beamer@subsectionintoc {0}{7}{Modelo LTI aumentado e implementación}{43}{0}{0}
+\beamer@subsectionintoc {0}{8}{Variaciones de corriente en eje d y funciones de transferencia}{52}{0}{0}
+\beamer@subsectionintoc {0}{9}{Variaciones paramétricas y propiedades estructurales}{61}{0}{0}
+\beamer@subsectionintoc {0}{10}{Observabilidad y controlabilidad}{65}{0}{0}

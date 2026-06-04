@@ -851,7 +851,7 @@ v_{0s}^{r}(t) = R_s\!\big(T_s^\circ\big)\cdot 0 + L_{ls}\,\frac{d(0)}{dt} = 0
 \includegraphics[width=0.88\textwidth,height=0.30\textheight,keepaspectratio]{imagenes/resultado_velocidad.png}
 
 \vspace{2mm}
-{\small \textbf{Interpretación física:} la corriente $i_q$ crece rápidamente por la dinámica inductiva y luego cae a medida que aparece la back-EMF. Ese torque acelera el rotor hasta que se equilibran torque motor y fricción viscosa.}
+{\small \textbf{Lectura fisica:} la corriente $i_q$ crece rapidamente por la dinamica inductiva y luego cae a medida que aparece la back-EMF. Ese torque acelera el rotor hasta que se equilibran torque motor y friccion viscosa.}
 \end{frame}
 
 \begin{frame}{Ensayo a lazo abierto: respuesta termica}
@@ -869,8 +869,8 @@ v_{0s}^{r}(t) = R_s\!\big(T_s^\circ\big)\cdot 0 + L_{ls}\,\frac{d(0)}{dt} = 0
 \end{itemize}
 \end{frame}
 
-\subsection{Linealización del modelo no lineal}
-\sectionslide{Linealización del modelo no lineal}
+\subsection{Linealizacion del modelo no lineal}
+\sectionslide{Linealizacion del modelo no lineal}
 
 % -------------------------------------------------------------------
 %  SLIDE 33 - Idea de linealizacion Jacobiana
@@ -906,8 +906,8 @@ v_{0s}^{r}(t) = R_s\!\big(T_s^\circ\big)\cdot 0 + L_{ls}\,\frac{d(0)}{dt} = 0
 % -------------------------------------------------------------------
 %  SLIDE 34 - Punto de operacion
 % -------------------------------------------------------------------
-\begin{frame}{Punto de operación cuasiestático}
-{\small\color{uncGray}El Jacobiano se evalúa en un estado de funcionamiento estacionario del sistema, definido por un conjunto de variables de operación constantes.}\par
+\begin{frame}{Punto de operacion cuasiestatico}
+{\small\color{uncGray}El Jacobiano se evalua en un estado de funcionamiento estacionario del sistema, definido por un conjunto de variables de operacion constantes.}\par
 \vspace{3mm}
 
 \textbf{Condiciones clave del equilibrio:}
@@ -924,7 +924,7 @@ v_{0s}^{r}(t) = R_s\!\big(T_s^\circ\big)\cdot 0 + L_{ls}\,\frac{d(0)}{dt} = 0
   \]
 \end{itemize}
 
-{\small Cada elección de $(\theta_{mO},\omega_{mO},i_{qsO}^r,i_{dsO}^r,T_{sO}^\circ)$ define un \textbf{modelo local distinto}.}
+{\small Cada eleccion de $(\theta_{mO},\omega_{mO},i_{qsO}^r,i_{dsO}^r,T_{sO}^\circ)$ define un \textbf{modelo local distinto}.}
 \end{frame}
 
 % -------------------------------------------------------------------
@@ -951,7 +951,7 @@ v_{0s}^{r}(t) = R_s\!\big(T_s^\circ\big)\cdot 0 + L_{ls}\,\frac{d(0)}{dt} = 0
 \Delta\dot{\bm{x}}(t)=\bm{A}_O(\rho)\,\Delta\bm{x}(t)+\bm{B}_O(\rho)\,\Delta\bm{u}(t)
 \end{equation*}
 
-\textbf{Parámetros de operación} $\rho$:
+\textbf{Parametros de operacion} $\rho$:
 \begin{equation*}
 \rho=\big(\theta_{mO},\;\omega_{mO},\;i_{qsO}^{r},\;i_{dsO}^{r},\;T_{sO}^\circ\big)
 \end{equation*}
@@ -962,8 +962,8 @@ v_{0s}^{r}(t) = R_s\!\big(T_s^\circ\big)\cdot 0 + L_{ls}\,\frac{d(0)}{dt} = 0
 % -------------------------------------------------------------------
 %  SLIDE 36 - Estructura fisica de A0
 % -------------------------------------------------------------------
-\begin{frame}{Estructura física de las matrices LPV}
-{\small\color{uncGray}No interesa memorizar la matriz completa, sino identificar qué fenómenos físicos quedan embebidos en sus coeficientes.}\par
+\begin{frame}{Estructura fisica de las matrices LPV}
+{\small\color{uncGray}No interesa memorizar la matriz completa, sino identificar que fenomenos fisicos quedan embebidos en sus coeficientes.}\par
 \vspace{3mm}
 
 \textbf{Terminos mas representativos del Jacobiano $\bm{A}_O$:}
@@ -987,14 +987,14 @@ A_{43}=\frac{L_q P_p \omega_{mO}}{L_d}
   \item Los terminos en $T_s^\circ$ capturan la \textbf{variacion resistiva} del cobre con temperatura.
 \end{itemize}
 
-{\small Conclusión: el modelo LPV es \textbf{lineal local}, pero sigue reflejando gravedad, back-EMF, acoplamientos cruzados y efecto térmico. El paso siguiente será una \textbf{segunda linealización}, ahora por realimentación de no linealidades.}
+{\small Conclusion: el modelo LPV es \textbf{lineal local}, pero sigue reflejando gravedad, back-EMF, acoplamientos cruzados y efecto termico. El paso siguiente sera una \textbf{segunda linealizacion}, ahora por realimentacion de no linealidades.}
 \end{frame}
 
 % -------------------------------------------------------------------
 %  SLIDE 37 - Ley minima eje d
 % -------------------------------------------------------------------
-\begin{frame}{Segunda linealización: realimentación de no linealidades}
-{\small\color{uncGray}Luego del modelo LPV, se aplica un segundo método de linealización: la realimentación de no linealidades. La idea es cancelar algebraicamente los acoplamientos internos mediante una ley de control sobre las entradas manipuladas.}\par
+\begin{frame}{Segunda linealizacion: realimentacion de no linealidades}
+{\small\color{uncGray}Luego del modelo LPV, se aplica un segundo metodo de linealizacion: la realimentacion de no linealidades. La idea es cancelar algebraicamente los acoplamientos internos mediante una ley de control sobre las entradas manipuladas.}\par
 \vspace{3mm}
 
 \textbf{Hipótesis de desacoplamiento:}
@@ -1024,7 +1024,7 @@ i_{ds}^{r}(t)\equiv 0
 %  SLIDE 38 - Modelo LTI nominal
 % -------------------------------------------------------------------
 \begin{frame}{Modelo LTI nominal resultante}
-{\small\color{uncGray}Aplicando la ley mínima en el eje $d$ y fijando $R_s=R_{s0}$ constante, la planta electromecánica principal queda reducida a tres estados dinámicos.}\par
+{\small\color{uncGray}Aplicando la ley minima en el eje $d$ y fijando $R_s=R_{s0}$ constante, la planta electromecanica principal queda reducida a tres estados dinamicos.}\par
 \vspace{2mm}
 
 \footnotesize
@@ -1044,18 +1044,18 @@ i_{ds}^{r}(t)\equiv 0
 \bm{x}_{LTI}(t)=\big[\,\theta_m,\;\omega_m,\;i_{qs}\,\big]^T
 \end{equation*}
 
-\textbf{Observación importante:}
+\textbf{Observacion importante:}
 \begin{itemize}
-  \item La temperatura del estator sigue calculándose en simulación.
-  \item Pero la \textbf{dinámica principal} del modelo nominal queda concentrada en la terna $(\theta_m,\omega_m,i_{qs})$.
+  \item La temperatura del estator sigue calculandose en simulacion.
+  \item Pero la \textbf{dinamica principal} del modelo nominal queda concentrada en la terna $(\theta_m,\omega_m,i_{qs})$.
 \end{itemize}
 \end{frame}
 
 % -------------------------------------------------------------------
 %  SLIDE 39 - Forma matricial e interpretacion
 % -------------------------------------------------------------------
-\begin{frame}{Forma matricial e interpretación física}
-{\small\color{uncGray}La representación matricial hace explícito que el control actúa por $v_{qs}$, mientras que carga y gravedad ingresan como perturbaciones mecánicas.}\par
+\begin{frame}{Forma matricial e interpretacion fisica}
+{\small\color{uncGray}La representacion matricial hace explicito que el control actua por $v_{qs}$, mientras que carga y gravedad ingresan como perturbaciones mecanicas.}\par
 \vspace{2mm}
 
 \centering
@@ -1075,608 +1075,21 @@ i_{ds}^{r}(t)\equiv 0
 \sin\!\left(\frac{\theta_m}{r}\right)
 $}
 
-\textbf{Interpretación del modelo:}
+\textbf{Lectura del modelo:}
 \begin{itemize}
-  \item $\bm{A}$ contiene la planta electromecánica nominal.
-  \item $\bm{B}_c$ muestra que la acción de control entra solo por el canal de corriente $q$.
+  \item $\bm{A}$ contiene la planta electromecanica nominal.
+  \item $\bm{B}_c$ muestra que la accion de control entra solo por el canal de corriente $q$.
   \item $\bm{B}_{d1}$ y $\bm{B}_{d2}$ separan la carga aplicada y el torque gravitacional.
 \end{itemize}
 
-{\small Esta separación es la base para el análisis posterior de estabilidad, funciones de transferencia y desempeño del controlador.}
+{\small Esta separacion es la base para el analisis posterior de estabilidad, funciones de transferencia y desempeno del controlador.}
 \end{frame}
 
 % -------------------------------------------------------------------
 %  SLIDE 40 - Diagrama del LTI nominal
 % -------------------------------------------------------------------
 \figslide{Diagrama del modelo LTI nominal}{%
-El diagrama resume la estructura final del modelo nominal: la corriente $i_{qs}$ genera torque, la velocidad realimenta por back-EMF y las perturbaciones mecánicas ingresan por canales separados. Sobre esta planta se apoyarán el modelo aumentado y los análisis posteriores a lazo abierto.%
+El diagrama resume la estructura final del modelo nominal: la corriente $i_{qs}$ genera torque, la velocidad realimenta por back-EMF y las perturbaciones mecanicas ingresan por canales separados. Sobre esta planta se apoyaran el modelo aumentado y los analisis posteriores a lazo abierto.%
 }{LTI equivalente_nominal.png}
-
-\subsection{Modelo LTI aumentado e implementación}
-\sectionslide{Modelo LTI aumentado e implementación}
-
-% -------------------------------------------------------------------
-%  SLIDE 44 - Dinamica residual
-% -------------------------------------------------------------------
-\begin{frame}{Dinámica residual del eje $d$}
-{\small\color{uncGray}El modelo nominal supone $i_{ds}^r(0)=0$. Si esa condición inicial no se cumple, aparece una dinámica residual propia del eje directo, aun cuando se aplique la ley mínima de desacoplamiento.}\par
-\vspace{3mm}
-
-\textbf{Con la ley minima} $v_{ds}^{r}=-L_q i_{qs}^{r}\omega_r$:
-\begin{equation*}
-\dot{i}_{ds}^{r}(t)= -\frac{R_{s0}}{L_d}\,i_{ds}^{r}(t)
-\end{equation*}
-
-\textbf{Solucion temporal:}
-\begin{equation*}
-i_{ds}^{r}(t)=i_{ds}^{r}(0)\,e^{-\frac{R_{s0}}{L_d}t}
-\end{equation*}
-
-\textbf{Interpretacion fisica:}
-\begin{itemize}
-  \item $i_{ds}^{r}$ no diverge ni excita modos adicionales acoplados.
-  \item Decae exponencialmente hacia cero con constante de tiempo
-  \[
-  \tau_d=\frac{L_d}{R_{s0}}
-  \]
-  \item Esa dinámica residual es transitoria, pero conviene incorporarla al modelo para cubrir el caso general $i_{ds}^r(0)\neq 0$.
-\end{itemize}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 45 - Ley complementaria eje q
-% -------------------------------------------------------------------
-\begin{frame}{Ley complementaria en el eje $q$}
-{\small\color{uncGray}Aunque $i_{ds}^{r}$ decae por sí sola, mientras no sea exactamente nula vuelve a introducir acoplamiento cruzado en la ecuación del eje $q$. La solución es compensarlo en línea.}\par
-\vspace{3mm}
-
-\textbf{Acoplamiento residual sobre el eje $q$:}
-\begin{equation*}
-v_{qs}^{r}(t)=L_q\dot{i}_{qs}^{r}(t)+R_s i_{qs}^{r}(t)+\lambda'_m\omega_r(t)+
-\underbrace{\omega_r(t)L_d i_{ds}^{r}(t)}_{\text{acoplamiento cruzado}}
-\end{equation*}
-
-\textbf{Ley de control complementaria:}
-\begin{equation*}
-\boxed{\;v_{qs}^{r*}(t)=v_{qs}(t)+\omega_r(t)L_d i_{ds}^{r}(t)\;}
-\end{equation*}
-
-\textbf{Resultado buscado:}
-\begin{itemize}
-  \item cancelar el termino cruzado restante,
-  \item conservar $v_{qs}(t)$ como nueva entrada lineal de control,
-  \item obtener un modelo equivalente valido tambien para $i_{ds}^{r}(0)\neq 0$.
-\end{itemize}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 46 - Modelo LTI aumentado escalar
-% -------------------------------------------------------------------
-\begin{frame}{Modelo LTI aumentado de cuarto orden}
-{\small\color{uncGray}Incorporando la dinámica residual de $i_{ds}^{r}$ y la ley complementaria en el eje $q$, el modelo lineal equivalente queda ampliado a cuatro estados.}\par
-\vspace{2mm}
-
-\textbf{Estado aumentado:}
-\begin{equation*}
-\bm{x}_{aug}(t)=\big[\,\theta_m,\;\omega_m,\;i_{qs},\;i_{ds}^{r}\,\big]^T
-\end{equation*}
-
-\footnotesize
-\begin{equation*}
-\left\{
-\begin{aligned}
-\dot{\theta}_m &= \omega_m \\[2pt]
-\dot{\omega}_m &= \frac{1}{J_{eq}}\!\left[\frac{3}{2}P_p\lambda'_m\,i_{qs}-b_{eq}\omega_m-\frac{1}{r}T_{ld}-\frac{g\,k_l}{r}\sin\!\left(\frac{\theta_m}{r}\right)\right] \\[4pt]
-\dot{i}_{qs} &= \frac{1}{L_q}\!\left[-P_p\lambda'_m\,\omega_m-R_{s0}i_{qs}+v_{qs}\right] \\[4pt]
-\dot{i}_{ds}^{r} &= -\frac{R_{s0}}{L_d}\,i_{ds}^{r}
-\end{aligned}
-\right.
-\end{equation*}
-\normalsize
-
-{\small La temperatura puede seguir simulándose aparte, pero la dinámica electromecánica lineal equivalente queda contenida en estos cuatro estados.}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 47 - Forma matricial aumentado
-% -------------------------------------------------------------------
-\begin{frame}{Forma matricial del modelo aumentado}
-{\small\color{uncGray}La estructura matricial deja ver que $i_{ds}^{r}$ evoluciona como un modo desacoplado de primer orden, mientras la terna $(\theta_m,\omega_m,i_{qs})$ conserva la misma planta nominal.}\par
-\vspace{2mm}
-
-\centering
-\resizebox{\textwidth}{!}{$
-\dot{\bm{x}}_{aug}=
-\underbrace{\begin{bmatrix}
-0 & 1 & 0 & 0\\
-0 & -\frac{b_{eq}}{J_{eq}} & \frac{3P_p\lambda'_m}{2J_{eq}} & 0\\
-0 & -\frac{P_p\lambda'_m}{L_q} & -\frac{R_{s0}}{L_q} & 0\\
-0 & 0 & 0 & -\frac{R_{s0}}{L_d}
-\end{bmatrix}}_{\bm{A}_{aug}}
-\bm{x}_{aug}+
-\underbrace{\begin{bmatrix}0\\0\\ \frac{1}{L_q}\\0\end{bmatrix}}_{\bm{B}_c}v_{qs}
-+
-\underbrace{\begin{bmatrix}0\\-\frac{1}{rJ_{eq}}\\0\\0\end{bmatrix}}_{\bm{B}_{d1}}T_{ld}
-+
-\underbrace{\begin{bmatrix}0\\-\frac{g\,k_l}{rJ_{eq}}\\0\\0\end{bmatrix}}_{\bm{B}_{d2}}
-\sin\!\left(\frac{\theta_m}{r}\right)
-$}
-
-\textbf{Interpretación del modelo:}
-\begin{itemize}
-  \item el cuarto estado no realimenta a la dinámica nominal,
-  \item pero queda explícitamente representado para cubrir condiciones iniciales no nulas,
-  \item así el modelo sigue siendo útil para análisis y simulación comparativa.
-\end{itemize}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 48 - Diagrama aumentado
-% -------------------------------------------------------------------
-\figslide{Diagrama del modelo LTI aumentado}{%
-El diagrama de bloques muestra la extensión natural del modelo nominal: se conserva la cadena mecánica principal y se agrega el modo residual de $i_{ds}^{r}$, ya desacoplado del eje $q$ por la ley complementaria.%
-}{LTI equivalente_aumentado.png}
-
-% -------------------------------------------------------------------
-%  SLIDE 49 - Implementacion sobre la planta NL
-% -------------------------------------------------------------------
-\figslide{Implementación sobre la planta no lineal}{%
-La linealización por realimentación no se aplica sobre una planta abstracta, sino como un controlador parcial acoplado a la planta NL: recibe $v_{qs}$, estima variables internas, calcula $v_{qs}^{r*}$ y $v_{ds}^{r*}$, y luego excita físicamente al inversor mediante la Park inversa.%
-}{NL con realimentacion NL.png}
-
-% -------------------------------------------------------------------
-%  SLIDE 50 - Flujo de implementacion
-% -------------------------------------------------------------------
-\begin{frame}{Flujo de implementación de la realimentación NL}
-{\small\color{uncGray}La realización física del modelo equivalente exige calcular en tiempo real las tensiones virtuales de desacoplamiento a partir de mediciones idealizadas de corriente y velocidad.}\par
-\vspace{3mm}
-
-\begin{enumerate}
-  \item El controlador externo genera la accion lineal $v_{qs}(t)$.
-  \item Las corrientes medidas $\bm{i}_{abc}$ se transforman a $\bm{i}_{qd0}^{r}$ mediante Park directa.
-  \item Con $\omega_m(t)$ e $i_{ds}^{r}(t)$ se calculan:
-  \[
-  v_{ds}^{r*}(t)=-L_q i_{qs}^{r}(t)\omega_r(t),
-  \qquad
-  v_{qs}^{r*}(t)=v_{qs}(t)+\omega_r(t)L_d i_{ds}^{r}(t)
-  \]
-  \item Las referencias $v_{qd}^{r*}$ vuelven al marco trifasico por Park inversa y alimentan al inversor.
-\end{enumerate}
-
-{\small En resumen: la linealización equivalente se obtiene \textbf{por realimentación no lineal}, calculando tensiones de compensación sin modificar la planta física.}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 51 - Comparacion conceptual
-% -------------------------------------------------------------------
-\begin{frame}{LPV vs. LTI aumentado: comparación conceptual}
-{\small\color{uncGray}Ambos modelos son lineales en su forma final, pero no representan la misma idea de linealización ni tratan igual las no linealidades físicas del accionamiento.}\par
-\vspace{3mm}
-
-\textbf{Modelo LPV por pequeñas señales}
-\begin{itemize}
-  \item surge de un Jacobiano local,
-  \item depende del punto de operación $(\theta_{mO},\omega_{mO},i_{qsO}^{r},i_{dsO}^{r},T_{sO}^\circ)$,
-  \item incorpora la gravedad linealizada como una rigidez local.
-\end{itemize}
-
-\textbf{Modelo LTI aumentado por realimentación NL}
-\begin{itemize}
-  \item surge de cancelar algebraicamente no linealidades internas,
-  \item mantiene la matriz de estado invariante,
-  \item extrae la gravedad como perturbación externa y desacopla el eje $d$.
-\end{itemize}
-
-{\small Si se fuerza $i_{dsO}^{r}\equiv 0$, el LPV se acerca estructuralmente al LTI aumentado; por eso ambos modelos son comparables, pero no equivalentes en su origen.}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 52 - Variaciones de ids y funciones de transferencia
-% -------------------------------------------------------------------
-\subsection{Variaciones de corriente en eje d y funciones de transferencia}
-\sectionslide{Variaciones de $i_{ds}^{r}$ y funciones de transferencia}
-
-% -------------------------------------------------------------------
-%  SLIDE 53 - ids como parametro
-% -------------------------------------------------------------------
-\begin{frame}{Corriente de eje $d$ como parámetro}
-{\small\color{uncGray}Al liberar la condición $I_{dsO}^{r}=0$, la corriente directa deja de ser solo un estado residual y pasa a modificar la capacidad estática de torque y la dinámica local del modelo LPV.}\par
-\vspace{3mm}
-
-\textbf{Torque electromagnético en operación estacionaria:}
-\begin{equation*}
-T_m=\frac{3}{2}P_p\Big[\lambda'_m+(L_d-L_q)I_{dsO}^{r}\Big]I_{qsO}^{r}
-\end{equation*}
-
-\textbf{Qué cambia respecto del caso base:}
-\begin{itemize}
-  \item Con $I_{dsO}^{r}=0$, el torque queda asociado al flujo de los imanes y a $I_{qsO}^{r}$.
-  \item Con $I_{dsO}^{r}\neq 0$, aparece el aporte de reluctancia por saliencia.
-  \item El mismo parámetro desplaza los autovalores del Jacobiano LPV.
-\end{itemize}
-
-{\small Esta es una lectura local del LPV: no reemplaza al LTI aumentado, sino que muestra cómo cambia el modelo alrededor de otros puntos de operación.}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 54 - Reforzamiento y debilitamiento
-% -------------------------------------------------------------------
-\begin{frame}{Reforzamiento y debilitamiento de campo}
-{\small\color{uncGray}La inyección de corriente en eje $d$ altera el flujo magnético total. Según el signo, puede priorizar torque por amperio o margen de tensión a alta velocidad.}\par
-\vspace{2mm}
-
-\begin{columns}[T,onlytextwidth]
-\column{0.42\textwidth}
-\centering
-\includegraphics[width=\linewidth]{imagenes/polosaliente_cilindrico.png}
-
-\column{0.54\textwidth}
-\textbf{Dos regímenes de operación:}
-\begin{itemize}
-  \item \textbf{$I_{dsO}^{r}>0$:} reforzamiento de campo. Aumenta el flujo efectivo y puede sumar torque de reluctancia si $L_d>L_q$.
-  \item \textbf{$I_{dsO}^{r}<0$:} debilitamiento de campo. Reduce el flujo efectivo y la fuerza contraelectromotriz.
-  \item El costo del debilitamiento es menor torque para el mismo $I_{qsO}^{r}$; el beneficio es mayor velocidad antes de saturar tensión.
-\end{itemize}
-\end{columns}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 55 - Migracion con ids
-% -------------------------------------------------------------------
-\begin{frame}{Migración dinámica con $I_{dsO}^{r}$}
-{\small\color{uncGray}El barrido de $I_{dsO}^{r}$ permite ver cómo cambian los autovalores del Jacobiano LPV entre debilitamiento y reforzamiento de campo.}\par
-\vspace{1mm}
-
-\centering
-\includegraphics[width=0.88\textwidth,height=0.52\textheight,keepaspectratio]{imagenes/migracion_ids_2.png}
-
-\vspace{1mm}
-\raggedright
-\textbf{Resultado principal:}\;
-{\small
-\begin{itemize}
-  \item Al aumentar $I_{dsO}^{r}$, aumenta la frecuencia de oscilación de los polos dominantes.
-  \item La parte real se mantiene casi constante: no se degrada severamente la estabilidad local.
-  \item Los modos rápido eléctrico y térmico quedan prácticamente invariantes.
-\end{itemize}
-}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 56 - Planteo de funciones de transferencia
-% -------------------------------------------------------------------
-\begin{frame}{Funciones de transferencia del LTI aumentado}
-{\small\color{uncGray}A partir del modelo LTI aumentado se buscan las relaciones entrada-salida desde $v_{qs}$ y $T_{ld}$ hacia la posición $\theta_m$.}\par
-\vspace{3mm}
-
-\textbf{Condiciones usadas para obtenerlas:}
-\begin{itemize}
-  \item Modelo incremental con $\bm{x}_{aug}(0)=\bm{0}$.
-  \item Resistencia constante: $R_s=R_{s0}$.
-  \item La gravedad se trata como perturbación externa compensable, no como parte de la matriz $\bm{A}_{aug}$.
-  \item Como $i_{ds}^{r}$ queda desacoplado, la relación entrada-salida se obtiene con el subsistema nominal de tercer orden.
-\end{itemize}
-
-\begin{equation*}
-G(s)=\bm{C}\,(s\bm{I}-\bm{A})^{-1}\bm{B}
-\end{equation*}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 57 - Funciones de transferencia finales
-% -------------------------------------------------------------------
-\begin{frame}{Funciones de transferencia obtenidas}
-{\small\color{uncGray}Ambas funciones comparten el mismo denominador de tercer orden. El factor asociado a $i_{ds}^{r}$ no aparece en la relación entrada-salida.}\par
-\vspace{2mm}
-
-\small
-\begin{equation*}
-\Delta_3(s)=
-s^3+
-\left(\frac{b_{eq}}{J_{eq}}+\frac{R_{s0}}{L_q}\right)s^2+
-\left(\frac{b_{eq}R_{s0}}{J_{eq}L_q}+
-\frac{3P_p^2{\lambda'_m}^{\,2}}{2J_{eq}L_q}\right)s
-\end{equation*}
-
-\vspace{2mm}
-\resizebox{\textwidth}{!}{$
-G_1(s)=\frac{\theta_m(s)}{v_{qs}(s)}
-=
-\frac{\dfrac{3P_p\lambda'_m}{2J_{eq}L_q}}{\Delta_3(s)}
-\qquad\qquad
-G_2(s)=\frac{\theta_m(s)}{T_{ld}(s)}
-=
-\frac{-\dfrac{1}{rJ_{eq}}\left(s+\dfrac{R_{s0}}{L_q}\right)}{\Delta_3(s)}
-$}
-\normalsize
-
-\vspace{3mm}
-\textbf{Interpretación:}
-\begin{itemize}
-  \item $G_1$ no tiene ceros finitos.
-  \item $G_2$ posee un cero en $s=-R_{s0}/L_q$ asociado al canal eléctrico de perturbación.
-\end{itemize}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 58 - Estado oculto
-% -------------------------------------------------------------------
-\begin{frame}{Estado interno fuera de las funciones de transferencia}
-{\small\color{uncGray}El cuarto estado del modelo aumentado aparece en espacio de estados, pero no se refleja en las funciones de transferencia hacia $\theta_m$.}\par
-\vspace{3mm}
-
-\begin{columns}[T,onlytextwidth]
-\column{0.45\textwidth}
-\textbf{Modo residual:}
-\begin{equation*}
-\lambda_d=-\frac{R_{s0}}{L_d}
-\end{equation*}
-\begin{equation*}
-i_{ds}^{r}(t)=i_{ds}^{r}(0)e^{-\frac{R_{s0}}{L_d}t}
-\end{equation*}
-
-\column{0.51\textwidth}
-\textbf{Por qué no aparece:}
-\begin{itemize}
-  \item $v_{qs}$ y $T_{ld}$ no excitan directamente a $i_{ds}^{r}$.
-  \item La salida $\theta_m$ no depende de $i_{ds}^{r}$.
-  \item La cuarta fila de $\bm{A}_{aug}$ queda desacoplada del resto del sistema.
-\end{itemize}
-\end{columns}
-
-\vspace{2mm}
-{\small En consecuencia, el polo de $i_{ds}^{r}$ se cancela al pasar de espacio de estados a funciones de transferencia.}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 59 - Estabilidad a lazo abierto
-% -------------------------------------------------------------------
-\begin{frame}{Autovalores y estabilidad a lazo abierto}
-{\small\color{uncGray}El polinomio característico del modelo aumentado separa el integrador de posición, el modo electromecánico y el modo residual del eje $d$.}\par
-\vspace{2mm}
-
-\begin{equation*}
-\det(s\bm{I}-\bm{A}_{aug})=
-\underbrace{\left(s+\frac{R_{s0}}{L_d}\right)}_{\lambda_4}
-\underbrace{s}_{\lambda_1}
-\underbrace{\left(s^2+a_2s+a_1\right)}_{\lambda_{2,3}}
-\end{equation*}
-
-\textbf{Valores nominales:}
-\begin{itemize}
-  \item $\lambda_1=0$: integrador cinemático de posición.
-  \item $\lambda_{2,3}=-91{,}7\pm j\,148{,}0$: modo electromecánico subamortiguado, $\zeta\simeq0{,}527$.
-  \item $\lambda_4=-160{,}3$: dinámica residual de $i_{ds}^{r}$, con $\tau_d\simeq6{,}24$ ms.
-\end{itemize}
-
-\textbf{Conclusión:}
-{\small el sistema es marginalmente estable internamente, pero no BIBO estable desde $v_{qs}$ o $T_{ld}$ hacia $\theta_m$ por el polo en el origen.}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 60 - Mapa polos y ceros
-% -------------------------------------------------------------------
-\figslide{Mapa de polos y ceros a lazo abierto}{%
-El mapa confirma la estructura anterior: un polo en el origen, el par electromecánico complejo y el polo residual de $i_{ds}^{r}$ marcado como cancelado. Esta lectura justifica que el diseño posterior cierre el lazo de posición y trate a la carga como perturbación.% 
-}{polos_ceros_LA.png}
-
-% -------------------------------------------------------------------
-%  SLIDE 61 - Variaciones parametricas
-% -------------------------------------------------------------------
-\subsection{Variaciones paramétricas y propiedades estructurales}
-\sectionslide{Variaciones paramétricas y propiedades estructurales}
-
-% -------------------------------------------------------------------
-%  SLIDE 62 - Variacion de Rs
-% -------------------------------------------------------------------
-\begin{frame}{Migración ante variación de $R_s$}
-{\small\color{uncGray}La resistencia del estator cambia con la temperatura. En el LTI aumentado, su variación desplaza el amortiguamiento y el cero de perturbación, pero casi no altera la frecuencia natural.}\par
-\vspace{2mm}
-
-\begin{columns}[T,onlytextwidth]
-\column{0.60\textwidth}
-\centering
-\includegraphics[width=\linewidth]{imagenes/migracion_Rs.png}
-
-\column{0.37\textwidth}
-\textbf{Lectura física:}
-\begin{itemize}
-  \item $\omega_n$ permanece cerca de $174$ rad/s.
-  \item $\zeta$ aumenta con $R_s$: hay mayor disipación eléctrica.
-  \item El cero de $G_2$ migra como $z=-R_s/L_q$.
-\end{itemize}
-\end{columns}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 63 - Variacion de carga
-% -------------------------------------------------------------------
-\begin{frame}{Migración ante variación de carga}
-{\small\color{uncGray}La masa de carga modifica la inercia equivalente $J_{eq}$ y, con ello, el modo electromecánico dominante del sistema.}\par
-\vspace{2mm}
-
-\begin{columns}[T,onlytextwidth]
-\column{0.60\textwidth}
-\centering
-\includegraphics[width=\linewidth]{imagenes/migracion_ml.png}
-
-\column{0.37\textwidth}
-\textbf{Efecto observado:}
-\begin{itemize}
-  \item Al aumentar $m_l$, crece la inercia equivalente.
-  \item La frecuencia natural disminuye.
-  \item El amortiguamiento relativo aumenta.
-  \item El polo en el origen y el cero de $G_2$ permanecen invariantes.
-\end{itemize}
-\end{columns}
-
-{\small Estas variaciones anticipan la necesidad de un controlador robusto frente al rango de carga.}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 64 - Bode a lazo abierto
-% -------------------------------------------------------------------
-\figslide{Bode a lazo abierto del LTI aumentado}{%
-Los diagramas muestran la respuesta en frecuencia de los canales $G_1(s)=\theta_m/v_{qs}$ y $G_2(s)=\theta_m/T_{ld}$. La pendiente de baja frecuencia refleja el integrador de posición, mientras que el modo electromecánico domina la zona dinámica relevante para el diseño posterior.% 
-}{bode_LA.png}
-
-% -------------------------------------------------------------------
-%  SLIDE 65 - Observabilidad y controlabilidad
-% -------------------------------------------------------------------
-\subsection{Observabilidad y controlabilidad}
-\begin{frame}{Propiedades estructurales del modelo aumentado}
-{\small\color{uncGray}Después de obtener las funciones de transferencia, conviene volver al espacio de estados para identificar qué estados se pueden observar y controlar con las señales disponibles.}\par
-\vspace{3mm}
-
-\textbf{Pregunta de observabilidad:}
-\begin{itemize}
-  \item ¿Puede reconstruirse $\bm{x}_{aug}$ midiendo solo $\theta_m$ o solo $\omega_m$?
-\end{itemize}
-
-\textbf{Pregunta de controlabilidad:}
-\begin{itemize}
-  \item ¿Puede actuarse sobre todos los estados usando solo $v_{qs}$?
-\end{itemize}
-
-\textbf{Idea clave:}
-{\small el estado $i_{ds}^{r}$ ya apareció como modo desacoplado; ahora se formaliza esa lectura con rangos de matrices.}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 66 - Observabilidad desde theta
-% -------------------------------------------------------------------
-\begin{frame}{Observabilidad desde posición}
-{\small\color{uncGray}Con un sensor de posición, la salida elegida es $\bm{C}_\theta=[\,1\;0\;0\;0\,]$. La cadena cinemática permite recuperar información de velocidad y corriente de eje $q$.}\par
-\vspace{3mm}
-
-\begin{equation*}
-\mathcal{O}_\theta=
-\begin{bmatrix}
-\bm{C}_\theta\\
-\bm{C}_\theta\bm{A}\\
-\bm{C}_\theta\bm{A}^2\\
-\bm{C}_\theta\bm{A}^3
-\end{bmatrix},
-\qquad
-\operatorname{rango}(\mathcal{O}_\theta)=3<4
-\end{equation*}
-
-\textbf{Resultado:}
-\begin{itemize}
-  \item $\theta_m$ se mide directamente.
-  \item $\omega_m$ aparece como derivada de $\theta_m$.
-  \item $i_{qs}$ se manifiesta por el acoplamiento electromecánico.
-  \item $i_{ds}^{r}$ no aparece: no acopla con la salida.
-\end{itemize}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 67 - Observabilidad desde velocidad
-% -------------------------------------------------------------------
-\begin{frame}{Observabilidad desde velocidad}
-{\small\color{uncGray}Si se mide solo velocidad, la salida pasa a ser $\bm{C}_\omega=[\,0\;1\;0\;0\,]$. Esta medición pierde información estructural respecto del sensor de posición.}\par
-\vspace{3mm}
-
-\begin{equation*}
-\mathcal{O}_\omega=
-\begin{bmatrix}
-\bm{C}_\omega\\
-\bm{C}_\omega\bm{A}\\
-\bm{C}_\omega\bm{A}^2\\
-\bm{C}_\omega\bm{A}^3
-\end{bmatrix},
-\qquad
-\operatorname{rango}(\mathcal{O}_\omega)=2<4
-\end{equation*}
-
-\textbf{Estados no observables:}
-\begin{itemize}
-  \item $\theta_m$: la velocidad no contiene la condición inicial de posición.
-  \item $i_{ds}^{r}$: sigue siendo un modo interno desacoplado.
-\end{itemize}
-
-{\small Por eso, para este sistema el sensor de posición es más informativo que medir solo velocidad.}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 68 - Controlabilidad desde vqs
-% -------------------------------------------------------------------
-\begin{frame}{Controlabilidad desde $v_{qs}$}
-{\small\color{uncGray}La entrada lineal de control actúa directamente sobre la corriente de eje $q$ y desde allí se propaga hacia la velocidad y la posición.}\par
-\vspace{3mm}
-
-\begin{equation*}
-\mathcal{C}_{v_q}=
-\begin{bmatrix}
-\bm{B}_c & \bm{A}\bm{B}_c & \bm{A}^2\bm{B}_c & \bm{A}^3\bm{B}_c
-\end{bmatrix},
-\qquad
-\operatorname{rango}(\mathcal{C}_{v_q})=3<4
-\end{equation*}
-
-\textbf{Cadena controlable:}
-\begin{equation*}
-v_{qs}\;\longrightarrow\;i_{qs}\;\longrightarrow\;\omega_m\;\longrightarrow\;\theta_m
-\end{equation*}
-
-\textbf{Estado no controlable desde $v_{qs}$:}
-\begin{itemize}
-  \item $i_{ds}^{r}$, porque la cuarta fila queda desacoplada y $B_c(4)=0$.
-\end{itemize}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 69 - Entrada adicional vds
-% -------------------------------------------------------------------
-\begin{frame}{Entrada adicional en eje $d$}
-{\small\color{uncGray}El estado $i_{ds}^{r}$ podría controlarse agregando la tensión de eje directo como segunda entrada manipulable.}\par
-\vspace{2mm}
-
-\begin{equation*}
-\bm{B}_{ext}=
-\begin{bmatrix}
-0 & 0\\
-0 & 0\\
-\frac{1}{L_q} & 0\\
-0 & \frac{1}{L_d}
-\end{bmatrix},
-\qquad
-\operatorname{rango}(\mathcal{C}_{ext})=4
-\end{equation*}
-
-\textbf{Interpretación:}
-\begin{itemize}
-  \item Matemáticamente, $v_{ds}^{r}$ completa la controlabilidad del modelo aumentado.
-  \item En la estrategia adoptada, esa tensión ya se usa por la ley mínima para forzar $i_{ds}^{r}\to0$.
-  \item No se trata de un grado de libertad libre para el control externo de posición.
-\end{itemize}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 70 - Resumen estructural
-% -------------------------------------------------------------------
-\begin{frame}{Resumen estructural del LTI aumentado}
-{\small\color{uncGray}Las funciones de transferencia y los rangos de observabilidad/controlabilidad llevan a la misma conclusión: el eje $d$ queda como modo interno oculto.}\par
-\vspace{3mm}
-
-\centering
-\small
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Estado} & \textbf{Controlable} & \textbf{Obs. desde $\theta_m$} & \textbf{Obs. desde $\omega_m$} & \textbf{En FTs}\\
-\midrule
-$\theta_m$ & Sí & Sí & No & Sí\\
-$\omega_m$ & Sí & Sí & Sí & Sí\\
-$i_{qs}$ & Sí & Sí & Sí & Sí\\
-$i_{ds}^{r}$ & No & No & No & No\\
-\bottomrule
-\end{tabular}
-\normalsize
-
-\vspace{4mm}
-\raggedright
-{\small Esta propiedad justifica usar el modelo nominal de tercer orden para la relación entrada-salida y conservar el cuarto estado solo para representar condiciones iniciales no nulas.}
-\end{frame}
-
 
 \end{document}
