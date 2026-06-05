@@ -3,9 +3,22 @@
 \beamer@subsectionintoc {0}{2}{Subsistema mecánico equivalente}{10}{0}{0}
 \beamer@subsectionintoc {0}{3}{Subsistema electromagnético en coordenadas qd0}{18}{0}{0}
 \beamer@subsectionintoc {0}{4}{Subsistema térmico y modelo NL global}{25}{0}{0}
-\beamer@subsectionintoc {0}{5}{Validacion a lazo abierto del modelo no lineal}{32}{0}{0}
-\beamer@subsectionintoc {0}{6}{Linealización del modelo no lineal}{34}{0}{0}
-\beamer@subsectionintoc {0}{7}{Modelo LTI aumentado e implementación}{43}{0}{0}
-\beamer@subsectionintoc {0}{8}{Variaciones de corriente en eje d y funciones de transferencia}{52}{0}{0}
-\beamer@subsectionintoc {0}{9}{Variaciones paramétricas y propiedades estructurales}{61}{0}{0}
-\beamer@subsectionintoc {0}{10}{Observabilidad y controlabilidad}{65}{0}{0}
+\beamer@subsectionintoc {0}{5}{Validación a lazo abierto del modelo no lineal}{32}{0}{0}
+\beamer@subsectionintoc {0}{6}{Linealización del modelo no lineal}{35}{0}{0}
+\beamer@subsectionintoc {0}{7}{Modelo LTI aumentado e implementación}{46}{0}{0}
+\beamer@subsectionintoc {0}{8}{Variaciones de corriente en eje d y funciones de transferencia}{55}{0}{0}
+\beamer@subsectionintoc {0}{9}{Variaciones paramétricas y propiedades estructurales}{66}{0}{0}
+\beamer@subsectionintoc {0}{10}{Observabilidad y controlabilidad}{70}{0}{0}
+\beamer@subsectionintoc {0}{11}{Simulación Dinámica NL vs LTI Aumentado}{76}{0}{0}
+\beamer@subsectionintoc {0}{12}{Modulador de torque}{111}{0}{0}
+\beamer@subsectionintoc {0}{13}{Controlador externo PID de movimientos}{130}{0}{0}
+\beamer@subsectionintoc {0}{14}{Observador de estado reducido}{142}{0}{0}
+\beamer@subsectionintoc {0}{15}{Simulación NL continua del lazo cerrado}{149}{0}{0}
+\beamer@subsectionintoc {0}{16}{Verificación de límites operativos}{158}{0}{0}
+\beamer@subsectionintoc {0}{17}{Mejora del observador con acción integral}{167}{0}{0}
+\beamer@subsectionintoc {0}{18}{Comportamiento térmico}{177}{0}{0}
+\beamer@subsectionintoc {0}{19}{Sensores no ideales}{180}{0}{0}
+\beamer@subsectionintoc {0}{20}{Inversor no ideal}{187}{0}{0}
+\beamer@subsectionintoc {0}{21}{Discretización del controlador}{190}{0}{0}
+\beamer@subsectionintoc {0}{22}{Codificación en MATLAB Functions}{198}{0}{0}
+\beamer@subsectionintoc {0}{23}{Conclusiones}{220}{0}{0}
