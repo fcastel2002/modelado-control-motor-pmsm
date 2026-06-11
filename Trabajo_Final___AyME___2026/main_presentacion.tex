@@ -8,6 +8,7 @@
 % ---------- Paquetes ----------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}                                  % evita 'T1/cmss/b/n undefined'
 \usepackage[spanish]{babel}
 \usepackage{amsmath,amssymb,amsfonts,bm,mathtools}
 \usepackage{graphicx}
@@ -194,29 +195,19 @@ Espacio Curricular 311: Automática y Máquinas Eléctricas}
 % -------------------------------------------------------------------
 %  SLIDE 5 — Sistema bajo estudio (overview)
 % -------------------------------------------------------------------
-\figslide{Sistema bajo estudio}{%
+\figslide{Sistema bajo estudio, Subsistemas y variables medidas}{%
 Accionamiento eléctrico de 4 cuadrantes: Bus CC \textrightarrow{} Inversor trifásico \textrightarrow{} PMSM \textrightarrow{} Reductora planetaria ($r=120{:}1$) \textrightarrow{} Brazo manipulador 1 GDL. Tres conjuntos de sensores cierran la realimentación: corriente (CT), temperatura (RTD) y posición (encoder).%
-}{diagrama_completo.png}{Diagrama general del accionamiento: Bus CC, inversor, PMSM, reductora y brazo de 1 GDL con sensores de corriente, temperatura y posición.}
+}{diagrama_completo.png}{Diagrama general del accionamiento con sus tres subsistemas (eléctrico, electromagnético-térmico, mecánico) y las variables medidas en cada uno.}
 
 % -------------------------------------------------------------------
-%  SLIDE 6 — Subsistemas y variables medidas
-% -------------------------------------------------------------------
-\figslide{Subsistemas y variables medidas}{%
-\textbf{Eléctrico (potencia):} $V_{DC}$ alimenta al inversor 3\textphi{} (6 llaves IGBT/MOSFET, PWM).\quad
-\textbf{Electromagnético + térmico:} estator en Y con neutro \emph{flotante}, $R_s(T_s^\circ)$ variable.\quad
-\textbf{Mecánico:} reductora rígida $r=120{:}1$ + péndulo con carga útil $m_l$ y perturbación $T_{ld}$.\quad
-\textbf{Sensores idealizados:} $i_{as},i_{bs},i_{cs}$ (CT), $T_s^\circ$ (RTD) y $\theta_m$ (encoder).%
-}{diagrama_completo.png}{Subsistemas eléctrico, electromagnético-térmico y mecánico, con las variables medidas en cada uno.}
-
-% -------------------------------------------------------------------
-%  SLIDE 7 — Carga mecánica: brazo 1 GDL
+%  SLIDE 6 — Carga mecánica: brazo 1 GDL
 % -------------------------------------------------------------------
 \figslide{Carga mecánica: brazo manipulador rígido de 1 GDL}{%
 Coordenada articular $q\equiv\theta_l$ referida al vertical hacia abajo (equilibrio estable). Sometido a gravedad $g=9{,}80665$~m/s$^2$ como perturbación externa constante. Masa de la barra $m=1{,}0$~kg, longitud $l_l=0{,}5$~m. Masa de carga útil variable $m_l\in[0;\,1{,}5]$~kg (no conocida a priori). Torque externo de contacto $T_{ld}\approx(0\pm 5)$~N$\cdot$m.%
 }{brazo_1gdl.png}{Robot manipulador elemental de 1 g.d.l en plano vertical (péndulo rígido actuado).}
 
 % -------------------------------------------------------------------
-%  SLIDE 8 — Especificaciones físicas
+%  SLIDE 7 — Especificaciones físicas
 % -------------------------------------------------------------------
 \begin{frame}{Especificaciones físicas del sistema}
 {\small\color{uncGray}Parámetros nominales y rangos de variación admitidos en el diseño.}\par
@@ -229,16 +220,18 @@ Coordenada articular $q\equiv\theta_l$ referida al vertical hacia abajo (equilib
 \hline
 \textbf{Símb.} & \textbf{Descripción} & \textbf{Valor} & \textbf{Símb.} & \textbf{Descripción} & \textbf{Valor} \\
 \hline
-\multicolumn{3}{|c||}{\textbf{Mecánica (carga + transmisión)}} & \multicolumn{3}{c|}{\textbf{Eléctrica (PMSM)}} \\
+\multicolumn{3}{|c||}{\textbf{Mecánica (carga, transmisión y rotor)}} & \multicolumn{3}{c|}{\textbf{Eléctrica (PMSM)}} \\
 \hline
-$r$        & Relación de reducción         & $120{:}1$                     & $P_p$         & Pares de polos               & $3$ \\
-$g$        & Aceleración gravedad          & $9{,}80665$~m/s$^2$           & $\lambda'_m$  & Flujo de imanes              & $0{,}016$~Wb \\
-$m$        & Masa del brazo                & $1{,}0$~kg                    & $L_d$         & Inductancia eje directo      & $6{,}6$~mH \\
-$l_{cm}$   & Long.\ centro de masa         & $0{,}25$~m                    & $L_q$         & Inductancia eje cuadratura   & $5{,}8$~mH \\
-$l_l$      & Longitud al extremo           & $0{,}50$~m                    & $L_{ls}$      & Inductancia de dispersión    & $0{,}8$~mH \\
-$m_l$      & Masa carga útil (variable)    & $0\dots 1{,}5$~kg             & $R_{sREF}$    & $R_s$ @ 20\,\textdegree{}C   & $1{,}02$~$\Omega$ \\
-$b_l$      & Fricción articul.\ ($\pm 0{,}03$) & $0{,}1$~Nms/rad           & $J_m$         & Inercia rotor (m+caja)       & $14{\times}10^{-6}$~kg\,m$^2$ \\
-$T_{ld}$   & Perturbación de contacto      & $0\pm 5$~N$\cdot$m            & $b_m$         & Fricción rotor (m+caja)      & $15{\times}10^{-6}$~Nms/rad \\
+$r$        & Relación de reducción             & $120{:}1$                     & $P_p$         & Pares de polos               & $3$ \\
+$g$        & Aceleración gravedad              & $9{,}80665$~m/s$^2$           & $\lambda'_m$  & Flujo de imanes              & $0{,}016$~Wb \\
+$m$        & Masa del brazo                    & $1{,}0$~kg                    & $L_d$         & Inductancia eje directo      & $6{,}6$~mH \\
+$l_{cm}$   & Long.\ centro de masa             & $0{,}25$~m                    & $L_q$         & Inductancia eje cuadratura   & $5{,}8$~mH \\
+$l_l$      & Longitud al extremo               & $0{,}50$~m                    & $L_{ls}$      & Inductancia de dispersión    & $0{,}8$~mH \\
+$m_l$      & Masa carga útil (variable)        & $0\dots 1{,}5$~kg             & $R_{sREF}$    & $R_s$ @ 20\,\textdegree{}C   & $1{,}02$~$\Omega$ \\
+$b_l$      & Fricción articul.\ ($\pm 0{,}03$) & $0{,}1$~Nms/rad               &               &                              & \\
+$T_{ld}$   & Perturbación de contacto          & $0\pm 5$~N$\cdot$m            &               &                              & \\
+$J_m$      & Inercia rotor (motor+caja)        & $14{\times}10^{-6}$~kg\,m$^2$ &               &                              & \\
+$b_m$      & Fricción rotor (motor+caja)       & $15{\times}10^{-6}$~Nms/rad   &               &                              & \\
 \hline
 \multicolumn{6}{|c|}{\textbf{Térmico}} \\
 \hline
@@ -252,7 +245,7 @@ $T_{ld}$   & Perturbación de contacto      & $0\pm 5$~N$\cdot$m            & $b
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 9 — Especificaciones operativas y límites
+%  SLIDE 8 — Especificaciones operativas y límites
 % -------------------------------------------------------------------
 \begin{frame}{Especificaciones operativas y límites a respetar}
 {\small\color{uncGray}Restricciones impuestas por la caja reductora, el motor y el inversor. Determinarán el espacio de operación admisible.}\par
@@ -295,7 +288,7 @@ $T_{ld}$   & Perturbación de contacto      & $0\pm 5$~N$\cdot$m            & $b
 \sectionslide{Subsistema mecánico equivalente}
 
 % -------------------------------------------------------------------
-%  SLIDE 11 — Modelado de la carga mecánica
+%  SLIDE 10 — Modelado de la carga mecánica
 % -------------------------------------------------------------------
 \begin{frame}{Modelado de la carga mecánica (péndulo 1 GDL)}
 {\small\color{uncGray}Brazo manipulador rígido de 1 g.d.l., eje horizontal fijo a la base, sometido a gravedad $g$ como perturbación externa constante y a un torque de contacto $T_{ld}(t)$ tratado como escalón.}\par
@@ -322,7 +315,7 @@ k_l &= m\,l_{cm} + m_l\,l_l \;=\; 0{,}25 + [0\dots 0{,}75]\;\;\text{kg}\cdot\tex
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 12 — Tren de transmisión rígido
+%  SLIDE 11 — Tren de transmisión rígido
 % -------------------------------------------------------------------
 \begin{frame}{Tren de transmisión rígido}
 {\small\color{uncGray}Caja reductora reversible con engranajes planetarios, relación $r=120{:}1$. Bajo las hipótesis adoptadas, todos los términos disipativos e inerciales internos se reflejan al eje del motor.}\par
@@ -350,7 +343,7 @@ T_q(t) = r\,T_d(t)
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 13 — Subsistema mecánico del rotor
+%  SLIDE 12 — Subsistema mecánico del rotor
 % -------------------------------------------------------------------
 \begin{frame}{Subsistema mecánico del rotor de la PMSM}
 {\small\color{uncGray}Balance de cuplas del rotor referido al estator estacionario. La inercia y fricción internas de la caja reductora ya están reflejadas en $J_m$ y $b_m$ por hipótesis de transmisión rígida.}\par
@@ -375,7 +368,7 @@ J_m\,\dot{\omega}_m(t) = T_m(t) - b_m\,\omega_m(t) - T_d(t)
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 14 — Combinación algebraica
+%  SLIDE 13 — Combinación algebraica
 % -------------------------------------------------------------------
 \begin{frame}{Combinación: derivación del modelo equivalente}
 {\small\color{uncGray}Sustituyendo las relaciones del tren rígido en la ecuación del péndulo y combinando con la ecuación del rotor, la variable intermedia $T_d$ se elimina algebraicamente.}\par
@@ -395,7 +388,7 @@ T_d(t) = \tfrac{J_l}{r^2}\,\dot{\omega}_m + \tfrac{b_l}{r^2}\,\omega_m + \tfrac{
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 15 — Modelo equivalente al eje del motor
+%  SLIDE 14 — Modelo equivalente al eje del motor
 % -------------------------------------------------------------------
 \begin{frame}{Modelo mecánico equivalente al eje del motor}
 {\small\color{uncGray}Ecuación única de balance de cuplas que reúne motor, caja reductora y carga. La no linealidad gravitacional queda como término $\sin(\theta_m/r)$.}\par
@@ -417,7 +410,7 @@ J_{eq}\,\dot{\omega}_m(t) = T_m(t) - b_{eq}\,\omega_m(t) - \tfrac{1}{r}\!\left[g
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 16 — Parámetros equivalentes
+%  SLIDE 15 — Parámetros equivalentes
 % -------------------------------------------------------------------
 \begin{frame}{Parámetros mecánicos equivalentes (valores nominales)}
 {\small\color{uncGray}Definiciones y evaluación numérica para el caso sin carga útil ($m_l=0$) y para la carga útil máxima ($m_l=1{,}5$~kg). Se observa la dilución del acoplamiento mecánico por el factor $r^2$.}\par
@@ -451,7 +444,7 @@ $b_{eq}$ & $2{,}19\times 10^{-5}$  & $2{,}19\times 10^{-5}$  & Nms/rad \\
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 17 — Ecuaciones de estado del subsistema mecánico
+%  SLIDE 16 — Ecuaciones de estado del subsistema mecánico
 % -------------------------------------------------------------------
 \begin{frame}{Ecuaciones de estado del subsistema mecánico}
 {\small\color{uncGray}Estado: $\bm{x}_{mec}=[\theta_m,\omega_m]^T$. Entradas: $T_m$ (manipulada) y $T_{ld}$ (perturbación). Salida medida: posición angular $\theta_m$.}\par
@@ -485,7 +478,7 @@ y(t) = \theta_m(t)
 \sectionslide{Subsistema electromagnético en coordenadas rotóricas $qd0$}
 
 % -------------------------------------------------------------------
-%  SLIDE 19 — Marco de referencia rotórico (concepto y cinemática)
+%  SLIDE 18 — Marco de referencia rotórico (concepto y cinemática)
 % -------------------------------------------------------------------
 \begin{frame}{Marco de referencia rotórico ($qd0$)}
 {\small\color{uncGray}La transformación de Park proyecta las variables trifásicas $abc$ (marco estacionario) sobre un marco fijo al rotor, sincrónico con éste en régimen estacionario. En operación equilibrada las variables resultantes son cuasi-DC.}\par
@@ -515,7 +508,7 @@ y(t) = \theta_m(t)
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 20 — Tensiones trifásicas en abc (entregadas por el inversor)
+%  SLIDE 19 — Tensiones trifásicas en abc (entregadas por el inversor)
 % -------------------------------------------------------------------
 \begin{frame}{Tensiones trifásicas referidas al estator ($abc$)}
 {\small\color{uncGray}El inversor sintetiza un sistema trifásico balanceado de tensiones desfasadas $120^\circ$ entre fases. $\theta_{ev}(t)$ es la posición angular eléctrica del fundamental del estator (referida a la tensión $v_{as}$).}\par
@@ -543,7 +536,7 @@ v_{cs}(t) &= V_m\,\cos\!\big(\theta_{ev}(t) + \tfrac{2\pi}{3}\big)
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 21 — Matriz de Park K_s
+%  SLIDE 20 — Matriz de Park K_s
 % -------------------------------------------------------------------
 \begin{frame}{Transformación de Park: matriz $K_s(\theta_r)$}
 {\small\color{uncGray}Operador lineal que proyecta cualquier vector trifásico $\bm{x}_{abcs}$ sobre el marco rotórico $\bm{x}^{r}_{qd0s}$. La matriz $K_s$ depende explícitamente de la posición eléctrica del rotor $\theta_r$.}\par
@@ -574,7 +567,7 @@ K_s(\theta_r) = \frac{2}{3}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 22 — Ecuaciones de tensión en qd0 (rotor)
+%  SLIDE 21 — Ecuaciones de tensión en qd0 (rotor)
 % -------------------------------------------------------------------
 \begin{frame}{Tensiones de estator referidas al rotor ($qd0$)}
 {\small\color{uncGray}Aplicando $K_s$ a las ecuaciones del estator equilibrado y simétrico, se obtienen tres ecuaciones desacopladas en los términos puramente inductivos, pero acopladas a través de la velocidad del rotor.}\par
@@ -600,7 +593,7 @@ v^{r}_{0s}(t) = R_s\!\big(T_s^\circ\big)\,i^{r}_{0s}(t) + L_{ls}\,\frac{d i^{r}_
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 23 — Identificación de los acoplamientos
+%  SLIDE 22 — Identificación de los acoplamientos
 % -------------------------------------------------------------------
 \begin{frame}{Identificación física de los acoplamientos}
 {\small\color{uncGray}Cada término de las ecuaciones de tensión tiene una interpretación física concreta. Estos acoplamientos son justamente los que el modulador de torque (sección 5.2.1) cancelará por retroalimentación para linealizar la dinámica.}\par
@@ -626,7 +619,7 @@ v^{r}_{ds} = \underbrace{R_s\,i^{r}_{ds}}_{\text{disipación}} + \underbrace{L_d
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 24 — Torque electromagnético
+%  SLIDE 23 — Torque electromagnético
 % -------------------------------------------------------------------
 \begin{frame}{Torque electromagnético: imanes + reluctancia}
 {\small\color{uncGray}La cupla entregada por la PMSM tiene dos contribuciones independientes: la interacción del flujo de los imanes con la corriente en cuadratura, y el torque de reluctancia debido a la asimetría magnética del rotor ($L_d\neq L_q$).}\par
@@ -655,7 +648,7 @@ T_m(t) = \underbrace{\tfrac{3}{2}\,P_p\,\lambda'_m\,i^{r}_{qs}(t)}_{\text{torque
 \subsection{Subsistema térmico y modelo NL global}
 
 % -------------------------------------------------------------------
-%  SLIDE 25 — Subsistema térmico: estructura y dependencias
+%  SLIDE 24 — Subsistema térmico: estructura y dependencias
 % -------------------------------------------------------------------
 \begin{frame}{Subsistema térmico: estructura y dependencias}
 {\small\color{uncGray}El calentamiento del estator se modela mediante un circuito térmico concentrado de primer orden: la capacitancia $C_{ts}$ almacena energía térmica, la resistencia $R_{ts\text{-}amb}$ representa la transferencia de calor al ambiente, y la fuente son las pérdidas Joule del bobinado.}\par
@@ -677,7 +670,7 @@ P_{Cu}(t) = \tfrac{3}{2}\,R_s\!\big(T_s^\circ(t)\big)\;\big(\,i_{qs}^{r\,2}(t) +
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 26 — Balance térmico y ecuación de estado
+%  SLIDE 25 — Balance térmico y ecuación de estado
 % -------------------------------------------------------------------
 \begin{frame}{Balance térmico y ecuación de estado}
 {\small\color{uncGray}Aplicando el balance de potencia entre lo que entra (pérdidas Joule) y lo que sale (disipación al ambiente) se obtiene una EDO escalar de primer orden con constante de tiempo lenta ($\tau_{th}\approx 120$~s).}\par
@@ -702,7 +695,7 @@ C_{ts}\,\frac{dT_s^\circ(t)}{dt} = \underbrace{P_{Cu}(t)}_{\text{generación}} \
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 27 — Modelo NL global: estados, entradas y salidas
+%  SLIDE 26 — Modelo NL global: estados, entradas y salidas
 % -------------------------------------------------------------------
 \begin{frame}{Modelo NL global: estados, entradas y salidas}
 {\small\color{uncGray}Integrando los subsistemas mecánico, electromagnético y térmico se obtiene el modelo no lineal completo del accionamiento. Es la planta de referencia para todo el análisis y diseño posteriores.}\par
@@ -726,7 +719,7 @@ C_{ts}\,\frac{dT_s^\circ(t)}{dt} = \underbrace{P_{Cu}(t)}_{\text{generación}} \
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 28 — Modelo NL global: sistema de 6 EDOs
+%  SLIDE 27 — Modelo NL global: sistema de 6 EDOs
 % -------------------------------------------------------------------
 \begin{frame}{Modelo NL global: sistema de 6 EDOs acopladas}
 {\small\color{uncGray}Sistema completo de seis ecuaciones diferenciales no lineales que describe la planta, con las no linealidades concentradas en la gravedad, el acoplamiento $q\!\leftrightarrow\!d$, las pérdidas cuadráticas y la dependencia $R_s(T_s^\circ)$.}\par
@@ -751,7 +744,7 @@ C_{ts}\,\frac{dT_s^\circ(t)}{dt} = \underbrace{P_{Cu}(t)}_{\text{generación}} \
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 29 — Irrelevancia de la secuencia cero (caso simétrico)
+%  SLIDE 28 — Irrelevancia de la secuencia cero (caso simétrico)
 % -------------------------------------------------------------------
 \begin{frame}{Irrelevancia de la secuencia cero (caso simétrico y equilibrado)}
 {\small\color{uncGray}En un sistema trifásico equilibrado con circuito electromagnético del estator simétrico, las componentes de fase suman cero en todo instante. La componente homopolar definida por Park resulta entonces idénticamente nula.}\par
@@ -783,7 +776,7 @@ v_{0s}(t) \equiv 0
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 30 — Irrelevancia de la secuencia cero (neutro flotante)
+%  SLIDE 29 — Irrelevancia de la secuencia cero (neutro flotante)
 % -------------------------------------------------------------------
 \begin{frame}{Irrelevancia de la secuencia cero (caso general, neutro flotante)}
 {\small\color{uncGray}Si el centro de estrella del estator no tiene conductor de retorno hacia una referencia externa, la suma de las corrientes de fase es nula por restricción \emph{topológica} de Kirchhoff, independientemente de que el sistema sea equilibrado o no.}\par
@@ -811,7 +804,7 @@ v_{0s}^{r}(t) = R_s\!\big(T_s^\circ\big)\cdot 0 + L_{ls}\,\frac{d(0)}{dt} = 0
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 31 — Modelo NL global reducido a 5 estados
+%  SLIDE 30 — Modelo NL global reducido a 5 estados
 % -------------------------------------------------------------------
 \begin{frame}{Modelo NL global reducido a 5 estados}
 {\small\color{uncGray}Eliminando la ecuación de secuencia cero (siempre nula) el modelo no lineal efectivo del accionamiento queda con 5 estados. Esta es la planta que se linealizará en las secciones siguientes (LPV y LTI por retroalimentación NL).}\par
@@ -856,10 +849,10 @@ Implementación del modelo no lineal completo en MATLAB/Simulink con consignas $
 \vspace{2mm}
 
 \centering
-\includegraphics[width=0.85\textwidth,height=0.28\textheight,keepaspectratio]{imagenes/resultado_corriente.png}\par
+\includegraphics[width=0.82\textwidth,height=0.32\textheight,keepaspectratio]{imagenes/resultado_corriente.png}\par
 {\scriptsize\textit{Respuesta dinámica al escalón $v_q=5$~V: corriente de estator $i_q$~[A] con transitorio inductivo y efecto de la back-EMF.}}\par
-\vspace{1mm}
-\includegraphics[width=0.85\textwidth,height=0.28\textheight,keepaspectratio]{imagenes/resultado_velocidad.png}\par
+\vspace{0.5mm}
+\includegraphics[width=0.82\textwidth,height=0.32\textheight,keepaspectratio]{imagenes/resultado_velocidad.png}\par
 {\scriptsize\textit{Respuesta dinámica al escalón $v_q=5$~V: velocidad mecánica del rotor $\omega_m$~[rad/s].}}
 \end{frame}
 
@@ -883,7 +876,7 @@ Implementación del modelo no lineal completo en MATLAB/Simulink con consignas $
 \sectionslide{Linealización del modelo no lineal}
 
 % -------------------------------------------------------------------
-%  SLIDE 33 - Idea de linealización Jacobiana
+%  SLIDE 35 - Idea de linealización Jacobiana
 % -------------------------------------------------------------------
 \begin{frame}{Método de pequeñas señales: idea central}
 {\small\color{uncGray}La primera linealización se realiza mediante el método de pequeñas señales: una expansión de Taylor de primer orden alrededor de un punto de operación cuasiestático.}\par
@@ -914,7 +907,7 @@ Implementación del modelo no lineal completo en MATLAB/Simulink con consignas $
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 34 - Punto de operación
+%  SLIDE 36 - Punto de operación
 % -------------------------------------------------------------------
 \begin{frame}{Punto de operación cuasiestático}
 {\small\color{uncGray}El Jacobiano se evalúa en un estado de funcionamiento estacionario del sistema, definido por un conjunto de variables de operación constantes.}\par
@@ -938,7 +931,7 @@ Implementación del modelo no lineal completo en MATLAB/Simulink con consignas $
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 35 - Modelo incremental LPV
+%  SLIDE 37 - Modelo incremental LPV
 % -------------------------------------------------------------------
 \begin{frame}{Modelo incremental LPV}
 {\small\color{uncGray}La linealización por pequeñas señales produce un sistema lineal en variables incrementales, pero con matrices que dependen del punto de operación: por eso el resultado es un modelo LPV.}\par
@@ -970,7 +963,7 @@ Implementación del modelo no lineal completo en MATLAB/Simulink con consignas $
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 36 (nueva) — Matriz Jacobiana A_0 completa + Gamma_th
+%  SLIDE 38 (nueva) — Matriz Jacobiana A_0 completa + Gamma_th
 % -------------------------------------------------------------------
 \begin{frame}{Matriz Jacobiana $\bm{A}_O$ del modelo LPV}
 {\small\color{uncGray}Evaluación del Jacobiano $\partial \bm{f}/\partial \bm{x}$ en el punto de operación. Cada coeficiente codifica un fenómeno físico: gravedad, FCEM, acoplamiento cruzado $qd$, dependencia térmica de $R_s$ y disipación al ambiente.}\par
@@ -996,7 +989,7 @@ $}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 37 (nueva) — Matrices de entrada B_o^c, B_o^d y modelo LPV global
+%  SLIDE 39 (nueva) — Matrices de entrada B_o^c, B_o^d y modelo LPV global
 % -------------------------------------------------------------------
 \begin{frame}{Matrices de entrada y modelo LPV global}
 {\small\color{uncGray}Separación de entradas en manipuladas (tensiones virtuales $v_{qd0s}^{r}$) y perturbaciones externas ($T_{ld}$, $T_{amb}^\circ$). El modelo LPV global queda lineal en variables incrementales con coeficientes dependientes del punto de operación.}\par
@@ -1023,7 +1016,7 @@ $}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 38 - Estructura física de A0 (interpretación)
+%  SLIDE 40 - Estructura física de A0 (interpretación)
 % -------------------------------------------------------------------
 \begin{frame}{Estructura física de las matrices LPV}
 {\small\color{uncGray}No interesa memorizar la matriz completa, sino identificar qué fenómenos físicos quedan embebidos en sus coeficientes.}\par
@@ -1054,7 +1047,7 @@ A_{43}=\frac{L_q P_p \omega_{mO}}{L_d}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 37 - Ley mínima eje d
+%  SLIDE 41 - Ley mínima eje d
 % -------------------------------------------------------------------
 \begin{frame}{Segunda linealización: realimentación de no linealidades}
 {\small\color{uncGray}Luego del modelo LPV, se aplica un segundo método de linealización: la realimentación de no linealidades. La idea es cancelar algebraicamente los acoplamientos internos mediante una ley de control sobre las entradas manipuladas.}\par
@@ -1084,7 +1077,7 @@ i_{ds}^{r}(t)\equiv 0
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 38 - Modelo LTI nominal
+%  SLIDE 42 - Modelo LTI nominal
 % -------------------------------------------------------------------
 \begin{frame}{Modelo LTI nominal resultante}
 {\small\color{uncGray}Aplicando la ley mínima en el eje $d$ y fijando $R_s=R_{s0}$ constante, la planta electromecánica principal queda reducida a tres estados dinámicos.}\par
@@ -1115,7 +1108,7 @@ i_{ds}^{r}(t)\equiv 0
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 39 - Forma matricial e interpretación
+%  SLIDE 43 - Forma matricial e interpretación
 % -------------------------------------------------------------------
 \begin{frame}{Forma matricial e interpretación física}
 {\small\color{uncGray}La representación matricial hace explícito que el control actúa por $v_{qs}$, mientras que carga y gravedad ingresan como perturbaciónes mecánicas.}\par
@@ -1149,7 +1142,7 @@ $}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 40 - Diagrama del LTI nominal
+%  SLIDE 44 - Diagrama del LTI nominal
 % -------------------------------------------------------------------
 \figslide{Diagrama del modelo LTI nominal}{%
 El diagrama resume la estructura final del modelo nominal: la corriente $i_{qs}$ genera torque, la velocidad realimenta por back-EMF y las perturbaciónes mecánicas ingresan por canales separados. Sobre esta planta se apoyarán el modelo aumentado y los análisis posteriores a lazo abierto.%
@@ -1159,7 +1152,7 @@ El diagrama resume la estructura final del modelo nominal: la corriente $i_{qs}$
 \sectionslide{Modelo LTI aumentado e implementación}
 
 % -------------------------------------------------------------------
-%  SLIDE 44 - Dinámica residual
+%  SLIDE 46 - Dinámica residual
 % -------------------------------------------------------------------
 \begin{frame}{Dinámica residual del eje $d$}
 {\small\color{uncGray}El modelo nominal supone $i_{ds}^r(0)=0$. Si esa condición inicial no se cumple, aparece una dinámica residual propia del eje directo, aún cuando se aplique la ley mínima de desacoplamiento.}\par
@@ -1187,7 +1180,7 @@ i_{ds}^{r}(t)=i_{ds}^{r}(0)\,e^{-\frac{R_{s0}}{L_d}t}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 45 - Ley complementaria eje q
+%  SLIDE 47 - Ley complementaria eje q
 % -------------------------------------------------------------------
 \begin{frame}{Ley complementaria en el eje $q$}
 {\small\color{uncGray}Aunque $i_{ds}^{r}$ decae por sí sola, mientras no sea exactamente nula vuelve a introducir acoplamiento cruzado en la ecuación del eje $q$. La solución es compensarlo en línea.}\par
@@ -1213,7 +1206,7 @@ v_{qs}^{r}(t)=L_q\dot{i}_{qs}^{r}(t)+R_s i_{qs}^{r}(t)+\lambda'_m\omega_r(t)+
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 46 - Modelo LTI aumentado escalar
+%  SLIDE 48 - Modelo LTI aumentado escalar
 % -------------------------------------------------------------------
 \begin{frame}{Modelo LTI aumentado de cuarto orden}
 {\small\color{uncGray}Incorporando la dinámica residual de $i_{ds}^{r}$ y la ley complementaria en el eje $q$, el modelo lineal equivalente queda ampliado a cuatro estados.}\par
@@ -1241,7 +1234,7 @@ v_{qs}^{r}(t)=L_q\dot{i}_{qs}^{r}(t)+R_s i_{qs}^{r}(t)+\lambda'_m\omega_r(t)+
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 47 - Forma matricial aumentado
+%  SLIDE 49 - Forma matricial aumentado
 % -------------------------------------------------------------------
 \begin{frame}{Forma matricial del modelo aumentado}
 {\small\color{uncGray}La estructura matricial deja ver que $i_{ds}^{r}$ evolucióna como un modo desacoplado de primer orden, mientras la terna $(\theta_m,\omega_m,i_{qs})$ conserva la misma planta nominal.}\par
@@ -1274,21 +1267,21 @@ $}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 48 - Diagrama aumentado
+%  SLIDE 50 - Diagrama aumentado
 % -------------------------------------------------------------------
 \figslide{Diagrama del modelo LTI aumentado}{%
 El diagrama de bloques muestra la extensión natural del modelo nominal: se conserva la cadena mecánica principal y se agrega el modo residual de $i_{ds}^{r}$, ya desacoplado del eje $q$ por la ley complementaria.%
 }{LTI equivalente_aumentado.png}{Diagrama de bloques de estado del modelo LTI equivalente aumentado.}
 
 % -------------------------------------------------------------------
-%  SLIDE 49 - Implementación sobre la planta NL
+%  SLIDE 51 - Implementación sobre la planta NL
 % -------------------------------------------------------------------
 \figslide{Implementación sobre la planta no lineal}{%
 La linealización por realimentación no se aplica sobre una planta abstracta, sino como un controlador parcial acoplado a la planta NL: recibe $v_{qs}$, estima variables internas, calcula $v_{qs}^{r*}$ y $v_{ds}^{r*}$, y luego excita físicamente al inversor mediante la Park inversa.%
 }{NL con realimentacion NL.png}{Diagrama de bloques de implementación de la realimentación sobre la planta no lineal.}
 
 % -------------------------------------------------------------------
-%  SLIDE 50 - Flujo de implementación
+%  SLIDE 52 - Flujo de implementación
 % -------------------------------------------------------------------
 \begin{frame}{Flujo de implementación de la realimentación NL}
 {\small\color{uncGray}La realización física del modelo equivalente exige calcular en tiempo real las tensiones virtuales de desacoplamiento a partir de mediciones idealizadas de corriente y velocidad.}\par
@@ -1310,7 +1303,7 @@ La linealización por realimentación no se aplica sobre una planta abstracta, s
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 51 - Comparación conceptual
+%  SLIDE 53 - Comparación conceptual
 % -------------------------------------------------------------------
 \begin{frame}{LPV vs. LTI aumentado: comparación conceptual}
 {\small\color{uncGray}Ambos modelos son lineales en su forma final, pero no representan la misma idea de linealización ni tratan igual las no linealidades físicas del accionamiento.}\par
@@ -1334,13 +1327,13 @@ La linealización por realimentación no se aplica sobre una planta abstracta, s
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 52 - Variaciones de ids y funciones de transferencia
+%  SLIDE 54 - Variaciones de ids y funciones de transferencia
 % -------------------------------------------------------------------
 \subsection{Variaciones de corriente en eje d y funciones de transferencia}
 \sectionslide{Variaciones de $i_{ds}^{r}$ y funciones de transferencia}
 
 % -------------------------------------------------------------------
-%  SLIDE 53 - ids como parametro
+%  SLIDE 55 - ids como parametro
 % -------------------------------------------------------------------
 \begin{frame}{Corriente de eje $d$ como parámetro}
 {\small\color{uncGray}Al liberar la condición $I_{dsO}^{r}=0$, la corriente directa deja de ser solo un estado residual y pasa a modificar la capacidad estática de torque y la dinámica local del modelo LPV.}\par
@@ -1362,14 +1355,14 @@ T_m=\frac{3}{2}P_p\Big[\lambda'_m+(L_d-L_q)I_{dsO}^{r}\Big]I_{qsO}^{r}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 54 - Reforzamiento y debilitamiento
+%  SLIDE 56 - Reforzamiento y debilitamiento
 % -------------------------------------------------------------------
 \figslide{Reforzamiento y debilitamiento de campo}{%
 La inyección de corriente en eje $d$ altera el flujo magnético total. \textbf{$I_{dsO}^{r}>0$ (reforzamiento):} aumenta el flujo efectivo y suma torque de reluctancia si $L_d>L_q$. \textbf{$I_{dsO}^{r}<0$ (debilitamiento):} reduce el flujo efectivo y la fuerza contraelectromotriz; permite mayor velocidad antes de saturar tensión, al costo de menor torque para el mismo $I_{qsO}^{r}$.%
 }{polosaliente_cilindrico.png}{Diagrama representativo de un rotor genérico de polos no salientes (izq.) y un rotor de polos salientes (der.).}
 
 % -------------------------------------------------------------------
-%  SLIDE 55 - Migración con ids
+%  SLIDE 57 - Migración con ids
 % -------------------------------------------------------------------
 \begin{frame}{Migración dinámica con $I_{dsO}^{r}$}
 {\small\color{uncGray}Barrido de los autovalores del Jacobiano LPV ante variación de $I_{dsO}^{r}$, manteniendo el resto del punto de operación nominal. Se reproducen las dos tablas presentadas en el informe (sección 5.1.2.d).}\par
@@ -1428,7 +1421,7 @@ Zoom sobre el par complejo conjugado $\lambda_{3,4}$, donde el barrido de $I_{ds
 }{migracion_ids_2.png}{Mapa de migración de polos del modelo LPV al variar $I_{ds0}^{r}$: zoom sobre los polos electromecánicos.}
 
 % -------------------------------------------------------------------
-%  SLIDE 56 - Planteo de funciones de transferencia
+%  SLIDE 60 - Planteo de funciones de transferencia
 % -------------------------------------------------------------------
 \begin{frame}{Funciones de transferencia del LTI aumentado}
 {\small\color{uncGray}A partir del modelo LTI aumentado se buscan las relaciones entrada-salida desde $v_{qs}$ y $T_{ld}$ hacia la posición $\theta_m$.}\par
@@ -1448,7 +1441,7 @@ G(s)=\bm{C}\,(s\bm{I}-\bm{A})^{-1}\bm{B}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 57 - Funciones de transferencia finales
+%  SLIDE 61 - Funciones de transferencia finales
 % -------------------------------------------------------------------
 \begin{frame}{Funciones de transferencia obtenidas}
 {\small\color{uncGray}Ambas funciones comparten el mismo denominador de tercer orden. El factor asociado a $i_{ds}^{r}$ no aparece en la relación entrada-salida.}\par
@@ -1484,7 +1477,7 @@ $}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 58 - Estado oculto
+%  SLIDE 62 - Estado oculto
 % -------------------------------------------------------------------
 \begin{frame}{Estado interno fuera de las funciones de transferencia}
 {\small\color{uncGray}El cuarto estado del modelo aumentado aparece en espacio de estados, pero no se refleja en las funciones de transferencia hacia $\theta_m$.}\par
@@ -1514,7 +1507,7 @@ i_{ds}^{r}(t)=i_{ds}^{r}(0)e^{-\frac{R_{s0}}{L_d}t}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 59 - Estabilidad a lazo abierto
+%  SLIDE 63 - Estabilidad a lazo abierto
 % -------------------------------------------------------------------
 \begin{frame}{Autovalores y estabilidad a lazo abierto}
 {\small\color{uncGray}El polinomio característico del modelo aumentado separa el integrador de posición, el modo electromecánico y el modo residual del eje $d$.}\par
@@ -1539,20 +1532,20 @@ i_{ds}^{r}(t)=i_{ds}^{r}(0)e^{-\frac{R_{s0}}{L_d}t}
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 60 - Mapa polos y ceros
+%  SLIDE 64 - Mapa polos y ceros
 % -------------------------------------------------------------------
 \figslide{Mapa de polos y ceros a lazo abierto}{%
 El mapa confirma la estructura anterior: un polo en el origen, el par electromecánico complejo y el polo residual de $i_{ds}^{r}$ marcado como cancelado. Esta lectura justifica que el diseño posterior cierre el lazo de posición y trate a la carga como perturbación.% 
 }{polos_ceros_LA.png}{Mapa de polos y ceros a lazo abierto para ambas funciones de transferencia del modelo LTI aumentado. Se indica con $\times$ roja el polo cancelado de $i_{ds}^r$.}
 
 % -------------------------------------------------------------------
-%  SLIDE 61 - Variaciones paramétricas
+%  SLIDE 65 - Variaciones paramétricas
 % -------------------------------------------------------------------
 \subsection{Variaciones paramétricas y propiedades estructurales}
 \sectionslide{Variaciones paramétricas y propiedades estructurales}
 
 % -------------------------------------------------------------------
-%  SLIDE 62 - Variacion de Rs
+%  SLIDE 66 - Variacion de Rs
 % -------------------------------------------------------------------
 \begin{frame}{Migración ante variación de $R_s$}
 {\small\color{uncGray}La resistencia del estator cambia con la temperatura. En el LTI aumentado, su variación desplaza el amortiguamiento y el cero de perturbación, pero casi no altera la frecuencia natural.}\par
@@ -1575,7 +1568,7 @@ El mapa confirma la estructura anterior: un polo en el origen, el par electromec
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 63 - Variacion de carga
+%  SLIDE 67 - Variacion de carga
 % -------------------------------------------------------------------
 \begin{frame}{Migración ante variación de carga}
 {\small\color{uncGray}La masa de carga modifica la inercia equivalente $J_{eq}$ y, con ello, el modo electromecánico dominante del sistema.}\par
@@ -1601,14 +1594,14 @@ El mapa confirma la estructura anterior: un polo en el origen, el par electromec
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 64 - Bode a lazo abierto
+%  SLIDE 68 - Bode a lazo abierto
 % -------------------------------------------------------------------
 \figslide{Bode a lazo abierto del LTI aumentado}{%
 Los diagramas muestran la respuesta en frecuencia de los canales $G_1(s)=\theta_m/v_{qs}$ y $G_2(s)=\theta_m/T_{ld}$. La pendiente de baja frecuencia refleja el integrador de posición, mientras que el modo electromecánico domina la zona dinámica relevante para el diseño posterior.% 
 }{bode_LA.png}{Diagramas de Bode de las funciones de transferencia $G_1(s)$ y $G_2(s)$ a lazo abierto.}
 
 % -------------------------------------------------------------------
-%  SLIDE 65 - Observabilidad y controlabilidad
+%  SLIDE 69 - Observabilidad y controlabilidad
 % -------------------------------------------------------------------
 \subsection{Observabilidad y controlabilidad}
 \begin{frame}{Propiedades estructurales del modelo aumentado}
@@ -1630,7 +1623,7 @@ Los diagramas muestran la respuesta en frecuencia de los canales $G_1(s)=\theta_
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 66 - Observabilidad desde theta
+%  SLIDE 70 - Observabilidad desde theta
 % -------------------------------------------------------------------
 \begin{frame}{Observabilidad desde posición}
 {\small\color{uncGray}Con un sensor de posición, la salida elegida es $\bm{C}_\theta=[\,1\;0\;0\;0\,]$. La cadena cinemática permite recuperar información de velocidad y corriente de eje $q$.}\par
@@ -1658,7 +1651,7 @@ Los diagramas muestran la respuesta en frecuencia de los canales $G_1(s)=\theta_
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 67 - Observabilidad desde velocidad
+%  SLIDE 71 - Observabilidad desde velocidad
 % -------------------------------------------------------------------
 \begin{frame}{Observabilidad desde velocidad}
 {\small\color{uncGray}Si se mide solo velocidad, la salida pasa a ser $\bm{C}_\omega=[\,0\;1\;0\;0\,]$. Esta medición pierde información estructural respecto del sensor de posición.}\par
@@ -1686,7 +1679,7 @@ Los diagramas muestran la respuesta en frecuencia de los canales $G_1(s)=\theta_
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 68 - Controlabilidad desde vqs
+%  SLIDE 72 - Controlabilidad desde vqs
 % -------------------------------------------------------------------
 \begin{frame}{Controlabilidad desde $v_{qs}$}
 {\small\color{uncGray}La entrada lineal de control actúa directamente sobre la corriente de eje $q$ y desde allí se propaga hacia la velocidad y la posición.}\par
@@ -1713,7 +1706,7 @@ v_{qs}\;\longrightarrow\;i_{qs}\;\longrightarrow\;\omega_m\;\longrightarrow\;\th
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 69 - Entrada adicional vds
+%  SLIDE 73 - Entrada adicional vds
 % -------------------------------------------------------------------
 \begin{frame}{Entrada adicional en eje $d$}
 {\small\color{uncGray}El estado $i_{ds}^{r}$ podría controlarse agregando la tensión de eje directo como segunda entrada manipulable.}\par
@@ -1740,7 +1733,7 @@ v_{qs}\;\longrightarrow\;i_{qs}\;\longrightarrow\;\omega_m\;\longrightarrow\;\th
 \end{frame}
 
 % -------------------------------------------------------------------
-%  SLIDE 70 - Resumen estructural
+%  SLIDE 74 - Resumen estructural
 % -------------------------------------------------------------------
 \begin{frame}{Resumen estructural del LTI aumentado}
 {\small\color{uncGray}Las funciones de transferencia y los rangos de observabilidad/controlabilidad llevan a la misma conclusión: el eje $d$ queda como modo interno oculto.}\par

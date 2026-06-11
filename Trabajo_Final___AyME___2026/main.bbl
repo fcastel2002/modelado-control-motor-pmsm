@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{guia_trabajo}
+G.~L. Juli{\'a}n, ``Proyecto global integrador: Gu{\'i}a de trabajo y
+  especificaciones,'' Espacio Curricular 311: Autom{\'a}tica y M{\'a}quinas
+  El{\'e}ctricas Rev. 0, Universidad Nacional de Cuyo, Facultad de
+  Ingenier{\'i}a, Mendoza, Argentina, 2026.
+
+\bibitem{kelly_robot}
+R.~Kelly, V.~Santib{\'a}{\~n}ez, and A.~Lor{\'i}a, {\em Control of Robot
+  Manipulators in Joint Space}.
+\newblock London: Springer, 2005.
+
+\bibitem{franklin_feedback}
+G.~F. Franklin, J.~D. Powell, and A.~Emami-Naeini, {\em Feedback Control of
+  Dynamic Systems}.
+\newblock Pearson, 8~ed., 2019.
+
+\bibitem{krause_machinery}
+P.~C. Krause, O.~Wasynczuk, S.~D. Sudhoff, and S.~D. Pekarek, {\em Analysis of
+  Electric Machinery and Drive Systems}.
+\newblock IEEE Press and John Wiley \& Sons, 4~ed., 2013.
+
+\bibitem{estimation_excitation}
+M.~Glu{\v{c}}ina, N.~An{\dj}eli{\'c}, I.~Lorencin, and Z.~Car, ``Estimation of
+  excitation current of a synchronous machine using machine learning methods,''
+  {\em Computers}, vol.~12, p.~1, 12 2022.
+
+\end{thebibliography}
