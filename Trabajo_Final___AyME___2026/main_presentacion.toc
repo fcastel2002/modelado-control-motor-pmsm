@@ -1,24 +1,45 @@
 \babel@toc {spanish}{}\relax 
-\beamer@subsectionintoc {0}{1}{Presentación del problema}{4}{0}{0}
-\beamer@subsectionintoc {0}{2}{Subsistema mecánico equivalente}{9}{0}{0}
-\beamer@subsectionintoc {0}{3}{Subsistema electromagnético en coordenadas qd0}{17}{0}{0}
-\beamer@subsectionintoc {0}{4}{Subsistema térmico y modelo NL global}{24}{0}{0}
-\beamer@subsectionintoc {0}{5}{Validación a lazo abierto del modelo no lineal}{31}{0}{0}
-\beamer@subsectionintoc {0}{6}{Linealización del modelo no lineal}{34}{0}{0}
-\beamer@subsectionintoc {0}{7}{Modelo LTI aumentado e implementación}{45}{0}{0}
-\beamer@subsectionintoc {0}{8}{Variaciones de corriente en eje d y funciones de transferencia}{54}{0}{0}
-\beamer@subsectionintoc {0}{9}{Variaciones paramétricas y propiedades estructurales}{65}{0}{0}
-\beamer@subsectionintoc {0}{10}{Observabilidad y controlabilidad}{69}{0}{0}
-\beamer@subsectionintoc {0}{11}{Simulación Dinámica NL vs LTI Aumentado}{75}{0}{0}
-\beamer@subsectionintoc {0}{12}{Modulador de torque}{110}{0}{0}
-\beamer@subsectionintoc {0}{13}{Controlador externo PID de movimientos}{129}{0}{0}
-\beamer@subsectionintoc {0}{14}{Observador de estado reducido}{141}{0}{0}
-\beamer@subsectionintoc {0}{15}{Simulación NL continua del lazo cerrado}{148}{0}{0}
-\beamer@subsectionintoc {0}{16}{Verificación de límites operativos}{157}{0}{0}
-\beamer@subsectionintoc {0}{17}{Mejora del observador con acción integral}{166}{0}{0}
-\beamer@subsectionintoc {0}{18}{Comportamiento térmico}{176}{0}{0}
-\beamer@subsectionintoc {0}{19}{Sensores no ideales}{179}{0}{0}
-\beamer@subsectionintoc {0}{20}{Inversor no ideal}{186}{0}{0}
-\beamer@subsectionintoc {0}{21}{Discretización del controlador}{189}{0}{0}
-\beamer@subsectionintoc {0}{22}{Codificación en MATLAB Functions}{197}{0}{0}
-\beamer@subsectionintoc {0}{23}{Conclusiones}{219}{0}{0}
+\beamer@sectionintoc {1}{Presentación del problema}{4}{0}{1}
+\beamer@subsectionintoc {1}{1}{Presentación del problema}{4}{0}{1}
+\beamer@sectionintoc {2}{Subsistema mecánico equivalente}{9}{0}{2}
+\beamer@subsectionintoc {2}{1}{Subsistema mecánico equivalente}{9}{0}{2}
+\beamer@sectionintoc {3}{Subsistema electromagnético en coordenadas qd0}{17}{0}{3}
+\beamer@subsectionintoc {3}{1}{Subsistema electromagnético en coordenadas qd0}{17}{0}{3}
+\beamer@sectionintoc {4}{Subsistema térmico}{24}{0}{4}
+\beamer@subsectionintoc {4}{1}{Subsistema térmico}{24}{0}{4}
+\beamer@sectionintoc {5}{Sistema No Lineal Global}{28}{0}{5}
+\beamer@subsectionintoc {5}{1}{Sistema No Lineal Global}{28}{0}{5}
+\beamer@subsectionintoc {5}{2}{Validación a lazo abierto del modelo no lineal}{33}{0}{5}
+\beamer@sectionintoc {6}{Linealización Jacobiana (LPV)}{36}{0}{6}
+\beamer@subsectionintoc {6}{1}{Linealización Jacobiana (LPV)}{36}{0}{6}
+\beamer@sectionintoc {7}{Obtención del modelo LTI equivalente}{42}{0}{7}
+\beamer@subsectionintoc {7}{1}{Obtención del modelo LTI equivalente}{42}{0}{7}
+\beamer@subsectionintoc {7}{2}{Modelo LTI aumentado e implementación}{47}{0}{7}
+\beamer@subsectionintoc {7}{3}{Variaciones de corriente en eje d}{54}{0}{7}
+\beamer@subsectionintoc {7}{4}{Funciones de Transferencia}{58}{0}{7}
+\beamer@sectionintoc {8}{Análisis del modelo LTI aumentado}{58}{0}{8}
+\beamer@subsectionintoc {8}{1}{Análisis del modelo LTI aumentado}{58}{0}{8}
+\beamer@subsectionintoc {8}{2}{Variaciones paramétricas}{63}{0}{8}
+\beamer@subsectionintoc {8}{3}{Observabilidad y Controlabilidad}{65}{0}{8}
+\beamer@sectionintoc {9}{Respuesta dinámica en dominio del tiempo}{70}{0}{9}
+\beamer@subsectionintoc {9}{1}{Respuesta dinámica en dominio del tiempo}{70}{0}{9}
+\beamer@subsectionintoc {9}{2}{Simulación dinámica NL vs LTI aumentado}{71}{0}{9}
+\beamer@sectionintoc {10}{Diseño y análisis del controlador en cascada}{97}{0}{10}
+\beamer@subsectionintoc {10}{1}{Diseño y análisis del controlador en cascada}{97}{0}{10}
+\beamer@subsectionintoc {10}{2}{Modulador de torque}{98}{0}{10}
+\beamer@subsectionintoc {10}{3}{Controlador externo PID de movimientos}{115}{0}{10}
+\beamer@subsectionintoc {10}{4}{Observador de estado reducido}{124}{0}{10}
+\beamer@subsectionintoc {10}{5}{Simulación NL continua del lazo cerrado}{131}{0}{10}
+\beamer@sectionintoc {11}{Verificación de desempeño: Especificaciones de operación}{140}{0}{11}
+\beamer@subsectionintoc {11}{1}{Verificación de desempeño: Especificaciones de operación}{140}{0}{11}
+\beamer@sectionintoc {12}{Verificación de desempeño: Offset de estado estacionario}{148}{0}{12}
+\beamer@subsectionintoc {12}{1}{Verificación de desempeño: Offset de estado estacionario}{148}{0}{12}
+\beamer@sectionintoc {13}{Verificación de desempeño: No idealidades y comportamiento térmico}{158}{0}{13}
+\beamer@subsectionintoc {13}{1}{Verificación de desempeño: No idealidades y comportamiento térmico}{158}{0}{13}
+\beamer@subsectionintoc {13}{2}{Comportamiento térmico}{159}{0}{13}
+\beamer@subsectionintoc {13}{3}{Sensores no ideales}{162}{0}{13}
+\beamer@subsectionintoc {13}{4}{Inversor no ideal}{169}{0}{13}
+\beamer@sectionintoc {14}{Discretización del controlador}{172}{0}{14}
+\beamer@subsectionintoc {14}{1}{Discretización del controlador}{172}{0}{14}
+\beamer@sectionintoc {15}{Codificación del software de control}{181}{0}{15}
+\beamer@subsectionintoc {15}{1}{Codificación del software de control}{181}{0}{15}

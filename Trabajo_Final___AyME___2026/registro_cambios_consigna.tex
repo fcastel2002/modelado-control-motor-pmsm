@@ -1,0 +1,159 @@
+% ===================================================================
+%  REGISTRO DE CAMBIOS DE CONSISTENCIA CON LA CONSIGNA
+%  Proyecto Global Integrador AyME 2026 — Calderón / Castel
+%  Generado: 12/06/2026
+%  Compilar con: pdflatex registro_cambios_consigna.tex
+% ===================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,bm}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\definecolor{okgreen}{RGB}{0,128,0}
+\definecolor{warnorange}{RGB}{204,102,0}
+\definecolor{errred}{RGB}{180,0,0}
+\newcommand{\hecho}{\textcolor{okgreen}{\textbf{HECHO}}}
+\newcommand{\pendiente}{\textcolor{errred}{\textbf{PENDIENTE}}}
+\newcommand{\evaluar}{\textcolor{warnorange}{\textbf{A EVALUAR}}}
+
+\title{Registro de cambios de consistencia con la consigna\\
+\large Informe Técnico (\texttt{main.tex}) y Presentación (\texttt{main\_presentacion.tex})}
+\author{Proyecto Global Integrador --- AyME 2026}
+\date{12 de junio de 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Resumen}
+Este documento registra, uno por uno, los cambios de nomenclatura y contenido aplicados al informe y a la presentación para alinearlos con la \emph{Guía de Trabajo y Especificaciones} del Ing.\ G.\,L.\ Julián (Rev.\,0), tras la auditoría exhaustiva de 35 discrepancias verificadas. Se listan también los ítems \textbf{pendientes} (trabajo de simulación aún no realizado) y los ítems \textbf{a evaluar manualmente}.
+
+Los IDs corresponden a la numeración de la auditoría. El punto de partida de la comparación es la versión del informe subida por el compañero de equipo (respaldada como \texttt{aux\_main\_anterior.tex}); el punto final es la versión actual de ambos documentos. La Sección~3 registra además los cambios de método, redacción y presentación posteriores al lote principal. Ambos documentos compilan sin errores tras los cambios (informe: 117 páginas; presentación: 186 páginas).
+
+% ===================================================================
+\section{Cambios realizados --- correcciones previas (sesión anterior)}
+
+\begin{enumerate}[label=\textbf{D\arabic*.}]
+  \item \hecho\ $n_{l,nom}$: corregido de 55 a \textbf{60 rpm} en la tabla de parámetros (valor de la consigna).
+  \item \hecho\ Superíndice rotórico: $i_{qs}\to i_{qs}^r$, $i_{ds}\to i_{ds}^r$ en los modelos LTI nominal y aumentado, FT (incl.\ $I_{qs}^r(s)$), observabilidad, simulación y \emph{abstract} (70 reemplazos).
+  \item \hecho\ Flujo de imanes unificado a $\lambda'^r_m$ (49 reemplazos; eliminadas las variantes $\lambda'_m$, $\lambda_m'$, $\lambda_m$ y $\lambda_r$).
+  \item \hecho\ $R_{sREF}$ unificado (eliminadas $R_{s,REF}$ y $R_{s,ref}$); además $R_{ts,amb}\to R_{ts\text{-}amb}$.
+  \item \hecho\ $\alpha_{Cu}$ unificado (eliminada $\alpha_{cu}$).
+  \item \hecho\ Símbolo de grado agregado: $T_s^\circ(t)$, $T_{amb}^\circ(t)$ en LPV, LTI, tabla y conclusiones (30 reemplazos).
+\end{enumerate}
+
+\textbf{IDs 9 y 10} (corregidos en esta sesión, antes del lote principal):
+\begin{itemize}
+  \item \hecho\ \textbf{ID 9}: $T_{REF}^\circ$ y $T_{s,ref}$ unificados a $T_{sREF}^\circ$ (Ec.\ de $R_s$, línea 383; migración ante $R_s$; presentación).
+  \item \hecho\ \textbf{ID 10 (error de física)}: la fórmula de la sección «Migración ante variación de $R_s$» mezclaba $R_{s0}=1{,}058\ \Omega$ (valor a $29{,}5\,^\circ$C) con la referencia de $20\,^\circ$C. Quedó la ley física oficial $R_s(T_s^\circ)=R_{sREF}\,[1+\alpha_{Cu}(T_s^\circ - T_{sREF}^\circ)]$ (Ec.\ 3.9 de la guía), aclarando que el \emph{barrido} se hace alrededor del valor de operación $R_{s0}$. Nota: $R_{s0}$ se mantiene en el resto del documento por ser un símbolo deliberado del modelo LTI (definido en las secciones 5.1.2.c y 5.1.6), con 42 usos consistentes.
+\end{itemize}
+
+% ===================================================================
+\section{Cambios realizados --- lote principal (esta sesión)}
+
+\begin{enumerate}[label=\textbf{ID \arabic*.}, leftmargin=1.6cm]
+  \item \hecho\ Declarada la equivalencia $q(t)\equiv\theta_l(t)$ como \textbf{variable controlada} (no medida directamente), con $q=\theta_l=\frac{1}{r}\theta_m$, en la Sección 3.1 del informe.
+  \item \hecho\ Declarada la equivalencia $\tau(t)\equiv T_q(t)$ del torque impulsor (Sección 3.1).
+  \item \hecho\ Declarada la referencia angular de la consigna: $\theta_l$ medida desde el eje vertical hacia abajo (equilibrio estable), positiva antihoraria; $g$ como perturbación externa vertical constante (Sección 3.1).
+  \item \hecho\ Agregada la nota del encoder según la guía: encoder incremental con \emph{homing} y decodificación idealizados; $\theta_m(t)$ absoluta «rectificada»; ajuste $\theta_m\equiv 0$ (\emph{Home}) para $\theta_l\equiv 0$ (sección de observabilidad).
+  \item \hecho\ Definido el \emph{setpoint} de la guía $q_1^*(t)\equiv\frac{1}{r}\theta_m^*(t)$ como entrada de referencia del lazo externo (Sección 5.2.2).
+  \item \hecho\ Declarado el perfil trapezoidal de la guía en 5.2.4.a: $q_1^*(t)=0 \xrightarrow{\Delta t_{ramp}=5\,\text{s}} 2\pi\ \text{rad} \xrightarrow{\Delta t_{ramp}=5\,\text{s}} 0$.
+  \item \hecho\ $T_{Ld}\to T_{ld}$ (subíndice en minúscula, 3+3 instancias en informe y presentación).
+  \item \hecho\ $P_{Cu}\to P_{s,perd}$ (notación oficial de la Ec.\ 3.10 de la guía; 3+4 instancias).
+  \setcounter{enumi}{10}
+  \item \hecho\ \textbf{Puntos de operación unificados al estilo de la consigna} ($I^r_{ds,o}$): todas las variantes ($i_{qsO}^r$, $I_{ds0}^r$, $\omega_{mO}$, $\theta_{mO}$, $T_{sO}$, $T_{ambO}$, $R_{sO}$, $v_{qsO}^r$, $\Gamma_{th\,O}$, \dots) pasaron a subíndice «$,o$» minúscula: $i^r_{qs,o}$, $I^r_{ds,o}$, $\omega_{m,o}$, $\theta_{m,o}$, $T_{s,o}$, $T_{amb,o}$, $R_{s,o}$, $v^r_{qs,o}$, $\Gamma_{th,o}$ ($\sim$75+50 reemplazos en informe y presentación).
+  \item \hecho\ Secuencia cero \textbf{sin} superíndice $r$ (la componente $0$ no pertenece al marco rotórico, Ec.\ 3.8): $i_{0s}^r\to i_{0s}$, $v_{0s}^r\to v_{0s}$ en modelo NL, LPV y demostración de Park (22+10 instancias).
+  \item \hecho\ \textbf{Eliminado el símbolo $V_m$} (no existe en la consigna): las tensiones de fase quedaron con la forma oficial $v_{as}(t)\approx\sqrt{2}\,\frac{V_{sl}(t)}{\sqrt{3}}\cos(\theta_{ev}(t))$ (Ecs.\ 4.1--4.3), y la derivación de Clarke/atan2 usa la amplitud $\sqrt{2}\,V_{sl}/\sqrt{3}$ explícita.
+  \item \hecho\ Declaradas las \textbf{variables manipulables del inversor} según la guía: $V_{sl}(t)\in[0;48]$ Vca rms y $f_e(t)\in[-330;+330]$ Hz (su signo define la secuencia $abc/acb$ y el sentido de giro), con $\omega_e(t)\equiv 2\pi f_e(t)\equiv \frac{d\theta_{ev}}{dt}$.
+  \item \hecho\ La saturación del inversor ahora muestra el valor de la consigna: $|v_{abc}|\le\frac{\sqrt{2}\cdot V_{sl,max}}{\sqrt{3}}$ con $V_{sl,max}=48$ Vca rms $\Rightarrow 39{,}19$ V.
+  \item \hecho\ \textbf{Tabla de parámetros completada} con los límites de la consigna: $n_{m,nom}=6600$ rpm ($\omega_{m,nom}=691{,}15$ rad/s), $V_{sl,nom}=30$ Vca rms, $V_{sl,max}=48$ Vca rms, $I_{s,nom}=0{,}4$ Aca rms, $I_{s,max}=2{,}0$ Aca rms, $T^\circ_{s,max}=115\,^\circ$C, rango $T^\circ_{amb}\in[-15;+40]\,^\circ$C, $\omega_{l,nom}=6{,}28$ rad/s, y nota de tolerancia $\pm 1\%$. Además, en 5.1.6 se agregó la verificación de que la velocidad de vacío ($\approx 405$ rad/s) es inferior al límite $\omega_{m,nom}=691{,}15$ rad/s.
+  \item \hecho\ $b_l = 0{,}1 \pm 0{,}03$ Nms/rad (incertidumbre de la consigna) y nueva fila $T_{ld}=0\pm 5{,}0$ Nm (escalón) en la tabla.
+  \item \hecho\ Agregadas las fórmulas de composición de la guía con sus rangos: $J_l=(m\,l_{cm}^2+J_{cm})+m_l\,l_l^2 = 0{,}0833+[0\ldots 0{,}375]$ kg·m$^2$ y $k_l=m\,l_{cm}+m_l\,l_l = 0{,}25+[0\ldots 0{,}75]$ kg·m (Sección 3.1 + tabla).
+  \setcounter{enumi}{19}
+  \item \hecho\ $T_{s,\max}\to T^\circ_{s,max}$ (símbolo de grado, 2+3 instancias).
+  \item \hecho\ $T_{em}\to T_m$ en toda la sección 5.1.6 (único símbolo de la Ec.\ 3.5 de la guía; 7+3 instancias).
+  \setcounter{enumi}{22}
+  \item \hecho\ Ganancias del observador unificadas: $K_{e\theta_m}$, $K_{e\omega_m}$, $K_{ei_m}$ en 5.2.3 y 5.2.5.b (eliminadas las variantes $K_{e_{\theta_m}}$, $K_{e\theta}$, $K_{e\omega}$, $K_{ei}$), más nota en 5.2.7.b con la correspondencia a las variables del código (\texttt{K\_e\_tita\_m\_int}, \texttt{K\_e\_w\_m\_int}, \texttt{K\_e\_i\_m\_int}).
+  \item \hecho\ Polos con el nombre de la consigna: lazos de corriente siempre $p_i=-5000$ rad/s (eliminadas $p_{1,2,3}$ y $p_{a,b,c}$); observador siempre $p_{obs\,1,2}=-3200$ rad/s y $p_{obs\,1,2,3}$ para el aumentado (los $p_{1,2}$ de los \emph{sensores} se mantienen, así los nombra la consigna).
+  \setcounter{enumi}{25}
+  \item \hecho\ Nodo neutro renombrado de $n$ a $O$ («centro de estrella $O$», como la consigna), incl.\ figura circuital y $v_{an}\to v_{aO}$.
+  \item \hecho\ Instantes de conmutación renombrados $t_k \to t_{step\,k}$ (notación de la consigna, valores idénticos).
+  \item \hecho\ Consignas de tensión de 5.1.6 con superíndice rotórico: $v_{qs}^*\to v_{qs}^{r*}$, $v_{ds}^*\to v_{ds}^{r*}$, $V_{ds}^*\to V_{ds}^{r*}$, $V_{qs,nom}\to V_{qs,nom}^{r}$ (24+15 y 10+8 instancias).
+  \setcounter{enumi}{32}
+  \item \hecho\ $\Gamma_{th}$ unificada a $\Gamma_{th,o}$ (matriz, texto y definición).
+  \item \hecho\ $R_{ts\text{-}amb}$ con guion tipográfico en todas las instancias (el guion matemático se renderizaba como resta).
+  \item \hecho\ Unidades de la guía en la tabla: $\lambda'^r_m$ en \textbf{Wb-turn}; $C_{ts}$ en \textbf{W/($^\circ$C/s)}.
+\end{enumerate}
+
+% ===================================================================
+\section{Cambios realizados --- método, redacción y presentación (posteriores al lote principal)}
+
+\begin{enumerate}[label=\textbf{P\arabic*.}, leftmargin=1.3cm]
+  \item \hecho\ \textbf{Reescritura completa del diseño del controlador externo (sintonía serie bien fundamentada).} La versión anterior definía a priori tres frecuencias características ($\omega_{vel}:=b_a/J_{eq}$, $\omega_{pos}:=K_{sa}/b_a$, $\omega_{int}:=K_{sia}/K_{sa}$) y un parámetro de separación $n$ ($\omega_{vel}=n\,\omega_{pos}$, $\omega_{int}=\omega_{pos}/n$) del que luego se deducía $n=2\zeta+1$, sin justificar el origen de las relaciones. Se reemplazó por el desarrollo canónico de la cátedra:
+  \begin{enumerate}[label=(\roman*)]
+      \item dinámica de lazo cerrado del PID sobre la planta equivalente (doble integrador $J_{eq}\ddot\theta_m = T_m^{*\prime} - T_{ld}/r$, con lazos de corriente $6{,}25\times$ más rápidos y fricción/gravedad precompensadas), con las dos funciones de transferencia y el rechazo exacto de perturbación constante ($G_{T_{ld}}(0)=0$);
+      \item polinomio \emph{estructural} $P_e(s) = s^3+\frac{b_a}{J_{eq}}s^2+\frac{K_{sa}}{J_{eq}}s+\frac{K_{sia}}{J_{eq}}$;
+      \item polinomio \emph{requerido} $P_r(s)=(s+\omega_n)(s^2+2\zeta\omega_n s+\omega_n^2)$ expandido, donde el factor $(2\zeta+1)$ surge como identidad algebraica;
+      \item igualación coeficiente a coeficiente y despeje directo: $b_a=J_{eq}\,\omega_n(2\zeta+1)$, $K_{sa}=J_{eq}\,\omega_n^2(2\zeta+1)$, $K_{sia}=J_{eq}\,\omega_n^3$.
+  \end{enumerate}
+  \textbf{Los valores numéricos de las ganancias no cambian} ($0{.}0396$; $31{.}656$; $10\,129{.}778$). La derivación fue verificada en forma independiente (álgebra paso a paso + cálculo numérico): sin errores; los polos resultantes son $-800$ y $-600\pm j\,529{,}15$, los tres de módulo $\omega_n$.
+  \item \hecho\ Se agregó la \textbf{figura de la configuración de polos} asignada por $P_r(s)$ (estilo de la cátedra): polo real en $-\omega_n$ y par conjugado de parámetros $\zeta$, $\omega_n$ sobre la circunferencia punteada de radio $\omega_n$, en forma \textbf{genérica} (sin valores numéricos de los polos), como ilustración del método.
+  \item \hecho\ Se eliminó por completo el desarrollo del parámetro $n$ (frecuencias postuladas, jerarquía anidada y nota de vínculo). El método se denomina \emph{sintonía serie} desde la introducción de la sección, con redacción sobria y sin sobre-explicar la consigna.
+  \item \hecho\ \textbf{Presentación espejada}: slides nuevas de dinámica de lazo cerrado, polinomios $P_e$/$P_r$, figura de polos genérica, igualación/despeje y valores numéricos; eliminada la slide del vínculo $n=2\zeta+1$; el título de la slide de polinomios lleva el nombre del método («Método de sintonía serie») y la slide de objetivo indica «Método: sintonía serie».
+  \item \hecho\ \textbf{Eliminadas todas las referencias a los puntos de la guía en el texto del informe} (10 reescrituras): los títulos «(Punto 5.2.5.b)» y «(Punto 5.2.5.c)»; «para el punto 5.2.3»; «el comportamiento exigido en el punto 5.2.5.b»; «correspondiente al punto 5.2.3 \dots\ para el punto 5.2.5.b»; «solución final para el punto 5.2.5.b»; «diseñado en la sección~5.2.5.b»; «en la sección 5.2»; «de/en 5.1.2.c.VI» (título y texto del párrafo de cambio de dinámica); «, en 5.2.2,»; y «(Ec.~3.9 de la guía)». Todas sustituidas por redacción natural («más adelante», «previamente», «en la verificación de desempeño», etc.). Verificación final por patrones: 0 ocurrencias remanentes en el informe. En la presentación las únicas menciones están en comentarios del código fuente (no se renderizan) y se conservaron como navegación.
+  \item \hecho\ \textbf{Limpieza de la presentación}: se eliminaron los 109 bloques de texto gris «ayuda-memoria» que el template nunca renderizó (Beamer los absorbía como subtítulo de \emph{frame} y la plantilla personalizada no muestra subtítulos), y la macro \texttt{\textbackslash figslide} pasó de 4 a 3 argumentos (61 llamadas adaptadas, se quitó la descripción muerta). Verificado con \texttt{pdftotext}: el texto del PDF es idéntico línea por línea antes y después.
+\end{enumerate}
+
+% ===================================================================
+\section{Ítems PENDIENTES (trabajo de simulación no realizado)}
+
+\begin{enumerate}[label=\textbf{ID \arabic*.}, leftmargin=1.6cm]
+  \setcounter{enumi}{18}
+  \item \evaluar\ \textbf{Estado inicial consistente y peor caso térmico.} La consigna (4.c) da como ejemplo el estado inicial $\theta_l(t_0)=0$, $\omega_m(t_0)=0$, $\bm{i}^r_{qd0s}(t_0)=\bm{0}$, $T^\circ_s(t_0)=T^\circ_{amb}(t_0)=T^\circ_{amb,max}=40\,^\circ$C. El informe usa $20\,^\circ$C (validación) y $25\,^\circ$C (resto) sin declarar el estado inicial de la guía ni justificar la elección. En particular, la verificación térmica 5.2.5.c nunca se evalúa en el peor caso $T_{amb}=40\,^\circ$C (donde el límite de $115\,^\circ$C se alcanzaría antes de los $225{,}9$ s reportados). \emph{Decisión del equipo: evaluar más adelante.}
+  \setcounter{enumi}{28}
+  \item \pendiente\ \textbf{Rechazo a perturbaciones con variación máxima de parámetros (5.2.4.b).} La consigna pide simular el rechazo a escalones de $T_{ld}$ con valores nominales \textbf{y} con la variación máxima de los parámetros de carga ($m_l=1{,}5$ kg; $b_l=0{,}1\pm0{,}03$), manteniendo el control invariante. Solo está hecho el caso nominal. Falta la corrida WORST-CASE en Simulink y su comparación. (Las propias Conclusiones lo admiten como pendiente.)
+  \item \pendiente\ \textbf{Comparación de estrategias del modulador (Nota de 5.2.1).} La consigna pide \emph{simular} con el Modulador de Torque en DT y comparar contra el comportamiento de 5.1.6, contrastando la estrategia base $i^{r*}_{ds}(t)\equiv 0$ vs.\ la extendida $i^{r*}_{ds}(t)\neq 0$ (debilitamiento/reforzamiento). Hoy solo hay una discusión conceptual de ambos casos; falta la simulación comparativa.
+  \item \pendiente\ \textbf{Verificación de límites del reductor (5.2.5.a).} La sección de verificación solo analiza corriente (motor) y tensión (inversor). Falta verificar numéricamente la velocidad de salida $\omega_l$ contra $n_{l,nom}=60$ rpm y el torque $T_q$ contra $T_{q,nom}=17$ / $T_{q,max}=45$ N·m.
+  \item \pendiente\ \textbf{Gráficas faltantes de 5.1.6.} La consigna pide graficar tensiones y corrientes \emph{en ambas} coordenadas ($qd0 \Leftrightarrow abcs$) y superponer las curvas características cuasi-estacionarias sobre la curva paramétrica $T_m$--$\omega_m$. Faltan: la gráfica de \textbf{tensiones en $abc$} ($v_a$, $v_b$, $v_c$) y la comparación con las \textbf{curvas características cuasi-estacionarias}.
+\end{enumerate}
+
+% ===================================================================
+\section{Ítems A EVALUAR MANUALMENTE (detallados, sin cambios aplicados)}
+
+\subsection*{ID 22 --- Cuatro nombres para la consigna de torque del PID \evaluar}
+La misma señal (la consigna de torque que entrega el lazo externo) aparece con \textbf{cuatro} nomenclaturas distintas según la sección:
+\begin{itemize}
+  \item $T_m^{\ast\prime}(t)$ --- en el \emph{precomputed torque} del modulador (5.2.1) y en la ley del PID (5.2.2): $T_m^{*\prime}(s)=b_a e_\omega + K_{sa}e_{\theta_m} + K_{sia}e_{\theta_m}/s$.
+  \item $T_m'(t)$ --- en el observador continuo (5.2.3 y 5.2.5.b): $u(t)=T_m'(t)$, $\dot{\hat\omega}_m = \frac{1}{J_{eq}}T_m' + \dots$
+  \item $T_m^{**}$ --- en la introducción de la codificación (5.2.7): «el controlador PID de posición calcula una referencia de torque mecánico $T_m^{**}$».
+  \item $T_e^{*}$ --- en el observador codificado (5.2.7.b): «recibe \dots el torque electromagnético de referencia $T_e^{*}$» (variable \texttt{Te\_ref}).
+\end{itemize}
+\textbf{Por qué no se cambió:} la unificación automática es riesgosa: (a) hay una diferencia \emph{conceptual} sutil entre la salida pura del PID ($T_m^{*\prime}$) y el torque electromagnético de referencia que entra al observador ($T_e^*$, que en rigor es $T_m^*$ después del precómputo); unificar mal podría introducir un error técnico; (b) cambiar $T_e^*/$\texttt{Te\_ref} obligaría a tocar el código MATLAB y sus capturas de pantalla (\texttt{codificado\_observador.png}), que quedarían desincronizadas. \textbf{Sugerencia para evaluar:} decidir primero qué señal entra físicamente al observador (¿$T_m^{*\prime}$ o $T_m^{*}$?) y luego unificar texto + código + figuras en una sola pasada coherente.
+
+\subsection*{ID 25 --- Ángulo de torque del rotor \evaluar}
+Tres diferencias con la consigna (sección 3.6 de la guía) en el bloque del ángulo $\delta(t)$ de 5.1.6:
+\begin{enumerate}
+  \item \textbf{Nombre:} la guía lo llama «ángulo de \emph{torque} del rotor»; el informe lo llama «Ángulo de \emph{Carga}». (Son sinónimos técnicos --- \emph{load angle} --- pero la guía pide consistencia.)
+  \item \textbf{Errata en la ecuación:} el informe escribe $\delta(t) = \int_0^t[\omega_e-\omega_r]d\xi + [\theta_e(0)-\theta_r(0)]$; el término inicial debería ser $\theta_{ev}(0)$, no $\theta_e(0)$ (el subíndice $e$ a secas no está definido).
+  \item \textbf{Interpretación faltante:} la guía pide enunciar que el rotor queda «atrasado» en modos de motorización y «adelantado» en modos de frenado regenerativo. Esa lectura física no aparece en el informe.
+\end{enumerate}
+
+\subsection*{Frontera con el observador: $T_l$ vs.\ $T_{ld}$ \evaluar}
+El modelo mecánico del observador usa $T_l(t)/r$ como perturbación residual, mientras que la planta equivalente del controlador externo, tras la compensación de gravedad del \emph{precomputed torque}, usa $T_{ld}(t)/r$. Dado que $T_l = g\,k_l\sin(\theta_l)+T_{ld}$ (guía, Ec.~2), si la gravedad ya está compensada el residuo coherente en el observador sería $T_{ld}/r$. \textbf{No se modificó} por estar en la zona delicada del ID~22 (qué señal entra al observador); conviene decidirlo junto con la unificación de los nombres de la consigna de torque.
+
+% ===================================================================
+\section{Notas técnicas}
+\begin{itemize}
+  \item $R_{s0}=1{,}058\ \Omega$ \textbf{no se eliminó}: es la resistencia congelada a la temperatura media de operación ($\approx 29{,}5\,^\circ$C) que define el modelo LTI (42 usos); es distinta de $R_{sREF}=1{,}02\ \Omega$ @ $20\,^\circ$C y está definida explícitamente en el texto. Solo se corrigió su uso indebido dentro de la ley física de variación térmica (ID 10).
+  \item Los \emph{listings} de MATLAB no se modificaron (los nombres \texttt{lambda\_m}, \texttt{i\_ds}, etc.\ son variables del código, no símbolos del informe), salvo la nota de correspondencia del ID 23.
+  \item En la presentación se replicaron todos los cambios aplicables (mismos IDs), manteniendo el espejo informe$\leftrightarrow$presentación.
+  \item Tipografía menor pendiente de unificar: la sección del controlador externo usa punto decimal ($0.0396$, $31.656$, $0.75$) mientras buena parte del informe usa coma decimal ($0{,}75$).
+  \item Archivos de respaldo en el directorio del proyecto: \texttt{main\_backup2.tex} y \texttt{main\_presentacion\_backup2.tex} (estado previo al lote principal), y \texttt{aux\_main\_anterior.tex} (\textbf{versión del informe subida por el compañero}, punto de partida de toda esta comparación).
+\end{itemize}
+
+\end{document}
