@@ -1527,15 +1527,15 @@ La posición angular crece como rampa durante los pulsos de tensión, consecuenc
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{imagenes/sim_theta_m_error.png}
-    \caption{Error de seguimiento en $\theta_m(t)$. Panel inferior: diferencia $\theta_m^{NL}-\theta_m^{LTI}$, acotada por debajo de $0{,}21$~rad ($<0{,}1\%$ de la excursión de $242$~rad).}
+    \caption{Error de seguimiento en $\theta_m(t)$: diferencia $\theta_m^{NL}-\theta_m^{LTI}$, acotada por debajo de $0{,}1$~rad ($<0{,}05\%$ de la excursión de $242$~rad).}
     \label{fig:sim_theta_m_error}
 \end{figure}
 
-El error de seguimiento se mantiene acotado por debajo de $0{,}21$~rad durante todo el ensayo. A diferencia de las demás variables, este error no se anula en régimen permanente sino que exhibe una deriva lenta y acumulativa: dado que $\theta_m$ es la integral de $\omega_m$, el integrador acumula las pequeñas discrepancias instantáneas de velocidad entre ambos modelos, dando lugar a un offset residual de $\approx 0{,}05$~rad al finalizar el ensayo. Este comportamiento es inherente a la presencia del integrador puro en la planta y no constituye un error de modelado.
+El error de seguimiento se mantiene acotado por debajo de $0{,}1$~rad durante todo el ensayo. A diferencia de las demás variables, este error no se anula en régimen permanente sino que exhibe una deriva lenta y acumulativa: dado que $\theta_m$ es la integral de $\omega_m$, el integrador acumula las pequeñas discrepancias instantáneas de velocidad entre ambos modelos, dando lugar a un offset residual de $\approx 0{,}085$~rad al finalizar el ensayo. Este comportamiento es inherente a la presencia del integrador puro en la planta y no constituye un error de modelado.
 
 \textbf{Velocidad angular $\omega_m(t)$.}
 
-La velocidad está gobernada por el \textbf{modo electromecánico subamortiguado} del sistema (par de polos complejos $\lambda_{2,3} = -91{,}7 \pm j148$, $\zeta = 0{,}527$, $\omega_n = 174$~rad/s, hallado en el análisis de estabilidad a lazo abierto). Ante el escalón de $v_{qs}^{r*}$, $\omega_m$ acelera hasta su \textbf{velocidad de vacío} ($\approx +405$~rad/s para $+19{,}6$~V, valor en que la fuerza contraelectromotriz $\lambda'^r_m P_p \omega_m$ equilibra la tensión aplicada), inferior al límite nominal del motor $\omega_{m,nom}=691{,}15$~rad/s, \textbf{con un sobrepico de $\approx 14\%$} propio del amortiguamiento $\zeta = 0{,}527$ y un tiempo de establecimiento ($\pm 1\%$) de $\approx 50$~ms. No domina la constante mecánica $\tau_m = J_{eq}/b_{eq} \approx 0{,}90$~s: la realimentación electromagnética (fuerza contraelectromotriz más torque) fusiona los modos eléctrico y mecánico en una resonancia rápida ($\tau \approx 11$~ms). Durante el pulso negativo ($1{,}1$--$1{,}7$~s) la respuesta es simétrica ($\approx -405$~rad/s). La concordancia NL--LTI es excelente: el error (Fig.~\ref{fig:sim_omega_m_error}) es prácticamente nulo en régimen permanente ($<0{,}5$~rad/s) y solo presenta picos $\leq 9$~rad/s en las conmutaciones, que se extinguen en milisegundos.
+La velocidad está gobernada por el \textbf{modo electromecánico subamortiguado} del sistema (par de polos complejos $\lambda_{2,3} = -91{,}7 \pm j148$, $\zeta = 0{,}527$, $\omega_n = 174$~rad/s, hallado en el análisis de estabilidad a lazo abierto). Ante el escalón de $v_{qs}^{r*}$, $\omega_m$ acelera hasta su \textbf{velocidad de vacío} ($\approx +405$~rad/s para $+19{,}6$~V, valor en que la fuerza contraelectromotriz $\lambda'^r_m P_p \omega_m$ equilibra la tensión aplicada), inferior al límite nominal del motor $\omega_{m,nom}=691{,}15$~rad/s, \textbf{con un sobrepico de $\approx 14\%$} propio del amortiguamiento $\zeta = 0{,}527$ y un tiempo de establecimiento ($\pm 1\%$) de $\approx 50$~ms. No domina la constante mecánica $\tau_m = J_{eq}/b_{eq} \approx 0{,}90$~s: la realimentación electromagnética (fuerza contraelectromotriz más torque) fusiona los modos eléctrico y mecánico en una resonancia rápida ($\tau \approx 11$~ms). Durante el pulso negativo ($1{,}1$--$1{,}7$~s) la respuesta es simétrica ($\approx -405$~rad/s). La concordancia NL--LTI es excelente: el error (Fig.~\ref{fig:sim_omega_m_error}) es prácticamente nulo en régimen permanente ($<0{,}5$~rad/s) y solo presenta picos $\leq 3$~rad/s en las conmutaciones, que se extinguen en milisegundos.
 
 \begin{figure}[H]
     \centering
@@ -1547,13 +1547,13 @@ La velocidad está gobernada por el \textbf{modo electromecánico subamortiguado
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{imagenes/sim_omega_m_error.png}
-    \caption{Error de seguimiento en $\omega_m(t)$. Panel inferior: diferencia $\omega_m^{NL}-\omega_m^{LTI}$, nula en régimen y con picos $\leq 9$~rad/s únicamente en las conmutaciones.}
+    \caption{Error de seguimiento en $\omega_m(t)$: diferencia $\omega_m^{NL}-\omega_m^{LTI}$, nula en régimen y con picos $\leq 3$~rad/s únicamente en las conmutaciones.}
     \label{fig:sim_omega_m_error}
 \end{figure}
 
 \textbf{Corriente $i_{qs}^r(t)$.}
 
-Ante el escalón de $v_{qs}^{r*}$, $i_{qs}^r$ \textbf{no se establece en} $v_{qs}^{r*}/R_{s0}$: es un \textbf{pico de torque transitorio} ($\approx \pm 10{,}4$~A) que decae hasta un valor de régimen pequeño ($\approx 0{,}1$~A) a medida que $\omega_m$ crece y la fuerza contraelectromotriz $\lambda'^r_m P_p \omega_m$ equilibra la tensión (en vacío la corriente solo debe vencer la fricción $b_{eq}\omega_m$). El pico de $\approx \pm 10{,}4$~A es el valor relevante frente a la corriente máxima del motor ($I_{s,\max} = 2$~A rms), que este ensayo a lazo abierto supera ampliamente. Ambos modelos se solapan casi perfectamente: el error (Fig.~\ref{fig:sim_iqs_error}) es nulo en régimen y presenta picos $\leq 0{,}26$~A solo en las conmutaciones, confirmando que las leyes de control NL linealizan efectivamente el sistema. Dado que para $i_{ds}^r = 0$ el torque electromagnético se reduce a $T_m = k_t \cdot i_{qs}^r$ (con $k_t = \tfrac{3}{2} P_p \lambda'^r_m$), la forma de onda de $T_m(t)$ es proporcional a $i_{qs}^r(t)$.
+Ante el escalón de $v_{qs}^{r*}$, $i_{qs}^r$ \textbf{no se establece en} $v_{qs}^{r*}/R_{s0}$: es un \textbf{pico de torque transitorio} ($\approx \pm 10{,}4$~A) que decae hasta un valor de régimen pequeño ($\approx 0{,}1$~A) a medida que $\omega_m$ crece y la fuerza contraelectromotriz $\lambda'^r_m P_p \omega_m$ equilibra la tensión (en vacío la corriente solo debe vencer la fricción $b_{eq}\omega_m$). El pico de $\approx \pm 10{,}4$~A es el valor relevante frente a la corriente máxima del motor ($I_{s,\max} = 2$~A rms), que este ensayo a lazo abierto supera ampliamente. Ambos modelos se solapan casi perfectamente: el error (Fig.~\ref{fig:sim_iqs_error}) es nulo en régimen y presenta picos $\leq 0{,}1$~A solo en las conmutaciones, confirmando que las leyes de control NL linealizan efectivamente el sistema. Dado que para $i_{ds}^r = 0$ el torque electromagnético se reduce a $T_m = k_t \cdot i_{qs}^r$ (con $k_t = \tfrac{3}{2} P_p \lambda'^r_m$), la forma de onda de $T_m(t)$ es proporcional a $i_{qs}^r(t)$.
 
 \begin{figure}[H]
     \centering
@@ -1565,7 +1565,7 @@ Ante el escalón de $v_{qs}^{r*}$, $i_{qs}^r$ \textbf{no se establece en} $v_{qs
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{imagenes/sim_iqs_error.png}
-    \caption{Error de seguimiento en $i_{qs}^r(t)$. Panel inferior: diferencia $i_{qs}^{NL}-i_{qs}^{LTI}$, nula en régimen y con picos $\leq 0{,}26$~A únicamente en las conmutaciones.}
+    \caption{Error de seguimiento en $i_{qs}^r(t)$: diferencia $i_{qs}^{NL}-i_{qs}^{LTI}$, nula en régimen y con picos $\leq 0{,}1$~A únicamente en las conmutaciones.}
     \label{fig:sim_iqs_error}
 \end{figure}
 
@@ -1603,6 +1603,15 @@ La ley de control mínima impone internamente la tensión $v_{ds} = -L_q \, i_{q
 \end{figure}
 
 Las formas de onda resultantes son sinusoidales moduladas en amplitud, con frecuencia eléctrica $\omega_e = P_p \cdot \omega_m$ proporcional a la velocidad del rotor. Cuando $\omega_m = 0$ (antes de $t = 0{,}1$~s y en los intervalos de velocidad nula), las corrientes $abc$ son constantes (frecuencia eléctrica nula). A medida que el motor acelera, la frecuencia de las oscilaciones crece proporcionalmente.
+
+Mediante la misma Transformación Inversa de Park se obtienen las tensiones de fase aplicadas al estator por el inversor. La Fig.~\ref{fig:sim_tensiones_abc} las presenta, respetando el mismo código de colores por fase utilizado en las corrientes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/sim_tensiones_abc.png}
+    \caption{Tensiones de fase $v_a$, $v_b$, $v_c$ aplicadas al estator (modelo NL, $i_{ds}^r(0)=0$~A), con el mismo código de colores por fase que las corrientes.}
+    \label{fig:sim_tensiones_abc}
+\end{figure}
 
 \textbf{Curva paramétrica: torque vs velocidad (cuadrantes de operación).}
 

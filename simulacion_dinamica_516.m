@@ -422,24 +422,22 @@ lgd = legend('Location', 'eastoutside', 'FontSize', 8.5, 'Box', 'on');
 title(lgd, 'Transitorios y Referencias', 'FontSize', 9);
 exportgraphics(fig8, 'imagenes/sim_torque_vs_velocidad.png', 'Resolution', 150);
 
-% --- Figura 8b: Trayectoria en Plano de Corrientes (3 casos en paneles separados) ---
+% --- Figura 8b: Trayectoria en Plano de Corrientes (3 casos superpuestos) ---
 fig8b = figure('Name', 'Plano de Corrientes i_ds vs i_qs', 'Color', 'w', ...
-    'Position', [200 40 700 850]);
-
+    'Position', [200 100 900 400]);
+hold on; grid on; grid minor; box on;
 for k = 1:3
-    subplot(3,1,k); hold on; grid on; box on;
-    plot(res_nl{k}(:,3), res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.4);
+    plot(res_nl{k}(:,3), res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.6);
     plot(res_nl{k}(1,3), res_nl{k}(1,4), 'o', 'Color', case_colors{k}, ...
-        'MarkerSize', 9, 'MarkerFaceColor', case_colors{k}, 'HandleVisibility', 'off');
-    xline(0, 'k--', 'HandleVisibility', 'off'); yline(0, 'k--', 'HandleVisibility', 'off');
-    ylabel('i_{ds} [A]', 'FontSize', 11);
-    title(case_names{k}, 'FontSize', 12, 'FontWeight', 'bold');
-    ylim([-0.6 0.6]);   % i_ds es chico: fijamos escala comun para apreciar el decaimiento
+        'MarkerSize', 8, 'MarkerFaceColor', case_colors{k}, 'HandleVisibility', 'off');
 end
-xlabel('i_{qs} [A]', 'FontSize', 12);   % solo en el panel inferior
-sgtitle('Trayectoria en Plano de Corrientes (i_{ds} vs i_{qs}) - Modelo NL', ...
-    'FontSize', 13, 'FontWeight', 'bold');
-exportgraphics(fig8b, 'imagenes/sim_ids_vs_iqs.png', 'Resolution', 150);
+xline(0, 'k--', 'HandleVisibility', 'off'); yline(0, 'k--', 'HandleVisibility', 'off');
+ylabel('i_{ds}^r [A]', 'FontSize', 14); xlabel('i_{qs}^r [A]', 'FontSize', 14);
+title('Plano de corrientes i_{ds}^r vs i_{qs}^r - Modelo NL', 'FontSize', 15, 'FontWeight', 'bold');
+legend(case_names, 'FontSize', 11, 'Location', 'northeast');
+set(gca, 'FontSize', 13, 'GridAlpha', 0.3, 'MinorGridAlpha', 0.1);
+ylim([-0.6 0.6]);   % i_ds es chico: fijamos escala comun para apreciar el decaimiento
+exportgraphics(fig8b, 'imagenes/sim_ids_vs_iqs.png', 'Resolution', 300);
 
 % --- Figura 9: Ángulo de torque del rotor ---
 fig9 = figure('Name', 'Ángulo de Torque', 'Color', 'w', 'Position', [400 100 900 400]);
@@ -550,13 +548,14 @@ fprintf('\n=== SECCIÓN (c): EFECTO DE i_ds(0) ===\n');
 
 % --- Figura 10a: i_ds(t) modelo NL - 3 condiciones iniciales ---
 fig10a = figure('Name', 'i_ds NL - 3 casos', 'Color', 'w', 'Position', [450 100 900 400]);
-hold on; grid on; box on;
+hold on; grid on; grid minor; box on;
 for k = 1:3
-    plot(t_sim, res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.5);
+    plot(t_sim, res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.6);
 end
-ylabel('i_{ds}^r [A]', 'FontSize', 12); xlabel('Tiempo [s]', 'FontSize', 12);
-title('Corriente i_{ds}^r(t) - Modelo NL: efecto de la condición inicial', 'FontSize', 13, 'FontWeight', 'bold');
-legend(case_names, 'Location', 'northeast');
+ylabel('i_{ds}^r [A]', 'FontSize', 14); xlabel('Tiempo [s]', 'FontSize', 14);
+title('Corriente i_{ds}^r(t) - Modelo NL: efecto de la condición inicial', 'FontSize', 15, 'FontWeight', 'bold');
+legend(case_names, 'FontSize', 11, 'Location', 'northeast');
+set(gca, 'FontSize', 13, 'GridAlpha', 0.3, 'MinorGridAlpha', 0.1);
 xlim([0 0.1]);  % Zoom a los primeros 100 ms donde ocurre el decaimiento
 
 exportgraphics(fig10a, 'imagenes/sim_ids_NL_3casos.png', 'Resolution', 300);
@@ -564,13 +563,14 @@ fprintf('   -> Exportada: imagenes/sim_ids_NL_3casos.png\n');
 
 % --- Figura 10b: i_ds(t) modelo LTI - 3 condiciones iniciales ---
 fig10b = figure('Name', 'i_ds LTI - 3 casos', 'Color', 'w', 'Position', [500 100 900 400]);
-hold on; grid on; box on;
+hold on; grid on; grid minor; box on;
 for k = 1:3
-    plot(t_sim, res_lti{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.5);
+    plot(t_sim, res_lti{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.6);
 end
-ylabel('i_{ds}^r [A]', 'FontSize', 12); xlabel('Tiempo [s]', 'FontSize', 12);
-title('Corriente i_{ds}^r(t) - Modelo LTI: efecto de la condición inicial', 'FontSize', 13, 'FontWeight', 'bold');
-legend(case_names, 'Location', 'northeast');
+ylabel('i_{ds}^r [A]', 'FontSize', 14); xlabel('Tiempo [s]', 'FontSize', 14);
+title('Corriente i_{ds}^r(t) - Modelo LTI: efecto de la condición inicial', 'FontSize', 15, 'FontWeight', 'bold');
+legend(case_names, 'FontSize', 11, 'Location', 'northeast');
+set(gca, 'FontSize', 13, 'GridAlpha', 0.3, 'MinorGridAlpha', 0.1);
 xlim([0 0.1]);  % Zoom a los primeros 100 ms
 
 exportgraphics(fig10b, 'imagenes/sim_ids_LTI_3casos.png', 'Resolution', 300);
@@ -634,26 +634,25 @@ for j = 1:2
 end
 
 % --- Figura 11: Field Forcing/Weakening - i_ds (gráfico principal para informe) ---
-fig11 = figure('Name', 'Field Forcing/Weakening - i_ds', 'Color', 'w', 'Position', [500 50 900 450]);
-hold on; grid on; box on;
+fig11 = figure('Name', 'Field Forcing/Weakening - i_ds', 'Color', 'w', 'Position', [500 100 900 400]);
+hold on; grid on; grid minor; box on;
 
 % Caso base NL (sin v_ds*)
-plot(t_sim, res_nl{1}(:,4), 'k-', 'LineWidth', 1.5, 'DisplayName', 'Base NL (v_{ds}^*=0)');
+plot(t_sim, res_nl{1}(:,4), 'k-', 'LineWidth', 1.6, 'DisplayName', 'Base NL (v_{ds}^*=0)');
 plot(t_sim, res_lti{1}(:,4), 'k--', 'LineWidth', 1.2, 'DisplayName', 'Base LTI');
 
 % Field forcing NL y LTI
-plot(t_sim, res_ff{1}(:,4), 'r-', 'LineWidth', 1.5, 'DisplayName', 'FF NL (v_{ds}^*=+1.96V)');
+plot(t_sim, res_ff{1}(:,4), 'r-', 'LineWidth', 1.6, 'DisplayName', 'FF NL (v_{ds}^*=+1.96V)');
 plot(t_sim, res_ff_lti{1}(:,4), 'r--', 'LineWidth', 1.2, 'DisplayName', 'FF LTI');
 
 % Field weakening NL y LTI
-plot(t_sim, res_ff{2}(:,4), 'b-', 'LineWidth', 1.5, 'DisplayName', 'FW NL (v_{ds}^*=-1.96V)');
+plot(t_sim, res_ff{2}(:,4), 'b-', 'LineWidth', 1.6, 'DisplayName', 'FW NL (v_{ds}^*=-1.96V)');
 plot(t_sim, res_ff_lti{2}(:,4), 'b--', 'LineWidth', 1.2, 'DisplayName', 'FW LTI');
 
-ylabel('i_{ds}^r [A]', 'FontSize', 12); xlabel('Tiempo [s]', 'FontSize', 12);
-title({'Field Forcing / Weakening: efecto sobre i_{ds}^r(t)'; ...
-       'Comparación Modelo NL vs LTI (i_{ds}^r(0) = 0 A)'}, ...
-    'FontSize', 13, 'FontWeight', 'bold');
-legend('Location', 'best', 'FontSize', 9);
+ylabel('i_{ds}^r [A]', 'FontSize', 14); xlabel('Tiempo [s]', 'FontSize', 14);
+title('Field forcing / weakening: efecto sobre i_{ds}^r(t)', 'FontSize', 15, 'FontWeight', 'bold');
+legend('Location', 'best', 'FontSize', 10);
+set(gca, 'FontSize', 13, 'GridAlpha', 0.3, 'MinorGridAlpha', 0.1);
 xlim([0 t_final]);
 
 exportgraphics(fig11, 'imagenes/sim_ff_ids.png', 'Resolution', 300);
