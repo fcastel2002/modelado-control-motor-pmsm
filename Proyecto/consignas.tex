@@ -1,0 +1,349 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{amsmath, amssymb, amsfonts, bm}
+\usepackage{geometry}
+\geometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\begin{document}
+
+% --- ENCABEZADO ---
+\noindent\textbf{UNCUYO-Ingeniería Mecatrónica}\\
+Mendoza - Argentina\\
+Espacio Curricular 311: AUTOMÁTICA Y MÁQUINAS ELÉCTRICAS\\
+PROYECTO GLOBAL INTEGRADOR (2025): Guía de Trabajo y Especificaciones\\
+Prof. Titular: Ing. Gabriel L. Julián\\
+Rev.0: 18/02/2026\\[1.5em]
+
+% --- TÍTULO ---
+\begin{center}
+    \Large\textbf{Proyecto Global Integrador: Guía de Trabajo}\\[0.5em]
+    \LARGE\textbf{Control de Accionamiento de CA con\\ Motor Sincrónico de Imanes Permanentes}
+\end{center}
+\vspace{1em}
+
+% --- SECCIÓN 1 ---
+\section{Objetivo y Alcances}
+Proyecto didáctico, con el objetivo de integrar los conocimientos y competencias fundamentales del Espacio Curricular ``Automática y Máquinas Eléctricas'' en una aplicación mecatrónica concreta, a partir de especificaciones de requisitos simplificadas.
+
+Modelado, simulación, diseño y análisis de desempeño de un Sistema de Control Automático de Posición y Movimientos para un Accionamiento Eléctrico de 4 cuadrantes, compuesto por: 1 máquina eléctrica de corriente alterna (CA) trifásica sincrónica con excitación por imanes permanentes (PMSM), alimentada por 1 inversor electrónico trifásico desde fuente de tensión continua (CC); 1 reductor de velocidad con engranajes planetarios conectado a la carga mecánica; retroalimentación con 1 sensor de posición en el eje del motor más 3 sensores de corriente instantánea de fases en la salida del inversor trifásico hacia el estator de la máquina PMSM y 1 sensor de temperatura en el bobinado de estator de la máquina PMSM.
+
+% --- SECCIÓN 2 ---
+\section{Lineamientos generales}
+\begin{itemize}
+    \item Trabajo colaborativo en equipo de dos (2) alumnos; ambos deben dominar el proyecto completo.
+    \item Modelado, simulación, análisis y diseño (Matlab/Simulink). Respetar la nomenclatura indicada.
+    \item El contenido del trabajo debe ser producción propia y original, basada en la revisión e integración de los conocimientos y competencias adquiridos (no debe ser copia ni adaptación, total o parcial, de otro trabajo); debe cumplir con todos los requisitos y especificaciones indicados en esta Guía de Trabajo.
+    \item Horario de Consulta semanal en días y horarios habituales durante el ciclo académico, con suficiente anticipación, para consultar todas las dudas y mostrar avances del trabajo.
+    \item Presentación de Informe Técnico escrito, completo y breve, cumpliendo con todo lo pedido en esta Guía de Trabajo e incluyendo: Resumen. Introducción. Desarrollo: modelado y esquemas conceptuales; análisis; diseño e implementación; simulación; resultados. Conclusiones. Referencias. Anexos. (Ver documentos complementarios de referencia: Guía para preparar Informe Técnico y Plantilla.)
+    \item Exposición oral presencial y demostración mediante:
+    \begin{itemize}
+        \item Coloquio basado en el Proyecto (con anterioridad, al menos una semana antes del Examen).
+        \item Presentación en Mesa de Examen Final, Ordinaria o Especial (ver Calendario Académico).
+    \end{itemize}
+\end{itemize}
+\textbf{Plazo de presentación final:} Hasta Junio de 2026 (fecha a coordinar), si desean cursar 317 AyCD en 2026. Nota: para fechas posteriores, utilizar la última versión vigente de esta Guía de Trabajo.
+
+% --- SECCIÓN 3 ---
+\section{Especificaciones del Sistema Físico (Accionamiento) a controlar y su Modelado Dinámico}
+\textbf{Convención de signos y sentidos de torque electromagnético y velocidad angular de rotor:} iguales (++ o --) $\rightarrow$ motorización (cuadrantes I y III); opuestos (+- o -+) $\rightarrow$ frenado regenerativo (cuadrantes II y IV).
+
+\textbf{Componentes:} los componentes físicos del accionamiento se especifican a continuación (modelos dinámicos básicos equivalentes de parámetros concentrados y especificaciones de operación).
+
+\subsection*{Carga mecánica}
+Aplicación mecatrónica simplificada (adaptada de [1]): control de movimiento de un eje (control descentralizado) para la articulación de un brazo manipulador robótico elemental (péndulo rígido actuado) con un solo grado de libertad (1 g.d.l.), eje de rotación horizontal fijo a la base en un sistema de referencia inercial; sometido a la acción externa de la aceleración de gravedad $g$ (perturbación externa vertical constante), esquematizado en la Figura 1; con parámetros equivalentes variables según sea la carga útil transportada en el extremo (ver Ec. 1.1).
+
+\begin{figure}[H]
+    \centering
+    % Placeholder para la imagen del robot manipulador
+    \fbox{\rule{0pt}{3cm} \rule{0.8\textwidth}{0pt}}
+    \caption{Robot manipulador elemental de 1 g.d.l. en plano vertical (péndulo rígido actuado) [1].}
+\end{figure}
+
+Modelo simplificado equivalente (No Lineal con parámetros variables), referido al eje de salida del tren de transmisión: coordenada articular del eje de la articulación $q(t) \equiv \theta_{l}(t)$ referida al eje vertical hacia abajo (punto de equilibrio estable), positiva en sentido antihorario; torque impulsor $\tau(t) \equiv T_{q}(t)$; perturbación externa: aceleración de gravedad, vertical constante hacia abajo $g = 9.80665 \text{ m/s}^2$.
+
+\begin{equation}
+J_{l} \cdot \frac{d\omega_{l}(t)}{dt} = T_{q}(t) - b_{l} \cdot \omega_{l}(t) - T_{l}(t); \quad \text{donde } T_{l}(t) = g \cdot k_l \cdot \sin(\theta_{l}(t)) + T_{ld}(t) \tag{Ec. 1.1}
+\end{equation}
+
+\begin{equation}
+\frac{d\theta_{l}(t)}{dt} \equiv \omega_{l}(t) \Leftrightarrow \theta_{l}(t) = \int_{t_{0}}^{t} \omega_{l}(\xi) \, d\xi + \theta_{l}(t_{0}) \tag{Ec. 1.2}
+\end{equation}
+
+\textbf{Parámetros equivalentes variables (valor nominal \(\pm\) variación máx.):}
+\begin{itemize}
+    \item Coeficiente de fricción viscosa en la articulación: $b_{l} \approx (0.1 \pm 0.03) \frac{\text{N.m}}{\text{rad/s}}$ (incertidumbre)
+    \item Masa del brazo manipulador: $m = 1.0 \text{ kg}$
+    \item Longitud e Inercia equivalente (centro de masa): $l_{cm} = 0.25 \text{ m}$; $J_{cm} = 0.0208 \text{ kg.m}^2$
+    \item Longitud total (extremo): $l_{l} = 0.50 \text{ m}$
+    \item Masa de Carga útil en extremo (variable): $m_{l} = [0 \dots 1.5] \text{ kg}$ (no conocida a priori)
+    \item Momento de inercia total (a eje de rotación): $J_l = (m \cdot l_{cm}^2 + J_{cm}) + m_{l} \cdot l_{l}^2 = 0.0833 + [0 \dots 0.375] \text{ kg.m}^2$
+    \item Coeficiente $k_{l}$ en Torque de carga $T_{l}(t)$, Ec. 1.1: $k_{l} = m \cdot l_{cm} + m_{l} \cdot l_{l} = 0.25 + [0 \dots 0.75] \text{ kg.m}$
+\end{itemize}
+
+\textbf{Especificaciones de operación (carga o perturbación adicional, por ejemplo contacto, valor límite):}
+\begin{itemize}
+    \item Torque de perturbación por contacto: $T_{ld}(t) \approx (0 \pm 5.0) \text{ N.m}$ (asumir función escalón)
+\end{itemize}
+
+\subsection*{Tren de Transmisión}
+Caja reductora reversible con sistema de engranajes planetarios, asumiendo acoplamiento rígido (sin elasticidad torsional ni juego, holgura o ``backlash''); momento de inercia equivalente y pérdidas de energía por fricción interna, reflejados al eje de entrada y considerados junto al motor, parte de $J_{m}$ y $b_{m}$ (Ec. 3.1).
+
+Modelo equivalente (rígido):
+\begin{equation}
+\omega_{l}(t) = \frac{1}{r} \cdot \omega_{m}(t) \quad ; \quad T_{q}(t) = r \cdot T_{d}(t) \tag{Ec. 2.1/2.2}
+\end{equation}
+
+\textbf{Parámetro (constante):}
+\begin{itemize}
+    \item Relación de reducción total: $r = 120.0 : 1$
+\end{itemize}
+
+\textbf{Especificaciones de operación (valores límite, no sobrepasar):}
+\begin{itemize}
+    \item Velocidad nominal (salida): $n_{l \text{ nom}} = 60 \text{ rpm } (\omega_{l \text{ nom}} = 6.28 \text{ rad/s})$
+    \item Torque nominal (salida): $T_{q \text{ nom}} = 17.0 \text{ N.m}$ (régimen continuo o rms)
+    \item Torque pico (salida): $T_{q \text{ max}} = 45.0 \text{ N.m}$ (corta duración, aceleración)
+\end{itemize}
+
+\subsection*{Máquina Eléctrica PMSM}
+Máquina eléctrica de CA trifásica sincrónica con excitación por imanes permanentes (PMSM); con estator simétrico y equilibrado, con bobinas de fases $abc$ (coordenadas reales y ``estacionarias'') conectadas externamente en estrella (Y), con centro de estrella O (punto ``neutro'') flotante (no accesible) y bornes de línea ABC accesibles desde el inversor electrónico trifásico.
+
+\textbf{Subsistema mecánico (Rotor, referido a Estator estacionario = fijo al sistema inercial de referencia):}
+Modelo equivalente:
+\begin{equation}
+J_{m} \cdot \frac{d\omega_{m}(t)}{dt} = T_{m}(t) - b_{m} \cdot \omega_{m}(t) - T_{d}(t) \tag{Ec. 3.1}
+\end{equation}
+\begin{equation}
+\frac{d\theta_{m}(t)}{dt} \equiv \omega_{m}(t) \Leftrightarrow \theta_{m}(t) = \int_{t_o}^{t} \omega_{m}(\xi) \, d\xi + \theta_{m}(t_{0}) \tag{Ec. 3.2}
+\end{equation}
+
+\textbf{Subsistema electromagnético (modelo idealizado equivalente en coordenadas electromagnéticas de rotor $qd0$ ``fijas'' al rotor, aplicando la Transformación de Park al circuito de estator estacionario [2]):}
+
+Coordenadas electromagnéticas de rotor $qd0^r$ (marco de referencia virtual eléctrico de rotor, ``sincrónico'' solo en régimen estacionario, difiere en transitorios según varíe la carga, ver Ec. 4.5):
+\begin{equation}
+\frac{d\theta_{r}(t)}{dt} \equiv \omega_{r}(t) \Leftrightarrow \theta_{r}(t) = \int_{t_o}^{t} \omega_{r}(\xi) \, d\xi + \theta_{r}(t_{0}) \tag{Ec. 3.3}
+\end{equation}
+\begin{equation}
+\theta_{r}(t) \equiv P_p \cdot \theta_{m}(t) \quad ; \quad \omega_{r}(t) = P_p \cdot \omega_{m}(t) \tag{Ec. 3.4}
+\end{equation}
+
+Torque de interacción electromagnética rotor - estator = torque debido a imanes + torque de reluctancia:
+\begin{equation}
+T_{m}(t) = \frac{3}{2} \cdot P_p \cdot \lambda_{m}^{\prime r} \cdot i_{qs}^{r}(t) + \frac{3}{2} \cdot P_p \cdot (L_d - L_q) \cdot i_{ds}^{r}(t) \cdot i_{qs}^{r}(t) \tag{Ec. 3.5}
+\end{equation}
+
+\textbf{Transformación de Park:} (forma invariante en módulo de resultante vectorial de variables base $f$)
+\begin{enumerate}[label=\alph*)]
+    \item Transformación de Park Directa:\\
+    coordenadas trifásicas de fase estator (reales, ``estacionarias''): $f_{abcs}(t) \rightarrow$ coordenadas $qd0$ fijas a rotor (virtuales, rotativas ``eléctricas''): $f_{qd0s}^{r}(t)$
+    \begin{equation*}
+    \begin{bmatrix}
+    f_{qs}^r(t) \\
+    f_{ds}^r(t) \\
+    f_{0s}(t)
+    \end{bmatrix}
+    = \frac{2}{3}
+    \begin{bmatrix}
+    \cos\theta_r(t) & \cos(\theta_r(t)-\frac{2\pi}{3}) & \cos(\theta_r(t)+\frac{2\pi}{3}) \\
+    \sin\theta_r(t) & \sin(\theta_r(t)-\frac{2\pi}{3}) & \sin(\theta_r(t)+\frac{2\pi}{3}) \\
+    \frac{1}{2} & \frac{1}{2} & \frac{1}{2}
+    \end{bmatrix}
+    \begin{bmatrix}
+    f_{as}(t) \\
+    f_{bs}(t) \\
+    f_{cs}(t)
+    \end{bmatrix}
+    \end{equation*}
+
+    \item Transformación de Park Inversa: $f_{qd0s}^{r}(t) \rightarrow f_{abcs}(t)$
+    \begin{equation*}
+    \begin{bmatrix}
+    f_{as}(t) \\
+    f_{bs}(t) \\
+    f_{cs}(t)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    \cos\theta_r(t) & \sin\theta_r(t) & 1 \\
+    \cos(\theta_r(t)-\frac{2\pi}{3}) & \sin(\theta_r(t)-\frac{2\pi}{3}) & 1 \\
+    \cos(\theta_r(t)+\frac{2\pi}{3}) & \sin(\theta_r(t)+\frac{2\pi}{3}) & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    f_{qs}^r(t) \\
+    f_{ds}^r(t) \\
+    f_{0s}(t)
+    \end{bmatrix}
+    \end{equation*}
+\end{enumerate}
+
+\noindent Balance de tensiones eléctricas equivalentes de estator (referido a coordenadas $qd0^r$):
+\begin{equation}
+v_{qs}^r(t) = R_s(T_s^\circ(t)) \cdot i_{qs}^r(t) + L_q \cdot \frac{di_{qs}^r(t)}{dt} + \omega_r(t) \cdot \left[ L_d \cdot i_{ds}^r(t) + \lambda_m^{\prime r} \right] \tag{Ec. 3.6}
+\end{equation}
+\begin{equation}
+v_{ds}^r(t) = R_s(T_s^\circ(t)) \cdot i_{ds}^r(t) + L_d \cdot \frac{di_{ds}^r(t)}{dt} - L_q \cdot i_{qs}^r(t) \cdot \omega_r(t) \tag{Ec. 3.7}
+\end{equation}
+\begin{equation}
+v_{0s}(t) = R_s(T_s^\circ(t)) \cdot i_{0s}(t) + L_{ls} \cdot \frac{di_{0s}(t)}{dt} \tag{Ec. 3.8}
+\end{equation}
+\begin{equation}
+R_s(T_s^\circ(t)) = R_{sREF} \cdot (1 + \alpha_{Cu} \cdot (T_s^\circ(t) - T_{sREF}^\circ)) \tag{Ec. 3.9}
+\end{equation}
+\text{[donde $(R_{sREF}, T_{sREF}^\circ)$ punto de referencia cualquiera en la recta; $\alpha_{Cu}$ pendiente de la recta].}
+
+\textbf{Subsistema térmico} (modelo simplificado equivalente de primer orden, considerando sólo pérdidas eléctricas resistivas por efecto Joule (calor) en el bobinado de estator, despreciando pérdidas magnéticas en el núcleo; transferencia de calor al ambiente solo por conducción y convección natural, sin ventilación forzada):
+
+\begin{figure}[H]
+    \centering
+    % Placeholder para la imagen de gráfico de resistencia térmica
+    \fbox{\rule{0pt}{3cm} \rule{0.8\textwidth}{0pt}}
+    \caption{Variación de Resistencia eléctrica de bobinado vs Temperatura.}
+\end{figure}
+
+Potencia de pérdidas real abc (Joule): 
+\begin{equation}
+P_{s \text{ perd}}(t) = R_s(T_s^\circ(t)) \cdot ((i_{as}(t))^2 + (i_{bs}(t))^2 + (i_{cs}(t))^2) \tag{Ec. 3.10}
+\end{equation}
+O, equivalente virtual qd0 (para análisis):
+\begin{equation}
+P_{s \text{ perd}}(t) = R_s(T_s^\circ(t)) \cdot \frac{3}{2} \cdot \left( (i_{qs}^r(t))^2 + (i_{ds}^r(t))^2 + 2 \cdot (i_{0s}(t))^2 \right) \tag{Ec. 3.11}
+\end{equation}
+
+Balance térmico de estator:
+\begin{equation}
+P_{s \text{ perd}}(t) = C_{ts} \cdot \frac{dT_s^\circ(t)}{dt} + \frac{1}{R_{ts-amb}} \cdot (T_s^\circ(t) - T_{amb}^\circ(t)) \tag{Ec. 3.12}
+\end{equation}
+
+\textbf{Parámetros (valores nominales medidos, tolerancia error \(\pm 1\%\) salvo aclaración específica):}
+\begin{itemize}
+    \item Momento de inercia (motor y caja): $J_{m} \approx 14.0 \times 10^{-6} \text{ kg.m}^2$
+    \item Coef. de fricción viscosa (motor y caja): $b_{m} \approx 15.0 \times 10^{-6} \frac{\text{N.m}}{\text{rad/s}}$
+    \item Pares de Polos magnéticos: $P_p = 3$ pares (i.e. 6 polos)
+    \item Flujo magnético equiv. de imanes concatenado por espiras del bobinado: $\lambda_{m}^{\prime r} \approx 0.016 \text{ Wb-turn, o } \left(\frac{\text{V}}{\text{rad/s}}\right)$
+    \item Inductancia de estator (eje en cuadratura): $L_q \approx 5.8 \text{ mH}$
+    \item Inductancia de estator (eje directo): $L_d \approx 6.6 \text{ mH}$
+    \item Inductancia de dispersión de estator: $L_{ls} \approx 0.8 \text{ mH}$
+    \item Resistencia de estator, por fase (Ec. 3.9): $R_s \approx 1.02 \, \Omega = R_{sREF}$ (@ $T_{sREF}^\circ = 20^\circ\text{C}$)
+    \item Coef. aumento de $R_s$ con $T_S^\circ$ (Ec. 3.9): $\alpha_{Cu} = 3.9 \times 10^{-3} \frac{1}{^\circ\text{C}}$
+    \item Capacitancia térmica de estator: $C_{ts} \approx 0.818 \frac{\text{W}}{^\circ\text{C/s}}$ ($\rightarrow$ almacenamiento interno)
+    \item Resistencia térmica estator-ambiente: $R_{ts-amb} \approx 146.7 ^\circ\text{C/W}$ (disipación al ambiente)
+    \item \textit{Nota:} Constante de tiempo térmica: $\tau_{ts-amb} = R_{ts-amb} \cdot C_{ts} \approx 120 \text{ s}$
+\end{itemize}
+
+\textbf{Especificaciones de operación, en bornes de fases abcs de estator (valores límite, no sobrepasar):}
+\begin{itemize}
+    \item Velocidad nominal rotor: $n_{m \text{ nom}} = 6600 \text{ rpm } (\omega_{m \text{ nom}} = 691.15 \text{ rad/s})$
+    \item Tensión nominal de línea: $V_{sl \text{ nom}} = 30 \text{ V}_{\text{ca rms}}$ (tensión nominal de fase: $V_{sf \text{ nom}} = \frac{V_{sl \text{ nom}}}{\sqrt{3}}$)
+    \item Corriente nominal: $I_{s \text{ nom}} = 0.4 \text{ A}_{\text{ca rms}}$ (régimen continuo)
+    \item Corriente máxima: $I_{s \text{ max}} = 2.0 \text{ A}_{\text{ca rms}}$ (corta duración, aceleración)
+    \item Temperatura máxima de bobinado estator: $T_{s \text{ max}}^\circ = 115^\circ\text{C}$
+    \item Rango de temperatura ambiente de operación: $-15^\circ\text{C} \le T_{amb}^\circ(t) \le 40^\circ\text{C}$ (perturbación)
+\end{itemize}
+
+\subsection*{Inversor Electrónico trifásico de alimentación (modulador de tensión)}
+Inversor trifásico de 4 cuadrantes (regenerativo), consistente en un puente trifásico con llaves electrónicas semiconductoras (ej. transistores de potencia MOSFETs ó IGBTs) alimentado desde una fuente de CC de tensión constante, conmutado con modulación de ancho de pulso, PWM.
+
+\textbf{Modelo instantáneo promediado equivalente de tensiones sintetizadas de salida} (componente fundamental, sin armónicos): sistema trifásico de tensiones de fase en bornes de fase de estator, senoidales de secuencia positiva abc, equilibrado o balanceado, variable en Módulo $V_{sl}(t)$ y Frecuencia $\omega_e(t)$:
+\begin{align}
+v_{as}(t) &\cong \sqrt{2} \cdot \frac{V_{sl}(t)}{\sqrt{3}} \cdot \cos(\theta_{ev}(t)) \tag{Ec. 4.1} \\
+v_{bs}(t) &\cong \sqrt{2} \cdot \frac{V_{sl}(t)}{\sqrt{3}} \cdot \cos\left(\theta_{ev}(t) - \frac{2\pi}{3}\right) \tag{Ec. 4.2} \\
+v_{cs}(t) &\cong \sqrt{2} \cdot \frac{V_{sl}(t)}{\sqrt{3}} \cdot \cos\left(\theta_{ev}(t) + \frac{2\pi}{3}\right) \tag{Ec. 4.3}
+\end{align}
+\begin{equation}
+\omega_e(t) \equiv 2\pi \cdot f_e(t) \equiv \frac{d\theta_{ev}(t)}{dt} \Leftrightarrow \theta_{ev}(t) = \int_{t_o}^t \omega_e(\xi) \, d\xi + \theta_{ev}(t_0) \tag{Ec. 4.4}
+\end{equation}
+
+\textbf{Parámetros variables:}
+$V_{sl}(t)$ y $\omega_e(t) \equiv 2\pi \cdot f_e(t)$ pueden variarse a voluntad (dentro de ciertos límites) mediante el control vectorial con modulación PWM.
+
+\textbf{Especificaciones de operación (valores límite, no sobrepasar):}
+\begin{itemize}
+    \item Módulo de tensión de línea: $V_{sl} = [0.0 \dots 48] \text{ V}_{\text{ca rms}}$
+    \item Frecuencia sincrónica: $f_e = [-330.0 \dots 0.0 \dots +330.0] \text{ Hz}$
+\end{itemize}
+
+\textbf{Ángulo de torque del rotor}, o ``ángulo de defasaje electromagnético (ángulo eléctrico) de rotor'' $\delta(t)$:
+\begin{equation}
+\delta(t) \equiv \theta_{ev}(t) - \theta_r(t) = \int_{t_o}^t [\omega_e(\xi) - \omega_r(\xi)] \, d\xi + [\theta_{ev}(t_0) - \theta_r(t_0)] \tag{Ec. 4.5}
+\end{equation}
+
+\subsection*{Sensores de retroalimentación}
+El sistema cuenta con los siguientes dispositivos físicos y sus canales de medición y acondicionamiento:
+\begin{itemize}
+    \item 1 sensor de posición angular (codificador incremental o ``encoder'') montado en el eje de motor. Variable medida: $\theta_m(t)$, posición angular absoluta ``rectificada''.
+    \item 3 sensores de corriente instantánea de fase, montados en salida trifásica del inversor. Variables medidas: $i_{as}(t)$, $i_{bs}(t)$, $i_{cs}(t)$.
+    \item 1 sensor de temperatura (ej. RTD) en bobinado de estator. Variable medida: $T_s^\circ(t)$.
+\end{itemize}
+
+\subsection*{Variables principales en el Modelo Dinámico completo}
+\begin{itemize}
+    \item \textbf{Excitaciones (entradas) externas:} Variable manipulada (vectorial) $v_{abcs}(t) \rightarrow v_{qd0s}^r(t)$. Variables de perturbación: Torque externo $T_l(t)$, Temperatura ambiente $T_{amb}^\circ(t)$.
+    \item \textbf{Estado interno:} Posición $\theta_m(t)$ y velocidad $\omega_m(t)$. Corrientes virtuales $i_{qd0s}^r(t)$; temperatura $T_s^\circ(t)$.
+    \item \textbf{Respuestas (salidas) externas:} Variable controlada no medida: $q(t) \equiv \theta_l(t)$. Variables medidas: $\theta_m(t)$, $i_{abcs}(t)$, $T_s^\circ(t)$.
+\end{itemize}
+
+% --- SECCIÓN 4 ---
+\section{Requisitos generales de Análisis y Diseño}
+\begin{enumerate}[label=\alph*)]
+    \item Diseño e ``implementación'' inicial de control en tiempo continuo $t \text{ [s]} \in \mathbb{R}$.
+    \item Valores nominales de inercia y amortiguamiento de la carga mecánica: $J_{l \text{ nom}} \approx 0.0833 \text{ kg.m}^2$; $b_{l \text{ nom}} \approx 0.1 \frac{\text{N.m}}{\text{rad/s}}$ inicialmente sin carga útil, $m_l \equiv 0$.
+    \item Estado inicial y excitaciones consistentes, ej. equilibrio detenido sin tensión ni carga: $\theta_l(t_0) = 0$, $\omega_m(t_0) = 0 \text{ rad/s}$, $i_{qd0s}^r(t_0) = 0 \text{ A}$; temperatura inicial $T_s^\circ(t_0) = T_{amb}^\circ(t_0) = T_{amb \text{ max}}^\circ = 40^\circ\text{C}$.
+    \item Estrategia de Control Vectorial con campo orientado: ``desacoplamiento'' de canales de flujo magnético y torque, forzando corriente nula en eje d: $i_{ds}^r(t) \equiv 0$ mediante el controlador.
+\end{enumerate}
+
+% --- SECCIÓN 5 ---
+\section{Tareas a desarrollar}
+
+\subsection{Modelado, Análisis y Simulación dinámica del SISTEMA FÍSICO a ``Lazo Abierto''}
+Realizar:
+\begin{enumerate}
+    \item Modelo matemático equivalente (1 grado de libertad) del subsistema mecánico completo.
+    \item Modelo dinámico del sistema físico completo, incorporando los subsistemas electromagnético y térmico:
+    \begin{enumerate}[label=\alph*)]
+        \item Modelo global no lineal (NL), para $i_{ds}^r(t) \neq 0$ (caso gral.).
+        \item Linealización Jacobiana: Modelo global linealizado con parámetros variables (LPV), para $i_{ds}^r(t) \neq 0$.
+        \item Linealización por Retroalimentación NL: Modelo simplificado lineal invariante (LTI) equivalente.
+        \begin{enumerate}[label=\roman*)]
+            \item Ecuaciones vectoriales/matriciales LTI de estado y de salida.
+            \item Diagrama de bloques de estado.
+            \item Determinación de la Restricción o Ley de Control mínima.
+            \item Implementación, en el modelo global NL completo.
+            \item Modelo de la dinámica residual equivalente para $i_{ds}^r(t)$.
+            \item Restricción o Ley de Control complementaria mínima en el eje q.
+        \end{enumerate}
+        \item Comparación del modelo dinámico LTI equivalente aumentado vs. el modelo dinámico global LPV.
+        \item Funciones de Transferencia para el modelo LTI equivalente aumentado.
+    \end{enumerate}
+    \item Análisis de Estabilidad a lazo abierto para el modelo LTI equivalente aumentado.
+    \item Análisis de Observabilidad completa de estado para el modelo LTI equivalente aumentado.
+    \item Análisis de Controlabilidad completa de estado para el modelo LTI equivalente aumentado.
+    \item Simulación dinámica en DT, comparando el modelo NL completo desacoplado.
+\end{enumerate}
+
+\subsection{Diseño, Análisis, Simulación e ``Implementación'' de CONTROLADOR de Movimiento en Cascada}
+Realizar:
+\begin{enumerate}
+    \item Modulador de Torque equivalente (Controlador interno vectorial de corriente/torque).
+    \item Controlador externo de movimientos: posición/velocidad.
+    \item Incorporación y diseño de Observador de Estado de orden reducido.
+    \item Simulación en tiempo continuo con modelo completo NL.
+    \item Verificación de desempeño y/o mejoras.
+    \item Diseño Final en tiempo discreto utilizando el método de Tustin.
+    \item Codificación de Software de Control (Matlab function).
+\end{enumerate}
+
+% --- SECCIÓN 6 ---
+\section{Referencias}
+\noindent [1] R. Kelly et al, \textit{Control of Robot Manipulators in Joint Space}. Springer, 2005. (Example \& Figure 2.2). \\
+\noindent [2] P. Krause et al, \textit{Analysis of Electric Machinery and Drive Systems}, $3^{rd}$ Ed.. IEEE-Wiley, 2013. \\
+\noindent [3] G. Franklin et al, \textit{Feedback Control of Dynamic Systems}, $7^{th}$ Ed.. Pearson, 2015.
+
+\end{document}

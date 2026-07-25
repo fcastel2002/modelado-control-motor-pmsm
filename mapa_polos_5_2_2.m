@@ -85,9 +85,9 @@ fig1 = figure('Color','w','Position',[100 100 1150 460]);
 
 % (a) vista completa
 subplot(1,2,1); hold on; grid on; box on;
-plot(real(p_planta), imag(p_planta), 'kx','MarkerSize',12,'LineWidth',2);
-plot(p_corriente, 0, 'bs','MarkerSize',11,'LineWidth',2,'MarkerFaceColor',[0.7 0.8 1]);
-plot(real(p_pid_nom), imag(p_pid_nom), 'ro','MarkerSize',9,'LineWidth',2);
+plot(real(p_planta), imag(p_planta), 's','MarkerSize',10,'MarkerFaceColor',[0 0.447 0.741],'MarkerEdgeColor','k','LineWidth',0.8);
+plot(p_corriente, 0, 's','MarkerSize',10,'MarkerFaceColor',[0.466 0.674 0.188],'MarkerEdgeColor','k','LineWidth',0.8);
+plot(real(p_pid_nom), imag(p_pid_nom), 's','MarkerSize',10,'MarkerFaceColor',[0.635 0.078 0.184],'MarkerEdgeColor','k','LineWidth',0.8);
 plot([0 0],[-700 700],'k-'); plot([-5300 200],[0 0],'k-');
 xlabel('Eje Real [rad/s]'); ylabel('Eje Imaginario [rad/s]');
 title('Vista completa (separacion de escalas)');
@@ -97,8 +97,8 @@ xlim([-5300 200]); ylim([-700 700]);
 
 % (b) zoom cerca del origen
 subplot(1,2,2); hold on; grid on; box on;
-plot(real(p_planta), imag(p_planta), 'kx','MarkerSize',13,'LineWidth',2);
-plot(real(p_pid_nom), imag(p_pid_nom), 'ro','MarkerSize',10,'LineWidth',2);
+plot(real(p_planta), imag(p_planta), 's','MarkerSize',11,'MarkerFaceColor',[0 0.447 0.741],'MarkerEdgeColor','k','LineWidth',0.8);
+plot(real(p_pid_nom), imag(p_pid_nom), 's','MarkerSize',11,'MarkerFaceColor',[0.635 0.078 0.184],'MarkerEdgeColor','k','LineWidth',0.8);
 plot([0 0],[-650 650],'k-'); plot([-950 80],[0 0],'k-');
 xlabel('Eje Real [rad/s]'); ylabel('Eje Imaginario [rad/s]');
 title('Zoom: planta vs polos del PID');
@@ -113,11 +113,11 @@ fprintf('\n-> Exportada: imagenes/mapa_polos_5_2_2.png\n');
 fig2 = figure('Color','w','Position',[100 100 720 560]); hold on; grid on; box on;
 cmap = parula(numel(ml_vec));
 for k = 1:numel(ml_vec)
-    plot(real(P_mig(:,k)), imag(P_mig(:,k)), 'o', ...
-        'MarkerSize',7,'LineWidth',1.5,'Color',cmap(k,:),'HandleVisibility','off');
+    plot(real(P_mig(:,k)), imag(P_mig(:,k)), 's', ...
+        'MarkerSize',7,'MarkerFaceColor',cmap(k,:),'MarkerEdgeColor',cmap(k,:),'HandleVisibility','off');
 end
-plot(real(P_mig(:,1)),   imag(P_mig(:,1)),   'ko','MarkerSize',12,'LineWidth',2);
-plot(real(P_mig(:,end)), imag(P_mig(:,end)), 'ks','MarkerSize',12,'LineWidth',2);
+plot(real(P_mig(:,1)),   imag(P_mig(:,1)),   'd','MarkerSize',13,'MarkerFaceColor',[0 0.447 0.741],'MarkerEdgeColor','k','LineWidth',1.2);
+plot(real(P_mig(:,end)), imag(P_mig(:,end)), 's','MarkerSize',13,'MarkerFaceColor',[0.635 0.078 0.184],'MarkerEdgeColor','k','LineWidth',1.2);
 plot([0 0],ylim,'k-','HandleVisibility','off');
 colormap(parula); cb = colorbar; cb.Label.String = 'm_l [kg]'; caxis([0 1.5]);
 xlabel('Eje Real [rad/s]'); ylabel('Eje Imaginario [rad/s]');

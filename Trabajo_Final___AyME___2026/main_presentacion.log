@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.20)  12 JUN 2026 21:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.20)  23 JUL 2026 16:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1517,7 +1517,7 @@ Package pdftex.def Info: imagenes/resultado_temperatura.png  used on input line
 File: imagenes/LTI equivalente_nominal.png Graphic file (type png)
 <use imagenes/LTI equivalente_nominal.png>
 Package pdftex.def Info: imagenes/LTI equivalente_nominal.png  used on input li
-ne 1177.
+ne 1174.
 (pdftex.def)             Requested size: 287.0256pt x 168.98265pt.
  [46
 
@@ -1534,7 +1534,7 @@ ne 1177.
 File: imagenes/LTI equivalente_aumentado.png Graphic file (type png)
 <use imagenes/LTI equivalente_aumentado.png>
 Package pdftex.def Info: imagenes/LTI equivalente_aumentado.png  used on input 
-line 1295.
+line 1292.
 (pdftex.def)             Requested size: 273.14809pt x 168.98318pt.
  [51
 
@@ -1543,12 +1543,12 @@ line 1295.
 File: imagenes/NL con realimentacion NL.png Graphic file (type png)
 <use imagenes/NL con realimentacion NL.png>
 Package pdftex.def Info: imagenes/NL con realimentacion NL.png  used on input l
-ine 1300.
+ine 1297.
 (pdftex.def)             Requested size: 345.66084pt x 168.98024pt.
  [52
 
  <./imagenes/NL con realimentacion NL.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1339--1339
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1336
 []|\T1/lmss/bx/n/9 Subsistema tér-
  []
 
@@ -1561,26 +1561,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 1339--1339
 File: imagenes/polosaliente_cilindrico.png Graphic file (type png)
 <use imagenes/polosaliente_cilindrico.png>
 Package pdftex.def Info: imagenes/polosaliente_cilindrico.png  used on input li
-ne 1368.
+ne 1365.
 (pdftex.def)             Requested size: 325.71176pt x 168.98691pt.
  [55
 
  <./imagenes/polosaliente_cilindrico.png>]
-<imagenes/migracion_ids_1.png, id=743, 2168.1pt x 1177.39874pt>
+<imagenes/migracion_ids_1.png, id=743, 572.73975pt x 462.16666pt>
 File: imagenes/migracion_ids_1.png Graphic file (type png)
 <use imagenes/migracion_ids_1.png>
-Package pdftex.def Info: imagenes/migracion_ids_1.png  used on input line 1418.
+Package pdftex.def Info: imagenes/migracion_ids_1.png  used on input line 1415.
 
-(pdftex.def)             Requested size: 311.174pt x 168.98476pt.
+(pdftex.def)             Requested size: 209.41095pt x 168.98209pt.
  [56
 
  <./imagenes/migracion_ids_1.png (PNG copy)>]
-<imagenes/migracion_ids_2.png, id=751, 2168.1pt x 1177.39874pt>
+<imagenes/migracion_ids_2.png, id=751, 566.23544pt x 462.16666pt>
 File: imagenes/migracion_ids_2.png Graphic file (type png)
 <use imagenes/migracion_ids_2.png>
-Package pdftex.def Info: imagenes/migracion_ids_2.png  used on input line 1423.
+Package pdftex.def Info: imagenes/migracion_ids_2.png  used on input line 1420.
 
-(pdftex.def)             Requested size: 311.174pt x 168.98476pt.
+(pdftex.def)             Requested size: 207.03278pt x 168.98209pt.
  [57
 
  <./imagenes/migracion_ids_2.png (PNG copy)>]
@@ -1593,65 +1593,65 @@ Package pdftex.def Info: imagenes/migracion_ids_2.png  used on input line 1423.
 ] [61
 
 ]
-<imagenes/polos_ceros_LA.png, id=803, 2168.1pt x 1177.39874pt>
+<imagenes/polos_ceros_LA.png, id=803, 862.54245pt x 392.78745pt>
 File: imagenes/polos_ceros_LA.png Graphic file (type png)
 <use imagenes/polos_ceros_LA.png>
-Package pdftex.def Info: imagenes/polos_ceros_LA.png  used on input line 1512.
-(pdftex.def)             Requested size: 311.174pt x 168.98476pt.
+Package pdftex.def Info: imagenes/polos_ceros_LA.png  used on input line 1509.
+(pdftex.def)             Requested size: 371.08345pt x 168.9852pt.
  [62
 
  <./imagenes/polos_ceros_LA.png (PNG copy)>]
-<imagenes/migracion_Rs.png, id=811, 2107.875pt x 903.375pt>
+<imagenes/migracion_Rs.png, id=811, 898.3161pt x 433.25865pt>
 File: imagenes/migracion_Rs.png Graphic file (type png)
 <use imagenes/migracion_Rs.png>
-Package pdftex.def Info: imagenes/migracion_Rs.png  used on input line 1522.
-(pdftex.def)             Requested size: 382.39233pt x 163.88243pt.
+Package pdftex.def Info: imagenes/migracion_Rs.png  used on input line 1519.
+(pdftex.def)             Requested size: 350.36928pt x 168.98341pt.
  [63
 
  <./imagenes/migracion_Rs.png (PNG copy)>]
-<imagenes/migracion_ml.png, id=819, 2107.875pt x 903.375pt>
+<imagenes/migracion_ml.png, id=819, 898.3161pt x 432.8973pt>
 File: imagenes/migracion_ml.png Graphic file (type png)
 <use imagenes/migracion_ml.png>
-Package pdftex.def Info: imagenes/migracion_ml.png  used on input line 1527.
-(pdftex.def)             Requested size: 382.39233pt x 163.88243pt.
+Package pdftex.def Info: imagenes/migracion_ml.png  used on input line 1524.
+(pdftex.def)             Requested size: 350.65714pt x 168.98119pt.
  [64
 
  <./imagenes/migracion_ml.png (PNG copy)>]
 LaTeX Font Info:    Font shape `OT1/lmss/b/n' in size <10> not available
-(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 1572
+(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 1569
 .
 LaTeX Font Info:    Font shape `OT1/lmss/b/n' in size <7> not available
-(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 1572
+(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 1569
 .
 LaTeX Font Info:    Font shape `OT1/lmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 1572
+(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 1569
 .
 LaTeX Font Info:    Font shape `T1/lmss/b/it' in size <10> not available
-(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 1572
+(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 1569
 .
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 1572
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 1569
 .
 LaTeX Font Info:    Font shape `T1/lmss/b/it' in size <7> not available
-(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 1572
+(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 1569
 .
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <7> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 1572
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 1569
 .
 LaTeX Font Info:    Font shape `T1/lmss/b/it' in size <5> not available
-(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 1572
+(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 1569
 .
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <5> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 1572
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 1569
 .
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <10> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 1572.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 1569.
 
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <7> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 1572.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 1569.
 
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <5> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 1572.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 1569.
 
  [65
 
@@ -1670,12 +1670,12 @@ LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <5> not available
 ] [72
 
 ]
-<imagenes/sim_senales_entrada.png, id=898, 2148.52687pt x 1141.26375pt>
+<imagenes/sim_senales_entrada.png, id=898, 370.7451pt x 310.0383pt>
 File: imagenes/sim_senales_entrada.png Graphic file (type png)
 <use imagenes/sim_senales_entrada.png>
 Package pdftex.def Info: imagenes/sim_senales_entrada.png  used on input line 1
-744.
-(pdftex.def)             Requested size: 318.10158pt x 168.97057pt.
+741.
+(pdftex.def)             Requested size: 202.07187pt x 168.98407pt.
  [73
 
  <./imagenes/sim_senales_entrada.png (PNG copy)>]
@@ -1683,93 +1683,93 @@ Package pdftex.def Info: imagenes/sim_senales_entrada.png  used on input line 1
 File: imagenes/sim_diagrama_bloques.png Graphic file (type png)
 <use imagenes/sim_diagrama_bloques.png>
 Package pdftex.def Info: imagenes/sim_diagrama_bloques.png  used on input line 
-1749.
+1746.
 (pdftex.def)             Requested size: 170.95074pt x 168.9858pt.
  [74
 
  <./imagenes/sim_diagrama_bloques.png>] [75
 
 ]
-<imagenes/sim_theta_m.png, id=923, 834.86906pt x 624.83438pt>
+<imagenes/sim_theta_m.png, id=923, 379.4175pt x 311.2428pt>
 File: imagenes/sim_theta_m.png Graphic file (type png)
 <use imagenes/sim_theta_m.png>
-Package pdftex.def Info: imagenes/sim_theta_m.png  used on input line 1768.
-(pdftex.def)             Requested size: 225.7871pt x 168.98402pt.
+Package pdftex.def Info: imagenes/sim_theta_m.png  used on input line 1765.
+(pdftex.def)             Requested size: 205.99976pt x 168.9852pt.
  [76
 
- <./imagenes/sim_theta_m.png>]
-<imagenes/sim_theta_m_error.png, id=932, 834.86906pt x 581.92406pt>
+ <./imagenes/sim_theta_m.png (PNG copy)>]
+<imagenes/sim_theta_m_error.png, id=931, 381.5856pt x 311.9655pt>
 File: imagenes/sim_theta_m_error.png Graphic file (type png)
 <use imagenes/sim_theta_m_error.png>
 Package pdftex.def Info: imagenes/sim_theta_m_error.png  used on input line 177
-3.
-(pdftex.def)             Requested size: 242.43704pt x 168.98451pt.
+0.
+(pdftex.def)             Requested size: 206.69945pt x 168.98724pt.
  [77
 
- <./imagenes/sim_theta_m_error.png>]
-<imagenes/sim_omega_m.png, id=941, 834.86906pt x 624.83438pt>
+ <./imagenes/sim_theta_m_error.png (PNG copy)>]
+<imagenes/sim_omega_m.png, id=939, 380.3811pt x 311.0019pt>
 File: imagenes/sim_omega_m.png Graphic file (type png)
 <use imagenes/sim_omega_m.png>
-Package pdftex.def Info: imagenes/sim_omega_m.png  used on input line 1778.
-(pdftex.def)             Requested size: 225.7871pt x 168.98402pt.
+Package pdftex.def Info: imagenes/sim_omega_m.png  used on input line 1775.
+(pdftex.def)             Requested size: 206.67964pt x 168.98253pt.
  [78
 
- <./imagenes/sim_omega_m.png>]
-<imagenes/sim_omega_m_error.png, id=950, 834.86906pt x 581.92406pt>
+ <./imagenes/sim_omega_m.png (PNG copy)>]
+<imagenes/sim_omega_m_error.png, id=947, 374.3586pt x 311.9655pt>
 File: imagenes/sim_omega_m_error.png Graphic file (type png)
 <use imagenes/sim_omega_m_error.png>
 Package pdftex.def Info: imagenes/sim_omega_m_error.png  used on input line 178
-3.
-(pdftex.def)             Requested size: 242.43704pt x 168.98451pt.
+0.
+(pdftex.def)             Requested size: 202.78468pt x 168.98724pt.
  [79
 
- <./imagenes/sim_omega_m_error.png>]
-<imagenes/sim_iqs.png, id=960, 834.86906pt x 624.83438pt>
+ <./imagenes/sim_omega_m_error.png (PNG copy)>]
+<imagenes/sim_iqs.png, id=956, 376.5267pt x 311.2428pt>
 File: imagenes/sim_iqs.png Graphic file (type png)
 <use imagenes/sim_iqs.png>
-Package pdftex.def Info: imagenes/sim_iqs.png  used on input line 1788.
-(pdftex.def)             Requested size: 225.7871pt x 168.98402pt.
+Package pdftex.def Info: imagenes/sim_iqs.png  used on input line 1785.
+(pdftex.def)             Requested size: 204.43024pt x 168.9852pt.
  [80
 
- <./imagenes/sim_iqs.png>]
-<imagenes/sim_iqs_error.png, id=969, 834.86906pt x 581.92406pt>
+ <./imagenes/sim_iqs.png (PNG copy)>]
+<imagenes/sim_iqs_error.png, id=964, 381.5856pt x 311.9655pt>
 File: imagenes/sim_iqs_error.png Graphic file (type png)
 <use imagenes/sim_iqs_error.png>
-Package pdftex.def Info: imagenes/sim_iqs_error.png  used on input line 1793.
-(pdftex.def)             Requested size: 242.43704pt x 168.98451pt.
+Package pdftex.def Info: imagenes/sim_iqs_error.png  used on input line 1790.
+(pdftex.def)             Requested size: 206.69945pt x 168.98724pt.
  [81
 
- <./imagenes/sim_iqs_error.png>]
-<imagenes/sim_Ts.png, id=978, 834.86906pt x 624.83438pt>
+ <./imagenes/sim_iqs_error.png (PNG copy)>]
+<imagenes/sim_Ts.png, id=972, 372.4314pt x 311.0019pt>
 File: imagenes/sim_Ts.png Graphic file (type png)
 <use imagenes/sim_Ts.png>
-Package pdftex.def Info: imagenes/sim_Ts.png  used on input line 1803.
-(pdftex.def)             Requested size: 225.7871pt x 168.98402pt.
+Package pdftex.def Info: imagenes/sim_Ts.png  used on input line 1800.
+(pdftex.def)             Requested size: 202.36017pt x 168.98253pt.
  [82
 
- <./imagenes/sim_Ts.png>]
-<imagenes/sim_v_ds.png, id=987, 834.86906pt x 624.83438pt>
+ <./imagenes/sim_Ts.png (PNG copy)>]
+<imagenes/sim_v_ds.png, id=980, 376.5267pt x 312.2064pt>
 File: imagenes/sim_v_ds.png Graphic file (type png)
 <use imagenes/sim_v_ds.png>
-Package pdftex.def Info: imagenes/sim_v_ds.png  used on input line 1808.
-(pdftex.def)             Requested size: 225.7871pt x 168.98402pt.
+Package pdftex.def Info: imagenes/sim_v_ds.png  used on input line 1805.
+(pdftex.def)             Requested size: 203.79825pt x 168.98434pt.
  [83
 
- <./imagenes/sim_v_ds.png>]
-<imagenes/sim_corrientes_abc.png, id=996, 834.86906pt x 624.83438pt>
+ <./imagenes/sim_v_ds.png (PNG copy)>]
+<imagenes/sim_corrientes_abc.png, id=988, 376.5267pt x 310.0383pt>
 File: imagenes/sim_corrientes_abc.png Graphic file (type png)
 <use imagenes/sim_corrientes_abc.png>
 Package pdftex.def Info: imagenes/sim_corrientes_abc.png  used on input line 18
-13.
-(pdftex.def)             Requested size: 225.7871pt x 168.98402pt.
+10.
+(pdftex.def)             Requested size: 205.22308pt x 168.98407pt.
  [84
 
- <./imagenes/sim_corrientes_abc.png>]
-<imagenes/sim_torque_vs_velocidad.png, id=1005, 727.0362pt x 557.4426pt>
+ <./imagenes/sim_corrientes_abc.png (PNG copy)>]
+<imagenes/sim_torque_vs_velocidad.png, id=996, 727.0362pt x 557.4426pt>
 File: imagenes/sim_torque_vs_velocidad.png Graphic file (type png)
 <use imagenes/sim_torque_vs_velocidad.png>
 Package pdftex.def Info: imagenes/sim_torque_vs_velocidad.png  used on input li
-ne 1818.
+ne 1815.
 (pdftex.def)             Requested size: 220.38673pt x 168.97777pt.
  [85
 
@@ -1778,48 +1778,47 @@ ne 1818.
 ] [87
 
 ]
-<imagenes/sim_angulo_carga.png, id=1029, 2167.34718pt x 1140.51094pt>
+<imagenes/sim_angulo_carga.png, id=1020, 377.4903pt x 312.4473pt>
 File: imagenes/sim_angulo_carga.png Graphic file (type png)
 <use imagenes/sim_angulo_carga.png>
-Package pdftex.def Info: imagenes/sim_angulo_carga.png  used on input line 1870
+Package pdftex.def Info: imagenes/sim_angulo_carga.png  used on input line 1867
 .
-(pdftex.def)             Requested size: 321.11952pt x 168.98093pt.
+(pdftex.def)             Requested size: 204.16428pt x 168.986pt.
  [88
 
- <./imagenes/sim_angulo_carga.png>] [89
+ <./imagenes/sim_angulo_carga.png (PNG copy)>] [89
 
 ] [90
 
 ] [91
 
 ]
-<imagenes/ids_distintodecero_simulink.png, id=1060, 834.86906pt x 624.83438pt>
+<imagenes/ids_distintodecero_simulink.png, id=1050, 834.86906pt x 624.83438pt>
 File: imagenes/ids_distintodecero_simulink.png Graphic file (type png)
 <use imagenes/ids_distintodecero_simulink.png>
 Package pdftex.def Info: imagenes/ids_distintodecero_simulink.png  used on inpu
-t line 1952.
+t line 1949.
 (pdftex.def)             Requested size: 225.7871pt x 168.98402pt.
  [92
 
  <./imagenes/ids_distintodecero_simulink.png>]
-<imagenes/ids_distintodecero_simulink_error.png, id=1069, 834.86906pt x 581.924
+<imagenes/ids_distintodecero_simulink_error.png, id=1059, 834.86906pt x 581.924
 06pt>
 File: imagenes/ids_distintodecero_simulink_error.png Graphic file (type png)
 <use imagenes/ids_distintodecero_simulink_error.png>
 Package pdftex.def Info: imagenes/ids_distintodecero_simulink_error.png  used o
-n input line 1957.
+n input line 1954.
 (pdftex.def)             Requested size: 242.43704pt x 168.98451pt.
-
-[93
+ [93
 
  <./imagenes/ids_distintodecero_simulink_error.png>] [94
 
 ]
-<imagenes/sim_ff_ids.png, id=1085, 571.6557pt x 328.8285pt>
+<imagenes/sim_ff_ids.png, id=1075, 570.6921pt x 295.5843pt>
 File: imagenes/sim_ff_ids.png Graphic file (type png)
 <use imagenes/sim_ff_ids.png>
-Package pdftex.def Info: imagenes/sim_ff_ids.png  used on input line 1985.
-(pdftex.def)             Requested size: 293.78229pt x 168.9898pt.
+Package pdftex.def Info: imagenes/sim_ff_ids.png  used on input line 1982.
+(pdftex.def)             Requested size: 326.26447pt x 168.98543pt.
  [95
 
  <./imagenes/sim_ff_ids.png (PNG copy)>] [96
@@ -1830,50 +1829,53 @@ Package pdftex.def Info: imagenes/sim_ff_ids.png  used on input line 1985.
 
 ] [99
 
-] [100
+]
+[100
 
 ] [101
 
 ]
-<imagenes/desacop_realimentacion_fisicas_naturales.png, id=1150, 849.1725pt x 5
+<imagenes/desacop_realimentacion_fisicas_naturales.png, id=1140, 849.1725pt x 5
 43.53062pt>
 File: imagenes/desacop_realimentacion_fisicas_naturales.png Graphic file (type 
 png)
 <use imagenes/desacop_realimentacion_fisicas_naturales.png>
 Package pdftex.def Info: imagenes/desacop_realimentacion_fisicas_naturales.png 
- used on input line 2089.
+ used on input line 2086.
 (pdftex.def)             Requested size: 264.00523pt x 168.98207pt.
  [102
 
  <./imagenes/desacop_realimentacion_fisicas_naturales.png>]
-<imagenes/desacop_realimentacion_fisicas_naturales_bloque.png, id=1159, 205.517
+<imagenes/desacop_realimentacion_fisicas_naturales_bloque.png, id=1149, 205.517
 8pt x 207.02344pt>
 File: imagenes/desacop_realimentacion_fisicas_naturales_bloque.png Graphic file
  (type png)
 <use imagenes/desacop_realimentacion_fisicas_naturales_bloque.png>
 Package pdftex.def Info: imagenes/desacop_realimentacion_fisicas_naturales_bloq
-ue.png  used on input line 2094.
+ue.png  used on input line 2091.
 (pdftex.def)             Requested size: 167.76051pt x 168.98953pt.
- [103
+
+[103
 
  <./imagenes/desacop_realimentacion_fisicas_naturales_bloque.png>] [104
 
-] [105
+]
+[105
 
 ]
-<imagenes/comp_torque_rs.png, id=1183, 834.86906pt x 624.83438pt>
+<imagenes/comp_torque_rs.png, id=1173, 834.86906pt x 624.83438pt>
 File: imagenes/comp_torque_rs.png Graphic file (type png)
 <use imagenes/comp_torque_rs.png>
-Package pdftex.def Info: imagenes/comp_torque_rs.png  used on input line 2128.
+Package pdftex.def Info: imagenes/comp_torque_rs.png  used on input line 2125.
 (pdftex.def)             Requested size: 225.7871pt x 168.98402pt.
  [106
 
  <./imagenes/comp_torque_rs.png>]
-<imagenes/comp_velocidad_rs.png, id=1192, 834.86906pt x 624.83438pt>
+<imagenes/comp_velocidad_rs.png, id=1182, 834.86906pt x 624.83438pt>
 File: imagenes/comp_velocidad_rs.png Graphic file (type png)
 <use imagenes/comp_velocidad_rs.png>
 Package pdftex.def Info: imagenes/comp_velocidad_rs.png  used on input line 213
-3.
+0.
 (pdftex.def)             Requested size: 225.7871pt x 168.98402pt.
  [107
 
@@ -1882,19 +1884,19 @@ Package pdftex.def Info: imagenes/comp_velocidad_rs.png  used on input line 213
 ] [109
 
 ]
-<imagenes/mod_corriente.png, id=1216, 409.53pt x 341.77687pt>
+<imagenes/mod_corriente.png, id=1206, 409.53pt x 341.77687pt>
 File: imagenes/mod_corriente.png Graphic file (type png)
 <use imagenes/mod_corriente.png>
-Package pdftex.def Info: imagenes/mod_corriente.png  used on input line 2178.
+Package pdftex.def Info: imagenes/mod_corriente.png  used on input line 2175.
 (pdftex.def)             Requested size: 202.48988pt x 168.98972pt.
  [110
 
  <./imagenes/mod_corriente.png>]
-<imagenes/mod_corriente_subsystem.png, id=1225, 196.48407pt x 306.39468pt>
+<imagenes/mod_corriente_subsystem.png, id=1215, 196.48407pt x 306.39468pt>
 File: imagenes/mod_corriente_subsystem.png Graphic file (type png)
 <use imagenes/mod_corriente_subsystem.png>
 Package pdftex.def Info: imagenes/mod_corriente_subsystem.png  used on input li
-ne 2183.
+ne 2180.
 (pdftex.def)             Requested size: 108.36638pt x 168.9851pt.
  [111
 
@@ -1903,16 +1905,16 @@ ne 2183.
 ] [113
 
 ]
-<imagenes/mod_torque_diagram.png, id=1248, 1479.5275pt x 610.28pt>
+<imagenes/mod_torque_diagram.png, id=1238, 1479.5275pt x 610.28pt>
 File: imagenes/mod_torque_diagram.png Graphic file (type png)
 <use imagenes/mod_torque_diagram.png>
 Package pdftex.def Info: imagenes/mod_torque_diagram.png  used on input line 22
-24.
+21.
 (pdftex.def)             Requested size: 382.4105pt x 157.73784pt.
+ [114
 
-[114
-
- <./imagenes/mod_torque_diagram.png>] [115
+ <./imagenes/mod_torque_diagram.png>]
+[115
 
 ] [116
 
@@ -1922,14 +1924,13 @@ Package pdftex.def Info: imagenes/mod_torque_diagram.png  used on input line 22
 
 ] [119
 
-]
-[120
+] [120
 
 ]
-<imagenes/mapa_polos_5_2_2.png, id=1300, 712.1004pt x 335.8146pt>
+<imagenes/mapa_polos_5_2_2.png, id=1290, 712.1004pt x 335.8146pt>
 File: imagenes/mapa_polos_5_2_2.png Graphic file (type png)
 <use imagenes/mapa_polos_5_2_2.png>
-Package pdftex.def Info: imagenes/mapa_polos_5_2_2.png  used on input line 2363
+Package pdftex.def Info: imagenes/mapa_polos_5_2_2.png  used on input line 2360
 .
 (pdftex.def)             Requested size: 358.33113pt x 168.98294pt.
  [121
@@ -1937,17 +1938,18 @@ Package pdftex.def Info: imagenes/mapa_polos_5_2_2.png  used on input line 2363
  <./imagenes/mapa_polos_5_2_2.png (PNG copy)>] [122
 
 ]
-<imagenes/migracion_polos_pid.png, id=1316, 486.618pt x 395.076pt>
+<imagenes/migracion_polos_pid.png, id=1306, 486.618pt x 395.076pt>
 File: imagenes/migracion_polos_pid.png Graphic file (type png)
 <use imagenes/migracion_polos_pid.png>
 Package pdftex.def Info: imagenes/migracion_polos_pid.png  used on input line 2
-391.
+388.
 (pdftex.def)             Requested size: 208.14273pt x 168.98717pt.
  [123
 
  <./imagenes/migracion_polos_pid.png (PNG copy)>] [124
 
-] [125
+]
+[125
 
 ] [126
 
@@ -1958,73 +1960,73 @@ Package pdftex.def Info: imagenes/migracion_polos_pid.png  used on input line 2
 ] [129
 
 ]
-<imagenes/observador_diagram.png, id=1367, 994.71625pt x 526.96875pt>
+<imagenes/observador_diagram.png, id=1357, 994.71625pt x 526.96875pt>
 File: imagenes/observador_diagram.png Graphic file (type png)
 <use imagenes/observador_diagram.png>
 Package pdftex.def Info: imagenes/observador_diagram.png  used on input line 25
-38.
+35.
 (pdftex.def)             Requested size: 318.98354pt x 168.98723pt.
+ [130
 
-[130
-
- <./imagenes/observador_diagram.png>] [131
+ <./imagenes/observador_diagram.png>]
+[131
 
 ]
-<imagenes/pos-velocidad-simulacion_cont.png, id=1383, 1594.95876pt x 1020.81375
+<imagenes/pos-velocidad-simulacion_cont.png, id=1373, 1594.95876pt x 1020.81375
 pt>
 File: imagenes/pos-velocidad-simulacion_cont.png Graphic file (type png)
 <use imagenes/pos-velocidad-simulacion_cont.png>
 Package pdftex.def Info: imagenes/pos-velocidad-simulacion_cont.png  used on in
-put line 2566.
+put line 2563.
 (pdftex.def)             Requested size: 264.00864pt x 168.97217pt.
  [132
 
  <./imagenes/pos-velocidad-simulacion_cont.png>]
-<imagenes/overshoot_transitorio_trap_pos.png, id=1392, 1594.95876pt x 962.59625
+<imagenes/overshoot_transitorio_trap_pos.png, id=1382, 1594.95876pt x 962.59625
 pt>
 File: imagenes/overshoot_transitorio_trap_pos.png Graphic file (type png)
 <use imagenes/overshoot_transitorio_trap_pos.png>
 Package pdftex.def Info: imagenes/overshoot_transitorio_trap_pos.png  used on i
-nput line 2571.
+nput line 2568.
 (pdftex.def)             Requested size: 279.97375pt x 168.97095pt.
  [133
 
  <./imagenes/overshoot_transitorio_trap_pos.png>]
-<imagenes/torque_pos_relacion.png, id=1402, 1104.125pt x 1020.81375pt>
+<imagenes/torque_pos_relacion.png, id=1392, 1104.125pt x 1020.81375pt>
 File: imagenes/torque_pos_relacion.png Graphic file (type png)
 <use imagenes/torque_pos_relacion.png>
 Package pdftex.def Info: imagenes/torque_pos_relacion.png  used on input line 2
-576.
+573.
 (pdftex.def)             Requested size: 182.76242pt x 168.97217pt.
-
-[134
+ [134
 
  <./imagenes/torque_pos_relacion.png>]
-<imagenes/picos_corriente_trapz_pos.png, id=1411, 1457.445pt x 1020.81375pt>
+<imagenes/picos_corriente_trapz_pos.png, id=1401, 1457.445pt x 1020.81375pt>
 File: imagenes/picos_corriente_trapz_pos.png Graphic file (type png)
 <use imagenes/picos_corriente_trapz_pos.png>
 Package pdftex.def Info: imagenes/picos_corriente_trapz_pos.png  used on input 
-line 2581.
+line 2578.
 (pdftex.def)             Requested size: 241.2464pt x 168.97217pt.
- [135
+
+[135
 
  <./imagenes/picos_corriente_trapz_pos.png>] [136
 
 ]
-<imagenes/perturb_y_posicion_plot.png, id=1427, 1457.445pt x 1020.81375pt>
+<imagenes/perturb_y_posicion_plot.png, id=1417, 1457.445pt x 1020.81375pt>
 File: imagenes/perturb_y_posicion_plot.png Graphic file (type png)
 <use imagenes/perturb_y_posicion_plot.png>
 Package pdftex.def Info: imagenes/perturb_y_posicion_plot.png  used on input li
-ne 2605.
+ne 2602.
 (pdftex.def)             Requested size: 241.2464pt x 168.97217pt.
  [137
 
  <./imagenes/perturb_y_posicion_plot.png>]
-<imagenes/plot_perturb_error.png, id=1436, 1594.95876pt x 962.59625pt>
+<imagenes/plot_perturb_error.png, id=1426, 1594.95876pt x 962.59625pt>
 File: imagenes/plot_perturb_error.png Graphic file (type png)
 <use imagenes/plot_perturb_error.png>
 Package pdftex.def Info: imagenes/plot_perturb_error.png  used on input line 26
-10.
+07.
 (pdftex.def)             Requested size: 279.97375pt x 168.97095pt.
  [138
 
@@ -2032,54 +2034,54 @@ Package pdftex.def Info: imagenes/plot_perturb_error.png  used on input line 26
 
 ] [140
 
-] [141
+]
+[141
 
 ]
-<imagenes/corrientes_limitando_voltaje.png, id=1481, 1594.95876pt x 962.59625pt
+<imagenes/corrientes_limitando_voltaje.png, id=1471, 1594.95876pt x 962.59625pt
 >
 File: imagenes/corrientes_limitando_voltaje.png Graphic file (type png)
 <use imagenes/corrientes_limitando_voltaje.png>
 Package pdftex.def Info: imagenes/corrientes_limitando_voltaje.png  used on inp
-ut line 2652.
+ut line 2649.
 (pdftex.def)             Requested size: 279.97375pt x 168.97095pt.
  [142
 
  <./imagenes/corrientes_limitando_voltaje.png>]
-<imagenes/pos_voltaje_saturado.png, id=1490, 1594.95876pt x 962.59625pt>
+<imagenes/pos_voltaje_saturado.png, id=1480, 1594.95876pt x 962.59625pt>
 File: imagenes/pos_voltaje_saturado.png Graphic file (type png)
 <use imagenes/pos_voltaje_saturado.png>
 Package pdftex.def Info: imagenes/pos_voltaje_saturado.png  used on input line 
-2657.
+2654.
 (pdftex.def)             Requested size: 279.97375pt x 168.97095pt.
  [143
 
  <./imagenes/pos_voltaje_saturado.png>]
-<imagenes/pos_voltaje_nosaturado.png, id=1499, 1594.95876pt x 962.59625pt>
+<imagenes/pos_voltaje_nosaturado.png, id=1489, 1594.95876pt x 962.59625pt>
 File: imagenes/pos_voltaje_nosaturado.png Graphic file (type png)
 <use imagenes/pos_voltaje_nosaturado.png>
 Package pdftex.def Info: imagenes/pos_voltaje_nosaturado.png  used on input lin
-e 2662.
+e 2659.
 (pdftex.def)             Requested size: 279.97375pt x 168.97095pt.
  [144
 
  <./imagenes/pos_voltaje_nosaturado.png>]
-<imagenes/perfil_trap_vel_comp.png, id=1508, 1457.445pt x 1020.81375pt>
+<imagenes/perfil_trap_vel_comp.png, id=1498, 1457.445pt x 1020.81375pt>
 File: imagenes/perfil_trap_vel_comp.png Graphic file (type png)
 <use imagenes/perfil_trap_vel_comp.png>
 Package pdftex.def Info: imagenes/perfil_trap_vel_comp.png  used on input line 
-2671.
+2668.
 (pdftex.def)             Requested size: 241.2464pt x 168.97217pt.
  [145
 
- <./imagenes/perfil_trap_vel_comp.png>]
-[146
+ <./imagenes/perfil_trap_vel_comp.png>] [146
 
 ]
-<imagenes/perfil_trap_accel_comp.png, id=1525, 1457.445pt x 1020.81375pt>
+<imagenes/perfil_trap_accel_comp.png, id=1515, 1457.445pt x 1020.81375pt>
 File: imagenes/perfil_trap_accel_comp.png Graphic file (type png)
 <use imagenes/perfil_trap_accel_comp.png>
 Package pdftex.def Info: imagenes/perfil_trap_accel_comp.png  used on input lin
-e 2696.
+e 2693.
 (pdftex.def)             Requested size: 241.2464pt x 168.97217pt.
  [147
 
@@ -2090,15 +2092,16 @@ e 2696.
 ] [150
 
 ]
-<imagenes/5_2_5_B_error_observador.png, id=1569, 834.86906pt x 581.92406pt>
+<imagenes/5_2_5_B_error_observador.png, id=1559, 834.86906pt x 581.92406pt>
 File: imagenes/5_2_5_B_error_observador.png Graphic file (type png)
 <use imagenes/5_2_5_B_error_observador.png>
 Package pdftex.def Info: imagenes/5_2_5_B_error_observador.png  used on input l
-ine 2760.
+ine 2757.
 (pdftex.def)             Requested size: 242.43704pt x 168.98451pt.
  [151
 
- <./imagenes/5_2_5_B_error_observador.png>] [152
+ <./imagenes/5_2_5_B_error_observador.png>]
+[152
 
 ] [153
 
@@ -2107,22 +2110,22 @@ ine 2760.
 ] [155
 
 ]
-<imagenes/5_2_5_B_diagrama_bloques_observador.png, id=1607, 627.09282pt x 316.9
+<imagenes/5_2_5_B_diagrama_bloques_observador.png, id=1597, 627.09282pt x 316.9
 3407pt>
 File: imagenes/5_2_5_B_diagrama_bloques_observador.png Graphic file (type png)
 <use imagenes/5_2_5_B_diagrama_bloques_observador.png>
 Package pdftex.def Info: imagenes/5_2_5_B_diagrama_bloques_observador.png  used
- on input line 2847.
+ on input line 2844.
 (pdftex.def)             Requested size: 334.36703pt x 168.9898pt.
  [156
 
  <./imagenes/5_2_5_B_diagrama_bloques_observador.png>]
-<imagenes/5_2_5_B_observador_sin_offset.png, id=1616, 834.86906pt x 581.92406pt
+<imagenes/5_2_5_B_observador_sin_offset.png, id=1606, 834.86906pt x 581.92406pt
 >
 File: imagenes/5_2_5_B_observador_sin_offset.png Graphic file (type png)
 <use imagenes/5_2_5_B_observador_sin_offset.png>
 Package pdftex.def Info: imagenes/5_2_5_B_observador_sin_offset.png  used on in
-put line 2852.
+put line 2849.
 (pdftex.def)             Requested size: 242.43704pt x 168.98451pt.
  [157
 
@@ -2131,12 +2134,12 @@ put line 2852.
 ] [159
 
 ]
-<imagenes/5_2_5_C_comportamiento_termico.png, id=1654, 834.86906pt x 624.83438p
+<imagenes/5_2_5_C_comportamiento_termico.png, id=1644, 834.86906pt x 624.83438p
 t>
 File: imagenes/5_2_5_C_comportamiento_termico.png Graphic file (type png)
 <use imagenes/5_2_5_C_comportamiento_termico.png>
 Package pdftex.def Info: imagenes/5_2_5_C_comportamiento_termico.png  used on i
-nput line 2891.
+nput line 2888.
 (pdftex.def)             Requested size: 225.7871pt x 168.98402pt.
  [160
 
@@ -2151,50 +2154,49 @@ nput line 2891.
 ] [165
 
 ]
-<imagenes/sensores_no_ideales_1.png, id=1699, 1457.445pt x 1020.81375pt>
+<imagenes/sensores_no_ideales_1.png, id=1689, 1457.445pt x 1020.81375pt>
 File: imagenes/sensores_no_ideales_1.png Graphic file (type png)
 <use imagenes/sensores_no_ideales_1.png>
 Package pdftex.def Info: imagenes/sensores_no_ideales_1.png  used on input line
- 3038.
+ 3035.
 (pdftex.def)             Requested size: 241.2464pt x 168.97217pt.
- [166
+
+[166
 
  <./imagenes/sensores_no_ideales_1.png>]
-<imagenes/sensores_no_ideales_2.png, id=1708, 1457.445pt x 1020.81375pt>
+<imagenes/sensores_no_ideales_2.png, id=1698, 1457.445pt x 1020.81375pt>
 File: imagenes/sensores_no_ideales_2.png Graphic file (type png)
 <use imagenes/sensores_no_ideales_2.png>
 Package pdftex.def Info: imagenes/sensores_no_ideales_2.png  used on input line
- 3043.
+ 3040.
 (pdftex.def)             Requested size: 241.2464pt x 168.97217pt.
-
-[167
+ [167
 
  <./imagenes/sensores_no_ideales_2.png>] [168
 
 ] [169
 
 ]
-<imagenes/inversor_no_ideal_6000.png, id=1732, 1457.445pt x 1020.81375pt>
+<imagenes/inversor_no_ideal_6000.png, id=1722, 1457.445pt x 1020.81375pt>
 File: imagenes/inversor_no_ideal_6000.png Graphic file (type png)
 <use imagenes/inversor_no_ideal_6000.png>
 Package pdftex.def Info: imagenes/inversor_no_ideal_6000.png  used on input lin
-e 3095.
+e 3092.
 (pdftex.def)             Requested size: 241.2464pt x 168.97217pt.
  [170
 
  <./imagenes/inversor_no_ideal_6000.png>]
-<imagenes/inversor_no_ideal_12000.png, id=1741, 1093.08376pt x 765.6103pt>
+<imagenes/inversor_no_ideal_12000.png, id=1731, 1093.08376pt x 765.6103pt>
 File: imagenes/inversor_no_ideal_12000.png Graphic file (type png)
 <use imagenes/inversor_no_ideal_12000.png>
 Package pdftex.def Info: imagenes/inversor_no_ideal_12000.png  used on input li
-ne 3100.
+ne 3097.
 (pdftex.def)             Requested size: 241.26308pt x 168.98384pt.
  [171
 
  <./imagenes/inversor_no_ideal_12000.png>] [172
 
-]
-[173
+] [173
 
 ] [174
 
@@ -2204,24 +2206,25 @@ ne 3100.
 
 ] [177
 
-] [178
+]
+[178
 
 ]
-<imagenes/observador_discretizado.png, id=1814, 752.0597pt x 328.22626pt>
+<imagenes/observador_discretizado.png, id=1804, 752.0597pt x 328.22626pt>
 File: imagenes/observador_discretizado.png Graphic file (type png)
 <use imagenes/observador_discretizado.png>
 Package pdftex.def Info: imagenes/observador_discretizado.png  used on input li
-ne 3224.
+ne 3221.
 (pdftex.def)             Requested size: 382.42078pt x 166.90236pt.
  [179
 
  <./imagenes/observador_discretizado.png>]
-<imagenes/controladorPID_discretizado.png, id=1823, 1099.85907pt x 402.75468pt>
+<imagenes/controladorPID_discretizado.png, id=1813, 1099.85907pt x 402.75468pt>
 
 File: imagenes/controladorPID_discretizado.png Graphic file (type png)
 <use imagenes/controladorPID_discretizado.png>
 Package pdftex.def Info: imagenes/controladorPID_discretizado.png  used on inpu
-t line 3229.
+t line 3226.
 (pdftex.def)             Requested size: 382.4055pt x 140.03212pt.
  [180
 
@@ -2229,30 +2232,30 @@ t line 3229.
 
 ]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
-262.
+259.
 
 (C:\Users\calde\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 3262.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 3259.
  [182
 
 ]
-<imagenes/comp_codcont_pos.png, id=1862, 1196.21906pt x 721.94719pt>
+<imagenes/comp_codcont_pos.png, id=1852, 1196.21906pt x 721.94719pt>
 File: imagenes/comp_codcont_pos.png Graphic file (type png)
 <use imagenes/comp_codcont_pos.png>
-Package pdftex.def Info: imagenes/comp_codcont_pos.png  used on input line 3269
+Package pdftex.def Info: imagenes/comp_codcont_pos.png  used on input line 3266
 .
 (pdftex.def)             Requested size: 279.9981pt x 168.98563pt.
 
 [183
 
  <./imagenes/comp_codcont_pos.png>]
-<imagenes/comp_codcont_vel.png, id=1871, 1196.21906pt x 721.94719pt>
+<imagenes/comp_codcont_vel.png, id=1861, 1196.21906pt x 721.94719pt>
 File: imagenes/comp_codcont_vel.png Graphic file (type png)
 <use imagenes/comp_codcont_vel.png>
-Package pdftex.def Info: imagenes/comp_codcont_vel.png  used on input line 3274
+Package pdftex.def Info: imagenes/comp_codcont_vel.png  used on input line 3271
 .
 (pdftex.def)             Requested size: 279.9981pt x 168.98563pt.
  [184
@@ -2285,7 +2288,7 @@ Package rerunfilecheck Info: File `main_presentacion.out' has not changed.
 Here is how much of TeX's memory you used:
  29085 strings out of 467871
  571453 string characters out of 5418376
- 962548 words of memory out of 5000000
+ 962530 words of memory out of 5000000
  56925 multiletter control sequences out of 15000+600000
  856770 words of font info for 171 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2320,9 +2323,9 @@ Users/calde/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/U
 sers/calde/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/U
 sers/calde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/ms
 am10.pfb>
-Output written on main_presentacion.pdf (186 pages, 6883757 bytes).
+Output written on main_presentacion.pdf (186 pages, 7155297 bytes).
 PDF statistics:
- 2123 PDF objects out of 2487 (max. 8388607)
+ 2113 PDF objects out of 2487 (max. 8388607)
  432 named destinations out of 1000 (max. 500000)
  715 words of extra memory for PDF output out of 10000 (max. 10000000)
 

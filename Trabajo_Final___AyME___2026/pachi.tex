@@ -177,8 +177,8 @@ Modelado de la carga mecánica, péndulo rígido de 1 g.d.l.~\cite{kelly_robot},
 
 % 1. ECUACIONES DEL PÉNDULO
 \begin{align}
-    J_l\cdot \frac{d\omega_l(t)}{dt} = T_q(t) - b_l\cdot \omega_l(t) - T_l(t)  \label{eq:din_pendulo} \\
-    T_l(t) = g\cdot k_l \cdot \sin(\theta_l(t)) + T_{ld}(t) \label{eq:def_Tl}
+    J_l\cdot \frac{d\omega_l(t)}{dt} = T_q(t) - b_l\cdot \omega_l(t) - T_l(t)  \\
+    T_l(t) = g\cdot k_l \cdot \sin(\theta_l(t)) + T_{ld}(t)
 \end{align}
 
 % 2. TEXTO EXPLICATIVO (Sin interrupciones)
@@ -211,51 +211,51 @@ Es evidente que la relación cinemática viene dada por:
         \multicolumn{4}{|c|}{\textbf{Subsistema Mecánico (Carga y Transmisión)}} \\
         \hline
         $r$ & Relación de transmisión & 120:1 & - \\
-        $g$ & Aceleración de la gravedad & 9{,}80665 & $\text{m}/\text{s}^2$ \\
-        $m$ & Masa del brazo manipulador & 1{,}0 & kg \\
-        $l_{cm}$ & Longitud al centro de masa & 0{,}25 & m \\
-        $J_{cm}$ & Inercia centro de masa brazo & 0{,}0208 & $\text{kg}\cdot\text{m}^2$ \\
-        $m_l$ & Masa de carga útil (variable) & $0 - 1{,}5$ & kg \\
-        $l_{l}$ & Longitud total al extremo & 0{,}50 & m \\
-        $b_{l}$ & Fricción viscosa articulación (incertidumbre) & $0{,}1 \pm 0{,}03$ & $\text{Nms}/\text{rad}$ \\
-        $J_l$ & Inercia total eje de carga (Calc.) & $0{,}0833 + [0\ldots0{,}375]$ & $\text{kg}\cdot\text{m}^2$ \\
-        $T_{ld}$ & Torque de perturbación de contacto (escalón) & $0 \pm 5{,}0$ & Nm \\
+        $g$ & Aceleración de la gravedad & 9.80665 & $\text{m}/\text{s}^2$ \\
+        $m$ & Masa del brazo manipulador & 1.0 & kg \\
+        $l_{cm}$ & Longitud al centro de masa & 0.25 & m \\
+        $J_{cm}$ & Inercia centro de masa brazo & 0.0208 & $\text{kg}\cdot\text{m}^2$ \\
+        $m_l$ & Masa de carga útil (variable) & $0 - 1.5$ & kg \\
+        $l_{l}$ & Longitud total al extremo & 0.50 & m \\
+        $b_{l}$ & Fricción viscosa articulación (incertidumbre) & $0.1 \pm 0.03$ & $\text{Nms}/\text{rad}$ \\
+        $J_l$ & Inercia total eje de carga (Calc.) & $0.0833 + [0\ldots0.375]$ & $\text{kg}\cdot\text{m}^2$ \\
+        $T_{ld}$ & Torque de perturbación de contacto (escalón) & $0 \pm 5.0$ & Nm \\
         \hline
         \multicolumn{4}{|c|}{\textbf{Subsistema Mecánico (Motor)}} \\
         \hline
         $J_m$ & Inercia rotor (motor + caja) & $14 \times 10^{-6}$ & $\text{kg}\cdot\text{m}^2$ \\
         $b_m$ & Fricción viscosa (motor + caja) & $15 \times 10^{-6}$ & $\text{Nms}/\text{rad}$ \\
-        $J_{eq}$ & Inercia equiv. total (Calc.) & $1{,}978 \times 10^{-5}$ & $\text{kg}\cdot\text{m}^2$ \\
-        $b_{eq}$ & Fricción equiv. total (Calc.) & $2{,}194 \times 10^{-5}$ & $\text{Nms}/\text{rad}$ \\
-        $k_l$ & Coef. gravitacional de carga (Calc.) & $0{,}25 + [0\ldots0{,}75]$ & $\text{kg}\cdot\text{m}$ \\
+        $J_{eq}$ & Inercia equiv. total (Calc.) & $1.978 \times 10^{-5}$ & $\text{kg}\cdot\text{m}^2$ \\
+        $b_{eq}$ & Fricción equiv. total (Calc.) & $2.194 \times 10^{-5}$ & $\text{Nms}/\text{rad}$ \\
+        $k_l$ & Coef. gravitacional de carga (Calc.) & $0.25 + [0\ldots0.75]$ & $\text{kg}\cdot\text{m}$ \\
         \hline
         \multicolumn{4}{|c|}{\textbf{Subsistema Eléctrico (PMSM)}} \\
         \hline
         $P_p$ & Pares de polos & 3 & - \\
-        $\lambda'^r_m$ & Flujo magnético de imanes & 0{,}016 & Wb-turn \\
-        $L_d$ & Inductancia eje directo & 6{,}6 & mH \\
-        $L_q$ & Inductancia eje cuadratura & 5{,}8 & mH \\
-        $L_{ls}$ & Inductancia de dispersión & 0{,}8 & mH \\
-        $R_{sREF}$ & Resistencia estator (@ $T_{sREF}^\circ=20^\circ$C) & 1{,}02 & $\Omega$ \\
+        $\lambda'^r_m$ & Flujo magnético de imanes & 0.016 & Wb-turn \\
+        $L_d$ & Inductancia eje directo & 6.6 & mH \\
+        $L_q$ & Inductancia eje cuadratura & 5.8 & mH \\
+        $L_{ls}$ & Inductancia de dispersión & 0.8 & mH \\
+        $R_{sREF}$ & Resistencia estator (@ $T_{sREF}^\circ=20^\circ$C) & 1.02 & $\Omega$ \\
         \hline
         \multicolumn{4}{|c|}{\textbf{Subsistema Térmico}} \\
         \hline
-        $C_{ts}$ & Capacitancia térmica estator & 0{,}818 & $\text{W}/(^\circ\text{C}/\text{s})$ \\
-        $R_{ts\text{-}amb}$ & Resistencia térmica estator-ambiente & 146{,}7 & $^\circ\text{C}/\text{W}$ \\
-        $\alpha_{Cu}$ & Coef. temp. del cobre & $3{,}9 \times 10^{-3}$ & $1/^\circ\text{C}$ \\
+        $C_{ts}$ & Capacitancia térmica estator & 0.818 & $\text{W}/(^\circ\text{C}/\text{s})$ \\
+        $R_{ts\text{-}amb}$ & Resistencia térmica estator-ambiente & 146.7 & $^\circ\text{C}/\text{W}$ \\
+        $\alpha_{Cu}$ & Coef. temp. del cobre & $3.9 \times 10^{-3}$ & $1/^\circ\text{C}$ \\
         $T_{amb}^\circ$ & Temperatura ambiente (rango operativo) & $[-15;\,+40]$ & $^\circ\text{C}$ \\
         $T^\circ_{s,max}$ & Temperatura máxima del bobinado & 115 & $^\circ\text{C}$ \\
         \hline
         \multicolumn{4}{|c|}{\textbf{Límites de Operación (Especificaciones)}} \\
         \hline
-        $n_{l,nom}$ & Velocidad nominal de carga ($\omega_{l,nom}=6{,}28$ rad/s) & 60 & rpm \\
-        $T_{q,nom}$ & Torque nominal de salida & 17{,}0 & Nm \\
-        $T_{q,max}$ & Torque máximo (pico) & 45{,}0 & Nm \\
-        $n_{m,nom}$ & Velocidad nominal del rotor ($\omega_{m,nom}=691{,}15$ rad/s) & 6600 & rpm \\
+        $n_{l,nom}$ & Velocidad nominal de carga ($\omega_{l,nom}=6.28$ rad/s) & 60 & rpm \\
+        $T_{q,nom}$ & Torque nominal de salida & 17.0 & Nm \\
+        $T_{q,max}$ & Torque máximo (pico) & 45.0 & Nm \\
+        $n_{m,nom}$ & Velocidad nominal del rotor ($\omega_{m,nom}=691.15$ rad/s) & 6600 & rpm \\
         $V_{sl,nom}$ & Tensión nominal de línea & 30 & Vca rms \\
         $V_{sl,max}$ & Tensión máxima de línea (inversor) & 48 & Vca rms \\
-        $I_{s,nom}$ & Corriente nominal (continua) & 0{,}4 & Aca rms \\
-        $I_{s,max}$ & Corriente máxima (corta duración) & 2{,}0 & Aca rms \\
+        $I_{s,nom}$ & Corriente nominal (continua) & 0.4 & Aca rms \\
+        $I_{s,max}$ & Corriente máxima (corta duración) & 2.0 & Aca rms \\
         \hline
     \end{tabular}
     \label{tab:parametros}
@@ -271,8 +271,8 @@ Como se explicó anteriormente, la velocidad del motor no tendrá relación 1:1 
 \end{itemize}
 Por lo tanto, debido a las simplificaciones realizadas, es válido considerar la carga mecánica y el motor eléctrico como una unidad, lo que permite obtener un subsistema mecánico de un grado de libertad y escribir las siguientes ecuaciones.
 \begin{align}
-    \omega_l(t) = \frac{1}{r}\omega_m(t) \label{eq:cinem_reductor} \\
-    T_q(t) = rT_d(t) \label{eq:torque_reductor}
+    \omega_l(t) = \frac{1}{r}\omega_m(t) \\
+    T_q(t) = rT_d(t)
 \end{align}
 tal que:
 \begin{itemize}
@@ -294,11 +294,11 @@ tal que:
     Para el accionamiento, se utilizará una máquina eléctrica de CA trifásica sincrónica con excitación por imanes permanentes (\textbf{PMSM}) y estator simétrico y equilibrado, con bornes de fases \textit{abc} (coordenadas reales y estacionarias) conectados en configuración estrella (Y) con neutro flotante \textbf{no} accesible.
     \subsubsection{Modelo matemático equivalente del subsistema mecánico}
     Habiendo expresado las ecuaciones para los distintos subsistemas de la máquina PMSM y del tren de transmisión, es posible conjugarlas en un modelo equivalente.
-    Sustituyendo \(\omega_l(t)\) de \eqref{eq:cinem_reductor} y \(T_q(t) = rT_d(t)\) de \eqref{eq:torque_reductor} en \eqref{eq:din_pendulo} tenemos:
+    Sustituyendo \(\omega_l(t)\) de (3) y \(T_q(t) = rT_d(t)\) de (4) en la Ec. (1) tenemos:
     \begin{equation}\label{EqAux1}
         \frac{J_l}{r}\frac{d\omega_m(t)}{dt} = rT_d(t)-\frac{b_l}{r}\omega_m(t)-T_l(t)
     \end{equation}
-    Despejando \(T_d(t)\) y reemplazando \(T_l(t)\) por \eqref{eq:def_Tl}:
+    Despejando \(T_d(t)\) y reemplazando \(T_l(t)\) por la Ec. 2:
     \begin{equation}\label{Eq1}
         T_d(t)=\frac{J_l}{r^2}\frac{d\omega_m(t)}{dt}+\frac{b_l}{r^2}\omega_m(t)+\frac{1}{r}\left(g\cdot k_l\cdot \sin\Big(\frac{\theta_m(t)}{r}\Big)+T_{ld}(t)\right)
     \end{equation}
@@ -383,47 +383,11 @@ Según la guía de trabajo~\cite{guia_trabajo}, las \textbf{variables manipulabl
     \omega_e(t) \equiv 2\pi f_e(t) \equiv \frac{d\theta_{ev}(t)}{dt}
 \end{equation}
 
-\textbf{Transformación de Park.} El vínculo entre las variables de fase del estator (coordenadas $abc$, reales y estacionarias) y las coordenadas rotóricas $qd0$ (virtuales, fijas al rotor) se establece mediante la Transformación de Park, en su forma invariante en módulo, aplicable a cualquier variable base $f\in\{v,\,i\}$~\cite{guia_trabajo}. La \textbf{transformación directa} $\big(f_{abcs}(t)\to f_{qd0s}^{r}(t)\big)$ resulta:
-\begin{equation}\label{eq:park_directa}
-\begin{bmatrix}
-f_{qs}^r(t) \\
-f_{ds}^r(t) \\
-f_{0s}(t)
-\end{bmatrix}
-= \frac{2}{3}
-\begin{bmatrix}
-\cos\theta_r(t) & \cos(\theta_r(t)-\frac{2\pi}{3}) & \cos(\theta_r(t)+\frac{2\pi}{3}) \\
-\sin\theta_r(t) & \sin(\theta_r(t)-\frac{2\pi}{3}) & \sin(\theta_r(t)+\frac{2\pi}{3}) \\
-\frac{1}{2} & \frac{1}{2} & \frac{1}{2}
-\end{bmatrix}
-\begin{bmatrix}
-f_{as}(t) \\
-f_{bs}(t) \\
-f_{cs}(t)
-\end{bmatrix}
-\end{equation}
-mientras que la \textbf{transformación inversa} $\big(f_{qd0s}^{r}(t)\to f_{abcs}(t)\big)$ es:
-\begin{equation}\label{eq:park_inversa}
-\begin{bmatrix}
-f_{as}(t) \\
-f_{bs}(t) \\
-f_{cs}(t)
-\end{bmatrix}
-=
-\begin{bmatrix}
-\cos\theta_r(t) & \sin\theta_r(t) & 1 \\
-\cos(\theta_r(t)-\frac{2\pi}{3}) & \sin(\theta_r(t)-\frac{2\pi}{3}) & 1 \\
-\cos(\theta_r(t)+\frac{2\pi}{3}) & \sin(\theta_r(t)+\frac{2\pi}{3}) & 1
-\end{bmatrix}
-\begin{bmatrix}
-f_{qs}^r(t) \\
-f_{ds}^r(t) \\
-f_{0s}(t)
-\end{bmatrix}
-\end{equation}
-donde $\theta_r(t)=P_p\,\theta_m(t)$ es la posición eléctrica del rotor.
-
-\textbf{Ecuaciones de tensiones de fase referidas al rotor.} Aplicando la transformación directa \eqref{eq:park_directa} al vector de tensiones de fase $\bm{\mathrm{v}}_{abcs}$ se obtienen las tensiones en coordenadas rotóricas $\bm{\mathrm{v}}^{r}_{qd0s}=(v^r_{qs},\,v^r_{ds},\,v_{0s})$, cuyo balance eléctrico es:
+\textbf{Ecuaciones de tensiones de fase referidas al rotor}
+    \begin{align}
+        K_s\textbf{v}_{abcs} = \textbf{v}^r_{qd0s}
+    \end{align}
+    Siendo \(K_s\) la matriz de transformación de Park.
     \begin{equation}\label{eq:vqs_rotor}
         v^r_{qs}(t)=R_s(T_s^\circ(t))i^r_{qs}(t) + L_q\frac{d i^r_{qs}(t)}{dt}+[\lambda'^r_m + L_d i^r_{ds}(t)]\omega_r(t)
     \end{equation}
@@ -459,13 +423,13 @@ donde $\theta_r(t)=P_p\,\theta_m(t)$ es la posición eléctrica del rotor.
     \subsubsection{Modelo no lineal global del accionamiento}
     Una vez definidos el subsistema mecánico equivalente, el subsistema electromagnético en coordenadas \(qd0\) y el subsistema térmico, puede escribirse el modelo no lineal global del accionamiento. Tomando como vector de estado
     \[
-        \bm{x}_{NL}(t)=\begin{bmatrix}
+        \mathbf{x}_{NL}(t)=\begin{bmatrix}
             \theta_m(t) & \omega_m(t) & i_{qs}^r(t) & i_{ds}^r(t) & i_{0s}(t) & T_s^\circ(t)
         \end{bmatrix}^T
     \]
     y como entradas
     \[
-        \bm{u}_{NL}(t)=\begin{bmatrix}
+        \mathbf{u}_{NL}(t)=\begin{bmatrix}
             v_{qs}^r(t) & v_{ds}^r(t) & v_{0s}(t) & T_{ld}(t) & T_{amb}^\circ(t)
         \end{bmatrix}^T
     \]
@@ -666,7 +630,7 @@ Se realizó un ensayo de excitación al escalón con $v_{qs}^{r*}=5$~V y carga n
 \textbf{Análisis Electromecánico:}
 La Fig. \ref{fig:res_elec_mec} vincula la dinámica eléctrica con la mecánica:
 \begin{itemize}
-    \item \textbf{Superior ($i_{qs}^r$):} Al aplicar la tensión, la corriente aumenta rápidamente ($\tau_e = L_q/R_s$). Sin embargo, a medida que el motor gana velocidad, la aparición de la fuerza contraelectromotriz ($e = \lambda'^r_m \omega_r$) se opone a la tensión aplicada, provocando la reducción de la corriente observada a partir de $t \approx 0{,}1$ s.
+    \item \textbf{Superior ($i_{qs}^r$):} Al aplicar la tensión, la corriente aumenta rápidamente ($\tau_e = L_q/R_s$). Sin embargo, a medida que el motor gana velocidad, la aparición de la fuerza contraelectromotriz ($e = \lambda'^r_m \omega_r$) se opone a la tensión aplicada, provocando la reducción de la corriente observada a partir de $t \approx 0.1$ s.
     \item \textbf{Inferior ($\omega_m$):} El torque generado por la corriente acelera el rotor venciendo la inercia $J_{eq}$. La velocidad se estabiliza cuando el torque motor se iguala con el torque de fricción viscosa.
 \end{itemize}
 
@@ -832,7 +796,11 @@ El modelo global LPV toma la forma:
 
 
 \subsection{Linealización por Retroalimentación NL: Modelo LTI equivalente}
-El objetivo de esta sección es obtener un modelo lineal invariante en el tiempo (LTI) a partir de la planta no lineal, aplicando estrategias de control vectorial con campo orientado. Para lograr esto, se imponen restricciones matemáticas en las entradas manipuladas mediante retroalimentación de estado, buscando desacoplar los canales de flujo magnético y torque. Para el modelo LTI, se asume la dinámica térmica como lineal, con $R_s = R_{s0} = 1{,}058\ \Omega$ constante, evaluada a la temperatura media de operación del estator ($\approx 29{,}5\,^\circ$C) y no al valor de referencia $R_{sREF} = 1{,}02\ \Omega$ a $20\,^\circ$C. Además, el torque de carga total $T_l(t)$ ---definido en el modelo mecánico--- se considera una \textbf{entrada de perturbación externa (exógena)} del modelo, aplicada directamente sobre la dinámica mecánica. De esta forma, la matriz de estado $\bm{A}$ resulta lineal e invariante en el tiempo.
+El objetivo de esta sección es obtener un modelo lineal invariante en el tiempo (LTI) a partir de la planta no lineal, aplicando estrategias de control vectorial con campo orientado. Para lograr esto, se imponen restricciones matemáticas en las entradas manipuladas mediante retroalimentación de estado, buscando desacoplar los canales de flujo magnético y torque. Para el modelo LTI, se asume la dinámica térmica como lineal, con $R_s = R_{s0} = 1{,}058\ \Omega$ constante, evaluada a la temperatura media de operación del estator ($\approx 29{,}5\,^\circ$C) y no al valor de referencia $R_{sREF} = 1{,}02\ \Omega$ a $20\,^\circ$C. Además, se adopta la salvedad ingenieril de agrupar el torque gravitatorio junto con el torque externo de carga en una perturbación mecánica total:
+\begin{equation}
+    T_l(t) \triangleq T_{ld}(t) + g\,k_l\sin\left(\frac{\theta_m(t)}{r}\right).
+\end{equation}
+De esta forma, el término gravitatorio no se deriva ni se incorpora a la matriz de estado: se lo trata como parte de la entrada perturbadora $T_l(t)$, lo que permite conservar una matriz $\mathbf{A}$ lineal e invariante en el tiempo para la dinámica autónoma.
 
 \subsubsection{Restricción o ley de control mínima en el eje $d$}
 Para lograr el desacoplamiento de flujo y torque, se impone el requisito de mantener la corriente del eje directo nula: $i_{ds}^r(t) \equiv 0$. Analizando la ecuación diferencial de dicho estado:
@@ -860,7 +828,7 @@ Aplicando las leyes de control obtenidas \eqref{eq:vds_minima} y \eqref{eq:vqs_c
 \end{equation}
 Aunque se desprecie el efecto del subsistema térmico en la dinámica del modelo LTI, es interesante seguir estudiando la temperatura del estator en la simulación, por lo que también se considera la siguiente ecuación
 \[\dfrac{dT_s^\circ(t)}{dt} = \dfrac{1}{C_{ts}}\Big[\frac{3}{2}R_{s0}\cdot i_{qs}^{r\,2}(t)-\frac{1}{R_{ts\text{-}amb}}\big(T_s^\circ(t) - T_{amb}^\circ(t)\big)\Big]\]
-Definiendo el vector de estados nominal $\bm{x}_{LTI} = [\theta_m, \omega_m, i_{qs}^r]^T$, la representación matricial de estado resulta:
+Definiendo el vector de estados nominal $\mathbf{x}_{LTI} = [\theta_m, \omega_m, i_{qs}^r]^T$, la representación matricial de estado resulta:
 
 \begingroup
 \renewcommand{\arraystretch}{1.8} 
@@ -877,7 +845,7 @@ Definiendo el vector de estados nominal $\bm{x}_{LTI} = [\theta_m, \omega_m, i_{
 0  & -\frac{b_{eq}}{J_{eq}} & \frac{3 P_p \lambda'^r_m}{2 J_{eq}}     \\
  0 &  -\frac{P_p \lambda'^r_m}{L_q} & -\frac{R_{s0}}{L_q}
 \end{bmatrix}
-}_{\bm{A}}
+}_{\mathbf{A}}
 \begin{bmatrix}
 \theta_m(t) \\
 \omega_m (t)\\
@@ -890,7 +858,7 @@ i_{qs}^r(t)
 0  \\
 \frac{1}{L_q} 
 \end{bmatrix}
-}_{\bm{B_c}}
+}_{\mathbf{B_c}}
 v_{qs}(t) 
 +
 \underbrace{
@@ -899,21 +867,21 @@ v_{qs}(t)
 -\frac{1}{rJ_{eq}} \\
 0
 \end{bmatrix}
-}_{\bm{B_d}}
+}_{\mathbf{B_d}}
 T_l(t)
 \end{equation}\normalsize
 \endgroup
 
 La ecuación de salida, midiendo la posición, es:
 \begin{equation}
-\bm{y}(t) = \theta_m(t) = 
+\mathbf{y}(t) = \theta_m(t) = 
 \underbrace{
 \begin{bmatrix} 1 & 0 & 0 \end{bmatrix}
-}_{\bm{C}_{LTI}} \bm{x}_{LTI} 
+}_{\mathbf{C}_{LTI}} \mathbf{x}_{LTI} 
 + 
 \underbrace{
 \begin{bmatrix} 0 & 0 \end{bmatrix}
-}_{\bm{D}_{LTI}} \bm{u}_{LTI}
+}_{\mathbf{D}_{LTI}} \mathbf{u}_{LTI}
 \end{equation}
 
 
@@ -938,7 +906,7 @@ Aun así, esta volvería a acoplar temporalmente la corriente en eje directo con
 \begin{equation*}
     v_{qs}^r(t) = L_q \dfrac{di_{qs}^r(t)}{dt} + R_s(t)i_{qs}^r(t)+\lambda'^r_m\omega_r(t)+  \underbrace{P_pL_di_{ds}^r(t)\omega_m(t)}_{\text{Acoplamiento}}
 \end{equation*}
-Para representar el sistema completo, se incorpora esta EDO al modelo LTI, definiendo el vector de estado aumentado $\bm{x}_{aug} = [\theta_m, \omega_m, i_{qs}^r, i_{ds}^r]^T$. 
+Para representar el sistema completo, se incorpora esta EDO al modelo LTI, definiendo el vector de estado aumentado $\mathbf{x}_{aug} = [\theta_m, \omega_m, i_{qs}^r, i_{ds}^r]^T$. 
 
 \subsubsection{Ley de control complementaria en el eje $q$}
 Si consideramos la dinámica residual analizada en el punto anterior, se puede ver que se producirá acoplamiento cruzado no lineal temporal en el eje de cuadratura debido al término $\omega_r L_d i_{ds}^r$. 
@@ -957,11 +925,10 @@ El \textbf{modelo LTI aumentado} de cuarto orden resultante es:
     \vspace{0.2cm}
     \dfrac{d\omega_m(t)}{dt} = \dfrac{1}{J_{eq}}\Big[\frac{3 P_p \lambda'^r_m}{2} i_{qs}^r(t) - b_{eq} \omega_m(t) - \frac{1}{r} T_l(t)\Big] \\
     \dfrac{di_{qs}^r(t)}{dt} = \dfrac{1}{L_q}\Big[-P_p \lambda'^r_m \omega_m(t) - R_{s0}\cdot i_{qs}^r(t) + v_{qs}(t)\Big] \\
-    \dfrac{di_{ds}^r(t)}{dt} = \dfrac{-R_{s0}}{L_d}i_{ds}^r(t)
+    \dfrac{di_{ds}^r(t)}{dt} = \dfrac{-R_{s0}}{L_d}i_{ds}^r(t)\\
+    \dfrac{dT_s^\circ(t)}{dt} = \dfrac{1}{C_{ts}}\Big[\frac{3}{2}R_{s0}\cdot \big(i_{qs}^{r\,2}(t)+i_{ds}^{r\,2}(t)\big)-\frac{1}{R_{ts\text{-}amb}}\big(T_s^\circ(t) - T_{amb}^\circ(t)\big)\Big]
 \end{cases}
 \end{equation}
-Al igual que en el modelo nominal, la temperatura del estator se sigue simulando aparte mediante su ecuación no lineal, sin formar parte de la dinámica LTI de cuarto orden:
-\[\dfrac{dT_s^\circ(t)}{dt} = \dfrac{1}{C_{ts}}\Big[\frac{3}{2}R_{s0}\cdot \big(i_{qs}^{r\,2}(t)+i_{ds}^{r\,2}(t)\big)-\frac{1}{R_{ts\text{-}amb}}\big(T_s^\circ(t) - T_{amb}^\circ(t)\big)\Big]\]
 \begingroup
 \renewcommand{\arraystretch}{1.8} 
 \footnotesize\begin{equation}
@@ -1014,9 +981,9 @@ A partir de las ecuaciones matriciales, se construye el diagrama de bloques del 
 La implementación física de esta Linealización por Retroalimentación requiere un \textit{controlador parcial} acoplado a la planta NL original. 
 \begin{enumerate}
     \item Recibe la acción de control lineal generada por un controlador de movimiento ($v_{qs}$).
-    \item Calcula los voltajes de desacoplamiento interno en tiempo real utilizando las lecturas de los sensores idealizados ($\bm{i}_{abcs} \rightarrow \bm{i}_{qd0s}^r$ y $\omega_m$), aplicando las Ecuaciones \eqref{eq:vds_minima} y \eqref{eq:vqs_comp}.
+    \item Calcula los voltajes de desacoplamiento interno en tiempo real utilizando las lecturas de los sensores idealizados ($\mathbf{i}_{abcs} \rightarrow \mathbf{i}_{qd0s}^r$ y $\omega_m$), aplicando las Ecuaciones \eqref{eq:vds_minima} y \eqref{eq:vqs_comp}.
     \item Estas señales resultantes ($v_{qs}^{r*}$ y $v_{ds}^{r*}$) pasan por un bloque de Transformación de Park Inversa ($\theta_r = P_p \theta_m$).
-    \item Finalmente, se envían los voltajes calculados $\bm{v}_{abcs}^*$ al inversor, el cual excita físicamente la planta NL.
+    \item Finalmente, se envían los voltajes calculados $\mathbf{v}_{abcs}^*$ al inversor, el cual excita físicamente la planta NL.
 \end{enumerate}
 \begin{figure}[H]
     \centering
@@ -1039,7 +1006,7 @@ Si bien ambos modelos buscan representar la dinámica del sistema mediante ecuac
     \item \textbf{Tratamiento de la carga gravitacional (No linealidad mecánica):}
     \begin{itemize}
         \item \textit{Modelo LPV:} El torque gravitacional se linealiza, introduciendo un término de ``rigidez dinámica'' en la matriz de estado del sistema ($A_{2,1} \propto \cos(\theta_{m,o}/r)$). Esto provoca que los polos mecánicos cambien drásticamente según la posición geométrica del brazo.
-        \item \textit{Modelo LTI Aumentado:} El torque de carga $T_l(t)$ ingresa como perturbación externa (exógena) sobre la dinámica mecánica, sin derivarse respecto de la posición. En consecuencia, no aparece un término de rigidez asociado al seno gravitatorio en la matriz $\bm{A}$; la matriz de estado del LTI nominal ($A_{2,1}=0$) permanece invariante frente a la posición.
+        \item \textit{Modelo LTI Aumentado:} El torque gravitacional completo se agrupa con el torque externo de carga en la perturbación total $T_l(t)=T_{ld}(t)+g\,k_l\sin(\theta_m/r)$. En consecuencia, el término seno no se deriva ni ingresa en la matriz $\mathbf{A}$; la matriz de estado del LTI nominal ($A_{2,1}=0$) permanece invariante frente a la posición.
     \end{itemize}
 
     \item \textbf{Desacoplamiento del Subsistema Térmico:}
@@ -1057,7 +1024,7 @@ Si bien ambos modelos buscan representar la dinámica del sistema mediante ecuac
         \item La contribución del torque de reluctancia desaparece en la linealización, quedando el torque dependiendo de forma puramente lineal de $I^r_{qs,o}$, al igual que en el modelo LTI.
     \end{itemize}
     
-    Por lo que, podemos decir que el Modelo LTI Aumentado puede interpretarse estructuralmente como el caso ideal de un modelo LPV forzado perpetuamente a operar sobre el punto $I^r_{ds,o} = 0$, con el torque de carga $T_l(t)$ tratado como perturbación externa del modelo.
+    Por lo que, podemos decir que el Modelo LTI Aumentado puede interpretarse estructuralmente como el caso ideal de un modelo LPV forzado perpetuamente a operar sobre el punto $I^r_{ds,o} = 0$, habiendo agrupado el torque gravitatorio dentro de la perturbación de entrada $T_l(t)$.
 \end{enumerate}
 \subsubsection{Estudio del comportamiento del sistema sometido a variaciones de $i_{ds}^r$}
 Al liberar la restricción $I^r_{ds,o} = 0$, la corriente del eje directo pasa a ser un parámetro de sintonía que modifica tanto la capacidad estática de la máquina como sus propiedades dinámicas locales (autovalores del Jacobiano). El análisis de esta variación se divide en un enfoque físico-estático y uno dinámico.
@@ -1080,9 +1047,9 @@ Dependiendo del signo de la corriente inyectada, se distinguen dos regímenes de
 \end{figure}
 
 \textbf{2. Migración de Propiedades Dinámicas (Análisis de Autovalores)} \mbox{}\\
-Para evaluar el impacto dinámico, se analiza la migración de los polos del sistema LPV (los autovalores de la matriz $\bm{A}_o$). Se fija un punto de operación nominal de velocidad ($\omega_{m,o}$), corriente de cuadratura ($I^r_{qs,o}$) y temperatura ($T_s^\circ = T_{amb}^\circ = 25\,^\circ$C), y se realiza un barrido del parámetro $I^r_{ds,o}$ desde la zona de debilitamiento hasta la zona de reforzamiento de campo.
+Para evaluar el impacto dinámico, se analiza la migración de los polos del sistema LPV (los autovalores de la matriz $\mathbf{A}_o$). Se fija un punto de operación nominal de velocidad ($\omega_{m,o}$) y corriente de cuadratura ($I^r_{qs,o}$), y se realiza un barrido del parámetro $I^r_{ds,o}$ desde la zona de debilitamiento hasta la zona de reforzamiento de campo.
 
-Sustituyendo estos valores en la matriz Jacobiana $\bm{A}_o$ analítica deducida previamente, se obtienen los autovalores para cada caso. Los resultados numéricos más relevantes se resumen en los Cuadros \ref{tab:migracion_polos} (debilitamiento) y \ref{tab:migracion_polos_reforzamiento} (reforzamiento). Cabe aclarar que este barrido paramétrico del modelo LPV se evalúa a la temperatura ambiente $T_s^\circ = 25\,^\circ$C, mientras que el modelo LTI de las secciones siguientes emplea la resistencia a la temperatura media de operación $R_{s0}=1{,}058\ \Omega$ (a $\approx 29{,}5\,^\circ$C); de allí las pequeñas diferencias en los polos rápidos entre ambos análisis.
+Sustituyendo estos valores en la matriz Jacobiana $\mathbf{A}_o$ analítica deducida previamente, se obtienen los autovalores para cada caso. Los resultados numéricos más relevantes se resumen en el Cuadro \ref{tab:migracion_polos}.
 
 
 \begin{table}[H]
@@ -1093,11 +1060,11 @@ Sustituyendo estos valores en la matriz Jacobiana $\bm{A}_o$ analítica deducida
 \hline
 $I^r_{ds,o}$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_3$ & $\lambda_4$ & $\lambda_5$ \\
 \hline
--1{,}2 & -1299{,}86 & -152{,}32 & $-92{,}75 - j\,79{,}89$ & $-92{,}75 + j\,79{,}89$ & -0{,}1081 \\
--1{,}0 & -1299{,}86 & -153{,}37 & $-92{,}24 - j\,94{,}65$ & $-92{,}24 + j\,94{,}65$ & -0{,}0921 \\
--0{,}8 & -1299{,}86 & -154{,}08 & $-91{,}90 - j\,107{,}54$ & $-91{,}90 + j\,107{,}54$ & -0{,}0800 \\
--0{,}6 & -1299{,}86 & -154{,}58 & $-91{,}65 - j\,119{,}20$ & $-91{,}65 + j\,119{,}20$ & -0{,}0705 \\
--0{,}4 & -1299{,}86 & -154{,}96 & $-91{,}47 - j\,129{,}98$ & $-91{,}47 + j\,129{,}98$ & -0{,}0629 \\
+-1.2 & -1275.00 & -141.30 & $-94.74 - j\,23.38$ & $-94.74 + j\,23.38$ & -0.2657 \\
+-1.0 & -1275.00 & -145.62 & $-92.61 - j\,47.75$ & $-92.61 + j\,47.75$ & -0.2261 \\
+-0.8 & -1275.00 & -147.64 & $-91.62 - j\,62.75$ & $-91.62 + j\,62.75$ & -0.1963 \\
+-0.6 & -1275.00 & -148.88 & $-91.01 - j\,74.74$ & $-91.01 + j\,74.74$ & -0.1731 \\
+-0.4 & -1275.00 & -149.74 & $-90.59 - j\,85.10$ & $-90.59 + j\,85.10$ & -0.1544 \\
 \hline
 \end{tabular}
 \end{table}
@@ -1110,51 +1077,43 @@ $I^r_{ds,o}$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_3$ & $\lambda_4$ & $\lam
 \hline
 $I^r_{ds,o}$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_3$ & $\lambda_4$ & $\lambda_5$ \\
 \hline
-0{,}2 & -1299{,}86 & -155{,}70 & $-91{,}11 - j\,158{,}83$ & $-91{,}11 + j\,158{,}83$ & -0{,}0472 \\
-0{,}4 & -1299{,}86 & -155{,}86 & $-91{,}03 - j\,167{,}63$ & $-91{,}03 + j\,167{,}63$ & -0{,}0434 \\
-0{,}6 & -1299{,}86 & -156{,}00 & $-90{,}96 - j\,176{,}12$ & $-90{,}96 + j\,176{,}12$ & -0{,}0402 \\
-0{,}8 & -1299{,}86 & -156{,}12 & $-90{,}90 - j\,184{,}35$ & $-90{,}90 + j\,184{,}35$ & -0{,}0375 \\
-1{,}0 & -1299{,}86 & -156{,}22 & $-90{,}85 - j\,192{,}36$ & $-90{,}85 + j\,192{,}36$ & -0{,}0351 \\
+0.2 & -1275.00 & -151.25 & $-89.85 - j\,111.05$ & $-89.85 + j\,111.05$ & -0.1157 \\
+0.4 & -1275.00 & -151.57 & $-89.70 - j\,118.65$ & $-89.70 + j\,118.65$ & -0.1066 \\
+0.6 & -1275.00 & -151.83 & $-89.57 - j\,125.90$ & $-89.57 + j\,125.90$ & -0.0986 \\
+0.8 & -1275.00 & -152.05 & $-89.46 - j\,132.85$ & $-89.46 + j\,132.85$ & -0.0917 \\
+1.0 & -1275.00 & -152.24 & $-89.37 - j\,139.56$ & $-89.37 + j\,139.56$ & -0.0857 \\
 \hline
 \end{tabular}
 \end{table}
 
 A partir de la evaluación numérica de la matriz Jacobiana, se desprenden las siguientes conclusiones sobre la migración de propiedades:
 \begin{enumerate}
-    \item \textbf{Frecuencia de oscilación:} La variación de $I^r_{ds,o}$ afecta drásticamente a los términos cruzados electromecánicos en la matriz $\bm{A}_o$. Esto se traduce en una variación significativa de la parte imaginaria de los polos dominantes complejos conjugados. A medida que se pasa de debilitamiento a reforzamiento (aumenta $I^r_{ds,o}$), la frecuencia natural de oscilación del sistema aumenta.
+    \item \textbf{Frecuencia de oscilación:} La variación de $I^r_{ds,o}$ afecta drásticamente a los términos cruzados electromecánicos en la matriz $\mathbf{A}_o$. Esto se traduce en una variación significativa de la parte imaginaria de los polos dominantes complejos conjugados. A medida que se pasa de debilitamiento a reforzamiento (aumenta $I^r_{ds,o}$), la frecuencia natural de oscilación del sistema aumenta.
     \item \textbf{Estabilidad global:} La parte real de los polos dominantes complejos conjugados (que dicta el amortiguamiento absoluto) se mantiene prácticamente inalterada ante los cambios de $I^r_{ds,o}$. Esto demuestra que inyectar corriente en el eje directo no compromete severamente la estabilidad a lazo abierto del sistema.
     \item \textbf{Dinámica rápida:} Los polos puramente reales asociados a la dinámica eléctrica rápida y a la dinámica térmica lenta permanecen virtualmente invariantes frente a los cambios en el punto de operación de $I^r_{ds,o}$.
 \end{enumerate}
 
-Estas tendencias se visualizan en las Fig.~\ref{fig:migracion_ids_full} y \ref{fig:migracion_ids_zoom}, que trazan el recorrido de los autovalores del modelo LPV al barrer $I^r_{ds,o}$ desde la zona de debilitamiento hasta la de reforzamiento de campo. En cada rama, el marcador relleno señala el extremo de debilitamiento ($I^r_{ds,o}$ mínimo), el marcador con borde negro el de reforzamiento ($I^r_{ds,o}$ máximo) y el rombo rojo el punto de operación con $I^r_{ds,o}=0$.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{imagenes/migracion_ids_1.png}
-    \caption{Migración de los autovalores del modelo LPV al variar $I^r_{ds,o}$ (vista completa del plano $s$). Se aprecia que los polos reales rápidos ($\lambda_1$ y el asociado a la dinámica eléctrica) permanecen prácticamente invariantes.}
-    \label{fig:migracion_ids_full}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{imagenes/migracion_ids_2.png}
-    \caption{Detalle de la migración de los polos dominantes en torno al origen. El par complejo conjugado aumenta su parte imaginaria (frecuencia natural de oscilación) al crecer $I^r_{ds,o}$, mientras que su parte real (amortiguamiento absoluto) se mantiene prácticamente constante.}
-    \label{fig:migracion_ids_zoom}
-\end{figure}
+% NOTA: figura de migración de polos LPV omitida (no se generó imagen y no se referencia en el texto).
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{imagenes/migracion_polos.png}
+%     \caption{Mapa de migración de polos del modelo LPV variando $I^r_{ds,o}$.}
+%     \label{fig:migracion_polos}
+% \end{figure}
 \subsection{Funciones de Transferencia del Modelo LTI Aumentado}
-A partir del modelo LTI equivalente aumentado de cuarto orden, se obtienen las funciones de transferencia desde ambas entradas ---la acción de control $v_{qs}(t)$ y la perturbación mecánica externa $T_l(t)$--- hacia la salida de posición $\theta_m(t)$.
+A partir del modelo LTI equivalente aumentado de cuarto orden, se obtienen las funciones de transferencia desde ambas entradas ---la acción de control $v_{qs}(t)$ y la perturbación mecánica total $T_l(t)$--- hacia la salida de posición $\theta_m(t)$.
 
 \subsubsection{Estado inicial considerado}
 El modelo LTI aumentado es un modelo \textbf{incremental} alrededor de un punto de equilibrio. El estado inicial considerado es:
 \begin{equation}
-    \bm{x}_{aug}(0) = \begin{bmatrix} \theta_m(0) \\ \omega_m(0) \\ i_{qs}^r(0) \\ i_{ds}^r(0) \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}
+    \mathbf{x}_{aug}(0) = \begin{bmatrix} \theta_m(0) \\ \omega_m(0) \\ i_{qs}^r(0) \\ i_{ds}^r(0) \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}
 \end{equation}
-Además, dado que el torque de carga $T_l(t)$ se trata como perturbación externa del modelo, no aparece ningún término no lineal dependiente de $\sin(\theta_m/r)$ en la matriz de estado. La resistencia del estator se considera constante ($R_s = R_{s0}$) por el desacoplamiento térmico.
+Además, dado que el torque gravitatorio fue agrupado dentro de la perturbación total $T_l(t)$, no aparece ningún término no lineal dependiente de $\sin(\theta_m/r)$ en la matriz de estado. La resistencia del estator se considera constante ($R_s = R_{s0}$) por el desacoplamiento térmico.
 
 \subsubsection{Obtención de las funciones de transferencia}
 Las funciones de transferencia se calculan mediante la expresión general:
 \begin{equation}
-    G(s) = \bm{C}(s\bm{I} - \bm{A})^{-1}\bm{B}
+    G(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}
 \end{equation}
 
 Dado que el estado $i_{ds}^r$ está completamente desacoplado (como se demostrará en la sección siguiente), es suficiente trabajar con el subsistema nominal de tercer orden. Aplicando la transformada de Laplace (con condiciones iniciales nulas) a las ecuaciones escalares del modelo nominal:
@@ -1192,10 +1151,10 @@ donde el factor $s$ proviene de la integración $\Theta_m = \Omega_m / s$. Divid
 
 El polinomio característico del modelo aumentado es:
 \begin{equation}
-    \det(s\bm{I} - \bm{A}_{aug}) = \underbrace{\left(s + \frac{R_{s0}}{L_d}\right)}_{\text{Polo de } i_{ds}^r} \cdot \underbrace{\left[ s^3 + \left(\frac{b_{eq}}{J_{eq}} + \frac{R_{s0}}{L_q}\right)s^2 + \left(\frac{b_{eq} R_{s0}}{J_{eq} L_q} + \frac{3 P_p^2 {\lambda'^r_m}^2}{2 J_{eq} L_q}\right)s \right]}_{\Delta(s) \text{ --- Polinomio del subsistema nominal}}
+    \det(s\mathbf{I} - \mathbf{A}_{aug}) = \underbrace{\left(s + \frac{R_{s0}}{L_d}\right)}_{\text{Polo de } i_{ds}^r} \cdot \underbrace{\left[ s^3 + \left(\frac{b_{eq}}{J_{eq}} + \frac{R_{s0}}{L_q}\right)s^2 + \left(\frac{b_{eq} R_{s0}}{J_{eq} L_q} + \frac{3 P_p^2 {\lambda'^r_m}^2}{2 J_{eq} L_q}\right)s \right]}_{\Delta(s) \text{ --- Polinomio del subsistema nominal}}
 \end{equation}
 
-Sin embargo, al evaluar la resolvente $(s\bm{I}-\bm{A})^{-1}$ y proyectar sobre las columnas de entrada $\bm{B_c}$ y $\bm{B_d}$, el factor $(s + R_{s0}/L_d)$ se \textbf{cancela} en ambas funciones de transferencia. Esto se debe a que el estado $i_{ds}^r$ no es excitado por ninguna de las dos entradas ($B_c(4) = B_d(4) = 0$) y no es observado por la salida ($C(4) = 0$). Por tanto, las funciones de transferencia resultan de \textbf{orden 3}, con denominador $\Delta(s)$:
+Sin embargo, al evaluar la resolvente $(s\mathbf{I}-\mathbf{A})^{-1}$ y proyectar sobre las columnas de entrada $\mathbf{B_c}$ y $\mathbf{B_d}$, el factor $(s + R_{s0}/L_d)$ se \textbf{cancela} en ambas funciones de transferencia. Esto se debe a que el estado $i_{ds}^r$ no es excitado por ninguna de las dos entradas ($B_c(4) = B_d(4) = 0$) y no es observado por la salida ($C(4) = 0$). Por tanto, las funciones de transferencia resultan de \textbf{orden 3}, con denominador $\Delta(s)$:
 
 \vspace{0.3cm}
 \textbf{Función de transferencia de control} ($v_{qs} \to \theta_m$):
@@ -1223,21 +1182,21 @@ El estado $i_{ds}^r$ (cuarto estado del modelo aumentado) \textbf{no aporta ni s
 \begin{enumerate}
     \item \textbf{No controlabilidad:} Ninguna de las entradas ($v_{qs}$, $T_l$) excita al estado $i_{ds}^r$, ya que las componentes correspondientes de las matrices de entrada son nulas: $B_c(4) = 0$ y $B_d(4) = 0$.
     \item \textbf{No observabilidad:} La salida $\theta_m$ no depende de $i_{ds}^r$, ya que $C(4) = 0$.
-    \item \textbf{Desacoplamiento dinámico:} La cuarta fila de $\bm{A}$ solo contiene el término $-R_{s0}/L_d$ en la diagonal, sin acoplamientos con los demás estados. La dinámica de $i_{ds}^r$ es completamente autónoma.
+    \item \textbf{Desacoplamiento dinámico:} La cuarta fila de $\mathbf{A}$ solo contiene el término $-R_{s0}/L_d$ en la diagonal, sin acoplamientos con los demás estados. La dinámica de $i_{ds}^r$ es completamente autónoma.
 \end{enumerate}
 
 Consecuentemente, el polo $\lambda_4 = -R_{s0}/L_d$ del sistema en espacio de estados se cancela algebraicamente al convertir a función de transferencia. La dinámica de $i_{ds}^r$ es puramente una \textbf{respuesta libre}:
 \begin{equation}
     i_{ds}^r(t) = i_{ds}^r(0) \, e^{-\frac{R_{s0}}{L_d} t}
 \end{equation}
-que solo se manifiesta si la condición inicial es no nula, decayendo exponencialmente con constante de tiempo $\tau_d = L_d / R_{s0}$. Esto confirma que el \textbf{modelo nominal de tercer orden} $\bm{x}_{LTI} = [\theta_m, \omega_m, i_{qs}^r]^T$ es suficiente para caracterizar completamente la relación entrada-salida del sistema.
+que solo se manifiesta si la condición inicial es no nula, decayendo exponencialmente con constante de tiempo $\tau_d = L_d / R_{s0}$. Esto confirma que el \textbf{modelo nominal de tercer orden} $\mathbf{x}_{LTI} = [\theta_m, \omega_m, i_{qs}^r]^T$ es suficiente para caracterizar completamente la relación entrada-salida del sistema.
 
 \subsection{Análisis de Estabilidad a Lazo Abierto}
 
 \subsubsection{Autovalores del modelo aumentado}
-Los autovalores del sistema se obtienen a partir del polinomio característico de la matriz $\bm{A}_{aug}$ (4$\times$4). Como se demostró en la sección anterior, este se factoriza en dos términos independientes:
+Los autovalores del sistema se obtienen a partir del polinomio característico de la matriz $\mathbf{A}_{aug}$ (4$\times$4). Como se demostró en la sección anterior, este se factoriza en dos términos independientes:
 \begin{equation}
-    \det(s\bm{I} - \bm{A}_{aug}) = \underbrace{\left(s + \frac{R_{s0}}{L_d}\right)}_{\lambda_4} \cdot \underbrace{s}_{\lambda_1} \cdot \underbrace{\left(s^2 + a_2\,s + a_1\right)}_{\lambda_{2,3}}
+    \det(s\mathbf{I} - \mathbf{A}_{aug}) = \underbrace{\left(s + \frac{R_{s0}}{L_d}\right)}_{\lambda_4} \cdot \underbrace{s}_{\lambda_1} \cdot \underbrace{\left(s^2 + a_2\,s + a_1\right)}_{\lambda_{2,3}}
 \end{equation}
 donde los coeficientes del polinomio cuadrático son:
 \begin{equation}
@@ -1301,12 +1260,12 @@ Si se aplica una tensión o un torque perturbador constante en lazo abierto, la 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{imagenes/polos_ceros_LA.png}
-    \caption{Mapa de polos (cuadrados sólidos) y ceros (círculos vacíos) a lazo abierto para ambas funciones de transferencia del modelo LTI aumentado. El polo cancelado de $i_{ds}^r$ se indica con rombo rojo.}
+    \caption{Mapa de polos y ceros a lazo abierto para ambas funciones de transferencia del modelo LTI aumentado. Se indica con $\times$ roja el polo cancelado de $i_{ds}^r$.}
     \label{fig:polos_ceros_LA}
 \end{figure}
 
 \subsubsection{Migración de propiedades ante variación de \texorpdfstring{$R_s$}{Rs}}
-La resistencia del estator varía con la temperatura según $R_s\big(T_s^\circ(t)\big)=R_{sREF}\big[1+\alpha_{Cu}\big(T_s^\circ(t)-T_{sREF}^\circ\big)\big]$. Para evaluar su efecto sobre la dinámica del modelo LTI, se realiza un barrido en el rango $[0{,}8\,R_{sREF},\; 1{,}2\,R_{sREF}] = [0{,}816;\ 1{,}224]\ \Omega$ (con $R_{sREF}=1{,}02\ \Omega$); la fila resaltada corresponde al valor más próximo a la resistencia de operación $R_{s0}\approx 1{,}058\ \Omega$.
+La resistencia del estator varía con la temperatura según $R_s\big(T_s^\circ(t)\big)=R_{sREF}\big[1+\alpha_{Cu}\big(T_s^\circ(t)-T_{sREF}^\circ\big)\big]$. Para evaluar su efecto sobre la dinámica del modelo LTI, se realiza un barrido alrededor del valor de operación $R_{s0}$, en el rango $[0{,}8\,R_{s0},\; 1{,}2\,R_{s0}]$.
 
 \begin{table}[H]
 \centering
@@ -1318,19 +1277,19 @@ La resistencia del estator varía con la temperatura según $R_s\big(T_s^\circ(t
 \hline
 $R_s$ [$\Omega$] & Polos $\lambda_{2,3}$ & Cero $G_2$ & $\omega_n$ [rad/s] & $\zeta$ \\
 \hline
-0{,}816 & $-70{,}9 \pm j\,158{,}9$ & $-140{,}69$ & $174{,}0$ & $0{,}407$ \\
-0{,}850 & $-73{,}8 \pm j\,157{,}6$ & $-146{,}55$ & $174{,}0$ & $0{,}424$ \\
-0{,}884 & $-76{,}8 \pm j\,156{,}2$ & $-152{,}41$ & $174{,}0$ & $0{,}441$ \\
-0{,}918 & $-79{,}7 \pm j\,154{,}7$ & $-158{,}28$ & $174{,}0$ & $0{,}458$ \\
-0{,}952 & $-82{,}6 \pm j\,153{,}2$ & $-164{,}14$ & $174{,}1$ & $0{,}475$ \\
-0{,}986 & $-85{,}6 \pm j\,151{,}6$ & $-170{,}00$ & $174{,}1$ & $0{,}491$ \\
-1{,}020 & $-88{,}5 \pm j\,149{,}9$ & $-175{,}86$ & $174{,}1$ & $0{,}508$ \\
-\textbf{1{,}054} & $\mathbf{-91{,}4 \pm j\,148{,}2}$ & $\mathbf{-181{,}72}$ & $\mathbf{174{,}1}$ & $\mathbf{0{,}525}$ \\
-1{,}088 & $-94{,}3 \pm j\,146{,}4$ & $-187{,}59$ & $174{,}1$ & $0{,}542$ \\
-1{,}122 & $-97{,}3 \pm j\,144{,}5$ & $-193{,}45$ & $174{,}2$ & $0{,}559$ \\
-1{,}156 & $-100{,}2 \pm j\,142{,}5$ & $-199{,}31$ & $174{,}2$ & $0{,}575$ \\
-1{,}190 & $-103{,}1 \pm j\,140{,}4$ & $-205{,}17$ & $174{,}2$ & $0{,}592$ \\
-1{,}224 & $-106{,}1 \pm j\,138{,}2$ & $-211{,}03$ & $174{,}2$ & $0{,}609$ \\
+0.816 & $-70{,}9 \pm j\,158{,}9$ & $-140{,}69$ & $174{,}0$ & $0{,}407$ \\
+0.850 & $-73{,}8 \pm j\,157{,}6$ & $-146{,}55$ & $174{,}0$ & $0{,}424$ \\
+0.884 & $-76{,}8 \pm j\,156{,}2$ & $-152{,}41$ & $174{,}0$ & $0{,}441$ \\
+0.918 & $-79{,}7 \pm j\,154{,}7$ & $-158{,}28$ & $174{,}0$ & $0{,}458$ \\
+0.952 & $-82{,}6 \pm j\,153{,}2$ & $-164{,}14$ & $174{,}1$ & $0{,}475$ \\
+0.986 & $-85{,}6 \pm j\,151{,}6$ & $-170{,}00$ & $174{,}1$ & $0{,}491$ \\
+1.020 & $-88{,}5 \pm j\,149{,}9$ & $-175{,}86$ & $174{,}1$ & $0{,}508$ \\
+\textbf{1.054} & $\mathbf{-91{,}4 \pm j\,148{,}2}$ & $\mathbf{-181{,}72}$ & $\mathbf{174{,}1}$ & $\mathbf{0{,}525}$ \\
+1.088 & $-94{,}3 \pm j\,146{,}4$ & $-187{,}59$ & $174{,}1$ & $0{,}542$ \\
+1.122 & $-97{,}3 \pm j\,144{,}5$ & $-193{,}45$ & $174{,}2$ & $0{,}559$ \\
+1.156 & $-100{,}2 \pm j\,142{,}5$ & $-199{,}31$ & $174{,}2$ & $0{,}575$ \\
+1.190 & $-103{,}1 \pm j\,140{,}4$ & $-205{,}17$ & $174{,}2$ & $0{,}592$ \\
+1.224 & $-106{,}1 \pm j\,138{,}2$ & $-211{,}03$ & $174{,}2$ & $0{,}609$ \\
 \hline
 \end{tabular}
 \end{table}
@@ -1362,14 +1321,14 @@ La masa de carga útil $m_l \in [0,\; 1{,}5]$ kg modifica la inercia equivalente
 \hline
 $m_l$ [kg] & $J_{eq}$ [kg$\cdot$m$^2$] & Polos $\lambda_{2,3}$ & $\omega_n$ [rad/s] & $\zeta$ \\
 \hline
-\textbf{0{,}00} & $\mathbf{1{,}98 \times 10^{-5}}$ & $\mathbf{-91{,}7 \pm j\,148{,}0}$ & $\mathbf{174{,}1}$ & $\mathbf{0{,}527}$ \\
-0{,}20 & $2{,}33 \times 10^{-5}$ & $-91{,}7 \pm j\,131{,}9$ & $160{,}6$ & $0{,}571$ \\
-0{,}40 & $2{,}67 \times 10^{-5}$ & $-91{,}6 \pm j\,118{,}5$ & $149{,}8$ & $0{,}611$ \\
-0{,}60 & $3{,}02 \times 10^{-5}$ & $-91{,}6 \pm j\,107{,}1$ & $140{,}9$ & $0{,}650$ \\
-0{,}80 & $3{,}37 \times 10^{-5}$ & $-91{,}5 \pm j\,97{,}2$ & $133{,}5$ & $0{,}686$ \\
-1{,}00 & $3{,}71 \times 10^{-5}$ & $-91{,}5 \pm j\,88{,}2$ & $127{,}1$ & $0{,}720$ \\
-1{,}20 & $4{,}06 \times 10^{-5}$ & $-91{,}5 \pm j\,80{,}0$ & $121{,}5$ & $0{,}753$ \\
-1{,}50 & $4{,}58 \times 10^{-5}$ & $-91{,}4 \pm j\,68{,}8$ & $114{,}4$ & $0{,}799$ \\
+\textbf{0.00} & $\mathbf{1{,}98 \times 10^{-5}}$ & $\mathbf{-91{,}7 \pm j\,148{,}0}$ & $\mathbf{174{,}1}$ & $\mathbf{0{,}527}$ \\
+0.20 & $2{,}33 \times 10^{-5}$ & $-91{,}7 \pm j\,131{,}9$ & $160{,}6$ & $0{,}571$ \\
+0.40 & $2{,}67 \times 10^{-5}$ & $-91{,}6 \pm j\,118{,}5$ & $149{,}8$ & $0{,}611$ \\
+0.60 & $3{,}02 \times 10^{-5}$ & $-91{,}6 \pm j\,107{,}1$ & $140{,}9$ & $0{,}650$ \\
+0.80 & $3{,}37 \times 10^{-5}$ & $-91{,}5 \pm j\,97{,}2$ & $133{,}5$ & $0{,}686$ \\
+1.00 & $3{,}71 \times 10^{-5}$ & $-91{,}5 \pm j\,88{,}2$ & $127{,}1$ & $0{,}720$ \\
+1.20 & $4{,}06 \times 10^{-5}$ & $-91{,}5 \pm j\,80{,}0$ & $121{,}5$ & $0{,}753$ \\
+1.50 & $4{,}58 \times 10^{-5}$ & $-91{,}4 \pm j\,68{,}8$ & $114{,}4$ & $0{,}799$ \\
 \hline
 \end{tabular}
 \end{table}
@@ -1391,8 +1350,6 @@ Del análisis se observa que al aumentar $m_l$:
 Estas variaciones justifican la necesidad de un controlador robusto capaz de mantener el desempeño dentro de todo el rango de incertidumbre de carga.
 
 \subsubsection{Diagramas de Bode a lazo abierto}
-La Fig.~\ref{fig:bode_LA} presenta la respuesta en frecuencia de ambas funciones de transferencia. La FT de control $G_1(s)$ exhibe la pendiente de $-20$~dB/dec a bajas frecuencias característica del integrador cinemático (sistema de tipo 1), un pico resonante en torno a la frecuencia natural del par electromecánico ($\omega_n\approx174$~rad/s, $\zeta=0{,}527$) y una atenuación asintótica de $-60$~dB/dec por encima de dicha frecuencia (exceso polar de 3, con fase que va de $-90^\circ$ a $-270^\circ$). La FT de perturbación $G_2(s)$ comparte los mismos polos, pero su cero en $-R_{s0}/L_q\approx-182$~rad/s aplana la respuesta a altas frecuencias, evidenciando la atenuación natural que el subsistema eléctrico ejerce sobre el torque de carga.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{imagenes/bode_LA.png}
@@ -1404,17 +1361,17 @@ La Fig.~\ref{fig:bode_LA} presenta la respuesta en frecuencia de ambas funciones
 Se analiza si es posible reconstruir el vector de estado completo del modelo LTI aumentado a partir de la medición de una única salida escalar.
 
 \subsubsection{Observabilidad desde \texorpdfstring{$\theta_m(t)$}{theta_m(t)} (sensor de posición)}
-La matriz de observabilidad para el sistema $(\bm{A}_{aug}, \bm{C})$ con $\bm{C} = \begin{bmatrix} 1 & 0 & 0 & 0 \end{bmatrix}$ se construye como:
+La matriz de observabilidad para el sistema $(\mathbf{A}_{aug}, \mathbf{C})$ con $\mathbf{C} = \begin{bmatrix} 1 & 0 & 0 & 0 \end{bmatrix}$ se construye como:
 \begin{equation}
-    \mathcal{O} = \begin{bmatrix} \bm{C} \\ \bm{C}\bm{A} \\ \bm{C}\bm{A}^2 \\ \bm{C}\bm{A}^3 \end{bmatrix}
+    \mathcal{O} = \begin{bmatrix} \mathbf{C} \\ \mathbf{C}\mathbf{A} \\ \mathbf{C}\mathbf{A}^2 \\ \mathbf{C}\mathbf{A}^3 \end{bmatrix}
 \end{equation}
 
-Evaluando fila por fila a partir de la estructura de $\bm{A}_{aug}$:
+Evaluando fila por fila a partir de la estructura de $\mathbf{A}_{aug}$:
 \begin{itemize}
-    \item $\bm{C} = \begin{bmatrix} 1 & 0 & 0 & 0 \end{bmatrix}$ --- se observa $\theta_m$ directamente.
-    \item $\bm{C}\bm{A} = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix}$ --- se observa $\omega_m$ (derivada de $\theta_m$).
-    \item $\bm{C}\bm{A}^2 = \begin{bmatrix} 0 & -\frac{b_{eq}}{J_{eq}} & \frac{3P_p\lambda'^r_m}{2J_{eq}} & 0 \end{bmatrix}$ --- combinación de $\omega_m$ e $i_{qs}^r$.
-    \item $\bm{C}\bm{A}^3$: combinación que involucra $\omega_m$ e $i_{qs}^r$, pero \textbf{nunca} $i_{ds}^r$.
+    \item $\mathbf{C} = \begin{bmatrix} 1 & 0 & 0 & 0 \end{bmatrix}$ --- se observa $\theta_m$ directamente.
+    \item $\mathbf{C}\mathbf{A} = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix}$ --- se observa $\omega_m$ (derivada de $\theta_m$).
+    \item $\mathbf{C}\mathbf{A}^2 = \begin{bmatrix} 0 & -\frac{b_{eq}}{J_{eq}} & \frac{3P_p\lambda'^r_m}{2J_{eq}} & 0 \end{bmatrix}$ --- combinación de $\omega_m$ e $i_{qs}^r$.
+    \item $\mathbf{C}\mathbf{A}^3$: combinación que involucra $\omega_m$ e $i_{qs}^r$, pero \textbf{nunca} $i_{ds}^r$.
 \end{itemize}
 
 La cuarta columna de $\mathcal{O}$ es idénticamente nula, ya que $i_{ds}^r$ no acopla con ningún estado observable. Por lo tanto:
@@ -1427,15 +1384,15 @@ La cuarta columna de $\mathcal{O}$ es idénticamente nula, ya que $i_{ds}^r$ no 
 Esto es consistente con el análisis de las funciones de transferencia: dado que $i_{ds}^r$ no se manifiesta en la salida $\theta_m$, es imposible reconstruirlo a partir de dicha medición.
 
 \subsubsection{Observabilidad desde \texorpdfstring{$\omega_m(t)$}{omega_m(t)} (tacogenerador)}
-Si en lugar de medir la posición se mide la velocidad angular, la matriz de salida es $\bm{C}_\omega = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix}$. Evaluando:
+Si en lugar de medir la posición se mide la velocidad angular, la matriz de salida es $\mathbf{C}_\omega = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix}$. Evaluando:
 \begin{itemize}
-    \item $\bm{C}_\omega = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix}$ --- se observa $\omega_m$.
-    \item $\bm{C}_\omega\bm{A} = \begin{bmatrix} 0 & -\frac{b_{eq}}{J_{eq}} & \frac{3P_p\lambda'^r_m}{2J_{eq}} & 0 \end{bmatrix}$ --- combinación de $\omega_m$ e $i_{qs}^r$.
-    \item $\bm{C}_\omega\bm{A}^2$: combinación de $\omega_m$ e $i_{qs}^r$.
-    \item $\bm{C}_\omega\bm{A}^3$: combinación de $\omega_m$ e $i_{qs}^r$.
+    \item $\mathbf{C}_\omega = \begin{bmatrix} 0 & 1 & 0 & 0 \end{bmatrix}$ --- se observa $\omega_m$.
+    \item $\mathbf{C}_\omega\mathbf{A} = \begin{bmatrix} 0 & -\frac{b_{eq}}{J_{eq}} & \frac{3P_p\lambda'^r_m}{2J_{eq}} & 0 \end{bmatrix}$ --- combinación de $\omega_m$ e $i_{qs}^r$.
+    \item $\mathbf{C}_\omega\mathbf{A}^2$: combinación de $\omega_m$ e $i_{qs}^r$.
+    \item $\mathbf{C}_\omega\mathbf{A}^3$: combinación de $\omega_m$ e $i_{qs}^r$.
 \end{itemize}
 
-Nuevamente, la cuarta columna es nula ($i_{ds}^r$ sigue sin ser observable), pero además la primera columna también es nula: la posición $\theta_m$ nunca aparece en las potencias de $\bm{C}_\omega\bm{A}^k$ porque $\theta_m$ solo se acopla unidireccionalmente como integrador de $\omega_m$.
+Nuevamente, la cuarta columna es nula ($i_{ds}^r$ sigue sin ser observable), pero además la primera columna también es nula: la posición $\theta_m$ nunca aparece en las potencias de $\mathbf{C}_\omega\mathbf{A}^k$ porque $\theta_m$ solo se acopla unidireccionalmente como integrador de $\omega_m$.
 
 \begin{equation}
     \text{rango}(\mathcal{O}_\omega) = 2 < 4 = n
@@ -1447,20 +1404,20 @@ Nuevamente, la cuarta columna es nula ($i_{ds}^r$ sigue sin ser observable), per
 Se analiza si es posible llevar el vector de estado completo a cualquier valor deseado mediante la entrada de control $v_{qs}(t)$, sin considerar la perturbación $T_l(t)$.
 
 \subsubsection{Controlabilidad desde \texorpdfstring{$v_{qs}(t)$}{v_qs(t)}}
-La matriz de controlabilidad para el sistema $(\bm{A}_{aug}, \bm{B}_c)$ con $\bm{B}_c = \begin{bmatrix} 0 & 0 & 1/L_q & 0 \end{bmatrix}^T$ es:
+La matriz de controlabilidad para el sistema $(\mathbf{A}_{aug}, \mathbf{B}_c)$ con $\mathbf{B}_c = \begin{bmatrix} 0 & 0 & 1/L_q & 0 \end{bmatrix}^T$ es:
 \begin{equation}
-    \mathcal{C} = \begin{bmatrix} \bm{B}_c & \bm{A}\bm{B}_c & \bm{A}^2\bm{B}_c & \bm{A}^3\bm{B}_c \end{bmatrix}
+    \mathcal{C} = \begin{bmatrix} \mathbf{B}_c & \mathbf{A}\mathbf{B}_c & \mathbf{A}^2\mathbf{B}_c & \mathbf{A}^3\mathbf{B}_c \end{bmatrix}
 \end{equation}
 
 Evaluando columna por columna:
 \begin{itemize}
-    \item $\bm{B}_c = \begin{bmatrix} 0 \\ 0 \\ 1/L_q \\ 0 \end{bmatrix}$ --- la entrada actúa directamente sobre $i_{qs}^r$.
-    \item $\bm{A}\bm{B}_c = \begin{bmatrix} 0 \\ \frac{3P_p\lambda'^r_m}{2J_{eq}L_q} \\ -\frac{R_{s0}}{L_q^2} \\ 0 \end{bmatrix}$ --- la acción se propaga a $\omega_m$ a través del torque.
-    \item $\bm{A}^2\bm{B}_c$: la acción alcanza $\theta_m$ (vía la cadena $i_{qs}^r \to \omega_m \to \theta_m$).
-    \item $\bm{A}^3\bm{B}_c$: combinación de los tres estados del subsistema nominal.
+    \item $\mathbf{B}_c = \begin{bmatrix} 0 \\ 0 \\ 1/L_q \\ 0 \end{bmatrix}$ --- la entrada actúa directamente sobre $i_{qs}^r$.
+    \item $\mathbf{A}\mathbf{B}_c = \begin{bmatrix} 0 \\ \frac{3P_p\lambda'^r_m}{2J_{eq}L_q} \\ -\frac{R_{s0}}{L_q^2} \\ 0 \end{bmatrix}$ --- la acción se propaga a $\omega_m$ a través del torque.
+    \item $\mathbf{A}^2\mathbf{B}_c$: la acción alcanza $\theta_m$ (vía la cadena $i_{qs}^r \to \omega_m \to \theta_m$).
+    \item $\mathbf{A}^3\mathbf{B}_c$: combinación de los tres estados del subsistema nominal.
 \end{itemize}
 
-La cuarta fila de todas las columnas de $\mathcal{C}$ es idénticamente nula, ya que la entrada $v_{qs}$ nunca llega al estado $i_{ds}^r$ ($B_c(4) = 0$) y ningún otro estado acopla hacia $i_{ds}^r$ (la fila 4 de $\bm{A}$ es diagonal). Por lo tanto:
+La cuarta fila de todas las columnas de $\mathcal{C}$ es idénticamente nula, ya que la entrada $v_{qs}$ nunca llega al estado $i_{ds}^r$ ($B_c(4) = 0$) y ningún otro estado acopla hacia $i_{ds}^r$ (la fila 4 de $\mathbf{A}$ es diagonal). Por lo tanto:
 \begin{equation}
     \text{rango}(\mathcal{C}) = 3 < 4 = n
 \end{equation}
@@ -1470,7 +1427,7 @@ La cuarta fila de todas las columnas de $\mathcal{C}$ es idénticamente nula, ya
 \subsubsection{Incorporación de una entrada adicional}
 El estado $i_{ds}^r$ podría controlarse si se agrega una segunda entrada manipulable: la tensión del eje directo $v_{ds}^r(t)$. En el modelo aumentado, esto equivale a extender la matriz de entrada:
 \begin{equation}
-    \bm{B}_{ext} = \begin{bmatrix} \bm{B}_c & \bm{B}_{ds} \end{bmatrix} =
+    \mathbf{B}_{ext} = \begin{bmatrix} \mathbf{B}_c & \mathbf{B}_{ds} \end{bmatrix} =
     \begin{bmatrix}
     0 & 0 \\ 0 & 0 \\ 1/L_q & 0 \\ 0 & 1/L_d
     \end{bmatrix}
@@ -1497,7 +1454,7 @@ $i_{ds}^r$   & No & No            & No & No \\
 \end{tabular}
 \end{table}
 
-El estado $i_{ds}^r$ es simultáneamente no controlable y no observable, confirmando su naturaleza de \textbf{modo oculto} del sistema. Este resultado es coherente con la cancelación polo-cero identificada en las funciones de transferencia y con el desacoplamiento estructural de la cuarta fila y columna de la matriz $\bm{A}_{aug}$.
+El estado $i_{ds}^r$ es simultáneamente no controlable y no observable, confirmando su naturaleza de \textbf{modo oculto} del sistema. Este resultado es coherente con la cancelación polo-cero identificada en las funciones de transferencia y con el desacoplamiento estructural de la cuarta fila y columna de la matriz $\mathbf{A}_{aug}$.
 
 %%%SECCION 516
 \subsection{Simulación Dinámica: Modelo NL vs LTI Aumentado}
@@ -1560,7 +1517,7 @@ Se presentan los resultados de la simulación para el caso nominal $i_{ds}^r(0) 
 
 \textbf{Posición angular $\theta_m(t)$}
 
-La posición angular crece como rampa durante los pulsos de tensión, consecuencia directa del integrador puro ($\dot{\theta}_m = \omega_m$). Alcanza un máximo de $\approx 242$~rad en $t \approx 0{,}7$~s, que se mantiene hasta $t \approx 1{,}1$~s (durante $v_{qs}^{r*} = 0$) y retorna hacia cero durante el pulso negativo de $v_{qs}^{r*}$. La Fig.~\ref{fig:sim_theta_m} compara ambos modelos junto con las señales de excitación, y la Fig.~\ref{fig:sim_theta_m_error} cuantifica el error de seguimiento.
+La posición angular crece como rampa durante los pulsos de tensión, consecuencia directa del integrador puro ($\dot{\theta}_m = \omega_m$). Alcanza un máximo de $\approx 242$~rad en $t \approx 0.7$~s, que se mantiene hasta $t \approx 1.1$~s (durante $v_{qs}^{r*} = 0$) y retorna hacia cero durante el pulso negativo de $v_{qs}^{r*}$. La Fig.~\ref{fig:sim_theta_m} compara ambos modelos junto con las señales de excitación, y la Fig.~\ref{fig:sim_theta_m_error} cuantifica el error de seguimiento.
 
 \begin{figure}[H]
     \centering
@@ -1837,7 +1794,7 @@ donde $V_{ds}^{r*} = V_{qs,nom}^{r}/10 = 1{,}9596$~V. Se simula con $i_{ds}^r(0)
 
 \textbf{Análisis:}
 \begin{itemize}
-    \item En el \textbf{modelo LTI}, $v_{ds}^{r*}$ afecta \textbf{únicamente} a $i_{ds}^r$, que crece exponencialmente hasta su valor estacionario $i_{ds,ss}^r = v_{ds}^{r*}/R_{s0} = \pm 1{,}85$~A. Los demás estados ($\theta_m$, $\omega_m$, $i_{qs}^r$) permanecen \textbf{inalterados} por el desacoplamiento estructural de la matriz $A_{aug}$.
+    \item En el \textbf{modelo LTI}, $v_{ds}^{r*}$ afecta \textbf{únicamente} a $i_{ds}^r$, que crece exponencialmente hasta su valor estacionario $i_{ds,ss}^r = v_{ds}^{r*}/R_{s0} = \pm 1{,}92$~A. Los demás estados ($\theta_m$, $\omega_m$, $i_{qs}^r$) permanecen \textbf{inalterados} por el desacoplamiento estructural de la matriz $A_{aug}$.
 
     \item En el \textbf{modelo NL}, $i_{ds}^r \neq 0$ introduce acoplamientos cruzados que el LTI no captura:
 A partir del modelo no lineal, la dinámica de la corriente en el eje $d$ está gobernada por:
@@ -1850,7 +1807,13 @@ Por otro lado, el impacto directo sobre la fuerza generada se observa en la ecua
     T_m(t) = \frac{3}{2} P_p \left[ \lambda'^r_m + (L_d - L_q)i_{ds}^r(t) \right] i_{qs}^r(t)
 \end{equation}
 
-El signo de $i_{ds}^r$ define los mismos dos regímenes ya analizados físicamente en el estudio del modelo LPV: el \textbf{reforzamiento de campo} ($i_{ds}^r>0$) suma torque de reluctancia pero incrementa la fuerza contraelectromotriz ---reduciendo la velocidad máxima antes de saturar el inversor---, mientras que el \textbf{debilitamiento de campo} ($i_{ds}^r<0$) reduce el torque por amperio pero disminuye la fuerza contraelectromotriz, habilitando velocidades mayores dentro del límite de tensión. La simulación verifica ahora este comportamiento en forma dinámica.
+Dependiendo del signo de la corriente inyectada en el eje directo, se distinguen claramente dos regímenes de operación:
+
+\begin{itemize}
+    \item \textbf{Reforzamiento de campo ($i_{ds}^r > 0$):} Para motores con polos salientes donde $L_d > L_q$, la inyección de una corriente positiva genera un torque de reluctancia que se suma constructivamente al torque producido por los imanes permanentes. Esto aumenta el torque total por amperio inyectado. Sin embargo, al reforzarse el flujo magnético en la máquina, el término de fuerza contraelectromotriz (acoplamiento cruzado de velocidad) aumenta de forma proporcional. Esto penaliza el margen de tensión, lo que reduce la velocidad máxima alcanzable por el motor antes de que la señal requerida sature el límite de tensión del inversor.
+    
+    \item \textbf{Debilitamiento de campo ($i_{ds}^r < 0$):} Una corriente negativa se opone activamente al campo magnético principal de los imanes ($\lambda'^r_m$). De acuerdo con la ecuación del torque, esto disminuye la capacidad de producción de torque motor para una misma corriente de cuadratura $i_{qs}^r$. No obstante, esta estrategia tiene el efecto beneficioso de reducir drásticamente la fuerza contraelectromotriz del sistema. Al contrarrestar la limitación impuesta por el voltaje de la fuente, el debilitamiento de campo permite que el motor alcance velocidades de giro mucho mayores, operando de manera segura dentro de los límites de tensión provistos por el bus de continua del inversor.
+\end{itemize}
 \end{itemize}
 
 %%%SECCION 516
@@ -2039,7 +2002,7 @@ Dado que el objetivo del presente trabajo es controlar la posición y la velocid
     \label{eq:ley_pid_522}
 \end{equation}
 
-Las ganancias del controlador se sintonizan por el método de \textbf{sintonía serie}, para un amortiguamiento $\zeta = 0{,}75$ y una frecuencia natural $\omega_n = 800\ \frac{rad}{s}$: se obtiene el polinomio característico del lazo cerrado en función de las ganancias (polinomio \emph{estructural}), se construye el polinomio \emph{requerido} a partir de los polos deseados y se igualan ambos, coeficiente a coeficiente.
+Las ganancias del controlador se sintonizan por el método de \textbf{sintonía serie}, para un amortiguamiento $\zeta = 0.75$ y una frecuencia natural $\omega_n = 800\ \frac{rad}{s}$: se obtiene el polinomio característico del lazo cerrado en función de las ganancias (polinomio \emph{estructural}), se construye el polinomio \emph{requerido} a partir de los polos deseados y se igualan ambos, coeficiente a coeficiente.
 
 \textbf{Dinámica de lazo cerrado.} El diseño se apoya en dos propiedades ya establecidas de la arquitectura en cascada:
 \begin{itemize}
@@ -2127,9 +2090,9 @@ Cada ganancia aparece en un único coeficiente --- consecuencia de que la cascad
 \textbf{Valores numéricos.} Evaluando \eqref{eq:ganancias_522} con $\zeta=0{,}75$, $\omega_n=800$~rad/s y la inercia equivalente nominal ($m_l=0$), las ganancias del controlador resultan:
 \begin{equation*}
 \begin{aligned}
-    b_a &= J_{eq}\,\omega_n(2\zeta+1) = 0{,}0396\ \frac{N\cdot m}{rad/s} \\
-    K_{sa} &= J_{eq}\,\omega_n^2(2\zeta+1) = 31{,}656\ \frac{N\cdot m}{rad} \\
-    K_{sia} &= J_{eq}\,\omega_n^3 = 10129{,}778\ \frac{N\cdot m}{rad\cdot s}
+    b_a &= J_{eq}\,\omega_n(2\zeta+1) = 0.0396\ \frac{N\cdot m}{rad/s} \\
+    K_{sa} &= J_{eq}\,\omega_n^2(2\zeta+1) = 31.656\ \frac{N\cdot m}{rad} \\
+    K_{sia} &= J_{eq}\,\omega_n^3 = 10129.778\ \frac{N\cdot m}{rad\cdot s}
 \end{aligned}
 \end{equation*}
 
@@ -2147,7 +2110,7 @@ Se verifica la \textbf{separación de escalas} que sustenta el diseño en cascad
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{imagenes/mapa_polos_5_2_2.png}
-    \caption{Polos en el plano $s$ (cuadrados sólidos, diferenciados por color): planta a lazo abierto (azul), lazos de corriente (verde, $-5000$) y polos de lazo cerrado del PID de movimiento (rojo, $-800$ y $-600\pm j529$). Izquierda: vista completa (separación de escalas); derecha: zoom planta vs.\ PID.}
+    \caption{Polos en el plano $s$: planta a lazo abierto (cruces), lazos de corriente (cuadrado, $-5000$) y polos de lazo cerrado del PID de movimiento (círculos, $-800$ y $-600\pm j529$). Izquierda: vista completa (separación de escalas); derecha: zoom planta vs.\ PID.}
     \label{fig:mapa_polos_522}
 \end{figure}
 
@@ -2174,7 +2137,7 @@ $m_l$ [kg] & $J_{eq}$ [kg$\cdot$m$^2$] & Par complejo [rad/s] & Polo real [rad/s
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{imagenes/migracion_polos_pid.png}
-    \caption{Migración de los polos de lazo cerrado del PID al variar $m_l$ de $0$ a $1{,}5$~kg con ganancias fijas (cuadrados sólidos, colorbar en $m_l$). El nominal ($m_l=0$) se marca con rombo sólido y el peor caso ($m_l=1{,}5$) con cuadrado sólido.}
+    \caption{Migración de los polos de lazo cerrado del PID al variar $m_l$ de $0$ a $1{,}5$~kg con ganancias fijas (colorbar en $m_l$). El nominal ($m_l=0$) se marca con círculo y el peor caso ($m_l=1{,}5$) con cuadrado.}
     \label{fig:migracion_pid}
 \end{figure}
 
@@ -2248,17 +2211,17 @@ y(t)=\theta_m(t),
     \begin{bmatrix}
     0 \\ \frac{1}{J_{eq}}
     \end{bmatrix}u(t)+
-    \bm{K}_e\big(y(t)-\bm{C}\bar{\bm{x}}(t)\big)\\
+    \bm{L}\big(y(t)-\bm{C}\bar{\bm{x}}(t)\big)\\
     \dot{\bar{\bm{x}}}(t)&=
-    \big(\bm{A}-\bm{K}_e\bm{C}\big)\bar{\bm{x}}(t) +
+    \big(\bm{A}-\bm{L}\bm{C}\big)\bar{\bm{x}}(t) +
     \begin{bmatrix}
     0 \\ \frac{1}{J_{eq}}
-    \end{bmatrix}u(t)+\bm{K}_e\,y(t)
+    \end{bmatrix}u(t)+\bm{L}\,y(t)
     \end{aligned}
     \end{gather*}
-    Definiendo el vector de ganancias del observador $\bm{K}_e$, cuyas componentes son las ganancias del estimador $K_{e\theta_m}$ y $K_{e\omega_m}$:
+    Definiendo a $\bm{L}$ como la ganancia proporcional:
     \begin{equation*}
-        \bm{K}_e=
+        \bm{L}=
         \begin{bmatrix}
             K_{e\theta_m}\\
             K_{e\omega_m}
@@ -2267,7 +2230,7 @@ y(t)=\theta_m(t),
     Lo que resulta en el siguiente polinomio característico:
     \begin{gather*}
     \begin{aligned}
-        \det\!\left[s\bm{I}-\left(\bm{A}-\bm{K}_e\bm{C}\right)\right]&=0,\\
+        \det\!\left[s\bm{I}-\left(\bm{A}-\bm{L}\bm{C}\right)\right]&=0,\\
         \begin{bmatrix}
             s & 0 \\ 
             0 & s
@@ -2335,10 +2298,10 @@ T_{ld}(t)=
 \begin{cases}
 0 \ \ \text{[N.m]}, & 0 \le t < 1,\\[4pt]
 5 \ \ \text{[N.m]}, & 1 \le t < 2,\\[4pt]
-2{,}5 \ \ \text{[N.m]}, & 2 \le t < 3,\\[4pt]
--2{,}5 \ \ \text{[N.m]}, & 3 \le t < 5,\\[4pt]
+2.5 \ \ \text{[N.m]}, & 2 \le t < 3,\\[4pt]
+-2.5 \ \ \text{[N.m]}, & 3 \le t < 5,\\[4pt]
 -5 \ \ \text{[N.m]}, & 5 \le t < 6,\\[4pt]
-2{,}5 \ \ \text{[N.m]}, & 6 \le t \le 15.
+2.5 \ \ \text{[N.m]}, & 6 \le t \le 15.
 \end{cases}
 \]
 
@@ -2358,21 +2321,26 @@ La primera variable que puede apreciarse que supera los límites de operación e
 \begin{equation*}
 \begin{aligned}
     |v_{as}(t)|,|v_{bs}(t)|,|v_{cs}(t)|\le \frac{\sqrt{2}\cdot V_{sl,max}}{\sqrt{3}}, \qquad V_{sl,max}=48\ \text{Vca rms}\\
-    |v_{as}(t)|,|v_{bs}(t)|,|v_{cs}(t)|\le \frac{\sqrt{2}\cdot 48}{\sqrt{3}} = 39{,}19 \ V
+    |v_{as}(t)|,|v_{bs}(t)|,|v_{cs}(t)|\le \frac{\sqrt{2}\cdot 48}{\sqrt{3}} = 39.19 \ V
     \end{aligned}
 \end{equation*}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{imagenes/corrientes_limitando_voltaje.png}
-    \caption{Comparación de la corriente rms del estator con y sin limitación de la tensión del inversor.}
+    \caption{Comparación de la corriente rms del estator limitando el voltaje en la Run 20 y sin limitar el voltaje en la Run 17.}
     \label{fig:corrientes_voltaje}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{imagenes/pos_voltaje_comparacion.png}
-    \caption{Seguimiento de posición con y sin saturación de tensión del inversor ($39{,}19$~V). El seguimiento es prácticamente idéntico en ambos casos; el error de posición se mantiene en el orden de $10^{-3}$~rad.}
+    \includegraphics[width=1\linewidth]{imagenes/pos_voltaje_saturado.png}
+    \caption{Seguimiento de posición con saturación de tensión del inversor en $39{,}19$~V.}
 \end{figure}
-Como puede verse en la Fig.~\ref{fig:corrientes_voltaje}, aunque se reduce bastante el tamaño del pico de corriente y el error de posición se mantiene despreciable (del orden de $10^{-3}$~rad) en la simulación con tensión saturada, esto no es suficiente para cumplir con las especificaciones de corriente.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{imagenes/pos_voltaje_nosaturado.png}
+    \caption{Seguimiento de posición sin saturación de tensión (caso de referencia).}
+\end{figure}
+Como puede verse en la Fig.~\ref{fig:corrientes_voltaje}, aunque se reduce bastante el tamaño del pico de corriente y no cambia el error de posición en la simulación con tensión saturada, esto no es suficiente para cumplir con las especificaciones de corriente.
 Posteriormente se propone saturar la consigna de corriente en el modulador de torque, para que al menos no se imponga una corriente que desde un principio supere la corriente pico del motor.
 \begin{figure}[H]
     \centering
@@ -2457,9 +2425,9 @@ p_{des}(s)=(s+3200)^2=s^2+6400\,s+3200^2,
 se obtienen las ganancias del observador base:
 \begin{equation}
 \label{eq:ganancias_obs_base}
-K_{e\theta_m}=6400\ \mathrm{s}^{-1},
+K_{e\theta_m}=6400,
 \qquad
-K_{e\omega_m}=3200^2=1{,}024\times10^7\ \mathrm{s}^{-2}.
+K_{e\omega_m}=3200^2=1.024\times10^7.
 \end{equation}
 
 Con estas ganancias, el observador reconstruye adecuadamente la velocidad en transitorios y presenta una rapidez de convergencia suficientemente mayor que la dinámica dominante del controlador externo. No obstante, en la verificación de desempeño se observa que ante perturbaciones de carga cuasi-estacionarias aparece un error de estimación de régimen permanente distinto de cero. Esto indica que, aunque el observador base es estable y rápido, no rechaza completamente perturbaciones constantes o pequeños sesgos de modelado.
@@ -2528,17 +2496,17 @@ p_{obs\,1,2,3}=-3200\ \text{rad/s}.
 Así, el polinomio deseado es
 \begin{equation}
 p_{des,a}(s)=(s+3200)^3
-=s^3+9600\,s^2+3{,}072\times10^7\,s+3{,}2768\times10^{10}.
+=s^3+9600\,s^2+3.072\times10^7\,s+3.2768\times10^{10}.
 \end{equation}
 
 Comparando coeficientes con \eqref{eq:polinomio_obs_integral}, se obtienen las ganancias del observador aumentado:
 \begin{equation}
 \label{eq:ganancias_obs_integral}
-K_{e\theta_m}=9600\ \mathrm{s}^{-1},
+K_{e\theta_m}=9600,
 \qquad
-K_{e\omega_m}=3{,}072\times10^7\ \mathrm{s}^{-2},
+K_{e\omega_m}=3.072\times10^7,
 \qquad
-K_{ei_m}=3{,}2768\times10^{10}\ \mathrm{s}^{-3}.
+K_{ei_m}=3.2768\times10^{10}.
 \end{equation}
 
 Desde el punto de vista de implementación en Simulink, esta mejora se incorpora mediante una rama adicional en paralelo:
@@ -2586,14 +2554,14 @@ T^\circ_{s,max}=115^\circ\text{C}
 \]
 ocurre a los
 \[
-t=225{,}9\ \text{s},
+t=225.9\ \text{s},
 \]
-lo que corresponde a aproximadamente 15 ciclos completos y 0{,}9 s del ciclo número 16.
+lo que corresponde a aproximadamente 15 ciclos completos y 0.9 s del ciclo número 16.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{imagenes/5_2_5_C_comportamiento_termico.png}
-    \caption{Evolución de la temperatura del bobinado \(T_s^\circ(t)\) bajo operación repetitiva, considerando \(T_{amb}^\circ=25^\circ\text{C}\), \(T_{ld}=5\,\text{Nm}\) y la consigna trapezoidal de posición utilizada en el trabajo. Se observa que la temperatura supera el límite admisible \(T^\circ_{s,max}=115^\circ\text{C}\) a los 225{,}9 s.}
+    \caption{Evolución de la temperatura del bobinado \(T_s^\circ(t)\) bajo operación repetitiva, considerando \(T_{amb}^\circ=25^\circ\text{C}\), \(T_{ld}=5\,\text{Nm}\) y la consigna trapezoidal de posición utilizada en el trabajo. Se observa que la temperatura supera el límite admisible \(T^\circ_{s,max}=115^\circ\text{C}\) a los 225.9 s.}
     \label{fig:termico_525c}
 \end{figure}
 
@@ -2629,7 +2597,7 @@ Tomando como referencia la forma estándar de un filtro pasa bajos de primer y s
         $T_s^\circ(t)$ 
         & LP 1$^\circ$ orden 
         & $\tau=20\ \text{s}$ 
-        & $p=-\dfrac{1}{\tau}=-0{,}05$ \\
+        & $p=-\dfrac{1}{\tau}=-0.05$ \\
         \hline
     \end{tabular}
 \end{table}
@@ -2715,11 +2683,11 @@ con
 Por lo tanto, para el sensor de temperatura con $\tau=20\ \text{s}$:
 \begin{equation}
     A_T=\begin{bmatrix}
-        -0{,}05
+        -0.05
     \end{bmatrix},
     \qquad
     B_T=\begin{bmatrix}
-        0{,}05
+        0.05
     \end{bmatrix},
     \qquad
     C_T=\begin{bmatrix}
@@ -2791,7 +2759,7 @@ Para los sensores de corriente se adopta $\omega_n=6000\ \text{rad/s}$ y $\zeta=
     =
     \begin{bmatrix}
         0 & 1 \\
-        -3{,}6\times 10^7 & -1{,}2\times 10^4
+        -3.6\times 10^7 & -1.2\times 10^4
     \end{bmatrix},
 \end{equation}
 \begin{equation}
@@ -2803,7 +2771,7 @@ Para los sensores de corriente se adopta $\omega_n=6000\ \text{rad/s}$ y $\zeta=
     =
     \begin{bmatrix}
         0 \\
-        3{,}6\times 10^7
+        3.6\times 10^7
     \end{bmatrix},
     \qquad
     C_i=
@@ -2826,7 +2794,7 @@ Para el sensor de posición angular se adopta $\omega_n=2000\ \text{rad/s}$ y $\
     =
     \begin{bmatrix}
         0 & 1 \\
-        -4{,}0\times 10^6 & -4{,}0\times 10^3
+        -4.0\times 10^6 & -4.0\times 10^3
     \end{bmatrix},
 \end{equation}
 \begin{equation}
@@ -2838,7 +2806,7 @@ Para el sensor de posición angular se adopta $\omega_n=2000\ \text{rad/s}$ y $\
     =
     \begin{bmatrix}
         0 \\
-        4{,}0\times 10^6
+        4.0\times 10^6
     \end{bmatrix},
     \qquad
     C_\theta=
@@ -2922,9 +2890,9 @@ Como era de esperarse, la rapidez propuesta inicialmente no es suficiente, ya qu
 
 Para posibilitar la implementación física del algoritmo de control en un microcontrolador industrial o procesador digital de señales (DSP), es necesario efectuar la transición del diseño desde el tiempo continuo (dominio de Laplace, $s$) al tiempo discreto (dominio $z$). En el entorno digital, el controlador no evalúa las señales de forma ininterrumpida, sino que adquiere muestras y computa ecuaciones en diferencias algebraicas a intervalos regulares de tiempo.
 
-El primer paso crítico en este diseño es la determinación del período de muestreo $T_s$ (que no debe confundirse con la temperatura del estator $T_s^\circ$, la cual lleva siempre el superíndice de grado). Según el criterio práctico de diseño de sistemas de control digital, la frecuencia de muestreo $f_s = 1/T_s$ debe ser al menos 10 veces mayor que el ancho de banda del lazo de control más rápido, garantizando así que no se degrade la estabilidad global del sistema. En la arquitectura desarrollada, el lazo proporcional de corrientes posee la dinámica más veloz con un ancho de banda $BW_{cont} = 796 \ \mathrm{Hz}$. Por consiguiente, el período de muestreo nominal exigido se calcula como:
+El primer paso crítico en este diseño es la determinación del período de muestreo $T_s$. Según el criterio práctico de diseño de sistemas de control digital, la frecuencia de muestreo $f_s = 1/T_s$ debe ser al menos 10 veces mayor que el ancho de banda del lazo de control más rápido, garantizando así que no se degrade la estabilidad global del sistema. En la arquitectura desarrollada, el lazo proporcional de corrientes posee la dinámica más veloz con un ancho de banda $BW_{cont} = 796 \ \mathrm{Hz}$. Por consiguiente, el período de muestreo nominal exigido se calcula como:
 \begin{equation}
-    T_s \leq \frac{1}{10 \cdot 796} \approx 1{,}25 \times 10^{-4} \ \mathrm{s}.
+    T_s \leq \frac{1}{10 \cdot 796} \approx 1.25 \times 10^{-4} \ \mathrm{s}.
 \end{equation}
 
 \subsection{Método de integración de Tustin}
@@ -2966,7 +2934,7 @@ La implementación del controlador se organizó de forma modular, separando cada
 
 El flujo general de información comienza con el generador de trayectoria, encargado de entregar las referencias cinemáticas del movimiento: posición, velocidad y aceleración. Estas señales definen la evolución deseada del eje del motor y evitan aplicar consignas abruptas directamente sobre el sistema. La referencia de velocidad se compara luego con la velocidad estimada del motor, generando el error utilizado por el controlador de posición.
 
-Como la velocidad mecánica no se mide directamente, se emplea un observador de estado reducido. Este bloque recibe la posición medida $\theta_m$ y el torque electromagnético de referencia $T_m^{*}$, y a partir de esas señales estima la velocidad mecánica $\hat{\omega}_m$. Esta velocidad estimada se realimenta hacia el controlador de posición y hacia el modulador de torque, cerrando el lazo externo de movimiento.
+Como la velocidad mecánica no se mide directamente, se emplea un observador de estado reducido. Este bloque recibe la posición medida $\theta_m$ y el torque electromagnético de referencia $T_e^{*}$, y a partir de esas señales estima la velocidad mecánica $\hat{\omega}_m$. Esta velocidad estimada se realimenta hacia el controlador de posición y hacia el modulador de torque, cerrando el lazo externo de movimiento.
 
 El controlador PID de posición calcula una referencia de torque mecánico $T_m^{**}$ a partir del error de velocidad. Internamente conserva los estados de sus integradores mediante variables \texttt{persistent}, lo que permite ejecutar la ecuación recursiva en cada instante de muestreo sin perder la memoria del ciclo anterior. La salida de este bloque representa el esfuerzo mecánico requerido para que el eje siga la trayectoria impuesta.
 
@@ -3382,7 +3350,7 @@ s_c = sin(theta_c);
 
 f_q = (2/3)*(f_a*c_a + f_b*c_b + f_c*c_c);
 
-f_d = (2/3)*(f_a*s_a + f_b*s_b + f_c*s_c);
+f_d = -(2/3)*(f_a*s_a + f_b*s_b + f_c*s_c);
 
 f_0 = (1/3)*(f_a + f_b + f_c);
 
@@ -3401,9 +3369,9 @@ theta_a = theta;
 theta_b = theta - 2*pi/3;
 theta_c = theta + 2*pi/3;
 
-f_a = f_q*cos(theta_a) + f_d*sin(theta_a) + f_0;
-f_b = f_q*cos(theta_b) + f_d*sin(theta_b) + f_0;
-f_c = f_q*cos(theta_c) + f_d*sin(theta_c) + f_0;
+f_a = f_q*cos(theta_a) - f_d*sin(theta_a) + f_0;
+f_b = f_q*cos(theta_b) - f_d*sin(theta_b) + f_0;
+f_c = f_q*cos(theta_c) - f_d*sin(theta_c) + f_0;
 
 end
 \end{lstlisting}
@@ -3445,7 +3413,7 @@ Como líneas de mejora se identifican: la incorporación de una estrategia de ca
 
 
 \appendices
-\section{Generador de Trayectorias con perfil de aceleración trapezoidal (curva en S)}
+\section{Generador de Trayectorias paramétricamente suavizadas mediante interpolación lineal}
 \subsection{Descripción General}
 Para el control de posición del motor sincrónico de imanes permanentes (PMSM), se incorporó un \textbf{Generador de Trayectorias} en el esquema de control. Este bloque tiene como objetivo principal suavizar las transiciones entre los distintos puntos de consigna espaciales, generando referencias continuas y derivables de posición ($\theta_{ref}$), velocidad ($\omega_{ref}$) y aceleración ($\alpha_{ref}$) en función del tiempo. 
 

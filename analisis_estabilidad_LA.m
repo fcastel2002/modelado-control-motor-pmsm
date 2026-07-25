@@ -102,11 +102,11 @@ fig1 = figure('Name', 'Mapa de Polos y Ceros - Lazo Abierto', ...
 % --- G1: theta_m / v_qs ---
 subplot(1, 2, 1); hold on; grid on; box on;
 
-% Polos del modelo nominal (aparecen en la FT)
-plot(real(p1), imag(p1), 'bx', 'MarkerSize', 12, 'LineWidth', 2);
+% Polos del modelo nominal (aparecen en la FT) - cuadrados solidos
+plot(real(p1), imag(p1), 's', 'MarkerSize', 10, 'MarkerFaceColor', [0 0.447 0.741], 'MarkerEdgeColor', 'k', 'LineWidth', 0.8);
 
-% Polo cancelado de i_ds (no aparece en FT)
-plot(real(polo_ids), 0, 'rx', 'MarkerSize', 12, 'LineWidth', 2);
+% Polo cancelado de i_ds (no aparece en FT) - rombo solido rojo
+plot(real(polo_ids), 0, 'd', 'MarkerSize', 11, 'MarkerFaceColor', [0.635 0.078 0.184], 'MarkerEdgeColor', 'k', 'LineWidth', 0.8);
 
 % Ejes
 xline(0, 'k-', 'LineWidth', 0.5);
@@ -126,12 +126,12 @@ legend('Polos activos', 'Polo cancelado (i_{ds})', 'Location', 'northwest');
 % --- G2: theta_m / T_ld ---
 subplot(1, 2, 2); hold on; grid on; box on;
 
-% Polos
-plot(real(p2), imag(p2), 'bx', 'MarkerSize', 12, 'LineWidth', 2);
-% Cero
-plot(real(z2), imag(z2), 'go', 'MarkerSize', 12, 'LineWidth', 2);
-% Polo cancelado
-plot(real(polo_ids), 0, 'rx', 'MarkerSize', 12, 'LineWidth', 2);
+% Polos - cuadrados solidos
+plot(real(p2), imag(p2), 's', 'MarkerSize', 10, 'MarkerFaceColor', [0 0.447 0.741], 'MarkerEdgeColor', 'k', 'LineWidth', 0.8);
+% Cero - circulo vacio
+plot(real(z2), imag(z2), 'o', 'MarkerSize', 11, 'MarkerEdgeColor', [0 0.5 0], 'MarkerFaceColor', 'none', 'LineWidth', 1.8);
+% Polo cancelado - rombo solido rojo
+plot(real(polo_ids), 0, 'd', 'MarkerSize', 11, 'MarkerFaceColor', [0.635 0.078 0.184], 'MarkerEdgeColor', 'k', 'LineWidth', 0.8);
 
 xline(0, 'k-', 'LineWidth', 0.5);
 yline(0, 'k-', 'LineWidth', 0.5);
@@ -146,7 +146,8 @@ sgtitle('Mapa de Polos y Ceros a Lazo Abierto (Modelo LTI Aumentado)', ...
     'FontSize', 14, 'FontWeight', 'bold');
 
 % Exportar
-disp('-> Figura 1 generada: Mapa de polos y ceros');
+exportgraphics(fig1, 'imagenes/polos_ceros_LA.png', 'Resolution', 200);
+disp('-> Figura 1 generada y exportada: Mapa de polos y ceros');
 
 %% 5. MIGRACIÓN DE PROPIEDADES ANTE VARIACIÓN DE Rs
 % Rango: [0.8*R_sREF, 1.2*R_sREF] (variación por temperatura)
@@ -202,11 +203,11 @@ cmap = [linspace(0,1,N_Rs)', zeros(N_Rs,1), linspace(1,0,N_Rs)'];
 
 for i = 1:N_Rs
     p_i = polos_Rs(:, i);
-    plot(real(p_i), imag(p_i), 'x', 'Color', cmap(i,:), ...
-        'MarkerSize', 10, 'LineWidth', 1.5);
-    % Cero de G2
-    plot(cero_Rs(i), 0, 'o', 'Color', cmap(i,:), ...
-        'MarkerSize', 8, 'LineWidth', 1.5);
+    plot(real(p_i), imag(p_i), 's', 'MarkerFaceColor', cmap(i,:), ...
+        'MarkerEdgeColor', cmap(i,:), 'MarkerSize', 8);
+    % Cero de G2 - circulo vacio
+    plot(cero_Rs(i), 0, 'o', 'MarkerEdgeColor', cmap(i,:), ...
+        'MarkerFaceColor', 'none', 'MarkerSize', 8, 'LineWidth', 1.5);
 end
 
 % Flecha indicando dirección de aumento de Rs
@@ -241,7 +242,8 @@ title('Frecuencia natural y amortiguamiento vs R_s', 'FontSize', 12);
 sgtitle('Migración de Propiedades ante Variación de R_s', ...
     'FontSize', 14, 'FontWeight', 'bold');
 
-disp('-> Figura 2 generada: Migración Rs');
+exportgraphics(fig2, 'imagenes/migracion_Rs.png', 'Resolution', 200);
+disp('-> Figura 2 generada y exportada: Migración Rs');
 
 %% 6. MIGRACIÓN DE PROPIEDADES ANTE VARIACIÓN DE CARGA (m_l)
 % Consigna ítem 4.b: m_l varía de 0 a 1.5 kg
@@ -305,17 +307,17 @@ cmap_ml = [linspace(0,0.8,N_ml)', linspace(0.6,0,N_ml)', linspace(0,0.8,N_ml)'];
 
 for i = 1:N_ml
     p_i = polos_ml(:, i);
-    plot(real(p_i), imag(p_i), 'x', 'Color', cmap_ml(i,:), ...
-        'MarkerSize', 10, 'LineWidth', 1.5);
+    plot(real(p_i), imag(p_i), 's', 'MarkerFaceColor', cmap_ml(i,:), ...
+        'MarkerEdgeColor', cmap_ml(i,:), 'MarkerSize', 8);
 end
 
-% Marcar caso nominal (m_l = 0)
+% Marcar caso nominal (m_l = 0) - rombo solido
 p_nom = polos_ml(:, 1);
-plot(real(p_nom), imag(p_nom), 'ko', 'MarkerSize', 14, 'LineWidth', 2);
+plot(real(p_nom), imag(p_nom), 'd', 'MarkerSize', 14, 'MarkerFaceColor', [0 0.447 0.741], 'MarkerEdgeColor', 'k', 'LineWidth', 1.2);
 
-% Marcar peor caso (m_l = 1.5)
+% Marcar peor caso (m_l = 1.5) - cuadrado solido
 p_worst = polos_ml(:, end);
-plot(real(p_worst), imag(p_worst), 'ks', 'MarkerSize', 14, 'LineWidth', 2);
+plot(real(p_worst), imag(p_worst), 's', 'MarkerSize', 14, 'MarkerFaceColor', [0.635 0.078 0.184], 'MarkerEdgeColor', 'k', 'LineWidth', 1.2);
 
 xline(0, 'k-', 'LineWidth', 0.5);
 yline(0, 'k-', 'LineWidth', 0.5);
@@ -350,7 +352,8 @@ xline(1.5, 'k--', 'Peor caso');
 sgtitle('Migración de Propiedades ante Variación de Carga (m_l)', ...
     'FontSize', 14, 'FontWeight', 'bold');
 
-disp('-> Figura 3 generada: Migración m_l');
+exportgraphics(fig3, 'imagenes/migracion_ml.png', 'Resolution', 200);
+disp('-> Figura 3 generada y exportada: Migración m_l');
 
 %% 7. DIAGRAMAS DE BODE
 fig4 = figure('Name', 'Diagramas de Bode - Lazo Abierto', ...

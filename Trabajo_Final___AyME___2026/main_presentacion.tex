@@ -1116,10 +1116,7 @@ i_{ds}^{r}(t)\equiv 0
 \begin{frame}{Modelo LTI nominal resultante}
 \vspace{2mm}
 
-\textbf{Perturbación mecánica total} (salvedad ingenieril):
-\begin{equation*}
-T_l(t) \triangleq T_{ld}(t) + g\,k_l\sin\!\left(\frac{\theta_m(t)}{r}\right)
-\end{equation*}
+\textbf{Perturbación mecánica externa:} el torque de carga $T_l(t)$ se trata como entrada exógena del modelo.
 
 \footnotesize
 \begin{equation*}
@@ -1138,7 +1135,7 @@ T_l(t) \triangleq T_{ld}(t) + g\,k_l\sin\!\left(\frac{\theta_m(t)}{r}\right)
 \bm{x}_{LTI}(t)=\big[\,\theta_m,\;\omega_m,\;i_{qs}^r\,\big]^T
 \end{equation*}
 
-{\small El término gravitatorio no se deriva ni ingresa a la matriz de estado: se trata como parte de la entrada perturbadora $T_l(t)$, conservando una matriz $\bm{A}$ lineal e invariante en el tiempo.}
+{\small El torque de carga $T_l(t)$ se trata como entrada de perturbación externa (exógena), por lo que la matriz $\bm{A}$ resulta lineal e invariante en el tiempo.}
 \end{frame}
 
 % -------------------------------------------------------------------
@@ -1165,7 +1162,7 @@ $}
 \begin{itemize}
   \item $\bm{A}$ contiene la planta electromecánica nominal.
   \item $\bm{B}_c$ muestra que la acción de control entra solo por el canal de corriente $q$.
-  \item $\bm{B}_d$ inyecta la perturbación mecánica total $T_l = T_{ld} + g\,k_l\sin(\theta_m/r)$.
+  \item $\bm{B}_d$ inyecta la perturbación mecánica externa $T_l(t)$ (torque de carga).
 \end{itemize}
 
 {\small Esta separación es la base para el análisis posterior de estabilidad, funciones de transferencia y desempeño del controlador.}
@@ -1321,7 +1318,7 @@ Algebraicamente exacto, sin Taylor. Cancela las NL inyectando tensiones virtuale
 \hline
 Carga gravitacional (NL mecánica) &
 Linealiza $\sin(\theta_{m0}/r)\to$ rigidez local. Aparece $A_{2,1}\propto\cos(\theta_{m0}/r)$: los polos mecánicos \textbf{cambian con la posición} del brazo. &
-Agrupa el torque gravitacional \emph{completo} con la carga externa en la perturbación total $T_l(t)=T_{ld}(t)+g\,k_l\sin(\theta_m/r)$. La matriz $A_{2,1}=0$ permanece \textbf{invariante}. \\
+El torque de carga $T_l(t)$ ingresa como perturbación externa (exógena); no se deriva respecto de la posición, por lo que $A_{2,1}=0$ permanece \textbf{invariante}. \\
 \hline
 Subsistema térmico &
 Conserva la influencia: $R_{s0}$ depende del equilibrio térmico $T_{s0}$ del Jacobiano. &
@@ -1329,7 +1326,7 @@ Conserva la influencia: $R_{s0}$ depende del equilibrio térmico $T_{s0}$ del Ja
 \hline
 Estructura al forzar $I^r_{ds,o}\equiv 0$ &
 Caso particular: el acoplamiento cruzado se vuelve puramente $\lambda'^r_m$ (sin reluctancia), coincidiendo con $A_{3,2}$ del LTI. &
-\textbf{Es} el caso ideal de un LPV operando perpetuamente en $I^r_{ds,o}=0$, habiendo agrupado el torque gravitatorio dentro de la perturbación de entrada $T_l(t)$. \\
+\textbf{Es} el caso ideal de un LPV operando perpetuamente en $I^r_{ds,o}=0$, con el torque de carga $T_l(t)$ tratado como perturbación externa. \\
 \hline
 \end{tabular}%
 }
@@ -1436,7 +1433,7 @@ T_m=\frac{3}{2}P_p\Big[\lambda'^r_m+(L_d-L_q)I^r_{ds,o}\Big]I^r_{qs,o}
 \begin{itemize}
   \item Modelo incremental con $\bm{x}_{aug}(0)=\bm{0}$.
   \item Resistencia constante: $R_s=R_{s0}$.
-  \item El torque gravitatorio está agrupado dentro de la perturbación total $T_l(t)$: no aparece ningún término no lineal en la matriz $\bm{A}_{aug}$.
+  \item El torque de carga $T_l(t)$ se trata como perturbación externa: no aparece ningún término no lineal en la matriz $\bm{A}_{aug}$.
   \item Como $i_{ds}^{r}$ queda desacoplado, la relación entrada-salida se obtiene con el subsistema nominal de tercer orden.
 \end{itemize}
 
@@ -1509,7 +1506,7 @@ $}
 % -------------------------------------------------------------------
 %  SLIDE 63 - Mapa polos y ceros
 % -------------------------------------------------------------------
-\figslide{Mapa de polos y ceros a lazo abierto}{polos_ceros_LA.png}{Mapa de polos y ceros a lazo abierto para ambas funciones de transferencia del modelo LTI aumentado. Se indica con $\times$ roja el polo cancelado de $i_{ds}^r$.}
+\figslide{Mapa de polos y ceros a lazo abierto}{polos_ceros_LA.png}{Mapa de polos (cuadrados sólidos) y ceros (círculos vacíos) a lazo abierto para ambas funciones de transferencia del modelo LTI aumentado. El polo cancelado de $i_{ds}^r$ se indica con rombo rojo.}
 
 \subsection{Variaciones paramétricas}
 % -------------------------------------------------------------------
@@ -2360,7 +2357,7 @@ K_{sia} &= J_{eq}\,\omega_n^{3}  \;=\; 10\,129{,}778 \;\;\frac{\text{N}\cdot\tex
 % -------------------------------------------------------------------
 %  SLIDE 125 — Figura mapa de polos
 % -------------------------------------------------------------------
-\figslide{Mapa de polos: planta, lazos de corriente y PID}{mapa_polos_5_2_2.png}{Polos en el plano $s$: planta a lazo abierto (cruces), lazos de corriente (cuadrado, $-5000$) y polos de lazo cerrado del PID ($-800$ y $-600 \pm j\,529$).}
+\figslide{Mapa de polos: planta, lazos de corriente y PID}{mapa_polos_5_2_2.png}{Polos en el plano $s$ (cuadrados sólidos por color): planta a lazo abierto (azul), lazos de corriente (verde, $-5000$) y polos de lazo cerrado del PID (rojo, $-800$ y $-600 \pm j\,529$).}
 
 % -------------------------------------------------------------------
 %  SLIDE 126 — Separación de escalas
@@ -2388,7 +2385,7 @@ K_{sia} &= J_{eq}\,\omega_n^{3}  \;=\; 10\,129{,}778 \;\;\frac{\text{N}\cdot\tex
 % -------------------------------------------------------------------
 %  SLIDE 127 — Figura migración polos PID
 % -------------------------------------------------------------------
-\figslide{Migración de polos del PID al variar $m_l$}{migracion_polos_pid.png}{Migración de los polos de lazo cerrado del PID al variar $m_l$ de $0$ a $1{,}5$~kg con ganancias fijas. Nominal ($m_l=0$): círculo; peor caso ($m_l=1{,}5$): cuadrado.}
+\figslide{Migración de polos del PID al variar $m_l$}{migracion_polos_pid.png}{Migración de los polos de lazo cerrado del PID al variar $m_l$ de $0$ a $1{,}5$~kg con ganancias fijas (cuadrados sólidos). Nominal ($m_l=0$): rombo sólido; peor caso ($m_l=1{,}5$): cuadrado sólido.}
 
 % ===================================================================
 %  BLOQUE — 5.2.3 Observador de estado de orden reducido
@@ -2479,13 +2476,13 @@ y(t)=\theta_m(t)
 
 \textbf{Dinámica del observador:}
 \begin{align*}
-\dot{\bar{\bm{x}}} &= \bm{A}\,\bar{\bm{x}} + \begin{bmatrix} 0 \\ \tfrac{1}{J_{eq}} \end{bmatrix} u(t) + \bm{L}\,\big(\,y - \bm{C}\,\bar{\bm{x}}\,\big) \\[4pt]
-&= \big(\bm{A} - \bm{L}\,\bm{C}\big)\,\bar{\bm{x}} + \begin{bmatrix} 0 \\ \tfrac{1}{J_{eq}} \end{bmatrix} u(t) + \bm{L}\,y
+\dot{\bar{\bm{x}}} &= \bm{A}\,\bar{\bm{x}} + \begin{bmatrix} 0 \\ \tfrac{1}{J_{eq}} \end{bmatrix} u(t) + \bm{K}_e\,\big(\,y - \bm{C}\,\bar{\bm{x}}\,\big) \\[4pt]
+&= \big(\bm{A} - \bm{K}_e\,\bm{C}\big)\,\bar{\bm{x}} + \begin{bmatrix} 0 \\ \tfrac{1}{J_{eq}} \end{bmatrix} u(t) + \bm{K}_e\,y
 \end{align*}
 
-\textbf{Ganancia proporcional a sintonizar:}
+\textbf{Vector de ganancias del observador:}
 \begin{equation*}
-\bm{L} = \begin{bmatrix} K_{e\theta_m} \\ K_{e\omega_m} \end{bmatrix}
+\bm{K}_e = \begin{bmatrix} K_{e\theta_m} \\ K_{e\omega_m} \end{bmatrix}
 \end{equation*}
 \end{frame}
 
@@ -2496,7 +2493,7 @@ y(t)=\theta_m(t)
 \vspace{4mm}
 
 \begin{align*}
-\det\!\Big(s\,\bm{I} - \big(\bm{A} - \bm{L}\,\bm{C}\big)\Big) &= 0 \\[6pt]
+\det\!\Big(s\,\bm{I} - \big(\bm{A} - \bm{K}_e\,\bm{C}\big)\Big) &= 0 \\[6pt]
 \det\!\left(
 \begin{bmatrix} s & 0 \\ 0 & s \end{bmatrix}
 - \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}

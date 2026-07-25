@@ -3,16 +3,18 @@
 % Este script es independiente y se puede usar en el enfoque LPV.
 
 
-%% 1. Configuración de Variación de I_ds
-disp('=== Configuración de Variación de I_ds ===');
-I_ds_min = input('-> Ingrese el valor mínimo de I_ds [A] (ej. -10) o Enter para -10: ');
-if isempty(I_ds_min), I_ds_min = -10; end
+%% 0. Carga de parámetros físicos (script autocontenido)
+if exist('parametros_sistema_completo.m', 'file')
+    parametros_sistema_completo;
+else
+    error('No se encuentra "parametros_sistema_completo.m".');
+end
 
-I_ds_max = input('-> Ingrese el valor máximo de I_ds [A] (ej. 10) o Enter para 10: ');
-if isempty(I_ds_max), I_ds_max = 10; end
-
-I_ds_step = input('-> Ingrese el paso de corriente [A] (ej. 0.5) o Enter para 0.5: ');
-if isempty(I_ds_step), I_ds_step = 0.5; end
+%% 1. Configuración de Variación de I_ds  (barrido no interactivo)
+% Rango del parámetro de operación I_ds; coincide con las tablas del informe.
+I_ds_min  = -1.2;    % [A] extremo de debilitamiento de campo
+I_ds_max  =  1.0;    % [A] extremo de reforzamiento de campo
+I_ds_step =  0.05;   % [A] paso fino para trazar las ramas de polos
 
 Ids_vals = I_ds_min:I_ds_step:I_ds_max;
 num_points = length(Ids_vals);
@@ -49,7 +51,7 @@ theta_mO = 0;
 w_mO = 6.28;                % Una velocidad mecánica arbitraria
 i_qsO = 5;                 % Corriente en q arbitraria
 i_0sO = 0;                 % Secuencia cero 
-TsO = 20;                  % Temperatura de operación
+TsO = 25;                  % [°C] Temperatura de operación (= T_amb, según consigna)
 
 %% 4. Evaluación de Autovalores en Bucle
 disp('-> Calculando autovalores de la matriz AO_LPV...');
@@ -97,11 +99,11 @@ disp('-> Generando diagrama de polos...');
 
 % Colores y marcadores distintos para cada rama (autovalor)
 colores_rama = lines(6);
-marcadores   = {'o', 's', 'd', '^', 'v', 'p'};
+marcadores   = {'s', 'd', 's', 'd', 's', 'd'};  % cuadrados/rombos solidos
 nombres_polo = {'\lambda_1', '\lambda_2', '\lambda_3', ...
                 '\lambda_4', '\lambda_5', '\lambda_6'};
 
-figure('Name', 'Migración de Polos vs I_{ds} (LPV)', 'Color', 'w', 'Position', [100, 100, 900, 650]);
+fig_full = figure('Name', 'Migración de Polos vs I_{ds} (LPV)', 'Color', 'w', 'Position', [100, 100, 900, 650]);
 hold on; grid on; box on;
 
 title('Migración de Polos al Variar la Corriente I_{ds}', 'FontSize', 14);
@@ -115,6 +117,7 @@ for polo_idx = 1:6
         imag(polos_totales(polo_idx, :)), ...
         '-', 'Color', colores_rama(polo_idx,:), 'LineWidth', 1.2, ...
         'Marker', marcadores{polo_idx}, 'MarkerSize', 5, ...
+        'MarkerFaceColor', colores_rama(polo_idx,:), ...
         'DisplayName', nombres_polo{polo_idx});
 
     % Marcador de INICIO (I_ds mínimo) -> círculo relleno grande
@@ -134,7 +137,8 @@ end
 idx_cero = find(abs(Ids_vals) < eps);
 if ~isempty(idx_cero)
     h_ids0 = plot(real(polos_totales(:, idx_cero)), imag(polos_totales(:, idx_cero)), ...
-        'r*', 'MarkerSize', 14, 'LineWidth', 2, 'DisplayName', 'I_{ds} = 0');
+        'd', 'MarkerSize', 12, 'MarkerFaceColor', [0.85 0 0], 'MarkerEdgeColor', 'k', ...
+        'LineWidth', 1, 'DisplayName', 'I_{ds} = 0');
 else
     warning('El valor I_{ds} = 0 no está en el rango definido.');
     h_ids0 = [];
@@ -154,6 +158,34 @@ end
 % Subtítulo indicando rango y dirección de migración
 subtitle(sprintf('Relleno = I_{ds,min} (%.2g A)  |  Borde negro = I_{ds,max} (%.2g A)', ...
     I_ds_min, I_ds_max), 'FontSize', 10);
+
+%% 5b. EXPORTAR FIGURAS PARA EL INFORME (vista completa + zoom)
+exportgraphics(fig_full, 'imagenes/migracion_ids_1.png', 'Resolution', 200);
+fprintf('-> Exportada: imagenes/migracion_ids_1.png (vista completa)\n');
+
+% Zoom sobre los polos dominantes (par complejo + polo real de eje d cercano)
+xlim([-165, 5]); ylim([-230, 230]);
+title('Migración de Polos al Variar I_{ds}  (detalle de polos dominantes)', 'FontSize', 14);
+exportgraphics(fig_full, 'imagenes/migracion_ids_2.png', 'Resolution', 200);
+fprintf('-> Exportada: imagenes/migracion_ids_2.png (zoom)\n');
+
+%% 5c. TABLA DE AUTOVALORES PARA EL INFORME (filas LaTeX)
+% lambda1 = polo secuencia cero (~-1300, constante);  lambda2 = polo eje d;
+% lambda3,4 = par complejo electromecánico;  lambda5 = polo mecánico lento (pendular)
+Ids_tabla = [-1.2 -1.0 -0.8 -0.6 -0.4 0.2 0.4 0.6 0.8 1.0];
+fprintf('\n=== Filas LaTeX para las tablas del informe (TsO = %d C) ===\n', TsO);
+for ids = Ids_tabla
+    i_qsO_t = (b_eq*w_mO + g*k_l*sin(theta_mO/r) + (1/r)*T_ld) / ...
+              (1.5*P_p*(lambda_r + (L_d - L_q)*ids));
+    ev = eig(calcular_matriz_AO([theta_mO; w_mO; i_qsO_t; ids; i_0sO; TsO], params));
+    ev = sort(ev, 'ComparisonMethod', 'real');
+    cpx    = ev(imag(ev) > 1e-6);                    % polo complejo (parte imag > 0)
+    reales = sort(real(ev(abs(imag(ev)) < 1e-6)));   % 4 reales (de más neg. a menos)
+    L1 = reales(1);   L2 = reales(2);   L5 = reales(3);   % i0s, eje d, pendular
+    re = real(cpx(1)); im = imag(cpx(1));
+    fprintf('%.1f & %.2f & %.2f & $%.2f - j\\,%.2f$ & $%.2f + j\\,%.2f$ & %.4f \\\\\n', ...
+        ids, L1, L2, re, im, re, im, L5);
+end
 
 %% 6. Salida en formato CSV para LaTeX
 disp(' ');
