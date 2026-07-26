@@ -1544,7 +1544,7 @@ $}
 {\small\color{uncGray}El polinomio característico del modelo aumentado separa el integrador de posición, el modo electromecánico y el modo residual del eje $d$.}\par
 \vspace{1.5mm}
 
-\definitionbox{Estabilidad interna}{Un sistema lineal es estable si, ante condiciones iniciales finitas y sin entradas externas, sus estados permanecen acotados. Si además todos los modos libres decaen a cero, el sistema es asintóticamente estable.}
+\definitionbox{Estabilidad del subsistema físico}{Los modos asociados a las variables que almacenan energía o representan dinámica propia del accionamiento deben tener parte real negativa. La posición se interpreta como una coordenada cinemática acumulada.}
 \vspace{1mm}
 
 {\small
@@ -1559,20 +1559,20 @@ $}
 \small
 \textbf{Valores nominales:}
 \begin{itemize}
-  \item $\lambda_1=0$: integrador cinemático de posición.
+  \item $\lambda_1=0$: integrador cinemático de posición; no representa almacenamiento de energía.
   \item $\lambda_{2,3}=-91{,}7\pm j\,148{,}0$: modo electromecánico subamortiguado, $\zeta\simeq0{,}527$.
   \item $\lambda_4=-160{,}3$: dinámica residual de $i_{ds}^{r}$, con $\tau_d\simeq6{,}24$ ms.
 \end{itemize}
 
 \textbf{Conclusión:}
-{\small el sistema es marginalmente estable internamente, pero no BIBO estable desde $v_{qs}$ o $T_l$ hacia $\theta_m$ por el polo en el origen.}
+{\small El sistema físico se considera \textbf{estable}. Una entrada constante puede producir una deriva de $\theta_m$ por integración cinemática, pero no una pérdida de estabilidad del subsistema electromecánico.}
 \end{frame}
 
 % -------------------------------------------------------------------
 %  SLIDE 63 - Mapa polos y ceros
 % -------------------------------------------------------------------
 \figslide{Mapa de polos y ceros a lazo abierto}{%
-El mapa confirma la estructura anterior: un polo en el origen, el par electromecánico complejo y el polo residual de $i_{ds}^{r}$ marcado como cancelado. Esta lectura justifica que el diseño posterior cierre el lazo de posición y trate a la carga como perturbación.% 
+El mapa confirma la estructura anterior: un polo cinemático en el origen, el par electromecánico estable y el polo residual de $i_{ds}^{r}$ marcado como cancelado. El polo en el origen no compromete la estabilidad física; justifica cerrar el lazo para regular la coordenada de posición.% 
 }{polos_ceros_LA.png}{Mapa de polos y ceros a lazo abierto para ambas funciones de transferencia del modelo LTI aumentado. Se indica con $\times$ roja el polo cancelado de $i_{ds}^r$.}
 
 \subsection{Variaciones paramétricas}
