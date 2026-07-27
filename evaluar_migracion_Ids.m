@@ -160,11 +160,13 @@ subtitle(sprintf('Relleno = I_{ds,min} (%.2g A)  |  Borde negro = I_{ds,max} (%.
     I_ds_min, I_ds_max), 'FontSize', 10);
 
 %% 5b. EXPORTAR FIGURAS PARA EL INFORME (vista completa + zoom)
+axis square;
 exportgraphics(fig_full, 'imagenes/migracion_ids_1.png', 'Resolution', 200);
 fprintf('-> Exportada: imagenes/migracion_ids_1.png (vista completa)\n');
 
 % Zoom sobre los polos dominantes (par complejo + polo real de eje d cercano)
 xlim([-165, 5]); ylim([-230, 230]);
+xl=xlim; yl=ylim; s=max(diff(xl),diff(yl)); xlim(mean(xl)+[-1 1]*s/2); ylim(mean(yl)+[-1 1]*s/2); axis square;
 title('Migración de Polos al Variar I_{ds}  (detalle de polos dominantes)', 'FontSize', 14);
 exportgraphics(fig_full, 'imagenes/migracion_ids_2.png', 'Resolution', 200);
 fprintf('-> Exportada: imagenes/migracion_ids_2.png (zoom)\n');

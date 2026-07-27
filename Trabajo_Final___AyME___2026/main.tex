@@ -660,40 +660,6 @@ La arquitectura de la simulación se diseñó para validar tanto la dinámica de
     \label{fig:simulink_top}
 \end{figure}
 
-\subsubsection{Resultados del Ensayo a Lazo Abierto}
-Se realizó un ensayo de excitación al escalón con $v_{qs}^{r*}=5$~V y carga nula ($T_{ld}=0$), partiendo de condiciones iniciales de reposo y equilibrio térmico ($T_s^\circ(0)=20^\circ$C).
-
-\textbf{Análisis Electromecánico:}
-La Fig. \ref{fig:res_elec_mec} vincula la dinámica eléctrica con la mecánica:
-\begin{itemize}
-    \item \textbf{Superior ($i_{qs}^r$):} Al aplicar la tensión, la corriente aumenta rápidamente ($\tau_e = L_q/R_s$). Sin embargo, a medida que el motor gana velocidad, la aparición de la fuerza contraelectromotriz ($e = \lambda'^r_m \omega_r$) se opone a la tensión aplicada, provocando la reducción de la corriente observada a partir de $t \approx 0{,}1$ s.
-    \item \textbf{Inferior ($\omega_m$):} El torque generado por la corriente acelera el rotor venciendo la inercia $J_{eq}$. La velocidad se estabiliza cuando el torque motor se iguala con el torque de fricción viscosa.
-\end{itemize}
-
-% FIGURA COMBINADA CORRIENTE/VELOCIDAD (CLAVADA AQUÍ CON [H])
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\linewidth]{imagenes/resultado_corriente.png} \\[0.1cm]
-    \includegraphics[width=0.9\linewidth]{imagenes/resultado_velocidad.png}
-    \caption{Respuesta dinámica al escalón de tensión $v_{qs}^{r*}=5$~V. \textbf{Arriba:} Corriente de estator $i_{qs}^r$ [A], mostrando el transitorio inductivo y el efecto de la fuerza contraelectromotriz. \textbf{Abajo:} Velocidad mecánica del rotor $\omega_m$ [rad/s].}
-    \label{fig:res_elec_mec}
-\end{figure}
-
-\textbf{Análisis Térmico:}
-La Fig. \ref{fig:res_term} muestra la evolución de la temperatura del estator. Se observa un inicio correcto en $T_{amb}^\circ=20^\circ$C.
-Es notable que la pendiente de calentamiento no es constante: es máxima al inicio (cuando la corriente es alta y el rotor está detenido) y disminuye cuando el motor acelera y la corriente baja debido a la fuerza contraelectromotriz. Este comportamiento valida el correcto acoplamiento entre las variables eléctricas ($i^2 R$) y la dinámica mecánica en el modelo térmico.
-
-% FIGURA TÉRMICA (CLAVADA AQUÍ CON [H])
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\linewidth]{imagenes/resultado_temperatura.png}
-    \caption{Evolución de la temperatura del estator $T_s^\circ(t)$. Nótese el cambio de pendiente provocado por la variación de la corriente durante el arranque.}
-    \label{fig:res_term}
-\end{figure}
-
-% ESTE COMANDO ASEGURA QUE LAS FOTOS TERMINEN AQUÍ Y NO PASEN A LA MATEMÁTICA
-\clearpage
-
 
 
 %-------------- LPV -----------------
@@ -1130,14 +1096,14 @@ Estas tendencias se visualizan en las Fig.~\ref{fig:migracion_ids_full} y \ref{f
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/migracion_ids_1.png}
+    \includegraphics[width=0.6\textwidth]{imagenes/migracion_ids_1.png}
     \caption{Migración de los autovalores del modelo LPV al variar $I^r_{ds,o}$ (vista completa del plano $s$). Se aprecia que los polos reales rápidos ($\lambda_1$ y el asociado a la dinámica eléctrica) permanecen prácticamente invariantes.}
     \label{fig:migracion_ids_full}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/migracion_ids_2.png}
+    \includegraphics[width=0.6\textwidth]{imagenes/migracion_ids_2.png}
     \caption{Detalle de la migración de los polos dominantes en torno al origen. El par complejo conjugado aumenta su parte imaginaria (frecuencia natural de oscilación) al crecer $I^r_{ds,o}$, mientras que su parte real (amortiguamiento absoluto) se mantiene prácticamente constante.}
     \label{fig:migracion_ids_zoom}
 \end{figure}
@@ -1535,7 +1501,7 @@ T_{ld}(t) = \begin{cases}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_senales_entrada.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_senales_entrada.png}
     \caption{Señales de excitación: consigna de tensión $v_{qs}^{r*}(t)$ y torque de carga $T_{ld}(t)$.}
     \label{fig:sim_entradas}
 \end{figure}
@@ -1564,14 +1530,14 @@ La posición angular crece como rampa durante los pulsos de tensión, consecuenc
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_theta_m.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_theta_m.png}
     \caption{Posición angular $\theta_m(t)$: comparación NL (azul) vs LTI aumentado (rojo). Panel inferior: señales de excitación (torque de carga $T_l$ y consigna $v_{qs}^{r*}$).}
     \label{fig:sim_theta_m}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_theta_m_error.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_theta_m_error.png}
     \caption{Error de seguimiento en $\theta_m(t)$: diferencia $\theta_m^{\mathrm{NL}}(t)-\theta_m^{\mathrm{LTI}}(t)$, acotada por debajo de $0{,}1$~rad ($<0{,}05\%$ de la excursión de $242$~rad).}
     \label{fig:sim_theta_m_error}
 \end{figure}
@@ -1584,14 +1550,14 @@ La velocidad está gobernada por el \textbf{modo electromecánico subamortiguado
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_omega_m.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_omega_m.png}
     \caption{Velocidad angular $\omega_m(t)$: comparación NL (azul) vs LTI aumentado (rojo). Panel inferior: señales de excitación ($T_l$ y $v_{qs}^{r*}$).}
     \label{fig:sim_omega_m}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_omega_m_error.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_omega_m_error.png}
     \caption{Error de seguimiento en $\omega_m(t)$: diferencia $\omega_m^{\mathrm{NL}}(t)-\omega_m^{\mathrm{LTI}}(t)$, nula en régimen y con picos $\leq 3$~rad/s únicamente en las conmutaciones.}
     \label{fig:sim_omega_m_error}
 \end{figure}
@@ -1602,14 +1568,14 @@ Ante el escalón de $v_{qs}^{r*}$, $i_{qs}^r$ \textbf{no se establece en} $v_{qs
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_iqs.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_iqs.png}
     \caption{Corriente de eje $q$, $i_{qs}^r(t)$: comparación NL (azul) vs LTI aumentado (rojo). Panel inferior: señales de excitación ($T_l$ y $v_{qs}^{r*}$).}
     \label{fig:sim_iqs}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_iqs_error.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_iqs_error.png}
     \caption{Error de seguimiento en $i_{qs}^r(t)$: diferencia $i_{qs}^{r,\mathrm{NL}}(t)-i_{qs}^{r,\mathrm{LTI}}(t)$, nula en régimen y con picos $\leq 0{,}1$~A únicamente en las conmutaciones.}
     \label{fig:sim_iqs_error}
 \end{figure}
@@ -1624,7 +1590,7 @@ La temperatura crece levemente respecto de $T_{amb}^\circ = 25\,^\circ$C debido 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_Ts.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_Ts.png}
     \caption{Temperatura del estator $T_s^\circ(t)$ vs t: comparación modelo NL vs LTI aumentado ($i_{ds}^r(0) = 0$~A).}
     \label{fig:sim_Ts}
 \end{figure}
@@ -1635,14 +1601,14 @@ La ley de control mínima impone internamente la tensión $v_{ds}^r(t) = -L_q \,
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_v_ds.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_v_ds.png}
     \caption{Tensión $v_{ds}^r(t)$: modelo NL ($i_{ds}^r(0) = 0$~A).}
     \label{fig:sim_v_ds}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_corrientes_abc.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_corrientes_abc.png}
     \caption{Corrientes de fase $i_{as}$, $i_{bs}$, $i_{cs}$ obtenidas por Transformación Inversa de Park (modelo NL, $i_{ds}^r(0) = 0$~A).}
     \label{fig:sim_corrientes_abc}
 \end{figure}
@@ -1653,7 +1619,7 @@ Mediante la misma Transformación Inversa de Park se obtienen las tensiones de f
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_tensiones_abc.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_tensiones_abc.png}
     \caption{Tensiones de fase $v_{as}$, $v_{bs}$, $v_{cs}$ aplicadas al estator (modelo NL, $i_{ds}^r(0)=0$~A), con el mismo código de colores por fase que las corrientes.}
     \label{fig:sim_tensiones_abc}
 \end{figure}
@@ -1664,7 +1630,7 @@ La curva paramétrica $T_m(\omega_m)$ se construye a partir de los datos del scr
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_torque_vs_velocidad.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_torque_vs_velocidad.png}
     \caption{Torque electromagnético vs velocidad angular: cuadrantes de operación del motor PMSM. Cada transitorio se distingue por color, con flechas indicando el sentido de recorrido y diamantes marcando los puntos de equilibrio $P_0$ a $P_{10}$.}
     \label{fig:sim_torque_vel}
 \end{figure}
@@ -1714,7 +1680,7 @@ Por lo tanto, para obtener el ángulo $\theta_{ev}$ basta con aplicar la funció
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{imagenes/sim_angulo_carga.png}
+    \includegraphics[width=0.75\textwidth]{imagenes/sim_angulo_carga.png}
     \caption{Ángulo de carga $\delta(t)$ vs t (modelo NL, $i_{ds}^r(0) = 0$~A).}
     \label{fig:sim_angulo_carga}
 \end{figure}
@@ -1950,15 +1916,15 @@ Concretamente, en las simulaciones de esta sección el caso ``$R_s$ constante'' 
 %insertar aqui graficas
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{imagenes/comp_torque_rs.png}
-    \caption{Evolución temporal del torque neto ($T_{\text{neto}}$) en [N.m]. Se contrasta el comportamiento con resistencia estatórica constante (RS Cte., línea roja) y con resistencia estatórica variable (RS Variable, línea azul).}
+    \includegraphics[width=0.75\textwidth]{imagenes/comp_torque_rs.png}
+    \caption{Evolución temporal del torque neto ($T_{\text{neto}}$) en [N.m]. Se contrasta el comportamiento con resistencia estatórica constante (RS Cte., línea naranja) y con resistencia estatórica variable (RS Variable, línea azul).}
     \label{fig:comparacion_torque_neto_RS}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{imagenes/comp_velocidad_rs.png}
-    \caption{Comportamiento de la velocidad angular mecánica ($\omega_m(t)$) en [rad/s] en función del tiempo. Se comparan las respuestas con resistencia estatórica constante (RS Cte., línea roja) y con resistencia estatórica variable (RS Variable, línea azul).}
+    \includegraphics[width=0.75\textwidth]{imagenes/comp_velocidad_rs.png}
+    \caption{Comportamiento de la velocidad angular mecánica ($\omega_m(t)$) en [rad/s] en función del tiempo. Se comparan las respuestas con resistencia estatórica constante (RS Cte., línea naranja) y con resistencia estatórica variable (RS Variable, línea azul).}
     \label{fig:comparacion_velocidad_angular_RS}
 \end{figure}
 El impacto de no compensar la variación térmica se manifiesta en una degradación del desempeño global del sistema. Esta inexactitud en la cancelación resistiva produce un error en estado estacionario en las corrientes internas y, consecuentemente, en el torque electromagnético generado.
@@ -2309,17 +2275,17 @@ y(t)=\theta_m(t),
     \end{equation*}
     \begin{figure}[H]
         \centering
-        \includegraphics[width=1\linewidth]{imagenes/pos-velocidad-simulacion_cont.png}
+        \includegraphics[width=0.75\linewidth]{imagenes/pos-velocidad-simulacion_cont.png}
         \caption{Posición y velocidad de la articulación en función del tiempo siguiendo la consigna trapezoidal propuesta}
     \end{figure}
     \begin{figure}[H]
         \centering
-        \includegraphics[width=1\linewidth]{imagenes/overshoot_transitorio_trap_pos.png}
+        \includegraphics[width=0.75\linewidth]{imagenes/overshoot_transitorio_trap_pos.png}
         \caption{Overshoot del transitorio rampa-meseta de la posición de la articulación}
     \end{figure}
     \begin{figure}[H]
         \centering
-        \includegraphics[width=1\linewidth]{imagenes/torque_pos_relacion.png}
+        \includegraphics[width=0.75\linewidth]{imagenes/torque_pos_relacion.png}
         \caption{Torque neto aplicado por la articulación para seguir la consigna de posición.}
     \end{figure}
 Podemos concluir a través de las distintas gráficas que el sistema sigue la consigna de forma esperada. Aun así, todavía quedan problemas que solucionar, como por ejemplo, los picos de corriente que se producen en los transitorios.
@@ -2369,7 +2335,7 @@ La primera variable que puede apreciarse que supera los límites de operación e
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{imagenes/pos_voltaje_comparacion.png}
+    \includegraphics[width=0.75\linewidth]{imagenes/pos_voltaje_comparacion.png}
     \caption{Seguimiento de posición con y sin saturación de tensión del inversor ($39{,}19$~V). El seguimiento es prácticamente idéntico en ambos casos; el error de posición se mantiene en el orden de $10^{-3}$~rad.}
 \end{figure}
 Como puede verse en la Fig.~\ref{fig:corrientes_voltaje}, aunque se reduce bastante el tamaño del pico de corriente y el error de posición se mantiene despreciable (del orden de $10^{-3}$~rad) en la simulación con tensión saturada, esto no es suficiente para cumplir con las especificaciones de corriente.
@@ -2391,7 +2357,7 @@ El perfil de velocidad se desarrolló implementando un generador de trayectorias
 Como era de esperarse, aunque la implementación del perfil de velocidad trapezoidal corrigió en buena medida el problema, las discontinuidades en la corriente y, por lo tanto, en la aceleración, producían \textit{jerk} infinito, lo que en una articulación real sería inaceptable. Por este motivo, se extendió el generador de trayectorias a la generación de un perfil trapezoidal de aceleración, obteniendo el siguiente resultado.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{imagenes/perfil_trap_accel_comp.png}
+    \includegraphics[width=0.75\linewidth]{imagenes/perfil_trap_accel_comp.png}
     \caption{Eliminación de los picos no derivables de corriente y aceleración.}
 \end{figure}
 
@@ -3410,13 +3376,13 @@ end
 \subsection{Comparación con el modelo continuo}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.60\linewidth]{imagenes/comp_codcont_pos.png}
+    \includegraphics[width=0.75\linewidth]{imagenes/comp_codcont_pos.png}
     \caption{Comparación de seguimiento de consigna de posición del modelo continuo vs el codificado discreto.}
     \label{fig:comp_codcont_pos}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.60\linewidth]{imagenes/comp_codcont_vel.png}
+    \includegraphics[width=0.75\linewidth]{imagenes/comp_codcont_vel.png}
     \caption{Comparación de seguimiento de consigna de velocidad del modelo continuo vs el codificado discreto.}
     \label{fig:comp_codcont_vel}
 \end{figure}

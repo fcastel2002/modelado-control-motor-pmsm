@@ -81,7 +81,7 @@ for k = 1:numel(ml_vec)
 end
 
 % ===================== FIGURA 1: mapa de polos =====================
-fig1 = figure('Color','w','Position',[100 100 1150 460]);
+fig1 = figure('Color','w','Position',[100 100 1120 560]);
 
 % (a) vista completa
 subplot(1,2,1); hold on; grid on; box on;
@@ -93,7 +93,7 @@ xlabel('Eje Real [rad/s]'); ylabel('Eje Imaginario [rad/s]');
 title('Vista completa (separacion de escalas)');
 legend({'Planta (lazo abierto)','Lazo de corriente (-5000)','PID lazo cerrado'}, ...
        'Location','southwest','FontSize',8);
-xlim([-5300 200]); ylim([-700 700]);
+xlim([-5300 200]); ylim([-700 700]); axis square;
 
 % (b) zoom cerca del origen
 subplot(1,2,2); hold on; grid on; box on;
@@ -102,8 +102,9 @@ plot(real(p_pid_nom), imag(p_pid_nom), 's','MarkerSize',11,'MarkerFaceColor',[0.
 plot([0 0],[-650 650],'k-'); plot([-950 80],[0 0],'k-');
 xlabel('Eje Real [rad/s]'); ylabel('Eje Imaginario [rad/s]');
 title('Zoom: planta vs polos del PID');
-legend({'Planta (lazo abierto)','PID lazo cerrado'},'Location','southwest','FontSize',8);
+legend({'Planta (lazo abierto)','PID lazo cerrado'},'Location','northeast','FontSize',8);
 xlim([-950 80]); ylim([-650 650]);
+xl=xlim; yl=ylim; s=max(diff(xl),diff(yl)); xlim(mean(xl)+[-1 1]*s/2); ylim(mean(yl)+[-1 1]*s/2); axis square;
 
 sgtitle('Polos en el plano s: planta original, lazo de corriente y controlador PID de movimiento');
 exportgraphics(fig1, 'imagenes/mapa_polos_5_2_2.png', 'Resolution', 150);
@@ -123,6 +124,7 @@ colormap(parula); cb = colorbar; cb.Label.String = 'm_l [kg]'; caxis([0 1.5]);
 xlabel('Eje Real [rad/s]'); ylabel('Eje Imaginario [rad/s]');
 title('Migracion de los polos de lazo cerrado (PID) al variar m_l (J_{eq})');
 legend({'m_l = 0 (nominal)','m_l = 1.5 (peor caso)'},'Location','best','FontSize',9);
+xl=xlim; yl=ylim; s=max(diff(xl),diff(yl)); xlim(mean(xl)+[-1 1]*s/2); ylim(mean(yl)+[-1 1]*s/2); axis square;
 exportgraphics(fig2, 'imagenes/migracion_polos_pid.png', 'Resolution', 150);
 fprintf('-> Exportada: imagenes/migracion_polos_pid.png\n');
 fprintf('\n================ LISTO ================\n');

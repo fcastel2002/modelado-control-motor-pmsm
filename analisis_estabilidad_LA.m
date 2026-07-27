@@ -97,7 +97,7 @@ fprintf('  tau_z    = %.4f s (%.2f ms)\n', -1/z_G2, -1000/z_G2);
 
 %% 4. FIGURA 1: MAPA DE POLOS Y CEROS A LAZO ABIERTO
 fig1 = figure('Name', 'Mapa de Polos y Ceros - Lazo Abierto', ...
-    'Color', 'w', 'Position', [50, 100, 1400, 550]);
+    'Color', 'w', 'Position', [50, 100, 1120, 560]);
 
 % --- G1: theta_m / v_qs ---
 subplot(1, 2, 1); hold on; grid on; box on;
@@ -122,6 +122,7 @@ text(polo_ids-10, 12, sprintf('%.1f (cancelado)', polo_ids), ...
 title('$G_1(s) = \theta_m / v_{qs}$', 'Interpreter', 'latex', 'FontSize', 13);
 xlabel('Eje Real [rad/s]'); ylabel('Eje Imaginario [rad/s]');
 legend('Polos activos', 'Polo cancelado (i_{ds})', 'Location', 'northwest');
+xl=xlim; yl=ylim; s=max(diff(xl),diff(yl)); xlim(mean(xl)+[-1 1]*s/2); ylim(mean(yl)+[-1 1]*s/2); axis square;
 
 % --- G2: theta_m / T_ld ---
 subplot(1, 2, 2); hold on; grid on; box on;
@@ -141,6 +142,7 @@ text(real(z2)+3, 10, sprintf('z=%.1f', real(z2)), 'FontSize', 8, 'Color', [0 0.5
 title('$G_2(s) = \theta_m / T_{ld}$', 'Interpreter', 'latex', 'FontSize', 13);
 xlabel('Eje Real [rad/s]'); ylabel('Eje Imaginario [rad/s]');
 legend('Polos activos', 'Cero', 'Polo cancelado (i_{ds})', 'Location', 'northwest');
+xl=xlim; yl=ylim; s=max(diff(xl),diff(yl)); xlim(mean(xl)+[-1 1]*s/2); ylim(mean(yl)+[-1 1]*s/2); axis square;
 
 sgtitle('Mapa de Polos y Ceros a Lazo Abierto (Modelo LTI Aumentado)', ...
     'FontSize', 14, 'FontWeight', 'bold');
@@ -218,6 +220,7 @@ xline(0, 'k-', 'LineWidth', 0.5);
 yline(0, 'k-', 'LineWidth', 0.5);
 title('Migración de polos y ceros variando R_s', 'FontSize', 12);
 xlabel('Eje Real [rad/s]'); ylabel('Eje Imaginario [rad/s]');
+xl=xlim; yl=ylim; s=max(diff(xl),diff(yl)); xlim(mean(xl)+[-1 1]*s/2); ylim(mean(yl)+[-1 1]*s/2); axis square;
 
 cb = colorbar;
 colormap(cmap);
@@ -327,6 +330,7 @@ xlabel('Eje Real [rad/s]'); ylabel('Eje Imaginario [rad/s]');
 legend('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ...
     'm_l = 0 kg (nominal)', 'm_l = 1.5 kg (peor caso)', ...
     'Location', 'northwest');
+xl=xlim; yl=ylim; s=max(diff(xl),diff(yl)); xlim(mean(xl)+[-1 1]*s/2); ylim(mean(yl)+[-1 1]*s/2); axis square;
 
 cb = colorbar;
 colormap(gca, cmap_ml);
