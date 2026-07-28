@@ -991,7 +991,7 @@ La implementación física de esta Linealización por Retroalimentación requier
     \label{fig:diagrama_realimentacion_nl}
 \end{figure}
 \subsection{Comparación del modelo LPV con el modelo LTI aumentado}
-\subsubsection{Comparación: LTI Aumentado vs. LPV con \(I^r_{ds,o} \equiv 0\)}
+\subsubsection{Comparación: LTI Aumentado vs. LPV con \(i^r_{ds,o} \equiv 0\)}
 
 Si bien ambos modelos buscan representar la dinámica del sistema mediante ecuaciones de estado lineales, difieren en su desarrollo y en cómo manejan las restricciones del sistema físico. Las principales diferencias y similitudes se detallan a continuación:
 
@@ -1014,29 +1014,29 @@ Si bien ambos modelos buscan representar la dinámica del sistema mediante ecuac
         \item \textit{Modelo LTI Aumentado:} Asume un desacoplamiento térmico completo, considerando a $R_s$ como una constante rígida, independizando al subsistema electromecánico de la evolución de la temperatura durante los transitorios rápidos.
     \end{itemize}
 
-    \item \textbf{Similitud estructural al forzar $I^r_{ds,o} \equiv 0$:} \\
-    A pesar de las diferencias conceptuales, si evaluamos la matriz Jacobiana del modelo LPV forzando el punto de operación $I^r_{ds,o} = 0$, observamos una gran convergencia hacia la estructura del modelo LTI Aumentado. 
+    \item \textbf{Similitud estructural al forzar $i^r_{ds,o} \equiv 0$:} \\
+    A pesar de las diferencias conceptuales, si evaluamos la matriz Jacobiana del modelo LPV forzando el punto de operación $i^r_{ds,o} = 0$, observamos una gran convergencia hacia la estructura del modelo LTI Aumentado. 
     
-    En el LPV original, los acoplamientos cruzados en la ecuación de tensión y torque generan términos en la matriz dependientes del producto cruzado de los estados. Específicamente, en la derivada de la fuerza contraelectromotriz respecto a la velocidad aparece el término $L_d I^r_{ds,o}$. Si imponemos que $I^r_{ds,o} = 0$:
+    En el LPV original, los acoplamientos cruzados en la ecuación de tensión y torque generan términos en la matriz dependientes del producto cruzado de los estados. Específicamente, en la derivada de la fuerza contraelectromotriz respecto a la velocidad aparece el término $L_d i^r_{ds,o}$. Si imponemos que $i^r_{ds,o} = 0$:
     \begin{itemize}
         \item El acoplamiento cruzado de la velocidad sobre el eje $q$ se vuelve puramente proporcional al flujo de los imanes ($\lambda'^r_m$), coincidiendo exactamente con el término $A_{3,2}$ del LTI Aumentado.
         \item La contribución del torque de reluctancia desaparece en la linealización, quedando el torque dependiendo de forma puramente lineal de $I^r_{qs,o}$, al igual que en el modelo LTI.
     \end{itemize}
     
-    Por lo que, podemos decir que el Modelo LTI Aumentado puede interpretarse estructuralmente como el caso ideal de un modelo LPV forzado perpetuamente a operar sobre el punto $I^r_{ds,o} = 0$, con el torque de carga $T_l(t)$ tratado como perturbación externa del modelo.
+    Por lo que, podemos decir que el Modelo LTI Aumentado puede interpretarse estructuralmente como el caso ideal de un modelo LPV forzado perpetuamente a operar sobre el punto $i^r_{ds,o} = 0$, con el torque de carga $T_l(t)$ tratado como perturbación externa del modelo.
 \end{enumerate}
 \subsubsection{Estudio del comportamiento del sistema sometido a variaciones de $i_{ds}^r$}
-Al liberar la restricción $I^r_{ds,o} = 0$, la corriente del eje directo pasa a ser un parámetro de sintonía que modifica tanto la capacidad estática de la máquina como sus propiedades dinámicas locales (autovalores del Jacobiano). El análisis de esta variación se divide en un enfoque físico-estático y uno dinámico.
+Al liberar la restricción $i^r_{ds,o} = 0$, la corriente del eje directo pasa a ser un parámetro de sintonía que modifica tanto la capacidad estática de la máquina como sus propiedades dinámicas locales (autovalores del Jacobiano). El análisis de esta variación se divide en un enfoque físico-estático y uno dinámico.
 
 \textbf{1. Análisis Físico: Reforzamiento y Debilitamiento de Campo} \mbox{}\\
 La inyección de una corriente continua en el eje directo altera el flujo magnético total de la máquina. El impacto directo se observa en la ecuación del torque electromagnético en estado estacionario:
 \begin{equation} \label{eq:torque_ids}
-    T_m = \frac{3}{2} P_p \Big[ \lambda'^r_m + (L_d - L_q) I^r_{ds,o} \Big] I^r_{qs,o}
+    T_m = \frac{3}{2} P_p \Big[ \lambda'^r_m + (L_d - L_q) i^r_{ds,o} \Big] I^r_{qs,o}
 \end{equation}
 Dependiendo del signo de la corriente inyectada, se distinguen dos regímenes de operación:
 \begin{itemize}
-    \item \textbf{Reforzamiento de campo ($I^r_{ds,o} > 0$):} Para motores con polos salientes donde $L_d > L_q$, una corriente positiva genera un torque de reluctancia que se suma al torque de los imanes permanentes. Esto aumenta el torque total por amperio inyectado. Sin embargo, al reforzarse el flujo, la fuerza contraelectromotriz aumenta, lo que reduce la velocidad máxima alcanzable antes de saturar el inversor.\cite{krause_machinery}
-    \item \textbf{Debilitamiento de campo ($I^r_{ds,o} < 0$):} Una corriente negativa se opone al campo magnético principal de los imanes ($\lambda'^r_m$). Si bien esto disminuye la capacidad de producción de torque para una misma $I^r_{qs,o}$, tiene el efecto beneficioso de reducir drásticamente la fuerza contraelectromotriz. Esto permite que el motor alcance velocidades de giro mucho mayores operando dentro del límite de tensión del inversor.\cite{krause_machinery}
+    \item \textbf{Reforzamiento de campo ($i^r_{ds,o} > 0$):} Para motores con polos salientes donde $L_d > L_q$, una corriente positiva genera un torque de reluctancia que se suma al torque de los imanes permanentes. Esto aumenta el torque total por amperio inyectado. Sin embargo, al reforzarse el flujo, la fuerza contraelectromotriz aumenta, lo que reduce la velocidad máxima alcanzable antes de saturar el inversor.\cite{krause_machinery}
+    \item \textbf{Debilitamiento de campo ($i^r_{ds,o} < 0$):} Una corriente negativa se opone al campo magnético principal de los imanes ($\lambda'^r_m$). Si bien esto disminuye la capacidad de producción de torque para una misma $I^r_{qs,o}$, tiene el efecto beneficioso de reducir drásticamente la fuerza contraelectromotriz. Esto permite que el motor alcance velocidades de giro mucho mayores operando dentro del límite de tensión del inversor.\cite{krause_machinery}
 \end{itemize}
 \begin{figure}
     \centering
@@ -1046,18 +1046,18 @@ Dependiendo del signo de la corriente inyectada, se distinguen dos regímenes de
 \end{figure}
 
 \textbf{2. Migración de Propiedades Dinámicas (Análisis de Autovalores)} \mbox{}\\
-Para evaluar el impacto dinámico, se analiza la migración de los polos del sistema LPV (los autovalores de la matriz $\bm{A}_o$). Se fija un punto de operación nominal de velocidad ($\omega_{m,o}$), corriente de cuadratura ($I^r_{qs,o}$) y temperatura ($T_s^\circ = T_{amb}^\circ = 25\,^\circ$C), y se realiza un barrido del parámetro $I^r_{ds,o}$ desde la zona de debilitamiento hasta la zona de reforzamiento de campo.
+Para evaluar el impacto dinámico, se analiza la migración de los polos del sistema LPV (los autovalores de la matriz $\bm{A}_o$). Se fija un punto de operación nominal de velocidad ($\omega_{m,o}$), corriente de cuadratura ($I^r_{qs,o}$) y temperatura ($T_s^\circ = T_{amb}^\circ = 25\,^\circ$C), y se realiza un barrido del parámetro $i^r_{ds,o}$ desde la zona de debilitamiento hasta la zona de reforzamiento de campo.
 
 Sustituyendo estos valores en la matriz Jacobiana $\bm{A}_o$ analítica deducida previamente, se obtienen los autovalores para cada caso. Los resultados numéricos más relevantes se resumen en los Cuadros \ref{tab:migracion_polos} (debilitamiento) y \ref{tab:migracion_polos_reforzamiento} (reforzamiento). Cabe aclarar que este barrido paramétrico del modelo LPV se evalúa a la temperatura ambiente $T_s^\circ = 25\,^\circ$C, mientras que el modelo LTI de las secciones siguientes emplea la resistencia a la temperatura media de operación $R_{s0}=1{,}058\ \Omega$ (a $\approx 29{,}5\,^\circ$C); de allí las pequeñas diferencias en los polos rápidos entre ambos análisis.
 
 
 \begin{table}[H]
 \centering
-\caption{Debilitamiento de campo ($I^r_{ds,o}<0$).}
+\caption{Debilitamiento de campo ($i^r_{ds,o}<0$).}
 \label{tab:migracion_polos}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$I^r_{ds,o}$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_3$ & $\lambda_4$ & $\lambda_5$ \\
+$i^r_{ds,o}$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_3$ & $\lambda_4$ & $\lambda_5$ \\
 \hline
 -1{,}2 & -1299{,}86 & -152{,}32 & $-92{,}75 - j\,79{,}89$ & $-92{,}75 + j\,79{,}89$ & -0{,}1081 \\
 -1{,}0 & -1299{,}86 & -153{,}37 & $-92{,}24 - j\,94{,}65$ & $-92{,}24 + j\,94{,}65$ & -0{,}0921 \\
@@ -1070,11 +1070,11 @@ $I^r_{ds,o}$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_3$ & $\lambda_4$ & $\lam
 
 \begin{table}[H]
 \centering
-\caption{Reforzamiento de campo ($I^r_{ds,o}>0$).}
+\caption{Reforzamiento de campo ($i^r_{ds,o}>0$).}
 \label{tab:migracion_polos_reforzamiento}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$I^r_{ds,o}$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_3$ & $\lambda_4$ & $\lambda_5$ \\
+$i^r_{ds,o}$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_3$ & $\lambda_4$ & $\lambda_5$ \\
 \hline
 0{,}2 & -1299{,}86 & -155{,}70 & $-91{,}11 - j\,158{,}83$ & $-91{,}11 + j\,158{,}83$ & -0{,}0472 \\
 0{,}4 & -1299{,}86 & -155{,}86 & $-91{,}03 - j\,167{,}63$ & $-91{,}03 + j\,167{,}63$ & -0{,}0434 \\
@@ -1087,24 +1087,24 @@ $I^r_{ds,o}$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_3$ & $\lambda_4$ & $\lam
 
 A partir de la evaluación numérica de la matriz Jacobiana, se desprenden las siguientes conclusiones sobre la migración de propiedades:
 \begin{enumerate}
-    \item \textbf{Frecuencia de oscilación:} La variación de $I^r_{ds,o}$ afecta drásticamente a los términos cruzados electromecánicos en la matriz $\bm{A}_o$. Esto se traduce en una variación significativa de la parte imaginaria de los polos dominantes complejos conjugados. A medida que se pasa de debilitamiento a reforzamiento (aumenta $I^r_{ds,o}$), la frecuencia natural de oscilación del sistema aumenta.
-    \item \textbf{Estabilidad global:} La parte real de los polos dominantes complejos conjugados (que dicta el amortiguamiento absoluto) se mantiene prácticamente inalterada ante los cambios de $I^r_{ds,o}$. Esto demuestra que inyectar corriente en el eje directo no compromete severamente la estabilidad a lazo abierto del sistema.
-    \item \textbf{Dinámica rápida:} Los polos puramente reales asociados a la dinámica eléctrica rápida y a la dinámica térmica lenta permanecen virtualmente invariantes frente a los cambios en el punto de operación de $I^r_{ds,o}$.
+    \item \textbf{Frecuencia de oscilación:} La variación de $i^r_{ds,o}$ afecta drásticamente a los términos cruzados electromecánicos en la matriz $\bm{A}_o$. Esto se traduce en una variación significativa de la parte imaginaria de los polos dominantes complejos conjugados. A medida que se pasa de debilitamiento a reforzamiento (aumenta $i^r_{ds,o}$), la frecuencia natural de oscilación del sistema aumenta.
+    \item \textbf{Estabilidad global:} La parte real de los polos dominantes complejos conjugados (que dicta el amortiguamiento absoluto) se mantiene prácticamente inalterada ante los cambios de $i^r_{ds,o}$. Esto demuestra que inyectar corriente en el eje directo no compromete severamente la estabilidad a lazo abierto del sistema.
+    \item \textbf{Dinámica rápida:} Los polos puramente reales asociados a la dinámica eléctrica rápida y a la dinámica térmica lenta permanecen virtualmente invariantes frente a los cambios en el punto de operación de $i^r_{ds,o}$.
 \end{enumerate}
 
-Estas tendencias se visualizan en las Fig.~\ref{fig:migracion_ids_full} y \ref{fig:migracion_ids_zoom}, que trazan el recorrido de los autovalores del modelo LPV al barrer $I^r_{ds,o}$ desde la zona de debilitamiento hasta la de reforzamiento de campo. En cada rama, el marcador relleno señala el extremo de debilitamiento ($I^r_{ds,o}$ mínimo), el marcador con borde negro el de reforzamiento ($I^r_{ds,o}$ máximo) y el rombo rojo el punto de operación con $I^r_{ds,o}=0$.
+Estas tendencias se visualizan en las Fig.~\ref{fig:migracion_ids_full} y \ref{fig:migracion_ids_zoom}, que trazan el recorrido de los autovalores del modelo LPV al barrer $i^r_{ds,o}$ desde la zona de debilitamiento hasta la de reforzamiento de campo. En cada rama, el marcador relleno señala el extremo de debilitamiento ($i^r_{ds,o}$ mínimo), el marcador con borde negro el de reforzamiento ($i^r_{ds,o}$ máximo) y el rombo rojo el punto de operación con $i^r_{ds,o}=0$.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{imagenes/migracion_ids_1.png}
-    \caption{Migración de los autovalores del modelo LPV al variar $I^r_{ds,o}$ (vista completa del plano $s$). Se aprecia que los polos reales rápidos ($\lambda_1$ y el asociado a la dinámica eléctrica) permanecen prácticamente invariantes.}
+    \caption{Migración de los autovalores del modelo LPV al variar $i^r_{ds,o}$ (vista completa del plano $s$). Se aprecia que los polos reales rápidos ($\lambda_1$ y el asociado a la dinámica eléctrica) permanecen prácticamente invariantes.}
     \label{fig:migracion_ids_full}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{imagenes/migracion_ids_2.png}
-    \caption{Detalle de la migración de los polos dominantes en torno al origen. El par complejo conjugado aumenta su parte imaginaria (frecuencia natural de oscilación) al crecer $I^r_{ds,o}$, mientras que su parte real (amortiguamiento absoluto) se mantiene prácticamente constante.}
+    \caption{Detalle de la migración de los polos dominantes en torno al origen. El par complejo conjugado aumenta su parte imaginaria (frecuencia natural de oscilación) al crecer $i^r_{ds,o}$, mientras que su parte real (amortiguamiento absoluto) se mantiene prácticamente constante.}
     \label{fig:migracion_ids_zoom}
 \end{figure}
 \subsection{Funciones de Transferencia del Modelo LTI Aumentado}

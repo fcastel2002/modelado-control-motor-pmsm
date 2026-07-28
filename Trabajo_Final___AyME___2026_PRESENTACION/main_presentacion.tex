@@ -81,7 +81,7 @@
   \begin{frame}{#1}
     {\small\color{uncGray}#2}\par\vspace{1.5mm}
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.70\textheight,keepaspectratio]{imagenes/#3}\par
+    \includegraphics[width=0.96\textwidth,height=0.74\textheight,keepaspectratio]{imagenes/#3}\par
     \vspace{1.5mm}
     {\scriptsize\textit{#4}}
   \end{frame}
@@ -831,7 +831,7 @@ C_{ts}\,\frac{dT_s^\circ(t)}{dt} = \underbrace{P_{s,perd}(t)}_{\text{generación
 
 \textbf{Vector de entradas} (manipuladas + perturbaciones):
 \begin{equation*}
-\bm{u}_{NL}(t) = \big[\,v_{qs}^{r}(t),\;v_{ds}^{r}(t),\;v_{0s}(t),\;T_{ld}(t),\;T_{amb}^\circ(t)\,\big]^T
+\bm{u}_{NL}(t) = \big[\,v_{qs}^{r}(t),\;v_{ds}^{r}(t),\;v_{0s}(t),\;T_{ld}(t),\;T_{amb}^\circ(t)\,,\;g\,\big]^T
 \end{equation*}
 
 \textbf{Variables observables y controladas:}
@@ -935,39 +935,6 @@ v_{0s}(t) = R_s\!\big(T_s^\circ(t)\big)\cdot 0 + L_{ls}\,\frac{d(0)}{dt} = 0
 Implementación del modelo no lineal completo en MATLAB/Simulink con consignas $v_{qs}^{r*}=5$~V, $v_{ds}^{r*}=0$. Las transformaciones de Park directa e inversa se aplican en serie (back-to-back) para verificar la integridad matemática antes de excitar la planta. Los tres subsistemas (electromagnético, mecánico, térmico) interactúan simultáneamente.%
 }{simulink_diagrama_completo.png}{Diagrama de bloques implementado en Simulink. Se destaca la estructura de validación con Transformaciones directa e inversa y la interconexión de los subsistemas.}
 
-% -------------------------------------------------------------------
-%  SLIDE 33 -- Ensayo a lazo abierto: respuesta electromecánica
-% -------------------------------------------------------------------
-\begin{frame}{Ensayo a lazo abierto: respuesta electromecánica}
-{\small\color{uncGray}Validación del modelo no lineal ante un escalón de excitación con $v_{qs}^{r*}=5$~V, $v_{ds}^{r*}=0$, carga nula $(T_{ld}=0)$ y condiciones iniciales de reposo con equilibrio térmico.}\par
-\vspace{2mm}
-
-\centering
-\includegraphics[width=0.82\textwidth,height=0.32\textheight,keepaspectratio]{imagenes/resultado_corriente.png}\par
-{\scriptsize\textit{Respuesta dinámica al escalón $v_{qs}^{r*}=5$~V: corriente de estator $i_{qs}^r$~[A] con transitorio inductivo y efecto de la FCEM.}}\par
-\vspace{0.5mm}
-\includegraphics[width=0.82\textwidth,height=0.32\textheight,keepaspectratio]{imagenes/resultado_velocidad.png}\par
-{\scriptsize\textit{Respuesta dinámica al escalón $v_{qs}^{r*}=5$~V: velocidad mecánica del rotor $\omega_m$~[rad/s].}}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 34 -- Ensayo a lazo abierto: respuesta térmica
-% -------------------------------------------------------------------
-\begin{frame}{Ensayo a lazo abierto: respuesta térmica}
-{\small\color{uncGray}La evolución de temperatura confirma el acoplamiento correcto entre subsistema eléctrico, mecánico y térmico dentro del modelo no lineal.}\par
-\vspace{2mm}
-
-\centering
-\includegraphics[width=0.86\textwidth,height=0.50\textheight,keepaspectratio]{imagenes/resultado_temperatura.png}\par
-{\scriptsize\textit{Evolución de la temperatura del estator $T_s^\circ(t)$. Nótese el cambio de pendiente provocado por la variación de la corriente durante el arranque.}}
-
-\vspace{1mm}
-\begin{itemize}\small
-  \item Parte en $T_s(0)=20\,^\circ$C; calentamiento por pérdidas Joule.
-  \item Pendiente mayor al arranque (corriente máxima, back-EMF baja).
-  \item Al crecer $\omega_m$ y caer $i_q$, baja la tasa de calentamiento.
-\end{itemize}
-\end{frame}
 
 \StartProjectSection{6}{\SecLPV}
 % -------------------------------------------------------------------
@@ -1173,11 +1140,7 @@ i_{ds}^{r}(t)\equiv 0
 \bm{x}_{LTI}(t)=\big[\,\theta_m(t),\;\omega_m(t),\;i_{qs}^r(t)\,\big]^T
 \end{equation*}
 
-\textbf{Observación importante:}
-\begin{itemize}
-  \item La temperatura del estator sigue calculándose en simulación.
-  \item Pero la \textbf{dinámica principal} del modelo nominal queda concentrada en la terna $(\theta_m,\omega_m,i_{qs}^r)$.
-\end{itemize}
+{\small El torque de carga $T_l(t)$ se trata como entrada de perturbación externa (exógena), por lo que la matriz $\bm{A}$ resulta lineal e invariante en el tiempo.}
 \end{frame}
 
 % -------------------------------------------------------------------
@@ -1338,16 +1301,21 @@ $}
 % -------------------------------------------------------------------
 %  SLIDE 50 - Diagrama aumentado
 % -------------------------------------------------------------------
-\figslide{Diagrama del modelo LTI aumentado}{%
-El diagrama de bloques muestra la extensión natural del modelo nominal: se conserva la cadena mecánica principal y se agrega el modo residual de $i_{ds}^{r}$, ya desacoplado del eje $q$ por la ley complementaria.%
-}{LTI equivalente_aumentado.png}{Diagrama de bloques de estado del modelo LTI equivalente aumentado.}
+\begin{frame}{Diagrama del modelo LTI aumentado}
 
+\centering
+\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{imagenes/LTI equivalente_aumentado.png}
+
+\end{frame}
 % -------------------------------------------------------------------
 %  SLIDE 51 - Implementación sobre la planta NL
 % -------------------------------------------------------------------
-\figslide{Implementación sobre la planta no lineal}{%
-La linealización por realimentación no se aplica sobre una planta abstracta, sino como un controlador parcial acoplado a la planta NL: recibe $v_{qs}$, estima variables internas, calcula $v_{qs}^{r*}$ y $v_{ds}^{r*}$, y luego excita físicamente al inversor mediante la Park inversa.%
-}{NL con realimentacion NL.png}{Diagrama de bloques de implementación de la realimentación sobre la planta no lineal.}
+\begin{frame}{Implementación sobre la planta no lineal}
+
+\centering
+\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{imagenes/NL con realimentacion NL.png}
+
+\end{frame}
 
 % -------------------------------------------------------------------
 %  SLIDE 53 - Comparación conceptual
@@ -1378,15 +1346,15 @@ Subsistema térmico &
 Conserva la influencia: $R_{s,o}$ depende del equilibrio térmico $T_{s,o}^\circ$ del Jacobiano. &
 \textbf{Desacople térmico completo}: $R_s$ se trata como constante rígida en el transitorio rápido. \\
 \hline
-Estructura al forzar $I_{ds,o}^{r}\equiv 0$ &
+Estructura al forzar $i_{ds,o}^{r}\equiv 0$ &
 Caso particular: el acoplamiento cruzado se vuelve puramente $\lambda'^r_m$ (sin reluctancia), coincidiendo con $A_{3,2}$ del LTI. &
-\textbf{Es} el caso ideal de un LPV operando perpetuamente en $I_{ds,o}^{r}=0$ con la gravedad agrupada en $T_l(t)$. \\
+\textbf{Es} el caso ideal de un LPV operando perpetuamente en $i_{ds,o}^{r}=0$ con la gravedad agrupada en $T_l(t)$. \\
 \hline
 \end{tabular}%
 }
 
 \vspace{2mm}
-{\scriptsize \textbf{Conclusión:} ambos modelos son comparables pero no equivalentes en su origen. El LTI aumentado puede interpretarse como el caso ideal del LPV con $I_{ds,o}^{r}\equiv 0$ y la gravedad agrupada en la entrada exógena $T_l(t)$.}
+{\scriptsize \textbf{Conclusión:} ambos modelos son comparables pero no equivalentes en su origen. El LTI aumentado puede interpretarse como el caso ideal del LPV con $i_{ds,o}^{r}\equiv 0$ y la gravedad agrupada en la entrada exógena $T_l(t)$.}
 \end{frame}
 
 \subsection{Variaciones de corriente en eje d}
@@ -1396,18 +1364,18 @@ Caso particular: el acoplamiento cruzado se vuelve puramente $\lambda'^r_m$ (sin
 %  SLIDE 55 - ids como parametro
 % -------------------------------------------------------------------
 \begin{frame}{Corriente de eje $d$ como parámetro}
-{\small\color{uncGray}Al liberar la condición $I_{ds,o}^{r}=0$, la corriente directa deja de ser solo un estado residual y pasa a modificar la capacidad estática de torque y la dinámica local del modelo LPV.}\par
+{\small\color{uncGray}Al liberar la condición $i_{ds,o}^{r}=0$, la corriente directa deja de ser solo un estado residual y pasa a modificar la capacidad estática de torque y la dinámica local del modelo LPV.}\par
 \vspace{3mm}
 
 \textbf{Torque electromagnético en operación estacionaria:}
 \begin{equation*}
-T_m=\frac{3}{2}P_p\Big[\lambda'^r_m+(L_d-L_q)I_{ds,o}^{r}\Big]I_{qs,o}^{r}
+T_m=\frac{3}{2}P_p\Big[\lambda'^r_m+(L_d-L_q)i_{ds,o}^{r}\Big]I_{qs,o}^{r}
 \end{equation*}
 
 \textbf{Qué cambia respecto del caso base:}
 \begin{itemize}
-  \item Con $I_{ds,o}^{r}=0$, el torque queda asociado al flujo de los imanes y a $I_{qs,o}^{r}$.
-  \item Con $I_{ds,o}^{r}\neq 0$, aparece el aporte de reluctancia por saliencia.
+  \item Con $i_{ds,o}^{r}=0$, el torque queda asociado al flujo de los imanes y a $I_{qs,o}^{r}$.
+  \item Con $i_{ds,o}^{r}\neq 0$, aparece el aporte de reluctancia por saliencia.
   \item El mismo parámetro desplaza los autovalores del Jacobiano LPV.
 \end{itemize}
 
@@ -1418,22 +1386,22 @@ T_m=\frac{3}{2}P_p\Big[\lambda'^r_m+(L_d-L_q)I_{ds,o}^{r}\Big]I_{qs,o}^{r}
 %  SLIDE 56 - Reforzamiento y debilitamiento
 % -------------------------------------------------------------------
 \figslide{Reforzamiento y debilitamiento de campo}{%
-La inyección de corriente en eje $d$ altera el flujo magnético total. \textbf{$I_{ds,o}^{r}>0$ (reforzamiento):} aumenta el flujo efectivo y suma torque de reluctancia si $L_d>L_q$. \textbf{$I_{ds,o}^{r}<0$ (debilitamiento):} reduce el flujo efectivo y la fuerza contraelectromotriz; permite mayor velocidad antes de saturar tensión, al costo de menor torque para el mismo $I_{qs,o}^{r}$.%
+La inyección de corriente en eje $d$ altera el flujo magnético total. \textbf{$i_{ds,o}^{r}>0$ (reforzamiento):} aumenta el flujo efectivo y suma torque de reluctancia si $L_d>L_q$. \textbf{$i_{ds,o}^{r}<0$ (debilitamiento):} reduce el flujo efectivo y la fuerza contraelectromotriz; permite mayor velocidad antes de saturar tensión, al costo de menor torque para el mismo $I_{qs,o}^{r}$.%
 }{polosaliente_cilindrico.png}{Diagrama representativo de un rotor genérico de polos no salientes y un rotor de polos salientes.}
 
 % -------------------------------------------------------------------
 %  SLIDE 57 - Migración con ids
 % -------------------------------------------------------------------
-% \begin{frame}{Migración dinámica con $I_{dsO}^{r}$}
-% {\small\color{uncGray}Barrido de los autovalores del Jacobiano LPV ante variación de $I_{dsO}^{r}$, manteniendo el resto del punto de operación nominal. Se reproducen las dos tablas presentadas en el informe (sección 5.1.2.d).}\par
+% \begin{frame}{Migración dinámica con $i_{ds,o}^{r}$}
+% {\small\color{uncGray}Barrido de los autovalores del Jacobiano LPV ante variación de $i_{ds,o}^{r}$, manteniendo el resto del punto de operación nominal. Se reproducen las dos tablas presentadas en el informe (sección 5.1.2.d).}\par
 % \vspace{2mm}
 
 % \centering
 % \scriptsize
-% \textbf{Debilitamiento de campo ($I_{ds0}^r<0$)}\par\vspace{1mm}
+% \textbf{Debilitamiento de campo ($i_{ds,o}^r<0$)}\par\vspace{1mm}
 % \begin{tabular}{|c|c|c|c|c|}
 % \hline
-% $I_{ds0}^r$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_{3,4}$ & $\lambda_5$ \\
+% $i_{ds,o}^r$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_{3,4}$ & $\lambda_5$ \\
 % \hline
 % $-1{,}2$ & $-1275{,}00$ & $-141{,}30$ & $-94{,}74 \pm j\,23{,}38$ & $-0{,}2657$ \\
 % $-1{,}0$ & $-1275{,}00$ & $-145{,}62$ & $-92{,}61 \pm j\,47{,}75$ & $-0{,}2261$ \\
@@ -1444,10 +1412,10 @@ La inyección de corriente en eje $d$ altera el flujo magnético total. \textbf{
 % \end{tabular}
 
 % \vspace{2mm}
-% \textbf{Reforzamiento de campo ($I_{ds0}^r>0$)}\par\vspace{1mm}
+% \textbf{Reforzamiento de campo ($i_{ds,o}^r>0$)}\par\vspace{1mm}
 % \begin{tabular}{|c|c|c|c|c|}
 % \hline
-% $I_{ds0}^r$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_{3,4}$ & $\lambda_5$ \\
+% $i_{ds,o}^r$ [A] & $\lambda_1$ & $\lambda_2$ & $\lambda_{3,4}$ & $\lambda_5$ \\
 % \hline
 % $+0{,}2$ & $-1275{,}00$ & $-151{,}25$ & $-89{,}85 \pm j\,111{,}05$ & $-0{,}1157$ \\
 % $+0{,}4$ & $-1275{,}00$ & $-151{,}57$ & $-89{,}70 \pm j\,118{,}65$ & $-0{,}1066$ \\
@@ -1461,7 +1429,7 @@ La inyección de corriente en eje $d$ altera el flujo magnético total. \textbf{
 % \vspace{1mm}
 % \raggedright
 % {\scriptsize \textbf{Conclusiones del barrido:}
-% (i) la parte imaginaria de $\lambda_{3,4}$ crece monotónicamente con $I_{dsO}^{r}$ $\Rightarrow$ aumenta $\omega_n$ electromecánica;
+% (i) la parte imaginaria de $\lambda_{3,4}$ crece monotónicamente con $i_{ds,o}^{r}$ $\Rightarrow$ aumenta $\omega_n$ electromecánica;
 % (ii) la parte real de $\lambda_{3,4}$ se mantiene en torno a $-91$~rad/s $\Rightarrow$ el amortiguamiento absoluto no se degrada;
 % (iii) $\lambda_1$ (eléctrico rápido) y los modos restantes permanecen invariantes o varían levemente.}
 % \end{frame}
@@ -1469,16 +1437,16 @@ La inyección de corriente en eje $d$ altera el flujo magnético total. \textbf{
 % -------------------------------------------------------------------
 %  SLIDE 58 - Mapa migración de polos LPV con I_ds (parte 1)
 % -------------------------------------------------------------------
-\figslide{Mapa de migración de polos con $I_{ds,o}^{r}$ --- vista global}{%
-Representación gráfica de la migración de los autovalores del Jacobiano LPV en el plano $s$ al barrer $I_{ds,o}^{r}$. La vista global permite apreciar simultáneamente todos los modos: el polo real rápido en $\lambda_1 \approx -1299{,}86$, los polos reales $\lambda_2$ y $\lambda_5$, y el par complejo electromecánico $\lambda_{3,4}$ que es el que más migra.%
-}{migracion_ids_1.png}{Mapa de migración de polos del modelo LPV al variar $I_{ds,o}^{r}$: vista global del plano $s$.}
+\figslide{Mapa de migración de polos con $i_{ds,o}^{r}$ --- vista global}{%
+Representación gráfica de la migración de los autovalores del Jacobiano LPV en el plano $s$ al barrer $i_{ds,o}^{r}$. La vista global permite apreciar simultáneamente todos los modos: el polo real rápido en $\lambda_1 \approx -1299{,}86$, los polos reales $\lambda_2$ y $\lambda_5$, y el par complejo electromecánico $\lambda_{3,4}$ que es el que más migra.%
+}{migracion_ids_1.png}{Mapa de migración de polos del modelo LPV al variar $i_{ds,o}^{r}$: vista global del plano $s$.}
 
 % -------------------------------------------------------------------
 %  SLIDE 59 - Mapa migración de polos LPV con I_ds (parte 2 - zoom)
 % -------------------------------------------------------------------
-\figslide{Mapa de migración de polos con $I_{ds,o}^{r}$ --- zoom}{%
-Zoom sobre el par complejo conjugado $\lambda_{3,4}$, donde el barrido de $I_{ds,o}^{r}$ desde el debilitamiento (parte inferior) hacia el reforzamiento (parte superior) se traduce en un crecimiento monotónico de la parte imaginaria, manteniendo la parte real prácticamente invariante en torno a $-91$~rad/s.%
-}{migracion_ids_2.png}{Mapa de migración de polos del modelo LPV al variar $I_{ds,o}^{r}$: zoom sobre los polos electromecánicos.}
+\figslide{Mapa de migración de polos con $i_{ds,o}^{r}$ --- zoom}{%
+Zoom sobre el par complejo conjugado $\lambda_{3,4}$, donde el barrido de $i_{ds,o}^{r}$ desde el debilitamiento (parte inferior) hacia el reforzamiento (parte superior) se traduce en un crecimiento monotónico de la parte imaginaria, manteniendo la parte real prácticamente invariante en torno a $-91$~rad/s.%
+}{migracion_ids_2.png}{Mapa de migración de polos del modelo LPV al variar $i_{ds,o}^{r}$: zoom sobre los polos electromecánicos.}
 
 
 \subsection{Funciones de Transferencia}
@@ -2054,22 +2022,21 @@ Se analiza la evolución de $i_{ds}^{r}(t)$ en NL y LTI y el impacto sobre el re
 %  SLIDE 95 — i_ds NL y LTI, tres casos
 % -------------------------------------------------------------------
 \begin{frame}{$i_{ds}^{r}(t)$ en los modelos NL y LTI}
-{\small\color{uncGray}Las trayectorias parten de $\{0,\,+0{,}5,\,-0{,}5\}$~A y convergen rápidamente a $i_{ds}^{r}=0$. En el LTI son exponenciales puras de primer orden; el NL presenta el mismo desacoplamiento efectivo.}\par
+{\small\color{uncGray}Las trayectorias parten de ${0,,+0{,}5,,-0{,}5}$~A y convergen rápidamente a $i_{ds}^{r}=0$. En el LTI son exponenciales puras de primer orden; el NL presenta el mismo desacoplamiento efectivo.}\par
 \vspace{2mm}
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth,height=0.55\textheight,keepaspectratio]{imagenes/sim_ids_NL_3casos.png}\par
+\includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{imagenes/sim_ids_NL_3casos.png}\par
 {\scriptsize Modelo no lineal}
 \end{column}
 \begin{column}{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth,height=0.55\textheight,keepaspectratio]{imagenes/sim_ids_LTI_3casos.png}\par
+\includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{imagenes/sim_ids_LTI_3casos.png}\par
 {\scriptsize Modelo LTI aumentado}
 \end{column}
 \end{columns}
 \end{frame}
-
 % -------------------------------------------------------------------
 %  SLIDE 97 — Planteo Sub-item d: consigna v_ds*
 % -------------------------------------------------------------------
@@ -2222,7 +2189,7 @@ Bloque (subsistema) equivalente del desacoplamiento de retroalimentaciones físi
 % -------------------------------------------------------------------
 %  SLIDE 107 — Comparación con linealización NL anterior
 % -------------------------------------------------------------------
-\begin{frame}{Comparación con la linealización NL del análisis LA}
+\begin{frame}{Comparación con la linealización implementada hasta el momento}
 {\small\color{uncGray}Diferencias respecto a la linealización por retroalimentación NL mínima desarrollada en la etapa inicial a lazo abierto (sección 5.1.2.c).}\par
 \vspace{4mm}
 
