@@ -2465,6 +2465,11 @@ K_{sia} &= J_{eq}\,\omega_n^3  \;=\; 10\,129{,}778 \;\;\frac{\text{N}\cdot\text{
 \end{frame}
 
 % -------------------------------------------------------------------
+%  SLIDE 123b — Implementación en Simulink del PID (con ganancias cargadas)
+% -------------------------------------------------------------------
+\figslide{Implementación en Simulink del controlador PID}{}{controlador_PID_diagrama.png}{Implementación en Simulink del PID externo de movimiento, con las ganancias recién calculadas ya cargadas ($b_a$, $K_{sa}$, $K_{sia}$): entra el error de velocidad $e_\omega=\omega_m^*-\omega_m$, su integral reconstruye el error de posición $e_{\theta_m}$ y una segunda integración provee la acción integral; las tres ramas se suman en la consigna de torque $T_m^{*\prime}$.}
+
+% -------------------------------------------------------------------
 %  SLIDE 125 — Figura mapa de polos
 % -------------------------------------------------------------------
 \figslide{Mapa de polos: planta, lazos de corriente y PID}{%
