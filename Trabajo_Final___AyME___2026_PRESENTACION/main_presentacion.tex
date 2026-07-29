@@ -285,116 +285,7 @@ Accionamiento eléctrico de 4 cuadrantes: Bus CC \textrightarrow{} Inversor trif
 Coordenada articular $q\equiv\theta_l$ referida al vertical hacia abajo (equilibrio estable). Sometido a gravedad $g=9{,}80665$~m/s$^2$ como perturbación externa constante. Masa de la barra $m=1{,}0$~kg, longitud $l_l=0{,}5$~m. Masa de carga útil variable $m_l\in[0;\,1{,}5]$~kg (no conocida a priori). Torque externo de contacto $T_{ld}\approx(0\pm 5)$~N$\cdot$m.%
 }{brazo_1gdl.png}{Robot manipulador elemental de 1 g.d.l en plano vertical (péndulo rígido actuado).}
 
-% -------------------------------------------------------------------
-%  SLIDE 7 — Especificaciones físicas
-% -------------------------------------------------------------------
-\begin{frame}{Especificaciones físicas del sistema}
-{\small\color{uncGray}Parámetros nominales y rangos de variación admitidos en el diseño.}\par
-\vspace{2mm}
 
-\renewcommand{\arraystretch}{1.05}
-\footnotesize
-\begin{columns}[T,onlytextwidth]
-
-% --- Columna izquierda: Mecánica (10 filas) ---
-\column{0.52\textwidth}
-\centering
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{|l|l|l|}
-\hline
-\multicolumn{3}{|c|}{\textbf{Mecánica (carga, transmisión y rotor)}} \\
-\hline
-\textbf{Símb.} & \textbf{Descripción} & \textbf{Valor} \\
-\hline
-$r$        & Relación de reducción         & $120{:}1$ \\
-$g$        & Aceleración gravedad          & $9{,}80665$~m/s$^2$ \\
-$m$        & Masa del brazo                & $1{,}0$~kg \\
-$l_{cm}$   & Long.\ centro de masa         & $0{,}25$~m \\
-$l_l$      & Longitud al extremo           & $0{,}50$~m \\
-$m_l$      & Masa carga útil (variable)    & $0\dots 1{,}5$~kg \\
-$b_l$      & Fricción articulación         & $0{,}1$~Nms/rad \\
-$T_{ld}$   & Perturbación de contacto      & $0\pm 5$~N$\cdot$m \\
-$J_m$      & Inercia rotor (m+caja)        & $14{\times}10^{-6}$~kg\,m$^2$ \\
-$b_m$      & Fricción rotor (m+caja)       & $15{\times}10^{-6}$~Nms/rad \\
-\hline
-\end{tabular}%
-}
-
-% --- Columna derecha: Eléctrica (5 filas) + Térmico (5 filas vertical) ---
-\column{0.46\textwidth}
-\centering
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{|l|l|l|}
-\hline
-\multicolumn{3}{|c|}{\textbf{Eléctrica (PMSM)}} \\
-\hline
-\textbf{Símb.} & \textbf{Descripción} & \textbf{Valor} \\
-\hline
-$P_p$         & Pares de polos              & $3$ \\
-$\lambda'^r_m$  & Flujo de imanes             & $0{,}016$~Wb \\
-$L_d$         & Inductancia eje directo     & $6{,}6$~mH \\
-$L_q$         & Inductancia eje cuadratura  & $5{,}8$~mH \\
-$L_{ls}$      & Inductancia dispersión      & $0{,}8$~mH \\
-\hline
-\end{tabular}%
-}
-
-\vspace{1.5mm}
-
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{|l|l|l|}
-\hline
-\multicolumn{3}{|c|}{\textbf{Térmico}} \\
-\hline
-\textbf{Símb.} & \textbf{Descripción} & \textbf{Valor} \\
-\hline
-$R_{sREF}$            & $R_s$ @ $20\,^\circ$C            & $1{,}02$~$\Omega$ \\
-$\alpha_{Cu}$         & Coef.\ térmico del cobre         & $3{,}9{\times}10^{-3}$~/$^\circ$C \\
-$C_{ts}$              & Capacitancia térmica del estator & $0{,}818$~W/($^\circ$C/s) \\
-$R_{ts\text{-}amb}$   & Resistencia térmica al ambiente  & $146{,}7$~$^\circ$C/W \\
-$\tau_{th}$ & $R_{ts\text{-}amb}\cdot C_{ts}$ & $\approx 120$~s \\
-\hline
-\end{tabular}%
-}
-
-\end{columns}
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 8 — Especificaciones operativas y límites
-% -------------------------------------------------------------------
-\begin{frame}{Especificaciones operativas y límites a respetar}
-{\small\color{uncGray}Restricciones impuestas por la caja reductora, el motor y el inversor. Determinarán el espacio de operación admisible.}\par
-\vspace{2mm}
-\centering
-\renewcommand{\arraystretch}{1.2}
-\resizebox{\textwidth}{!}{%
-\footnotesize
-\begin{tabular}{|l|l|c|l|}
-\hline
-\textbf{Componente} & \textbf{Magnitud} & \textbf{Valor} & \textbf{Observación} \\
-\hline
-\multirow{2}{*}{Caja reductora (salida)}
-   & Velocidad nominal $n_{l,nom}$                       & $60$~rpm ($\omega_{l,nom}=6{,}28$~rad/s)       & Régimen continuo \\
-   & Torque nominal/pico $T_{q,nom}\,/\,T_{q,max}$       & $17{,}0\,/\,45{,}0$~N$\cdot$m                  & Pico: aceleración corta \\
-\hline
-\multirow{4}{*}{Motor PMSM (estator)}
-   & Velocidad nominal rotor $n_{m,nom}$                 & $6600$~rpm ($\omega_{m,nom}=691{,}15$~rad/s)   & $\to$ salida reductor $=6600/r=55$~rpm $<60$~rpm $\checkmark$ \\
-   & Tensión nominal línea $V_{sl,nom}$                  & $30$~Vca rms                                   & $V_{sf,nom}=V_{sl,nom}/\sqrt{3}$ \\
-   & Corriente nominal/pico $I_{s,nom}\,/\,I_{s,max}$    & $0{,}4\,/\,2{,}0$~Aca rms                      & Pico: corta duración \\
-   & Temperatura máxima bobinado $T^\circ_{s,max}$       & $115$~\textdegree{}C                           & RTD de protección \\
-\hline
-\multirow{2}{*}{Inversor trifásico}
-   & Tensión máxima línea $V_{sl,max}$                   & $48$~Vca rms                                   & Saturación dura \\
-   & Frecuencia eléctrica $f_e$                          & $[-330,\,0,\,+330]$~Hz                         & Signo $\Rightarrow$ sentido de giro \\
-\hline
-\multirow{2}{*}{Perturbaciones externas}
-   & Torque de contacto $T_{ld}$                         & $0\pm 5{,}0$~N$\cdot$m                         & Asumido escalón \\
-   & Temperatura ambiente $T_{amb}^\circ$                & $[-15,\,+40]$~\textdegree{}C                    \\
-\hline
-\end{tabular}%
-}
-\end{frame}
 
 % ===================================================================
 %  BLOQUE B2 — SUBSISTEMA MECÁNICO EQUIVALENTE
@@ -414,7 +305,7 @@ $\tau_{th}$ & $R_{ts\text{-}amb}\cdot C_{ts}$ & $\approx 120$~s \\
 
 \textbf{Ecuación dinámica:}
 \begin{equation*}
-J_l\,\dot{\omega}_l(t) = T_q(t) - b_l\,\omega_l(t) - T_l(t)
+J_l\,\frac{d\omega_l(t)}{dt} = T_q(t) - b_l\,\omega_l(t) - T_l(t)
 \end{equation*}
 
 \textbf{Torque de carga} $=$ torque gravitatorio $+$ torque de contacto:
@@ -429,7 +320,7 @@ k_l &= m\,l_{cm} + m_l\,l_l \;=\; 0{,}25 + [0\dots 0{,}75]\;\;\text{kg}\cdot\tex
 \end{align*}
 
 \vspace{1mm}
-{\small Relación cinemática: $\dot{\theta}_l(t)=\omega_l(t)$.}
+{\small Relación cinemática: $\frac{d\theta_l(t)}{dt}=\omega_l(t)$.}
 \end{frame}
 
 % -------------------------------------------------------------------
@@ -469,17 +360,17 @@ T_q(t) = r\,T_d(t)
 
 \textbf{Ecuación dinámica del rotor (balance de torques):}
 \begin{equation*}
-J_m\,\dot{\omega}_m(t) = T_m(t) - b_m\,\omega_m(t) - T_d(t)
+J_m\,\frac{d\omega_m(t)}{dt} = T_m(t) - b_m\,\omega_m(t) - T_d(t)
 \end{equation*}
 
 \textbf{Cinemática del rotor:}
 \begin{equation*}
-\dot{\theta}_m(t) = \omega_m(t)
+\frac{d\theta_m(t)}{dt} = \omega_m(t)
 \end{equation*}
 
 \textbf{Variables del balance:}
 \begin{itemize}
-\item $T_m(t)$: torque electromagnético entregado por las corrientes del estator vía la interacción con el flujo de los imanes (se deriva en la sección electromagnética: $T_m = \tfrac{3}{2}P_p\lambda'^r_m i_{qs}^r + \tfrac{3}{2}P_p(L_d-L_q)i_{ds}^r i_{qs}^r$).
+\item $T_m(t)$: torque electromagnético entregado por las corrientes del estator vía la interacción con el flujo de los imanes.
 \item $T_d(t)$: torque de reacción transferido al tren de transmisión, despejado en la combinación algebraica con el péndulo (slide siguiente).
 \item $J_m,\,b_m$: parámetros nominales del conjunto rotor + caja.
 \end{itemize}
@@ -494,15 +385,15 @@ J_m\,\dot{\omega}_m(t) = T_m(t) - b_m\,\omega_m(t) - T_d(t)
 
 \textbf{Paso 1.} Sustituyendo $\omega_l = \omega_m/r$ y $T_q = r\,T_d$ en la ecuación del péndulo:
 \begin{equation*}
-\tfrac{J_l}{r}\,\dot{\omega}_m(t) = r\,T_d(t) - \tfrac{b_l}{r}\,\omega_m(t) - T_l(t)
+\tfrac{J_l}{r}\,\frac{d\omega_m(t)}{dt} = r\,T_d(t) - \tfrac{b_l}{r}\,\omega_m(t) - T_l(t)
 \end{equation*}
 
 \textbf{Paso 2.} Despejando $T_d$ y usando $T_l = g\,k_l\sin(\theta_m/r)+T_{ld}$:
 \begin{equation*}
-T_d(t) = \tfrac{J_l}{r^2}\,\dot{\omega}_m(t) + \tfrac{b_l}{r^2}\,\omega_m(t) + \tfrac{1}{r}\!\left[g\,k_l\,\sin\!\big(\tfrac{\theta_m(t)}{r}\big) + T_{ld}(t)\right]
+T_d(t) = \tfrac{J_l}{r^2}\,\frac{d\omega_m(t)}{dt} + \tfrac{b_l}{r^2}\,\omega_m(t) + \tfrac{1}{r}\!\left[g\,k_l\,\sin\!\big(\tfrac{\theta_m(t)}{r}\big) + T_{ld}(t)\right]
 \end{equation*}
 
-\textbf{Paso 3.} Reemplazando $T_d$ en la ecuación del rotor ($J_m\dot{\omega}_m=T_m-b_m\omega_m-T_d$) y agrupando términos en $\dot{\omega}_m$ y $\omega_m$ se obtiene la ecuación equivalente compactada (siguiente slide).
+\textbf{Paso 3.} Reemplazando $T_d$ en la ecuación del rotor ($J_m\frac{d\omega_m}{dt}=T_m-b_m\omega_m-T_d$) y agrupando términos en $\frac{d\omega_m}{dt}$ y $\omega_m$ se obtiene la ecuación equivalente compactada (siguiente slide).
 \end{frame}
 
 % -------------------------------------------------------------------
@@ -514,7 +405,7 @@ T_d(t) = \tfrac{J_l}{r^2}\,\dot{\omega}_m(t) + \tfrac{b_l}{r^2}\,\omega_m(t) + \
 
 \begin{equation*}
 \boxed{\;\;
-J_{eq}\,\dot{\omega}_m(t) = T_m(t) - b_{eq}\,\omega_m(t) - \tfrac{1}{r}\!\left[g\,k_l\,\sin\!\big(\tfrac{\theta_m(t)}{r}\big) + T_{ld}(t)\right]
+J_{eq}\,\frac{d\omega_m(t)}{dt} = T_m(t) - b_{eq}\,\omega_m(t) - \tfrac{1}{r}\!\left[g\,k_l\,\sin\!\big(\tfrac{\theta_m(t)}{r}\big) + T_{ld}(t)\right]
 \;\;}
 \end{equation*}
 
@@ -571,16 +462,16 @@ $b_{eq}$ & $2{,}19\times 10^{-5}$  & $2{,}19\times 10^{-5}$  & Nms/rad \\
 \textbf{Forma escalar:}
 \begin{equation*}
 \begin{cases}
-\dot{\theta}_m(t) = \omega_m(t) \\[4pt]
-\dot{\omega}_m(t) = -\dfrac{b_{eq}}{J_{eq}}\,\omega_m(t) -\dfrac{g\,k_l}{J_{eq}\,r}\,\sin\!\big(\tfrac{\theta_m(t)}{r}\big) +\dfrac{1}{J_{eq}}\,T_m(t) -\dfrac{1}{J_{eq}\,r}\,T_{ld}(t) \\[6pt]
+\frac{d\theta_m(t)}{dt} = \omega_m(t) \\[4pt]
+\frac{d\omega_m(t)}{dt} = -\dfrac{b_{eq}}{J_{eq}}\,\omega_m(t) -\dfrac{g\,k_l}{J_{eq}\,r}\,\sin\!\big(\tfrac{\theta_m(t)}{r}\big) +\dfrac{1}{J_{eq}}\,T_m(t) -\dfrac{1}{J_{eq}\,r}\,T_{ld}(t) \\[6pt]
 y(t) = \theta_m(t)
 \end{cases}
 \end{equation*}
 
 \vspace{2mm}
-\textbf{Forma matricial} --- el término $\sin(\cdot)$ impide escribir $\dot{\bm{x}}=\bm{A}\bm{x}+\bm{B}\bm{u}$ estándar; el sistema es \textbf{no lineal}:
+\textbf{Forma matricial} --- el término $\sin(\cdot)$ impide escribir $\frac{d\bm{x}}{dt}=\bm{A}\bm{x}+\bm{B}\bm{u}$ estándar; el sistema es \textbf{no lineal}:
 \begin{equation*}
-\begin{bmatrix}\dot{\theta}_m(t) \\ \dot{\omega}_m(t)\end{bmatrix} =
+\begin{bmatrix}\frac{d\theta_m(t)}{dt} \\ \frac{d\omega_m(t)}{dt}\end{bmatrix} =
 \underbrace{\begin{bmatrix}\omega_m(t) \\[2pt] -\tfrac{g\,k_l}{J_{eq}\,r}\sin\!\big(\tfrac{\theta_m(t)}{r}\big) -\tfrac{b_{eq}}{J_{eq}}\,\omega_m(t)\end{bmatrix}}_{\bm{f}(\bm{x})}
 +
 \underbrace{\begin{bmatrix}0 & 0 \\[2pt] \tfrac{1}{J_{eq}} & -\tfrac{1}{J_{eq}\,r}\end{bmatrix}}_{\bm{B}}
@@ -852,12 +743,12 @@ C_{ts}\,\frac{dT_s^\circ(t)}{dt} = \underbrace{P_{s,perd}(t)}_{\text{generación
 \begin{equation*}
 \left\{
 \begin{aligned}
-\dot{\theta}_m(t) &= \omega_m(t) \\[1pt]
-\dot{\omega}_m(t) &= -\tfrac{b_{eq}}{J_{eq}}\omega_m(t) - \tfrac{g\,k_l}{J_{eq}\,r}\sin\!\big(\tfrac{\theta_m(t)}{r}\big) + \tfrac{1}{J_{eq}}\,T_m(t) - \tfrac{1}{J_{eq}\,r}\,T_{ld}(t) \\[1pt]
-\dot{i}_{qs}^{r}(t) &= \tfrac{1}{L_q}\!\left[\,v_{qs}^{r}(t) - R_s\!\big(T_s^\circ(t)\big)\, i_{qs}^{r}(t) - \big(\lambda'^r_m + L_d\,i_{ds}^{r}(t)\big)\,\omega_r(t)\,\right] \\[1pt]
-\dot{i}_{ds}^{r}(t) &= \tfrac{1}{L_d}\!\left[\,v_{ds}^{r}(t) - R_s\!\big(T_s^\circ(t)\big)\, i_{ds}^{r}(t) + L_q\,i_{qs}^{r}(t)\,\omega_r(t)\,\right] \\[1pt]
-\dot{i}_{0s}(t) &= \tfrac{1}{L_{ls}}\!\left[\,v_{0s}(t) - R_s\!\big(T_s^\circ(t)\big)\, i_{0s}(t)\,\right] \\[1pt]
-\dot{T}_s^\circ(t) &= \tfrac{1}{C_{ts}}\!\left[\,\tfrac{3}{2}R_s\!\big(T_s^\circ(t)\big)\big(i_{qs}^{r\,2}(t)+i_{ds}^{r\,2}(t)+2\,i_{0s}^{2}(t)\big) - \tfrac{T_s^\circ(t) - T_{amb}^\circ(t)}{R_{ts\text{-}amb}}\,\right]
+\frac{d\theta_m(t)}{dt} &= \omega_m(t) \\[1pt]
+\frac{d\omega_m(t)}{dt} &= -\tfrac{b_{eq}}{J_{eq}}\omega_m(t) - \tfrac{g\,k_l}{J_{eq}\,r}\sin\!\big(\tfrac{\theta_m(t)}{r}\big) + \tfrac{1}{J_{eq}}\,T_m(t) - \tfrac{1}{J_{eq}\,r}\,T_{ld}(t) \\[1pt]
+\frac{di_{qs}^{r}(t)}{dt} &= \tfrac{1}{L_q}\!\left[\,v_{qs}^{r}(t) - R_s\!\big(T_s^\circ(t)\big)\, i_{qs}^{r}(t) - \big(\lambda'^r_m + L_d\,i_{ds}^{r}(t)\big)\,\omega_r(t)\,\right] \\[1pt]
+\frac{di_{ds}^{r}(t)}{dt} &= \tfrac{1}{L_d}\!\left[\,v_{ds}^{r}(t) - R_s\!\big(T_s^\circ(t)\big)\, i_{ds}^{r}(t) + L_q\,i_{qs}^{r}(t)\,\omega_r(t)\,\right] \\[1pt]
+\frac{di_{0s}(t)}{dt} &= \tfrac{1}{L_{ls}}\!\left[\,v_{0s}(t) - R_s\!\big(T_s^\circ(t)\big)\, i_{0s}(t)\,\right] \\[1pt]
+\frac{dT_s^\circ(t)}{dt} &= \tfrac{1}{C_{ts}}\!\left[\,\tfrac{3}{2}R_s\!\big(T_s^\circ(t)\big)\big(i_{qs}^{r\,2}(t)+i_{ds}^{r\,2}(t)+2\,i_{0s}^{2}(t)\big) - \tfrac{T_s^\circ(t) - T_{amb}^\circ(t)}{R_{ts\text{-}amb}}\,\right]
 \end{aligned}\right.
 \end{equation*}
 \normalsize
@@ -913,11 +804,11 @@ v_{0s}(t) = R_s\!\big(T_s^\circ(t)\big)\cdot 0 + L_{ls}\,\frac{d(0)}{dt} = 0
 \begin{equation*}
 \left\{
 \begin{aligned}
-\dot{\theta}_m &= \omega_m \\
-\dot{\omega}_m &= -\tfrac{b_{eq}}{J_{eq}}\omega_m - \tfrac{g\,k_l}{J_{eq}\,r}\sin\!\big(\tfrac{\theta_m}{r}\big) + \tfrac{1}{J_{eq}}\,T_m(i_{qs}^{r},\,i_{ds}^{r}) - \tfrac{1}{J_{eq}\,r}\,T_{ld} \\
-\dot{i}_{qs}^{r} &= \tfrac{1}{L_q}\!\big[\,v_{qs}^{r} - R_s\!\big(T_s^\circ\big)\, i_{qs}^{r} - (\lambda'^r_m + L_d\,i_{ds}^{r})\,\omega_r\,\big] \\
-\dot{i}_{ds}^{r} &= \tfrac{1}{L_d}\!\big[\,v_{ds}^{r} - R_s\!\big(T_s^\circ\big)\, i_{ds}^{r} + L_q\,i_{qs}^{r}\,\omega_r\,\big] \\
-\dot{T}_s^\circ &= \tfrac{1}{C_{ts}}\!\big[\,\tfrac{3}{2}R_s\!\big(T_s^\circ\big)(i_{qs}^{r\,2}+i_{ds}^{r\,2}) - \tfrac{T_s^\circ - T_{amb}^\circ}{R_{ts\text{-}amb}}\,\big]
+\frac{d\theta_m}{dt} &= \omega_m \\
+\frac{d\omega_m}{dt} &= -\tfrac{b_{eq}}{J_{eq}}\omega_m - \tfrac{g\,k_l}{J_{eq}\,r}\sin\!\big(\tfrac{\theta_m}{r}\big) + \tfrac{1}{J_{eq}}\,T_m(i_{qs}^{r},\,i_{ds}^{r}) - \tfrac{1}{J_{eq}\,r}\,T_{ld} \\
+\frac{di_{qs}^{r}}{dt} &= \tfrac{1}{L_q}\!\big[\,v_{qs}^{r} - R_s\!\big(T_s^\circ\big)\, i_{qs}^{r} - (\lambda'^r_m + L_d\,i_{ds}^{r})\,\omega_r\,\big] \\
+\frac{di_{ds}^{r}}{dt} &= \tfrac{1}{L_d}\!\big[\,v_{ds}^{r} - R_s\!\big(T_s^\circ\big)\, i_{ds}^{r} + L_q\,i_{qs}^{r}\,\omega_r\,\big] \\
+\frac{dT_s^\circ}{dt} &= \tfrac{1}{C_{ts}}\!\big[\,\tfrac{3}{2}R_s\!\big(T_s^\circ\big)(i_{qs}^{r\,2}+i_{ds}^{r\,2}) - \tfrac{T_s^\circ - T_{amb}^\circ}{R_{ts\text{-}amb}}\,\big]
 \end{aligned}\right.
 \end{equation*}
 \normalsize
@@ -957,12 +848,12 @@ Implementación del modelo no lineal completo en MATLAB/Simulink con consignas $
 
 \textbf{Modelo no lineal de partida:}
 \begin{equation*}
-\dot{\bm{x}}=\bm{f}(\bm{x},\bm{u})
+\frac{d\bm{x}}{dt}=\bm{f}(\bm{x},\bm{u})
 \end{equation*}
 
 \textbf{Taylor de primer orden en $(\bm{x}_o,\bm{u}_o)$:}
 \begin{equation*}
-\Delta\dot{\bm{x}}(t)\approx
+\Delta\frac{d\bm{x}(t)}{dt}\approx
 \underbrace{\left.\frac{\partial \bm{f}}{\partial \bm{x}}\right|_o}_{\bm{A}_o}
 \Delta\bm{x}(t)+
 \underbrace{\left.\frac{\partial \bm{f}}{\partial \bm{u}}\right|_o}_{\bm{B}_o}
@@ -981,7 +872,7 @@ Implementación del modelo no lineal completo en MATLAB/Simulink con consignas $
 
 \textbf{Condiciones clave del equilibrio:}
 \begin{itemize}
-  \item \textbf{Cinemática:} $\dot{\theta}_{m,o}(t)=\omega_{m,o}(t)$ con $\omega_{m,o}$ constante.
+  \item \textbf{Cinemática:} $\frac{d\theta_{m,o}(t)}{dt}=\omega_{m,o}(t)$ con $\omega_{m,o}$ constante.
   \item \textbf{Mecánica:} el torque electromagnético compensa fricción, gravedad y carga:
   \[
   0=-b_{eq}\omega_{m,o}+T_{m,o}-g\,k_l\sin\!\big(\theta_{m,o}/r\big)-T_{ld,o}/r
@@ -1017,7 +908,7 @@ Implementación del modelo no lineal completo en MATLAB/Simulink con consignas $
 
 \textbf{Forma estructural:}
 \begin{equation*}
-\Delta\dot{\bm{x}}(t)=\bm{A}_o(\rho)\,\Delta\bm{x}(t)+\bm{B}_o(\rho)\,\Delta\bm{u}(t)
+\Delta\frac{d\bm{x}(t)}{dt}=\bm{A}_o(\rho)\,\Delta\bm{x}(t)+\bm{B}_o(\rho)\,\Delta\bm{u}(t)
 \end{equation*}
 
 \textbf{Parámetros de operación} $\rho$:
@@ -1073,12 +964,7 @@ $}
 \]
 
 \vspace{3mm}
-\textbf{Modelo LPV global en forma matricial:}
-\footnotesize
-\[
-\Delta\dot{\bm{x}}(t) = \bm{A}_o\,\Delta\bm{x}(t) \;+\; \bm{B}_o^c\!\begin{bmatrix}\Delta v_{qs}^{r}(t)\\ \Delta v_{ds}^{r}(t)\\ \Delta v_{0s}(t)\end{bmatrix} \;+\; \bm{B}_o^d\!\begin{bmatrix}\Delta T_{ld}(t)\\ \Delta T_{amb}^\circ(t)\end{bmatrix}
-\]
-\normalsize
+
 \end{frame}
 
 \StartProjectSection{7}{\SecLTI}
@@ -1100,7 +986,7 @@ i_{ds}^{r}(t)\equiv 0
 
 \textbf{Ecuación original del eje $d$:}
 \begin{equation*}
-\dot{i}_{ds}^{r}(t)=\frac{1}{L_d}\Big[\,v_{ds}^{r}(t)-R_{s0}i_{ds}^{r}(t)+L_q\,i_{qs}^{r}(t)\,\omega_r(t)\Big]
+\frac{di_{ds}^{r}(t)}{dt}=\frac{1}{L_d}\Big[\,v_{ds}^{r}(t)-R_{s0}i_{ds}^{r}(t)+L_q\,i_{qs}^{r}(t)\,\omega_r(t)\Big]
 \end{equation*}
 
 \textbf{Ley de control mínima} para cancelar el acoplamiento cruzado:
@@ -1127,9 +1013,9 @@ i_{ds}^{r}(t)\equiv 0
 \begin{equation*}
 \left\{
 \begin{aligned}
-\dot{\theta}_m(t) &= \omega_m(t) \\[2pt]
-\dot{\omega}_m(t) &= \frac{1}{J_{eq}}\!\left[\frac{3}{2}P_p\lambda'^r_m\,i_{qs}^r(t)-b_{eq}\omega_m(t)-\frac{1}{r}T_l(t)\right] \\[4pt]
-\dot{i}_{qs}^r(t) &= \frac{1}{L_q}\!\left[-P_p\lambda'^r_m\,\omega_m(t)-R_{s0}i_{qs}^r(t)+v_{qs}(t)\right]
+\frac{d\theta_m(t)}{dt} &= \omega_m(t) \\[2pt]
+\frac{d\omega_m(t)}{dt} &= \frac{1}{J_{eq}}\!\left[\frac{3}{2}P_p\lambda'^r_m\,i_{qs}^r(t)-b_{eq}\omega_m(t)-\frac{1}{r}T_l(t)\right] \\[4pt]
+\frac{di_{qs}^r(t)}{dt} &= \frac{1}{L_q}\!\left[-P_p\lambda'^r_m\,\omega_m(t)-R_{s0}i_{qs}^r(t)+v_{qs}(t)\right]
 \end{aligned}
 \right.
 \end{equation*}
@@ -1152,7 +1038,7 @@ i_{ds}^{r}(t)\equiv 0
 
 \centering
 \resizebox{\textwidth}{!}{$
-\dot{\bm{x}}_{LTI}=
+\frac{d\bm{x}_{LTI}}{dt}=
 \underbrace{\begin{bmatrix}
 0 & 1 & 0\\
 0 & -\frac{b_{eq}}{J_{eq}} & \frac{3P_p\lambda'^r_m}{2J_{eq}}\\
@@ -1195,7 +1081,7 @@ El diagrama resume la estructura final del modelo nominal: la corriente $i_{qs}^
 
 \textbf{Con la ley mínima} $v_{ds}^{r}=-L_q i_{qs}^{r}\omega_r$:
 \begin{equation*}
-\dot{i}_{ds}^{r}(t)= -\frac{R_{s0}}{L_d}\,i_{ds}^{r}(t)
+\frac{di_{ds}^{r}(t)}{dt}= -\frac{R_{s0}}{L_d}\,i_{ds}^{r}(t)
 \end{equation*}
 
 \textbf{Solución temporal:}
@@ -1223,7 +1109,7 @@ i_{ds}^{r}(t)=i_{ds}^{r}(0)\,e^{-\frac{R_{s0}}{L_d}t}
 
 \textbf{Acoplamiento residual sobre el eje $q$:}
 \begin{equation*}
-v_{qs}^{r}(t)=L_q\dot{i}_{qs}^{r}(t)+R_s i_{qs}^{r}(t)+\lambda'^r_m\omega_r(t)+
+v_{qs}^{r}(t)=L_q\frac{di_{qs}^{r}(t)}{dt}+R_s i_{qs}^{r}(t)+\lambda'^r_m\omega_r(t)+
 \underbrace{\omega_r(t)L_d i_{ds}^{r}(t)}_{\text{acoplamiento cruzado}}
 \end{equation*}
 
@@ -1256,10 +1142,10 @@ v_{qs}^{r}(t)=L_q\dot{i}_{qs}^{r}(t)+R_s i_{qs}^{r}(t)+\lambda'^r_m\omega_r(t)+
 \begin{equation*}
 \left\{
 \begin{aligned}
-\dot{\theta}_m(t) &= \omega_m(t) \\[2pt]
-\dot{\omega}_m(t) &= \frac{1}{J_{eq}}\!\left[\frac{3}{2}P_p\lambda'^r_m\,i_{qs}^r(t)-b_{eq}\omega_m(t)-\frac{1}{r}T_l(t)\right] \\[4pt]
-\dot{i}_{qs}^r(t) &= \frac{1}{L_q}\!\left[-P_p\lambda'^r_m\,\omega_m(t)-R_{s0}i_{qs}^r(t)+v_{qs}(t)\right] \\[4pt]
-\dot{i}_{ds}^{r}(t) &= -\frac{R_{s0}}{L_d}\,i_{ds}^{r}(t)
+\frac{d\theta_m(t)}{dt} &= \omega_m(t) \\[2pt]
+\frac{d\omega_m(t)}{dt} &= \frac{1}{J_{eq}}\!\left[\frac{3}{2}P_p\lambda'^r_m\,i_{qs}^r(t)-b_{eq}\omega_m(t)-\frac{1}{r}T_l(t)\right] \\[4pt]
+\frac{di_{qs}^r(t)}{dt} &= \frac{1}{L_q}\!\left[-P_p\lambda'^r_m\,\omega_m(t)-R_{s0}i_{qs}^r(t)+v_{qs}(t)\right] \\[4pt]
+\frac{di_{ds}^{r}(t)}{dt} &= -\frac{R_{s0}}{L_d}\,i_{ds}^{r}(t)
 \end{aligned}
 \right.
 \end{equation*}
@@ -1277,7 +1163,7 @@ v_{qs}^{r}(t)=L_q\dot{i}_{qs}^{r}(t)+R_s i_{qs}^{r}(t)+\lambda'^r_m\omega_r(t)+
 
 \centering
 \resizebox{\textwidth}{!}{$
-\dot{\bm{x}}_{aug}=
+\frac{d\bm{x}_{aug}}{dt}=
 \underbrace{\begin{bmatrix}
 0 & 1 & 0 & 0\\
 0 & -\frac{b_{eq}}{J_{eq}} & \frac{3P_p\lambda'^r_m}{2J_{eq}} & 0\\
@@ -1810,7 +1696,7 @@ Modelo en Simulink con dos subsistemas en paralelo: NL completo (6 estados) y LT
 %  SLIDE 79 — Posición angular theta_m
 % -------------------------------------------------------------------
 \figslide{Posición angular $\theta_m(t)$}{%
-$\theta_m$ crece como rampa durante los pulsos de tensión, consecuencia directa del integrador puro $\dot{\theta}_m = \omega_m$. Alcanza un máximo $\approx 242$~rad en $t \approx 0{,}7$~s, se mantiene durante $v_{qs}^{r*} = 0$ y retorna hacia cero durante el pulso negativo.%
+$\theta_m$ crece como rampa durante los pulsos de tensión, consecuencia directa del integrador puro $\frac{d\theta_m}{dt} = \omega_m$. Alcanza un máximo $\approx 242$~rad en $t \approx 0{,}7$~s, se mantiene durante $v_{qs}^{r*} = 0$ y retorna hacia cero durante el pulso negativo.%
 }{sim_theta_m.png}{Posición angular $\theta_m(t)$: comparación NL (azul) vs LTI aumentado (rojo). Panel inferior: señales de excitación ($T_l$ y $v_{qs}^*$). }
 
 % -------------------------------------------------------------------
@@ -2372,7 +2258,7 @@ T_m^{*\prime}(s) = b_a\,E_\omega(s) + K_{sa}\,E_{\theta_m}(s) + K_{sia}\,\frac{E
 \textbf{Hipótesis de diseño:}
 \begin{itemize}
 \item $T_m(t)\approx T_m^*(t)$ a la escala temporal del lazo de movimiento.
-\item $J_{eq}\,\ddot\theta_m(t)=T_m^{*\prime}(t)-T_{ld}(t)/r$.
+\item $J_{eq}\,\frac{d^2\theta_m(t)}{dt^2}=T_m^{*\prime}(t)-T_{ld}(t)/r$.
 \end{itemize}
 
 \textbf{Transformando por Laplace}, con $E_\omega(s)=sE_{\theta_m}(s)$:
@@ -2529,7 +2415,7 @@ Trayectoria de los polos de lazo cerrado al barrer $m_l$ de $0$ a $1{,}5$~kg con
 \definitionbox{Observador de Luenberger}{
 Modelo paralelo a la planta corregido por error de salida:
 \[
-\dot{\hat{\bm{x}}}=\bm{A}\hat{\bm{x}}+\bm{B}u+\bm{K}_e\big(y-\bm{C}\hat{\bm{x}}\big)
+\frac{d\hat{\bm{x}}}{dt}=\bm{A}\hat{\bm{x}}+\bm{B}u+\bm{K}_e\big(y-\bm{C}\hat{\bm{x}}\big)
 \]
 }
 
@@ -2552,8 +2438,8 @@ Modelo paralelo a la planta corregido por error de salida:
 \vspace{8mm}
 
 \begin{align*}
-\dot\theta_m(t) &= \omega_m(t) \\[6pt]
-\dot \omega_m(t) &= \frac{1}{J_{eq}}\,\Big(\,T_m^{*\prime}(t) - \frac{T_{ld}(t)}{r}\,\Big)
+\frac{d\theta_m(t)}{dt} &= \omega_m(t) \\[6pt]
+\frac{d\omega_m(t)}{dt} &= \frac{1}{J_{eq}}\,\Big(\,T_m^{*\prime}(t) - \frac{T_{ld}(t)}{r}\,\Big)
 \end{align*}
 
 \vspace{6mm}
@@ -2564,12 +2450,12 @@ Modelo paralelo a la planta corregido por error de salida:
 %  SLIDE 131 — Forma matricial
 % -------------------------------------------------------------------
 \begin{frame}{Forma matricial del subsistema mecánico}
-{\small\color{uncGray}Espacio de estados estándar $\dot{\bm{x}}=\bm{A}\,\bm{x}+\bm{B}\,u$, $y=\bm{C}\,\bm{x}$. La salida medida es $\theta_m$, la entrada el torque mecánico de referencia.}\par
+{\small\color{uncGray}Espacio de estados estándar $\frac{d\bm{x}}{dt}=\bm{A}\,\bm{x}+\bm{B}\,u$, $y=\bm{C}\,\bm{x}$. La salida medida es $\theta_m$, la entrada el torque mecánico de referencia.}\par
 \vspace{3mm}
 
 \textbf{Espacio de estados:}
 \begin{equation*}
-\dot{\bm{x}} =
+\frac{d\bm{x}}{dt} =
 \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} \bm{x}(t) +
 \begin{bmatrix} 0 \\ \tfrac{1}{J_{eq}} \end{bmatrix} u(t),
 \qquad
@@ -2600,7 +2486,7 @@ y(t)=\theta_m(t)
 
 \textbf{Dinámica del observador:}
 \begin{align*}
-\dot{\bar{\bm{x}}} &= \bm{A}\,\bar{\bm{x}} + \begin{bmatrix} 0 \\ \tfrac{1}{J_{eq}} \end{bmatrix} u(t) + \bm{K}_e\,\big(\,y - \bm{C}\,\bar{\bm{x}}\,\big) \\[4pt]
+\frac{d\bar{\bm{x}}}{dt} &= \bm{A}\,\bar{\bm{x}} + \begin{bmatrix} 0 \\ \tfrac{1}{J_{eq}} \end{bmatrix} u(t) + \bm{K}_e\,\big(\,y - \bm{C}\,\bar{\bm{x}}\,\big) \\[4pt]
 &= \big(\bm{A} - \bm{K}_e\bm{C}\big)\,\bar{\bm{x}} + \begin{bmatrix} 0 \\ \tfrac{1}{J_{eq}} \end{bmatrix} u(t) + \bm{K}_e\,y
 \end{align*}
 
@@ -2856,17 +2742,17 @@ Eliminación de los picos no derivables de la corriente y la aceleración median
 
 \textbf{Modelo mecánico simplificado y salida medida:}
 \begin{equation*}
-\dot\theta_m(t) = \omega_m(t),
+\frac{d\theta_m(t)}{dt} = \omega_m(t),
 \qquad
-\dot \omega_m(t) = \frac{1}{J_{eq}}\,T_m^{*\prime}(t),
+\frac{d\omega_m(t)}{dt} = \frac{1}{J_{eq}}\,T_m^{*\prime}(t),
 \qquad
 y(t) = \theta_m(t)
 \end{equation*}
 
 \textbf{Observador base de segundo orden:}
 \begin{align*}
-\dot{\hat{\theta}}_m &= \hat{\omega}_m + K_{e\theta_m}\,(\theta_m - \hat{\theta}_m) \\[3pt]
-\dot{\hat{\omega}}_m &= \tfrac{1}{J_{eq}}\,T_m^{*\prime} + K_{e\omega_m}\,(\theta_m - \hat{\theta}_m)
+\frac{d\hat{\theta}_m}{dt} &= \hat{\omega}_m + K_{e\theta_m}\,(\theta_m - \hat{\theta}_m) \\[3pt]
+\frac{d\hat{\omega}_m}{dt} &= \tfrac{1}{J_{eq}}\,T_m^{*\prime} + K_{e\omega_m}\,(\theta_m - \hat{\theta}_m)
 \end{align*}
 
 \vspace{2mm}
@@ -2882,7 +2768,7 @@ y(t) = \theta_m(t)
 
 \textbf{Error de estimación} $e_\theta = \theta_m - \hat{\theta}_m$, $e_\omega = \omega_m - \hat{\omega}_m$:
 \begin{equation*}
-\begin{bmatrix}\dot{e}_\theta\\[2pt] \dot{e}_\omega\end{bmatrix}
+\begin{bmatrix}\frac{de_\theta}{dt}\\[2pt] \frac{de_\omega}{dt}\end{bmatrix}
 =
 \begin{bmatrix}-K_{e\theta_m} & 1\\ -K_{e\omega_m} & 0\end{bmatrix}
 \begin{bmatrix}e_\theta\\[2pt] e_\omega\end{bmatrix}
@@ -2919,7 +2805,7 @@ Ante perturbaciones de carga cuasi-estacionarias, el observador de segundo orden
 \begin{equation*}
 e_\theta(t) = \theta_m(t) - \hat{\theta}_m(t),
 \qquad
-\dot{z}(t) = e_\theta(t)
+\frac{dz(t)}{dt} = e_\theta(t)
 \end{equation*}
 
 \vspace{8mm}
@@ -2934,9 +2820,9 @@ e_\theta(t) = \theta_m(t) - \hat{\theta}_m(t),
 \vspace{6mm}
 
 \begin{align*}
-\dot{\hat{\theta}}_m &= \hat{\omega}_m + K_{e\theta_m}\,e_\theta \\[3pt]
-\dot{\hat{\omega}}_m &= \tfrac{1}{J_{eq}}\,T_m^{*\prime} + K_{e\omega_m}\,e_\theta + K_{ei_m}\,z(t) \\[3pt]
-\dot{z}(t) &= e_\theta(t)
+\frac{d\hat{\theta}_m}{dt} &= \hat{\omega}_m + K_{e\theta_m}\,e_\theta \\[3pt]
+\frac{d\hat{\omega}_m}{dt} &= \tfrac{1}{J_{eq}}\,T_m^{*\prime} + K_{e\omega_m}\,e_\theta + K_{ei_m}\,z(t) \\[3pt]
+\frac{dz(t)}{dt} &= e_\theta(t)
 \end{align*}
 
 \vspace{4mm}
@@ -2952,7 +2838,7 @@ e_\theta(t) = \theta_m(t) - \hat{\theta}_m(t),
 
 \textbf{Vector de error aumentado:} $\bm{e}_a(t) = [\,e_\theta,\;e_\omega,\;z\,]^\top$:
 \begin{equation*}
-\dot{\bm{e}}_a = \underbrace{\begin{bmatrix}
+\frac{d\bm{e}_a}{dt} = \underbrace{\begin{bmatrix}
 -K_{e\theta_m} & 1 & 0 \\
 -K_{e\omega_m} & 0 & -K_{ei_m} \\
 1 & 0 & 0
@@ -2998,8 +2884,8 @@ K_{ei_m} = 3{,}2768\!\times\!10^{10}
 %  SLIDE 162 — Diagrama de bloques del observador aumentado
 % -------------------------------------------------------------------
 \figslide{Diagrama de bloques del observador aumentado}{%
-Implementación en Simulink del observador mecánico aumentado con acción integral. El error $e_\theta(t) = \theta_m(t) - \hat{\theta}_m(t)$ alimenta las ramas proporcionales y la rama integral; la salida integral corrige $\dot{\hat{\omega}}_m(t)$ y elimina el error estacionario de estimación.%
-}{5_2_5_B_diagrama_bloques_observador.png}{Diagrama de bloques del observador mecánico aumentado con acción integral implementado en Simulink. La rama integral corrige $\dot{\hat{\omega}}_m(t)$ para eliminar el error estacionario.}
+Implementación en Simulink del observador mecánico aumentado con acción integral. El error $e_\theta(t) = \theta_m(t) - \hat{\theta}_m(t)$ alimenta las ramas proporcionales y la rama integral; la salida integral corrige $\frac{d\hat{\omega}_m(t)}{dt}$ y elimina el error estacionario de estimación.%
+}{5_2_5_B_diagrama_bloques_observador.png}{Diagrama de bloques del observador mecánico aumentado con acción integral implementado en Simulink. La rama integral corrige $\frac{d\hat{\omega}_m(t)}{dt}$ para eliminar el error estacionario.}
 
 % -------------------------------------------------------------------
 %  SLIDE 163 — Verificación: offset eliminado
@@ -3113,9 +2999,9 @@ $T_s$ & LP 1$^{er}$ orden & $\tau = 20$~s & $p = -1/\tau = -0{,}05$ \\
 \begin{equation*}
 (\tau s + 1)\,Y(s) = U(s)
 \;\;\Longrightarrow\;\;
-\tau\,\dot y + y = u
+\tau\,\frac{dy}{dt} + y = u
 \;\;\Longrightarrow\;\;
-\dot y = -\tfrac{1}{\tau}\,y + \tfrac{1}{\tau}\,u
+\frac{dy}{dt} = -\tfrac{1}{\tau}\,y + \tfrac{1}{\tau}\,u
 \end{equation*}
 
 \textbf{Eligiendo} $x(t) = y(t)$:
@@ -3146,14 +3032,14 @@ $T_s$ & LP 1$^{er}$ orden & $\tau = 20$~s & $p = -1/\tau = -0{,}05$ \\
 
 \textbf{Antitransformada:}
 \begin{equation*}
-\ddot y + 2\zeta\omega_n\,\dot y + \omega_n^{2}\,y = \omega_n^{2}\,u
+\frac{d^2y}{dt^2} + 2\zeta\omega_n\,\frac{dy}{dt} + \omega_n^{2}\,y = \omega_n^{2}\,u
 \end{equation*}
 
-\textbf{Vector de estado} $\bm{x} = [\,x_1,\,x_2\,]^T = [\,y,\,\dot y\,]^T$:
+\textbf{Vector de estado} $\bm{x} = [\,x_1,\,x_2\,]^T = [\,y,\,\frac{dy}{dt}\,]^T$:
 \begin{equation*}
-\dot x_1 = x_2,
+\frac{dx_1}{dt} = x_2,
 \qquad
-\dot x_2 = -\omega_n^{2}\,x_1 - 2\zeta\omega_n\,x_2 + \omega_n^{2}\,u
+\frac{dx_2}{dt} = -\omega_n^{2}\,x_1 - 2\zeta\omega_n\,x_2 + \omega_n^{2}\,u
 \end{equation*}
 
 \textbf{Matrices generales:}
