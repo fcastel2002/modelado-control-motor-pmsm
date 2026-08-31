@@ -1,0 +1,414 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guion cronometrado — AyME 2026</title>
+<style>
+:root{--bg:#0f1115;--card:#171a21;--fg:#e6e8ec;--mut:#9aa3b2;--acc:#4da3ff;--warn:#ffb454;--line:#262b36}
+@media (prefers-color-scheme: light){:root{--bg:#f7f8fa;--card:#fff;--fg:#1a1d23;--mut:#5b6472;--acc:#0b64d0;--warn:#a15c00;--line:#e3e6ec}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:24px 20px 120px}
+h1{font-size:1.7rem;line-height:1.25;margin:.2em 0 .1em}
+h2{font-size:1.28rem;margin:2.2em 0 .3em;padding-top:.6em;border-top:2px solid var(--acc);color:var(--acc)}
+h3{font-size:1.02rem;margin:1.9em 0 .5em;padding:.55em .7em;background:var(--card);border-left:4px solid var(--acc);border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:.5em;flex-wrap:wrap}
+h3:hover{border-left-color:var(--warn)}
+h3.done{opacity:.45}
+blockquote{margin:.6em 0;padding:.55em .9em;border-left:3px solid var(--line);background:var(--card);border-radius:0 6px 6px 0}
+blockquote p{margin:.45em 0}
+code{background:var(--card);padding:.12em .45em;border-radius:4px;font-size:.86em;color:var(--warn)}
+em{color:var(--mut);font-style:normal;font-size:.92em}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.93em}
+th,td{border:1px solid var(--line);padding:.45em .7em;text-align:left}
+th{background:var(--card)}
+hr{border:none;border-top:1px solid var(--line);margin:2em 0}
+a{color:var(--acc)} strong{color:var(--fg)}
+input[type=checkbox]{margin-right:.4em}
+#bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:10px 16px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;z-index:9}
+#clk{font:700 2rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;min-width:5.6ch;text-align:center}
+#clk.over{color:#ff6b6b}
+#lbl{color:var(--mut);font-size:.86rem;max-width:44ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+button{background:var(--acc);color:#fff;border:0;border-radius:7px;padding:.5em 1em;font-size:.9rem;font-weight:600;cursor:pointer}
+button.ghost{background:transparent;color:var(--mut);border:1px solid var(--line)}
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--acc);width:0;z-index:10;transition:width .3s}
+.tag{font-size:.72rem;background:var(--acc);color:#fff;border-radius:4px;padding:.1em .5em;font-weight:700;letter-spacing:.02em}
+</style></head><body>
+<div id="prog"></div>
+<div class="wrap"><h1>Guion cronometrado — Exposición en mesa</h1>
+<h3 id="beat0" data-beat="0">Joaquín Calderón · Proyecto Global Integrador AyME 2026</h3>
+<p><strong>Tus páginas: 1–31, 66–117, 153–165 (96 de 182) · Tu tiempo: ~21 min de los 40</strong></p>
+<blockquote>
+<p>✅ <strong>Numeración verificada</strong> contra <code>main_presentacion.tex</code> compilado el 30/07: <strong>182 páginas</strong>.
+⚠️ El <code>main_presentacion.pdf</code> que está en la carpeta es del <strong>29/07 18:47 y quedó viejo</strong> (184 páginas: todavía tiene las dos láminas de métricas de transitorio). <strong>Recompilalo y aseguráte de que Francisco presente desde el mismo archivo</strong>, o los números de lámina no van a coincidir entre ustedes.</p>
+</blockquote>
+<hr />
+<h2>Regla de oro</h2>
+<p>13 segundos por lámina es el promedio bruto. <strong>No hables de cada diapositiva.</strong> El guion está armado en <strong>26 beats</strong>: cada beat es una idea, y las láminas del beat se pasan mientras hablás. Ensayá los beats, no las láminas.</p>
+<p>Tres decisiones que conviene respetar:</p>
+<ul>
+<li><strong>Primero el concepto, después el número.</strong> Nunca leas una ecuación en voz alta. Señalá qué representa y pasá.</li>
+<li><strong>Las láminas de "Tabla de contenidos" (4, 7, 15, 22, 26, 66, 90) se pasan en silencio.</strong> Son 7 páginas gratis.</li>
+<li>Los números que <strong>sí</strong> decís están en <strong>negrita</strong>. Son ~15 en total. El resto están en pantalla y no hace falta pronunciarlos.</li>
+</ul>
+<p><strong>Total: 20:40</strong>, con 20 s de margen dentro de tus 21 minutos.</p>
+<hr />
+<h1>BLOQUE A — Modelado del sistema físico</h1>
+<h3 id="beat1" data-beat="1">Páginas 1–31 · <strong>7:15</strong></h3>
+<hr />
+<h3 id="beat2" data-beat="2">A1 · pág. 1–3 · <code>0:40</code> — Apertura</h3>
+<blockquote>
+<p>Buenos días. Vamos a presentar el proyecto integrador: el control de un accionamiento de corriente alterna con motor sincrónico de imanes permanentes.</p>
+<p>El sistema es un accionamiento de cuatro cuadrantes que mueve la articulación de un brazo manipulador. La cadena es: bus de continua, inversor trifásico, la PMSM, una reductora planetaria <strong>120 a 1</strong>, y el brazo.</p>
+<p>El trabajo recorre cinco etapas: modelamos, linealizamos, analizamos la estructura del sistema, diseñamos el control y verificamos, hasta llegar al código embebido. Yo cubro el modelado y la primera parte del control; Francisco continúa después.</p>
+</blockquote>
+<p><code>pág. 4 → pasar en silencio</code></p>
+<hr />
+<h3 id="beat3" data-beat="3">A2 · pág. 5–6 · <code>0:55</code> — ⚓ El sistema y la carga</h3>
+<blockquote>
+<p>Este es el sistema completo. Tres cosas importan acá.</p>
+<p>Primero: se divide en <strong>tres subsistemas acoplados</strong> — electromagnético, mecánico y térmico.</p>
+<p>Segundo: medimos tres cosas — las corrientes de fase, la posición del eje del motor con un encoder, y la temperatura del bobinado con un RTD.</p>
+<p>Y tercero, esto es clave: <strong>lo que queremos controlar, la posición de la articulación, no se mide.</strong> Se mide del lado del motor y se divide por 120.</p>
+</blockquote>
+<p><em>(pág. 6)</em></p>
+<blockquote>
+<p>La carga es un péndulo rígido de un grado de libertad en plano vertical. La gravedad entra como perturbación permanente que depende de la posición, y la masa útil es variable <strong>entre 0 y 1,5 kg y no se conoce a priori</strong>. Esa es la incertidumbre principal de todo el proyecto.</p>
+</blockquote>
+<p><code>pág. 7 → pasar en silencio</code></p>
+<hr />
+<h3 id="beat4" data-beat="4">A3 · pág. 8–11 · <code>0:35</code> — Los tres balances <em>(pasar rápido las 4 láminas)</em></h3>
+<blockquote>
+<p>El modelado mecánico son tres balances de torque: el del péndulo, el del tren de transmisión y el del rotor. Como asumimos <strong>transmisión rígida</strong> —sin backlash y sin elasticidad torsional— el torque de reacción del reductor se elimina algebraicamente y los tres se combinan en uno solo.</p>
+</blockquote>
+<hr />
+<h3 id="beat5" data-beat="5">A4 · pág. 12–14 · <code>1:10</code> — ⚓ El modelo mecánico equivalente</h3>
+<blockquote>
+<p>Y queda esta única ecuación referida al eje del motor. Conceptualmente: motor, caja y carga se comportan como <strong>una sola inercia con una sola fricción</strong>, más un término no lineal de gravedad.</p>
+<p>El detalle que vale la pena mirar es el factor <strong>1 sobre r cuadrado</strong>. La inercia y la fricción de la carga se reflejan al eje del motor divididas por 120 al cuadrado, o sea por <strong>14.400</strong>. Eso tiene dos consecuencias.</p>
+<p>La carga queda enormemente diluida: la fricción del brazo aporta 7 millonésimas frente a las 15 del motor. Despreciable.</p>
+<p>Pero la inercia <strong>sí</strong> importa: la inercia equivalente pasa de <strong>1,98 a 4,58 por diez a la menos cinco</strong> cuando cargamos el brazo al máximo. Se multiplica por 2,3. Y este es el parámetro que al final de mi segundo bloque nos va a degradar el amortiguamiento del PID, así que téngalo presente.</p>
+</blockquote>
+<p><em>(pág. 14)</em></p>
+<blockquote>
+<p>En espacio de estados, el seno de theta sobre r impide escribir A por x más B por u. El subsistema mecánico, por sí solo, ya es no lineal.</p>
+</blockquote>
+<p><code>pág. 15 → pasar en silencio</code></p>
+<hr />
+<h3 id="beat6" data-beat="6">A5 · pág. 16–19 · <code>0:55</code> — Por qué Park</h3>
+<blockquote>
+<p>Ahora el subsistema electromagnético. La idea de la transformación de Park es proyectar las tres variables de fase sobre un marco que gira con el rotor.</p>
+<p>¿Para qué? Porque en régimen las variables trifásicas son senoidales, y en el marco rotórico se vuelven <strong>cuasi-continuas</strong>. En vez de controlar tres senoidales acopladas entre sí, controlamos dos magnitudes casi constantes: una asociada al flujo y otra al torque.</p>
+</blockquote>
+<p><em>(pág. 17–18, pasar mientras hablás)</em></p>
+<blockquote>
+<p>El inversor sintetiza tres tensiones desfasadas 120 grados. Sus variables manipulables son el módulo de tensión de línea y la frecuencia eléctrica, cuyo <strong>signo define el sentido de giro</strong> del campo rotante.</p>
+</blockquote>
+<p><em>(pág. 19)</em></p>
+<blockquote>
+<p>Aplicando Park a las ecuaciones del estator quedan tres ecuaciones con la misma estructura: caída resistiva, caída inductiva, y un término de acoplamiento proporcional a la velocidad.</p>
+</blockquote>
+<hr />
+<h3 id="beat7" data-beat="7">A6 · pág. 20–21 · <code>1:10</code> — ⚓⚓ Los acoplamientos y el torque</h3>
+<blockquote>
+<p><strong>Esta lámina define todo el diseño de control que viene después</strong>, así que me detengo un momento.</p>
+<p>En el eje q: disipación resistiva, término inductivo, la <strong>fuerza contraelectromotriz de los imanes</strong>, y el acoplamiento cruzado que trae el eje d. En el eje d, lo mismo más el acoplamiento cruzado que trae el eje q.</p>
+<p>Dos observaciones. Una: la resistencia depende de la temperatura, así que el subsistema eléctrico queda acoplado con el térmico. Dos: todos los términos proporcionales a omega acoplan la dinámica eléctrica con la mecánica.</p>
+<p><strong>Estos son exactamente los términos que el modulador de torque va a cancelar por realimentación.</strong></p>
+</blockquote>
+<p><em>(pág. 21)</em></p>
+<blockquote>
+<p>El torque tiene dos contribuciones: el de imanes, proporcional a la corriente de cuadratura, y el de <strong>reluctancia</strong>, que existe porque L de d es distinta de L de q y es proporcional al producto de las dos corrientes.</p>
+<p>La estrategia base del trabajo es forzar la corriente de eje directo a cero: ahí el torque queda lineal y proporcional a una sola corriente. Pero dejarla libre es lo que después habilita reforzar o debilitar el campo.</p>
+</blockquote>
+<p><code>pág. 22 → pasar en silencio</code></p>
+<hr />
+<h3 id="beat8" data-beat="8">A7 · pág. 23–25 · <code>0:40</code> — El subsistema térmico</h3>
+<blockquote>
+<p>El modelo térmico es concentrado y de primer orden: consideramos solo pérdidas Joule en el bobinado, despreciamos las magnéticas del núcleo, y disipamos al ambiente por conducción y convección natural, sin ventilación forzada.</p>
+<p>Lo interesante es que hay un <strong>lazo cerrado propio</strong>: la temperatura sube la resistencia, y la resistencia mayor genera más pérdidas. Es una de las no linealidades del modelo.</p>
+<p>Pero es un lazo <strong>muy lento</strong>: la constante térmica es de <strong>120 segundos</strong>, tres órdenes de magnitud más lenta que la dinámica eléctrica. Eso es lo que después justifica desacoplarlo.</p>
+</blockquote>
+<p><code>pág. 26 → pasar en silencio</code></p>
+<hr />
+<h3 id="beat9" data-beat="9">A8 · pág. 27–31 · <code>1:10</code> — ⚓ El modelo no lineal global y cierre</h3>
+<blockquote>
+<p>Integrando los tres subsistemas queda el modelo no lineal global: <strong>seis estados</strong> —posición, velocidad, las tres corrientes en qd0 y la temperatura— y seis entradas contando las perturbaciones.</p>
+</blockquote>
+<p><em>(pág. 28)</em></p>
+<blockquote>
+<p>No voy a leer las seis ecuaciones. Lo que quiero que se vea es <strong>dónde están las no linealidades</strong>: el seno de la gravedad, el producto de las dos corrientes en el torque, los términos cuadráticos de las pérdidas, y la dependencia de la resistencia con la temperatura. Cuatro fuentes.</p>
+</blockquote>
+<p><em>(pág. 29–30)</em></p>
+<blockquote>
+<p>Y una simplificación importante. Como el estator está en estrella con <strong>neutro flotante</strong>, Kirchhoff en el centro de estrella impone que las tres corrientes de fase sumen cero. Y esto es <strong>topológico</strong>: no depende de que el sistema esté equilibrado. Por lo tanto la componente homopolar es idénticamente nula, la ecuación de secuencia cero se satisface de forma trivial, y el modelo efectivo queda en <strong>cinco estados</strong>.</p>
+</blockquote>
+<p><em>(pág. 31)</em></p>
+<blockquote>
+<p>Y así se implementó en Simulink: la planta recibe las tensiones de fase y el torque de carga, y los tres subsistemas interactúan simultáneamente. Sobre este modelo se hace todo lo que sigue. Le paso a Francisco.</p>
+</blockquote>
+<h2>---</h2>
+<h1>BLOQUE B — Simulación a lazo abierto y control en cascada</h1>
+<h3 id="beat10" data-beat="10">Páginas 66–117 · <strong>10:25</strong></h3>
+<blockquote>
+<p>⚠️ Tu bloque crítico: 50 láminas de contenido. La disciplina de tiempo se gana o se pierde acá.</p>
+</blockquote>
+<p><code>pág. 66 → pasar en silencio</code></p>
+<hr />
+<h3 id="beat11" data-beat="11">B1 · pág. 67–71 · <code>0:55</code> — El ensayo</h3>
+<blockquote>
+<p>Retomo con la simulación dinámica a lazo abierto, que compara el modelo no lineal completo contra el LTI aumentado que acaba de presentar Francisco.</p>
+<p>El ensayo excita con un pulso de tensión en el eje q de <strong>±19,6 volt</strong> —que equivale a alimentar con 24 volt de línea, un 80 % de la tensión nominal— y con un doble pulso de torque de carga. Entre las dos señales quedan <strong>diez transitorios</strong> consecutivos, y la combinación recorre los cuatro cuadrantes.</p>
+<p>Los dos modelos corren en paralelo con las mismas entradas. En el LTI usamos resistencia constante de <strong>1,058 ohm</strong>, evaluada a la temperatura media de operación y no a la de referencia de 20 grados: es lo consistente con haber desacoplado lo térmico.</p>
+</blockquote>
+<hr />
+<h3 id="beat12" data-beat="12">B2 · pág. 72–73 · <code>0:40</code> — ⚓ Posición</h3>
+<blockquote>
+<p>Posición: crece como rampa mientras dura el pulso. Es lo esperable, porque theta es la integral de omega — hay un <strong>integrador puro</strong> en la planta.</p>
+<p>El error entre modelos se mantiene por debajo de 0,1 radianes sobre una excursión de <strong>242 radianes</strong>: menos del 0,05 %. Pero no se anula, deriva lentamente.</p>
+<p>Y eso es justamente <strong>por</strong> el integrador: acumula las pequeñas discrepancias instantáneas de velocidad. No es un error de modelado, es la naturaleza del integrador.</p>
+</blockquote>
+<hr />
+<h3 id="beat13" data-beat="13">B3 · pág. 74–75 · <code>1:00</code> — ⚓⚓ Velocidad: el resultado más interesante</h3>
+<blockquote>
+<p>Velocidad. Acá está el resultado más interesante del ensayo.</p>
+<p>Uno <strong>esperaría</strong> ver dos escalas de tiempo separadas: una eléctrica rápida y una mecánica lenta, con la constante mecánica J sobre b, que da <strong>0,9 segundos</strong>.</p>
+<p>No es lo que pasa. La realimentación de fuerza contraelectromotriz <strong>fusiona los dos modos</strong> en una única resonancia electromecánica subamortiguada, con zeta <strong>0,527</strong> y frecuencia natural <strong>174</strong>.</p>
+<p>El motor llega a su velocidad de vacío —<strong>405 radianes por segundo</strong>, que es donde la contraelectromotriz equilibra la tensión aplicada— con <strong>14 % de sobrepico</strong>, y se establece en <strong>50 milisegundos</strong>. Cincuenta milisegundos, no novecientos. Y esos números —14,3 % de sobrepico, 21 ms de pico, 50 ms de establecimiento— son consistentes en los diez transitorios.</p>
+<p>La coincidencia entre modelos es excelente: menos de medio radián por segundo en régimen.</p>
+</blockquote>
+<hr />
+<h3 id="beat14" data-beat="14">B4 · pág. 76–80 · <code>0:50</code> — Corriente, temperatura, tensión d, fases</h3>
+<blockquote>
+<p>Corriente de eje q. El error clásico sería decir que se establece en tensión sobre resistencia — eso serían 18 amperes. <strong>No.</strong> Lo que se ve es un <strong>pico de torque transitorio de 10,4 amperes</strong> que decae a 0,1, porque a medida que el motor acelera la contraelectromotriz absorbe la tensión, y en vacío la corriente solo tiene que vencer la fricción.</p>
+<p>Ese pico de 10,4 es el número relevante frente a los <strong>2 amperes</strong> máximos del motor: este ensayo los supera ampliamente, porque es un ensayo de caracterización a lazo abierto, no de operación.</p>
+</blockquote>
+<p><em>(pág. 78–80, pasar mientras hablás)</em></p>
+<blockquote>
+<p>La temperatura casi no se mueve: la constante térmica de 120 segundos es cincuenta veces más larga que el ensayo. Eso valida la hipótesis de resistencia constante en el LTI.</p>
+<p>Esta es la tensión que impone internamente la ley de control mínima; es no nula solo cuando hay corriente y velocidad simultáneamente. Y por Park inversa recuperamos las corrientes de fase: senoidales moduladas en amplitud, con frecuencia proporcional a la velocidad. Cuando el rotor está quieto, la frecuencia eléctrica es cero y las corrientes de fase son constantes.</p>
+</blockquote>
+<hr />
+<h3 id="beat15" data-beat="15">B5 · pág. 81 · <code>0:25</code> — ⚓ Los cuatro cuadrantes</h3>
+<blockquote>
+<p>Esta es la curva paramétrica torque-velocidad. Cada color es uno de los diez transitorios y los rombos son los puntos de equilibrio.</p>
+<p>Se recorren <strong>los cuatro cuadrantes</strong>: motorización en los dos sentidos y frenado regenerativo en los dos sentidos. Esto confirma que el accionamiento es efectivamente de cuatro cuadrantes, como pedía la especificación.</p>
+</blockquote>
+<hr />
+<h3 id="beat16" data-beat="16">B6 · pág. 82–84 · <code>0:20</code> — Ángulo de carga</h3>
+<blockquote>
+<p>El ángulo de carga es el desfasaje entre el ángulo eléctrico de la tensión y la posición eléctrica del rotor. Para calcularlo tomamos la tensión de fase a como referencia, proyectamos con <strong>Clarke</strong> al plano alfa-beta, y recuperamos el ángulo con <strong>atan2</strong>.</p>
+</blockquote>
+<hr />
+<h3 id="beat17" data-beat="17">B7 · pág. 85–89 · <code>0:50</code> — Condición inicial de i_ds y field weakening</h3>
+<blockquote>
+<p>Efecto de la condición inicial de la corriente de eje directo. Arrancamos con cero, más 0,5 y menos 0,5 amperes. En los tres casos converge a cero con constante de tiempo L de d sobre resistencia, <strong>6,2 milisegundos</strong>, y se extingue en unos 30 milisegundos sin afectar nada más.</p>
+<p>Esto es lo que <strong>justifica</strong> que la hipótesis de corriente de eje d inicial nula, usada en la linealización, no sea restrictiva en la práctica.</p>
+</blockquote>
+<p><em>(pág. 87–88)</em></p>
+<blockquote>
+<p>Después inyectamos una consigna de tensión en el eje d, de un décimo de la nominal, y aparecen los dos regímenes.</p>
+<p><strong>Reforzamiento de campo</strong>, con corriente d positiva: suma torque de reluctancia, pero aumenta la contraelectromotriz y baja la velocidad máxima alcanzable. <strong>Debilitamiento</strong>, con corriente d negativa: resigna torque por amper, pero permite girar más rápido dentro del límite de tensión del inversor.</p>
+</blockquote>
+<p><em>(pág. 89)</em></p>
+<blockquote>
+<p>Y algo importante: el modelo LTI <strong>no captura</strong> esto. Solo lo ve el no lineal, porque son términos de producto entre estados.</p>
+</blockquote>
+<p><code>pág. 90 → pasar en silencio</code></p>
+<hr />
+<h3 id="beat18" data-beat="18">B8 · pág. 91–96 · <code>1:15</code> — ⚓⚓ El modulador de torque: la idea central</h3>
+<blockquote>
+<p>Pasamos al diseño del controlador. La primera pieza es el <strong>modulador de torque</strong>, que es el controlador interno vectorial de corriente y torque.</p>
+<p>La idea central es esta. La planta tiene <strong>realimentaciones físicas naturales</strong>: los acoplamientos cruzados, la contraelectromotriz de los imanes y las caídas resistivas. Lo que hacemos es calcular esos términos y sumárselos por prealimentación a la tensión de comando, para que se <strong>cancelen exactamente</strong> contra los de la planta.</p>
+</blockquote>
+<p><em>(pág. 94 — la lámina clave)</em></p>
+<blockquote>
+<p>Cuando uno sustituye y simplifica, queda esto: la tensión de comando de cada eje es igual a la inductancia por la derivada de la corriente. O sea, <strong>cada eje se convierte en un integrador puro, perfectamente desacoplado del otro.</strong></p>
+<p>Ese es el resultado clave de todo el bloque: convertimos una planta de tres ecuaciones acopladas y no lineales en tres integradores independientes. Todo el control que viene después es fácil gracias a esto.</p>
+</blockquote>
+<p><em>(pág. 95–96, pasar rápido)</em></p>
+<hr />
+<h3 id="beat19" data-beat="19">B9 · pág. 97–100 · <code>0:40</code> — Diferencias y el efecto de R_s</h3>
+<blockquote>
+<p>¿En qué se diferencia esto de la linealización por realimentación no lineal que ya habíamos hecho? En tres cosas. Primero, se <strong>libera</strong> la restricción de corriente d nula, lo que habilita el debilitamiento de campo. Segundo, antes solo cancelábamos los acoplamientos cruzados; ahora cancelamos <strong>también</strong> la contraelectromotriz y las caídas resistivas. Y tercero, lo más importante: ahora podemos <strong>asignar los polos</strong> del lazo de corriente donde queramos.</p>
+</blockquote>
+<p><em>(pág. 98–100)</em></p>
+<blockquote>
+<p>Sobre la resistencia hicimos una comparación: estimarla en línea con el sensor de temperatura, contra usar el valor nominal constante. Con valor constante, al cabo de 4 segundos aparece un <strong>déficit de torque del 15 %</strong>, que integrado se traduce en un <strong>4 % de error de posición</strong>. Conclusión: en régimen prolongado hay que estimarla.</p>
+</blockquote>
+<hr />
+<h3 id="beat20" data-beat="20">B10 · pág. 101–104 · <code>0:50</code> — ⚓ Lazos de corriente y la acción integral</h3>
+<blockquote>
+<p>Con la planta reducida a integradores puros, los lazos de corriente son <strong>simplemente proporcionales</strong>. La transferencia queda de primer orden con constante de tiempo L sobre K p, y la consigna pide los polos en <strong>menos 5000</strong>, así que las ganancias son directamente la inductancia por 5000.</p>
+</blockquote>
+<p><em>(pág. 102 — ⚠️ la lámina con la pregunta abierta. Esto lo decís vos, no está escrito)</em></p>
+<blockquote>
+<p>Acá hay algo que la consigna pide investigar explícitamente: <strong>¿conviene agregar acción integral?</strong></p>
+<p>La respuesta es <strong>no</strong>, y la razón es el principio del modelo interno: la planta de cada eje <strong>ya es de tipo 1</strong> —tiene su propio integrador—, así que el proporcional solo ya alcanza error nulo ante escalón.</p>
+<p>Agregar un integrador la volvería tipo 2 sin mejorar el seguimiento, y traería solo desventajas: sobrepico, más sensibilidad al ruido de medición, y riesgo de <strong>windup</strong> cuando el inversor satura. Por eso el lazo queda puramente proporcional.</p>
+</blockquote>
+<hr />
+<h3 id="beat21" data-beat="21">B11 · pág. 105–107 · <code>0:35</code> — Torque precalculado</h3>
+<blockquote>
+<p>Falta traducir una consigna de torque a una consigna de corriente. Como la única forma de variar el torque es por la corriente, invertimos la ecuación de torque.</p>
+<p>Y aprovechamos para aplicar <strong>torque precalculado</strong>: el modulador le suma a la consigna la compensación de fricción viscosa y la de gravedad. Así el lazo externo no tiene que pelear contra la gravedad — ya viene compensada por prealimentación. Eso simplifica muchísimo el diseño del PID.</p>
+<p>Y noten que la corriente de eje d queda como <strong>parámetro libre</strong> en el denominador: ahí es donde se enchufaría el debilitamiento de campo. Para este proyecto la dejamos en cero.</p>
+</blockquote>
+<hr />
+<h3 id="beat22" data-beat="22">B12 · pág. 108–114 · <code>1:10</code> — ⚓⚓ El PID externo</h3>
+<blockquote>
+<p>El lazo externo es un PID que manipula directamente el torque, sintonizado por el método de <strong>sintonía serie</strong> con zeta <strong>0,75</strong> y frecuencia natural <strong>800</strong>.</p>
+<p>La clave del diseño es <strong>qué planta ve el PID</strong>. Como los lazos de corriente son más de seis veces más rápidos, a la escala del lazo de movimiento el torque sigue instantáneamente a su consigna. Y como el torque precalculado ya compensó fricción y gravedad, lo que queda es simplemente <strong>un doble integrador</strong> con la perturbación de carga. Una planta trivial.</p>
+</blockquote>
+<p><em>(pág. 110–112, pasar mientras hablás)</em></p>
+<blockquote>
+<p>El método es: se saca el polinomio característico del lazo cerrado en función de las ganancias —el <strong>estructural</strong>—, se construye el <strong>requerido</strong> a partir de los polos deseados, y se igualan coeficiente a coeficiente.</p>
+<p>La elección de polos es un polo real y un par complejo que <strong>comparten la misma frecuencia natural</strong>: los tres quedan sobre la circunferencia de radio 800.</p>
+<p>Y lo elegante del método es que <strong>cada ganancia aparece en un único coeficiente</strong>, así que el despeje es directo, sin resolver ningún sistema.</p>
+</blockquote>
+<p><em>(pág. 113–114)</em></p>
+<blockquote>
+<p>Quedan estos tres números, y así se implementó en Simulink. Un detalle que vale la pena: el factor s en el numerador de la transferencia de perturbación muestra que la acción integral <strong>rechaza exactamente</strong> perturbaciones de carga constantes.</p>
+</blockquote>
+<hr />
+<h3 id="beat23" data-beat="23">B13 · pág. 115–116 · <code>0:30</code> — ⚓ Separación de escalas</h3>
+<blockquote>
+<p>Este mapa de polos resume la arquitectura. En verde los lazos de corriente en <strong>menos 5000</strong>; en rojo el lazo cerrado del PID alrededor de <strong>800</strong>; en azul la planta original con su modo en <strong>174</strong>.</p>
+</blockquote>
+<p><em>(pág. 116)</em></p>
+<blockquote>
+<p>Y acá está escrito el argumento que valida todo el diseño en cascada: <strong>174, mucho menor que 800, mucho menor que 5000</strong>. Un orden de magnitud entre niveles. Eso es lo que permite diseñar cada lazo suponiendo que el interior ya está resuelto y que el exterior no lo perturba.</p>
+</blockquote>
+<hr />
+<h3 id="beat24" data-beat="24">B14 · pág. 117 · <code>0:25</code> — ⚓ Cierre: qué pasa con la carga</h3>
+<blockquote>
+<p>Y cierro con la contracara. Las ganancias se sintonizaron con la inercia nominal, sin carga útil, y <strong>no se reajustan en línea</strong>. Al barrer la masa de carga de 0 a 1,5 kg, los polos de lazo cerrado migran hacia el eje imaginario: el amortiguamiento <strong>cae de 0,75 a 0,30</strong>.</p>
+<p>El sistema sigue estable en todo el rango, pero se vuelve notablemente más oscilatorio en el peor caso. Si hubiera que conservar el amortiguamiento especificado, haría falta agendado de ganancias o un esquema de control robusto. Sigue Francisco.</p>
+</blockquote>
+<h2>---</h2>
+<h1>BLOQUE C — Verificación de desempeño y no idealidades</h1>
+<h3 id="beat25" data-beat="25">Páginas 153–165 · <strong>3:00</strong></h3>
+<hr />
+<h3 id="beat26" data-beat="26">C1 · pág. 153–155 · <code>0:50</code> — ⚓⚓ El ensayo térmico</h3>
+<blockquote>
+<p>Retomo con la verificación del desempeño térmico. El ensayo consiste en repetir cíclicamente la consigna de trabajo: un trapecio de <strong>15 segundos</strong> —sube 5, mantiene 5, baja 5— con 25 grados de ambiente y el torque de perturbación máximo de 5 newton-metro.</p>
+</blockquote>
+<p><em>(pág. 154)</em></p>
+<blockquote>
+<p>El resultado es que la temperatura crece de forma <strong>acumulativa ciclo a ciclo y nunca alcanza el equilibrio térmico</strong>. Cruza los 115 grados de la clase de aislación a los <strong>225,9 segundos</strong>, o sea a los 15 ciclos.</p>
+</blockquote>
+<p><em>(pág. 155)</em></p>
+<blockquote>
+<p>Y la conclusión es negativa, y conviene decirla como tal: <strong>el accionamiento no satisface el requerimiento térmico de operación continua repetitiva</strong> en esas condiciones. O se agrega disipación activa, o hay que reformular el ciclo de trabajo.</p>
+</blockquote>
+<hr />
+<h3 id="beat27" data-beat="27">C2 · pág. 156–159 · <code>0:40</code> — Sensores como filtros</h3>
+<blockquote>
+<p>Sensores no ideales. Hasta acá los habíamos supuesto ideales, con ganancia unitaria. Ahora los reemplazamos por <strong>filtros pasa bajos en espacio de estados</strong>, según lo que especifica la consigna: los de corriente y el de posición, de segundo orden críticamente amortiguados; el térmico, de primer orden con 20 segundos de constante.</p>
+<p>La derivación a espacio de estados es directa: se antitransforma la transferencia y se eligen la salida y su derivada como variables de estado.</p>
+</blockquote>
+<hr />
+<h3 id="beat28" data-beat="28">C3 · pág. 160–162 · <code>0:50</code> — ⚓⚓ El hallazgo de esta sección</h3>
+<blockquote>
+<p>Y acá aparece el hallazgo más interesante de esta parte. <strong>Con los polos que especifica la consigna, el sistema directamente no logra seguir la consigna de posición.</strong></p>
+<p>La razón es de separación de dinámicas. Nuestro lazo de corriente tiene el polo en menos 5000, y los sensores de corriente en menos 6000: son apenas un <strong>20 % más rápidos</strong>. Eso no es separación de escalas — el retardo del sensor entra de lleno en el lazo. Y con el observador pasa lo mismo.</p>
+<p>La solución fue escalar los polos de todos los sensores en conjunto por un factor N. Con <strong>N igual a 3</strong> el desempeño vuelve a ser aceptable.</p>
+<p>Y la conclusión de ingeniería es concreta: los sensores que efectivamente habría que comprar tienen que ser <strong>por lo menos tres veces más rápidos</strong> que los que sugiere la especificación de la guía.</p>
+</blockquote>
+<hr />
+<h3 id="beat29" data-beat="29">C4 · pág. 163–165 · <code>0:40</code> — El inversor y cierre del bloque</h3>
+<blockquote>
+<p>Con el inversor pasa exactamente lo mismo. Un inversor real tiene dos restricciones que el bloque ideal no captura: <strong>ancho de banda finito</strong> por los semiconductores, y <strong>saturación de tensión</strong> por la fuente de continua. Lo modelamos igual, como un pasa bajos de segundo orden.</p>
+</blockquote>
+<p><em>(pág. 164)</em></p>
+<blockquote>
+<p>Con los 6000 radianes por segundo iniciales no alcanza — otra vez, es solo un 20 % más rápido que el lazo de corriente.</p>
+</blockquote>
+<p><em>(pág. 165)</em></p>
+<blockquote>
+<p>Duplicando a <strong>12000</strong> se consigue un desempeño satisfactorio cumpliendo el resto de las condiciones de operación.</p>
+<p>Y el cierre del bloque es que los tres elementos —sensores, observador e inversor— comparten el mismo diagnóstico: <strong>la especificación de la guía no da suficiente separación de escalas frente a un lazo de corriente ubicado en 5000</strong>. Hay que exigirles entre dos y tres veces más rapidez. Francisco sigue con la discretización.</p>
+</blockquote>
+<hr />
+<h2>Resumen de tiempos</h2>
+<table>
+<thead>
+<tr>
+<th>Bloque</th>
+<th>Páginas</th>
+<th>Beats</th>
+<th>Tiempo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A — Modelado físico</td>
+<td>1–31</td>
+<td>8</td>
+<td>7:15</td>
+</tr>
+<tr>
+<td>B — Simulación y control</td>
+<td>66–117</td>
+<td>14</td>
+<td>10:25</td>
+</tr>
+<tr>
+<td>C — Verificación</td>
+<td>153–165</td>
+<td>4</td>
+<td>3:00</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>96</strong></td>
+<td><strong>26</strong></td>
+<td><strong>20:40</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Los 4 anclajes que no podés perder</h2>
+<p>Si te quedás sin tiempo, sacrificá todo menos esto:</p>
+<ol>
+<li><strong>pág. 20–21</strong> — Los acoplamientos físicos son los que después se cancelan. Es la bisagra entre modelado y control.</li>
+<li><strong>pág. 74–75</strong> — Los modos eléctrico y mecánico se <strong>fusionan</strong> por la contraelectromotriz. Es el resultado no obvio del trabajo.</li>
+<li><strong>pág. 94</strong> — El desacople convierte cada eje en un <strong>integrador puro</strong>. Es lo que hace posible todo el control.</li>
+<li><strong>pág. 160–162</strong> — Los sensores especificados <strong>no alcanzan</strong>; hacen falta 3× más rápidos. Es la conclusión de ingeniería más concreta.</li>
+</ol>
+<hr />
+<h2>Antes de la mesa</h2>
+<ul>
+<li>[ ] <strong>Recompilar <code>main_presentacion.pdf</code></strong> — el de la carpeta es del 29/07 y tiene 184 páginas. El actual tiene <strong>182</strong>.</li>
+<li>[ ] Confirmar con Francisco que ambos presentan desde el <strong>mismo PDF</strong>.</li>
+<li>[ ] Avisarle que su segundo bloque ahora termina en <strong>152</strong> (la tabla de contenidos de verificación) y que vos arrancás en el ensayo térmico.</li>
+<li>[ ] Ensayar la pág. <strong>102</strong> (la lámina "¿Acción integral?" está vacía a propósito: el argumento lo decís vos).</li>
+</ul></div>
+<div id="bar">
+  <div id="clk">00:00</div>
+  <div><button id="go">Iniciar</button> <button id="rst" class="ghost">Reiniciar</button></div>
+  <div id="lbl">Tocá un beat para cronometrarlo · Alt+clic lo tacha</div>
+</div>
+<script>
+const BEATS = [{"label": "Joaquín Calderón · Proyecto Global Integrador AyME 2026", "secs": 0}, {"label": "Páginas 1–31 · 7:15", "secs": 435}, {"label": "A1 · pág. 1–3 · 0:40 — Apertura", "secs": 40}, {"label": "A2 · pág. 5–6 · 0:55 — ⚓ El sistema y la carga", "secs": 55}, {"label": "A3 · pág. 8–11 · 0:35 — Los tres balances (pasar rápido las 4 láminas)", "secs": 35}, {"label": "A4 · pág. 12–14 · 1:10 — ⚓ El modelo mecánico equivalente", "secs": 70}, {"label": "A5 · pág. 16–19 · 0:55 — Por qué Park", "secs": 55}, {"label": "A6 · pág. 20–21 · 1:10 — ⚓⚓ Los acoplamientos y el torque", "secs": 70}, {"label": "A7 · pág. 23–25 · 0:40 — El subsistema térmico", "secs": 40}, {"label": "A8 · pág. 27–31 · 1:10 — ⚓ El modelo no lineal global y cierre", "secs": 70}, {"label": "Páginas 66–117 · 10:25", "secs": 625}, {"label": "B1 · pág. 67–71 · 0:55 — El ensayo", "secs": 55}, {"label": "B2 · pág. 72–73 · 0:40 — ⚓ Posición", "secs": 40}, {"label": "B3 · pág. 74–75 · 1:00 — ⚓⚓ Velocidad: el resultado más interesante", "secs": 60}, {"label": "B4 · pág. 76–80 · 0:50 — Corriente, temperatura, tensión d, fases", "secs": 50}, {"label": "B5 · pág. 81 · 0:25 — ⚓ Los cuatro cuadrantes", "secs": 25}, {"label": "B6 · pág. 82–84 · 0:20 — Ángulo de carga", "secs": 20}, {"label": "B7 · pág. 85–89 · 0:50 — Condición inicial de i_ds y field weakening", "secs": 50}, {"label": "B8 · pág. 91–96 · 1:15 — ⚓⚓ El modulador de torque: la idea central", "secs": 75}, {"label": "B9 · pág. 97–100 · 0:40 — Diferencias y el efecto de R_s", "secs": 40}, {"label": "B10 · pág. 101–104 · 0:50 — ⚓ Lazos de corriente y la acción integral", "secs": 50}, {"label": "B11 · pág. 105–107 · 0:35 — Torque precalculado", "secs": 35}, {"label": "B12 · pág. 108–114 · 1:10 — ⚓⚓ El PID externo", "secs": 70}, {"label": "B13 · pág. 115–116 · 0:30 — ⚓ Separación de escalas", "secs": 30}, {"label": "B14 · pág. 117 · 0:25 — ⚓ Cierre: qué pasa con la carga", "secs": 25}, {"label": "Páginas 153–165 · 3:00", "secs": 180}, {"label": "C1 · pág. 153–155 · 0:50 — ⚓⚓ El ensayo térmico", "secs": 50}, {"label": "C2 · pág. 156–159 · 0:40 — Sensores como filtros", "secs": 40}, {"label": "C3 · pág. 160–162 · 0:50 — ⚓⚓ El hallazgo de esta sección", "secs": 50}, {"label": "C4 · pág. 163–165 · 0:40 — El inversor y cierre del bloque", "secs": 40}];
+let t=0, run=null, cur=-1;
+const clk=document.getElementById('clk'), lbl=document.getElementById('lbl'), go=document.getElementById('go');
+function fmt(s){s=Math.abs(s);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function paint(){
+  const tgt = cur>=0 ? BEATS[cur].secs : 0;
+  const over = cur>=0 && tgt && t>tgt;
+  clk.textContent=(over?'+':'')+fmt(over?t-tgt:t);
+  clk.classList.toggle('over', !!over);
+  document.getElementById('prog').style.width = tgt? Math.min(100,100*t/tgt)+'%' : '0';
+}
+function tick(){t++;paint()}
+go.onclick=()=>{ if(run){clearInterval(run);run=null;go.textContent='Seguir'} else {run=setInterval(tick,1000);go.textContent='Pausa'} };
+document.getElementById('rst').onclick=()=>{t=0;paint()};
+document.querySelectorAll('h3[data-beat]').forEach(h=>{
+  const i=+h.dataset.beat, b=BEATS[i];
+  if(b&&b.secs){const s=document.createElement('span');s.className='tag';s.textContent=fmt(b.secs);h.prepend(s)}
+  h.onclick=(e)=>{
+    if(e.altKey){h.classList.toggle('done');return}
+    cur=i;t=0;lbl.textContent=b.label.replace(/\s+/g,' ');
+    if(run)clearInterval(run); run=setInterval(tick,1000); go.textContent='Pausa'; paint();
+  };
+});
+paint();
+</script></body></html>

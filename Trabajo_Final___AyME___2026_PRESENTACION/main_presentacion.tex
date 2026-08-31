@@ -817,14 +817,14 @@ v_{0s}(t) = R_s\!\big(T_s^\circ(t)\big)\cdot 0 + L_{ls}\,\frac{d(0)}{dt} = 0
 {\small Esta reducción es útil para el análisis electromecánico; la linealización Jacobiana LPV conserva el modelo de seis estados para mantener explícita la estructura global.}
 \end{frame}
 
-\subsection{Validación a lazo abierto del modelo no lineal}
+\subsection{Implementación en Entorno de Simulación}
 
 % -------------------------------------------------------------------
 %  SLIDE 32 - Diagrama Simulink completo (apertura de validación)
 % -------------------------------------------------------------------
-\figslide{Arquitectura de simulación a lazo abierto}{%
-Implementación del modelo no lineal completo en MATLAB/Simulink con consignas $v_{qs}^{r*}=5$~V, $v_{ds}^{r*}=0$. Las transformaciones de Park directa e inversa se aplican en serie (back-to-back) para verificar la integridad matemática antes de excitar la planta. Los tres subsistemas (electromagnético, mecánico, térmico) interactúan simultáneamente.%
-}{simulink_diagrama_completo.png}{Diagrama de bloques implementado en Simulink. Se destaca la estructura de validación con Transformaciones directa e inversa y la interconexión de los subsistemas.}
+\figslide{Modelo del accionamiento implementado en Simulink}{%
+Implementación del modelo no lineal completo del accionamiento en MATLAB/Simulink. La planta recibe las tensiones de fase $v_{abcs}$ y el torque de carga $T_{ld}$, y entrega la posición y la velocidad ($\theta_m,\omega_m$), las corrientes de fase, la temperatura del estator $T_s^\circ$ y el torque. Los tres subsistemas (electromagnético, mecánico y térmico) interactúan simultáneamente; las transformaciones de Park directa e inversa vinculan el marco $abc$ con el marco rotórico $qd0$.%
+}{simulink_diagrama_completo.png}{Diagrama de bloques del modelo del accionamiento implementado en Simulink, con la interconexión de los subsistemas electromagnético, mecánico y térmico.}
 
 
 \StartProjectSection{6}{\SecLPV}
@@ -975,7 +975,7 @@ $}
 % -------------------------------------------------------------------
 %  SLIDE 41 - Ley mínima eje d
 % -------------------------------------------------------------------
-\begin{frame}{Segunda linealización: realimentación de no linealidades}
+\begin{frame}{Segundo método de linealización: realimentación de no linealidades}
 {\small\color{uncGray}Luego del modelo LPV, se aplica un segundo método de linealización: la realimentación de no linealidades. La idea es cancelar algebraicamente los acoplamientos internos mediante una ley de control sobre las entradas manipuladas.}\par
 \vspace{3mm}
 
@@ -1158,7 +1158,7 @@ v_{qs}^{r}(t)=L_q\frac{di_{qs}^{r}(t)}{dt}+R_s i_{qs}^{r}(t)+\lambda'^r_m\omega_
 %  SLIDE 49 - Forma matricial aumentado
 % -------------------------------------------------------------------
 \begin{frame}{Forma matricial del modelo aumentado}
-{\small\color{uncGray}La estructura matricial deja ver que $i_{ds}^{r}$ evolucióna como un modo desacoplado de primer orden, mientras la terna $(\theta_m,\omega_m,i_{qs})$ conserva la misma planta nominal.}\par
+{\small\color{uncGray}La estructura matricial deja ver que $i_{ds}^{r}$ evoluciona como un modo desacoplado de primer orden, mientras la terna $(\theta_m,\omega_m,i_{qs})$ conserva la misma planta nominal.}\par
 \vspace{2mm}
 
 \centering
@@ -1255,12 +1255,12 @@ Caso particular: el acoplamiento cruzado se vuelve puramente $\lambda'^r_m$ (sin
 
 \textbf{Torque electromagnético en operación estacionaria:}
 \begin{equation*}
-T_m=\frac{3}{2}P_p\Big[\lambda'^r_m+(L_d-L_q)i_{ds,o}^{r}\Big]I_{qs,o}^{r}
+T_m=\frac{3}{2}P_p\Big[\lambda'^r_m+(L_d-L_q)i_{ds,o}^{r}\Big]i_{qs,o}^{r}
 \end{equation*}
 
 \textbf{Qué cambia respecto del caso base:}
 \begin{itemize}
-  \item Con $i_{ds,o}^{r}=0$, el torque queda asociado al flujo de los imanes y a $I_{qs,o}^{r}$.
+  \item Con $i_{ds,o}^{r}=0$, el torque queda asociado al flujo de los imanes y a $i_{qs,o}^{r}$.
   \item Con $i_{ds,o}^{r}\neq 0$, aparece el aporte de reluctancia por saliencia.
   \item El mismo parámetro desplaza los autovalores del Jacobiano LPV.
 \end{itemize}
@@ -1272,7 +1272,7 @@ T_m=\frac{3}{2}P_p\Big[\lambda'^r_m+(L_d-L_q)i_{ds,o}^{r}\Big]I_{qs,o}^{r}
 %  SLIDE 56 - Reforzamiento y debilitamiento
 % -------------------------------------------------------------------
 \figslide{Reforzamiento y debilitamiento de campo}{%
-La inyección de corriente en eje $d$ altera el flujo magnético total. \textbf{$i_{ds,o}^{r}>0$ (reforzamiento):} aumenta el flujo efectivo y suma torque de reluctancia si $L_d>L_q$. \textbf{$i_{ds,o}^{r}<0$ (debilitamiento):} reduce el flujo efectivo y la fuerza contraelectromotriz; permite mayor velocidad antes de saturar tensión, al costo de menor torque para el mismo $I_{qs,o}^{r}$.%
+La inyección de corriente en eje $d$ altera el flujo magnético total. \textbf{$i_{ds,o}^{r}>0$ (reforzamiento):} aumenta el flujo efectivo y suma torque de reluctancia si $L_d>L_q$. \textbf{$i_{ds,o}^{r}<0$ (debilitamiento):} reduce el flujo efectivo y la fuerza contraelectromotriz; permite mayor velocidad antes de saturar tensión, al costo de menor torque para el mismo $i_{qs,o}^{r}$.%
 }{polosaliente_cilindrico.png}{Diagrama representativo de un rotor genérico de polos no salientes y un rotor de polos salientes.}
 
 % -------------------------------------------------------------------
@@ -1427,7 +1427,7 @@ $}
 % -------------------------------------------------------------------
 \figslide{Mapa de polos y ceros a lazo abierto}{%
 El mapa confirma la estructura anterior: un polo cinemático en el origen, el par electromecánico estable y el polo residual de $i_{ds}^{r}$ marcado como cancelado. El polo en el origen no compromete la estabilidad física; justifica cerrar el lazo para regular la coordenada de posición.% 
-}{polos_ceros_LA.png}{Mapa de polos y ceros a lazo abierto para ambas funciones de transferencia del modelo LTI aumentado. Se indica con $\times$ roja el polo cancelado de $i_{ds}^r$.}
+}{polos_ceros_LA.png}{Mapa de polos y ceros a lazo abierto para ambas funciones de transferencia del modelo LTI aumentado (polos: cuadrados sólidos; ceros: círculos). Se indica con un rombo rojo el polo cancelado de $i_{ds}^r$.}
 
 \subsection{Variaciones paramétricas}
 % -------------------------------------------------------------------
@@ -1703,8 +1703,8 @@ $\theta_m$ crece como rampa durante los pulsos de tensión, consecuencia directa
 %  SLIDE 80 — Error de seguimiento en theta_m
 % -------------------------------------------------------------------
 \figslide{Error de seguimiento en $\theta_m(t)$}{%
-Error acotado por debajo de $0{,}21$~rad ($<0{,}1\%$ de la excursión de $242$~rad). No se anula en régimen permanente: exhibe una deriva lenta acumulativa, porque $\theta_m$ es la integral de $\omega_m$ y el integrador acumula las pequeñas discrepancias instantáneas de velocidad. Offset residual $\approx 0{,}05$~rad al final del ensayo. Es comportamiento inherente al integrador puro de la planta, no error de modelado.%
-}{sim_theta_m_error.png}{Error de seguimiento en $\theta_m(t)$: diferencia $\theta_m^{NL}-\theta_m^{LTI}$.\textbf{Error relativo $< 0{,}1\%$ de la excursión de 242~rad.}}
+Error acotado por debajo de $0{,}1$~rad ($<0{,}05\%$ de la excursión de $242$~rad). No se anula en régimen permanente: exhibe una deriva lenta acumulativa, porque $\theta_m$ es la integral de $\omega_m$ y el integrador acumula las pequeñas discrepancias instantáneas de velocidad. Offset residual $\approx 0{,}085$~rad al final del ensayo. Es comportamiento inherente al integrador puro de la planta, no error de modelado.%
+}{sim_theta_m_error.png}{Error de seguimiento en $\theta_m(t)$: diferencia $\theta_m^{NL}-\theta_m^{LTI}$. \textbf{Error relativo $< 0{,}05\%$ de la excursión de 242~rad.}}
 
 % -------------------------------------------------------------------
 %  SLIDE 81 — Velocidad angular omega_m
@@ -1717,22 +1717,22 @@ Gobernada por el modo electromecánico subamortiguado ($\lambda_{2,3} = -91{,}7 
 %  SLIDE 82 — Error de seguimiento en omega_m
 % -------------------------------------------------------------------
 \figslide{Error de seguimiento en $\omega_m(t)$}{%
-Concordancia NL-LTI excelente: error prácticamente nulo en régimen ($<0{,}5$~rad/s) y picos $\leq 9$~rad/s únicamente en las conmutaciones, que se extinguen en milisegundos.%
-}{sim_omega_m_error.png}{Error de seguimiento en $\omega_m(t)$: diferencia $\omega_m^{NL}-\omega_m^{LTI}$. \textbf{Error en régimen $< 0{,}12\%$ vs $\pm 405$~rad/s; picos $\leq 2{,}2\%$ en conmutaciones.}}
+Concordancia NL-LTI excelente: error prácticamente nulo en régimen ($<0{,}5$~rad/s) y picos $\leq 3$~rad/s únicamente en las conmutaciones, que se extinguen en milisegundos.%
+}{sim_omega_m_error.png}{Error de seguimiento en $\omega_m(t)$: diferencia $\omega_m^{NL}-\omega_m^{LTI}$. \textbf{Error nulo en régimen ($<0{,}5$~rad/s); picos $\leq 3$~rad/s en conmutaciones.}}
 
 % -------------------------------------------------------------------
 %  SLIDE 83 — Corriente i_qs
 % -------------------------------------------------------------------
 \figslide{Corriente de eje $q$, $i_{qs}^r(t)$}{%
-Pico de torque transitorio $\approx \pm 10{,}4$~A (no $v_{qs}^{r*}/R_{s0}$) que decae hasta $\approx 0{,}1$~A en régimen, a medida que la FCEM $\lambda'^r_m P_p \omega_m$ equilibra la tensión aplicada. El pico es el valor relevante frente a $I_{s,max} = 2$~A rms (límite ampliamente superado en este ensayo LA). Como $i_{ds}^{r} \equiv 0$, $T_{em} = k_t\,i_{qs}^r$ con $k_t = \tfrac{3}{2}P_p\lambda'^r_m$: la forma de onda de $T_{em}(t)$ es proporcional a $i_{qs}^r(t)$.%
+Pico de torque transitorio $\approx \pm 10{,}4$~A (no $v_{qs}^{r*}/R_{s0}$) que decae hasta $\approx 0{,}1$~A en régimen, a medida que la FCEM $\lambda'^r_m P_p \omega_m$ equilibra la tensión aplicada. El pico es el valor relevante frente a $I_{s,max} = 2$~A rms (límite ampliamente superado en este ensayo LA). Como $i_{ds}^{r} \equiv 0$, $T_m = k_t\,i_{qs}^r$ con $k_t = \tfrac{3}{2}P_p\lambda'^r_m$: la forma de onda de $T_m(t)$ es proporcional a $i_{qs}^r(t)$.%
 }{sim_iqs.png}{Corriente de eje $q$, $i_{qs}^r(t)$: comparación NL (azul) vs LTI aumentado (rojo). Panel inferior: señales de excitación ($T_l$ y $v_{qs}^{r*}$).}
 
 % -------------------------------------------------------------------
 %  SLIDE 84 — Error de seguimiento en i_qs
 % -------------------------------------------------------------------
 \figslide{Error de seguimiento en $i_{qs}^r(t)$}{%
-Los modelos se solapan casi perfectamente: error nulo en régimen y picos $\leq 0{,}26$~A únicamente en las conmutaciones, confirmando que las leyes de control NL linealizan efectivamente la dinámica de la planta.%
-}{sim_iqs_error.png}{Error de seguimiento en $i_{qs}^r(t)$: diferencia $i_{qs}^{r,NL}-i_{qs}^{r,LTI}$. \textbf{Error nulo en régimen; picos $\leq 2{,}5\%$ del pico de $\pm 10{,}4$~A en conmutaciones.}}
+Los modelos se solapan casi perfectamente: error nulo en régimen y picos $\leq 0{,}1$~A únicamente en las conmutaciones, confirmando que las leyes de control NL linealizan efectivamente la dinámica de la planta.%
+}{sim_iqs_error.png}{Error de seguimiento en $i_{qs}^r(t)$: diferencia $i_{qs}^{r,NL}-i_{qs}^{r,LTI}$. \textbf{Error nulo en régimen; picos $\leq 0{,}1$~A en conmutaciones.}}
 
 % ===================================================================
 %  BLOQUE — Simulación Dinámica 5.1.6 parte 2
@@ -1749,9 +1749,9 @@ $T_s^\circ$ crece levemente respecto de $T_{amb}^\circ=25\,^\circ$C por pérdida
 % -------------------------------------------------------------------
 %  SLIDE 86 — Tensión v_ds de la ley de control mínima
 % -------------------------------------------------------------------
-\figslide{Tensión $v_{ds}(t)$ de la ley de control mínima}{%
-La ley de control mínima impone internamente $v_{ds}=-L_q\,i_{qs}\,\omega_r$, proporcional al producto $i_{qs}\cdot\omega_m$. Esta tensión es no nula solo cuando ambas variables lo son simultáneamente, y su magnitud crece con el nivel de operación del sistema.%
-}{sim_v_ds.png}{Tensión $v_{ds}$ del modelo NL ($i_{ds}^r(0) = 0$~A).}
+\figslide{Tensión $v_{ds}^{r}(t)$ de la ley de control mínima}{%
+La ley de control mínima impone internamente $v_{ds}^{r}=-L_q\,i_{qs}^{r}\,\omega_r$, proporcional al producto $i_{qs}^{r}\cdot\omega_m$. Esta tensión es no nula solo cuando ambas variables lo son simultáneamente, y su magnitud crece con el nivel de operación del sistema.%
+}{sim_v_ds.png}{Tensión $v_{ds}^{r}$ del modelo NL ($i_{ds}^r(0) = 0$~A).}
 
 % -------------------------------------------------------------------
 %  SLIDE 87 — Corrientes en coordenadas abc
@@ -1763,7 +1763,7 @@ Reconstrucción mediante la Transformación Inversa de Park: $[i_a,i_b,i_c]^T = 
 % -------------------------------------------------------------------
 %  SLIDE 88 — Curva paramétrica torque vs velocidad
 % -------------------------------------------------------------------
-\figslide{Curva paramétrica $T_{em}(\omega_m)$: cuadrantes de operación}{%
+\figslide{Curva paramétrica $T_m(\omega_m)$: cuadrantes de operación}{%
 Trayectoria construida con los datos del script MATLAB, segmentada en los 10 transitorios que conectan los puntos de (cuasi-)equilibrio $P_0$ a $P_{10}$. Cada transitorio se distingue por color; las flechas indican el sentido de recorrido; los diamantes marcan los puntos de equilibrio.%
 }{sim_torque_vs_velocidad.png}{Torque electromagnético vs velocidad angular: cuadrantes de operación del PMSM. Cada transitorio en color, flechas de sentido y diamantes en los equilibrios $P_0$ a $P_{10}$.}
 
@@ -1824,65 +1824,7 @@ v_\beta(t) &= \tfrac{\sqrt{3}}{3}\!\big(v_{bs}(t) - v_{cs}(t)\big)
 Evolución de $\delta(t)$ del modelo NL para $i_{ds}^{r}(0)=0$~A. Refleja directamente la diferencia integrada entre $\omega_e$ (referencia eléctrica) y $\omega_r$ (rotor) a lo largo de la secuencia de transitorios aplicada.%
 }{sim_angulo_carga.png}{Ángulo de carga $\delta(t)$ vs $t$ (modelo NL, $i_{ds}^r(0) = 0$~A).}
 
-% -------------------------------------------------------------------
-%  SLIDE 92 — Métricas de transitorio (planteo)
-% -------------------------------------------------------------------
-\begin{frame}{Métricas de transitorio}
-{\small\color{uncGray}Se determinan las métricas de los 10 transitorios para el caso nominal $i_{ds}^{r}(0)=0$~A del modelo LTI aumentado.}\par
-\vspace{4mm}
 
-\textbf{Variable subamortiguada:} $\omega_m$, gobernada por el par de polos complejos $\zeta=0{,}527$, $\omega_n=174$~rad/s del análisis de estabilidad LA.
-
-\textbf{Métricas medidas sobre $\omega_m$:}
-\begin{itemize}
-\item $\omega_{m,ss}$: velocidad de régimen del segmento.
-\item $M_p$: sobrepico.
-\item $t_p$: tiempo de pico.
-\item $t_r$: tiempo de crecimiento (10--90 \%).
-\item $t_s$: tiempo de establecimiento ($\pm 1$~\%).
-\end{itemize}
-
-\textbf{Métricas sobre $i_{qs}$:} pico y valor de régimen.
-
-\end{frame}
-
-% -------------------------------------------------------------------
-%  SLIDE 93 — Tabla de métricas (10 transitorios)
-% -------------------------------------------------------------------
-\begin{frame}{Tabla de métricas --- 10 transitorios}
-{\small\color{uncGray}Modelo LTI aumentado, $i_{ds}^{r}(0)=0$~A. $M_p$, $t_p$, $t_r$ y $t_s$ medidos sobre $\omega_m$.}\par
-\vspace{2mm}
-
-\centering
-\scriptsize
-\renewcommand{\arraystretch}{1.1}
-\begin{tabular}{|c|l|r|r|r|r|r|r|r|}
-\hline
-\textbf{Tr.} & \textbf{Evento} & $\omega_{m,ss}$ & $M_p$ & $t_p$ & $t_r$ & $t_s$ & $i_{qs}^{r,\text{pico}}$ & $i_{qs}^{r,\text{reg}}$ \\
- & & [rad/s] & [\%] & [ms] & [ms] & [ms] & [A] & [A] \\
-\hline
-1 & $v_{qs}^{r*}\to+19{,}6$~V & $405{,}5$ & $14{,}3$ & $21{,}3$ & $9{,}7$ & $50{,}1$ & $10{,}39$ & $0{,}12$ \\
-2 & $T_{ld}\to+6{,}28$~Nm & $389{,}6$ & $25{,}6$ & $14{,}4$ & $5{,}8$ & $45{,}7$ & $0{,}95$ & $0{,}85$ \\
-3 & $T_{ld}\to-6{,}28$~Nm & $421{,}4$ & $25{,}6$ & $14{,}3$ & $5{,}8$ & $45{,}7$ & $0{,}85$ & $-0{,}60$ \\
-4 & $v_{qs}^{r*}\to 0$~V & $15{,}9$ & $14{,}3$ & $21{,}3$ & $9{,}7$ & $50{,}1$ & $-10{,}99$ & $-0{,}72$ \\
-5 & $T_{ld}\to 0$~Nm & $0{,}0$ & $25{,}6$ & $14{,}3$ & $5{,}8$ & $45{,}7$ & $-0{,}72$ & $0{,}00$ \\
-6 & $v_{qs}^{r*}\to-19{,}6$~V & $-405{,}5$ & $14{,}3$ & $21{,}2$ & $9{,}7$ & $50{,}1$ & $-10{,}39$ & $-0{,}12$ \\
-7 & $T_{ld}\to+6{,}28$~Nm & $-421{,}4$ & $25{,}6$ & $14{,}4$ & $5{,}8$ & $45{,}7$ & $0{,}70$ & $0{,}60$ \\
-8 & $T_{ld}\to-6{,}28$~Nm & $-389{,}6$ & $25{,}6$ & $14{,}4$ & $5{,}8$ & $45{,}7$ & $-1{,}05$ & $-0{,}85$ \\
-9 & $v_{qs}^{r*}\to 0$~V & $15{,}9$ & $14{,}3$ & $21{,}3$ & $9{,}7$ & $50{,}1$ & $9{,}55$ & $-0{,}72$ \\
-10 & $T_{ld}\to 0$~Nm & $0{,}0$ & $25{,}6$ & $14{,}4$ & $5{,}8$ & $45{,}7$ & $-0{,}72$ & $0{,}00$ \\
-\hline
-\end{tabular}
-\normalsize
-
-\vspace{2mm}
-{\scriptsize $\omega_{m,ss}$: velocidad de régimen del segmento. $i_{qs}^{r,\text{pico}}$/$i_{qs}^{r,\text{reg}}$: valor pico y de régimen de la corriente de eje $q$.}
-\end{frame}
-
-% ===================================================================
-%  BLOQUE — Simulación Dinámica 5.1.6 parte 3
-%  (Sub-item c: i_ds(0)=±0.5 A + Sub-item d: field forcing/weakening)
-% ===================================================================
 
 % -------------------------------------------------------------------
 %  SLIDE 94 — Planteo Sub-item c: tres condiciones iniciales
@@ -1908,7 +1850,7 @@ Se analiza la evolución de $i_{ds}^{r}(t)$ en NL y LTI y el impacto sobre el re
 %  SLIDE 95 — i_ds NL y LTI, tres casos
 % -------------------------------------------------------------------
 \begin{frame}{$i_{ds}^{r}(t)$ en los modelos NL y LTI}
-{\small\color{uncGray}Las trayectorias parten de ${0,,+0{,}5,,-0{,}5}$~A y convergen rápidamente a $i_{ds}^{r}=0$. En el LTI son exponenciales puras de primer orden; el NL presenta el mismo desacoplamiento efectivo.}\par
+{\small\color{uncGray}Las trayectorias parten de $\{0,\ +0{,}5,\ -0{,}5\}$~A y convergen rápidamente a $i_{ds}^{r}=0$. En el LTI son exponenciales puras de primer orden; el NL presenta el mismo desacoplamiento efectivo.}\par
 \vspace{2mm}
 \begin{columns}[T,onlytextwidth]
 \begin{column}{0.49\textwidth}
@@ -1927,16 +1869,16 @@ Se analiza la evolución de $i_{ds}^{r}(t)$ en NL y LTI y el impacto sobre el re
 %  SLIDE 97 — Planteo Sub-item d: consigna v_ds*
 % -------------------------------------------------------------------
 \begin{frame}{Field forcing y Field weakening a lazo abierto}
-{\small\color{uncGray}Se agrega una consigna de tensión $v_{ds}^{*}$ sumada a la ley de control mínima, con $i_{ds}^{r}(0)=0$~A para aislar el efecto de la tensión inyectada.}\par
+{\small\color{uncGray}Se agrega una consigna de tensión $v_{ds}^{r*}$ sumada a la ley de control mínima, con $i_{ds}^{r}(0)=0$~A para aislar el efecto de la tensión inyectada.}\par
 \vspace{2mm}
 
 \textbf{Consigna agregada a la ley mínima:}
 \begin{equation*}
-v_{ds}(t) = \underbrace{-L_q\,i_{qs}\,\omega_r}_{\text{ley mínima}} + v_{ds}^{*}(t)
+v_{ds}^{r}(t) = \underbrace{-L_q\,i_{qs}^{r}\,\omega_r}_{\text{ley mínima}} + v_{ds}^{r*}(t)
 \end{equation*}
 
 \begin{equation*}
-v_{ds}^{*}(t) = \begin{cases}
+v_{ds}^{r*}(t) = \begin{cases}
 0 & t < 0{,}5~\text{s} \\
 +1{,}9596~\text{V} & t \geq 0{,}5~\text{s} \quad \text{(field forcing)}\\
 -1{,}9596~\text{V} & t \geq 0{,}5~\text{s} \quad \text{(field weakening)}
@@ -1944,15 +1886,15 @@ v_{ds}^{*}(t) = \begin{cases}
 \end{equation*}
 
 \vspace{2mm}
-{\small \textbf{Amplitud:} $V_{ds}^{*} = V_{qs,nom}/10 = 1{,}9596$~V, escalón aplicado a partir de $t=0{,}5$~s. $i_{ds}^{r}(0)=0$~A para aislar el efecto de la tensión.}
+{\small \textbf{Amplitud:} $V_{ds}^{r*} = V_{qs,nom}/10 = 1{,}9596$~V, escalón aplicado a partir de $t=0{,}5$~s. $i_{ds}^{r}(0)=0$~A para aislar el efecto de la tensión.}
 \end{frame}
 
 % -------------------------------------------------------------------
 %  SLIDE 98 — Figura field forcing/weakening
 % -------------------------------------------------------------------
 \figslide{Efecto del field forcing y field weakening sobre $i_{ds}^{r}(t)$}{%
-A partir de $t=0{,}5$~s, $i_{ds}^{r}$ crece exponencialmente hasta $\pm 1{,}92$~A según el signo de la consigna; el caso base ($v_{ds}^{*}=0$) permanece en cero. Comparación de los tres escenarios sobre la misma corriente de eje $d$.%
-}{sim_ff_ids.png}{Efecto del field forcing ($v_{ds}^* = +1{,}96$~V) y field weakening ($v_{ds}^* = -1{,}96$~V) sobre $i_{ds}^r(t)$, comparado con el caso base ($v_{ds}^* = 0$).}
+A partir de $t=0{,}5$~s, $i_{ds}^{r}$ crece exponencialmente hasta $\pm 1{,}85$~A según el signo de la consigna; el caso base ($v_{ds}^{r*}=0$) permanece en cero. Comparación de los tres escenarios sobre la misma corriente de eje $d$.%
+}{sim_ff_ids.png}{Efecto del field forcing ($v_{ds}^{r*} = +1{,}96$~V) y field weakening ($v_{ds}^{r*} = -1{,}96$~V) sobre $i_{ds}^r(t)$, comparado con el caso base ($v_{ds}^{r*} = 0$).}
 
 % -------------------------------------------------------------------
 %  SLIDE 99 — Análisis modelo NL: acoplamientos cruzados
@@ -2014,7 +1956,7 @@ T_m(t) = \tfrac{3}{2}\,P_p\!\left[\,\lambda'^r_m + (L_d - L_q)\,i_{ds}^{r}(t)\,\
 \begin{align*}
 v_{qs}^{r} &= R_s(T_s^\circ)\,i_{qs}^{r} + L_q\,\tfrac{d i_{qs}^{r}}{dt} + \big[\lambda'^r_m + L_d\,i_{ds}^{r}\big]\,\omega_r \\[3pt]
 v_{ds}^{r} &= R_s(T_s^\circ)\,i_{ds}^{r} + L_d\,\tfrac{d i_{ds}^{r}}{dt} - L_q\,i_{qs}^{r}\,\omega_r \\[3pt]
-v_{0s}^{r} &= R_s(T_s^\circ)\,i_{0s} + L_{ls}\,\tfrac{d i_{0s}}{dt}
+v_{0s} &= R_s(T_s^\circ)\,i_{0s} + L_{ls}\,\tfrac{d i_{0s}}{dt}
 \end{align*}
 
 \vspace{2mm}
@@ -2034,8 +1976,8 @@ v_{0s}^{r} &= R_s(T_s^\circ)\,i_{0s} + L_{ls}\,\tfrac{d i_{0s}}{dt}
 \vspace{2mm}
 
 \begin{align*}
-v_{qs}^{r} &= v_{qs}^{r*} + R_s(T_s^\circ)\,i_{qs}^{r} + \big[\lambda'^r_m + L_d\,i_{ds}^{r}\big]\,P_p\,\omega_m \\[3pt]
-v_{ds}^{r} &= v_{ds}^{r*} + R_s(T_s^\circ)\,i_{ds}^{r} - L_q\,i_{qs}^{r}\,P_p\,\omega_m \\[3pt]
+v_{qs}^{r} &= v_{qs}^{r*} + R_s(T_s^\circ)\,i_{qs}^{r} + \big[\lambda'^r_m + L_d\,i_{ds}^{r*}\big]\,P_p\,\omega_m \\[3pt]
+v_{ds}^{r} &= v_{ds}^{r*} + R_s(T_s^\circ)\,i_{ds}^{r} - L_q\,i_{qs}^{r*}\,P_p\,\omega_m \\[3pt]
 v_{0s} &= v_{0s}^{*} + R_s(T_s^\circ)\,i_{0s}
 \end{align*}
 
@@ -2053,7 +1995,7 @@ v_{0s} &= v_{0s}^{*} + R_s(T_s^\circ)\,i_{0s}
 \begin{align*}
 v_{qs}^{r*}(t) &= L_q\,\frac{d i_{qs}^{r}(t)}{dt} \\[4pt]
 v_{ds}^{r*}(t) &= L_d\,\frac{d i_{ds}^{r}(t)}{dt} \\[4pt]
-v_{0s}^{r*}(t) &= L_{ls}\,\frac{d i_{0s}^{r}(t)}{dt}
+v_{0s}^{*}(t) &= L_{ls}\,\frac{d i_{0s}(t)}{dt}
 \end{align*}
 
 \end{frame}
@@ -2107,15 +2049,15 @@ Bloque (subsistema) equivalente del desacoplamiento de retroalimentaciones físi
 %  SLIDE 109 — Figura comparación torque R_s cte vs variable
 % -------------------------------------------------------------------
 \figslide{Comparación de torque neto: $R_s$ constante vs $R_s$ variable}{%
-Evolución temporal del par neto $T_{\text{neto}}$ [N$\cdot$m]. Se contrasta el comportamiento con resistencia estatórica constante (RS Cte., línea roja) y con resistencia estatórica variable (RS Variable, línea azul).%
-}{comp_torque_rs.png}{Evolución temporal del par neto $T_{\text{neto}}$~[N$\cdot$m]: comparación con $R_s$ constante (rojo) y $R_s$ variable (azul).Déficit de torque $\sim 15\%$}
+Evolución temporal del par neto $T_{\text{neto}}$ [N$\cdot$m]. Se contrasta el comportamiento con resistencia estatórica constante (RS Cte., línea naranja) y con resistencia estatórica variable (RS Variable, línea azul).%
+}{comp_torque_rs.png}{Evolución temporal del par neto $T_{\text{neto}}$~[N$\cdot$m]: comparación con $R_s$ constante (naranja) y $R_s$ variable (azul). Déficit de torque $\sim 15\%$.}
 
 % -------------------------------------------------------------------
 %  SLIDE 110 — Figura comparación velocidad R_s cte vs variable
 % -------------------------------------------------------------------
 \figslide{Comparación de velocidad angular: $R_s$ constante vs $R_s$ variable}{%
-Velocidad angular mecánica $\omega_m(t)$ [rad/s] con resistencia estatórica constante (RS Cte., línea roja) y con resistencia estatórica variable (RS Variable, línea azul).%
-}{comp_velocidad_rs.png}{Velocidad angular mecánica $\omega_m(t)$~[rad/s]: comparación con $R_s$ constante (rojo) y $R_s$ variable (azul).Error en velocidad $\omega_m$ $\sim 4\%$}
+Velocidad angular mecánica $\omega_m(t)$ [rad/s] con resistencia estatórica constante (RS Cte., línea naranja) y con resistencia estatórica variable (RS Variable, línea azul).%
+}{comp_velocidad_rs.png}{Velocidad angular mecánica $\omega_m(t)$~[rad/s]: comparación con $R_s$ constante (naranja) y $R_s$ variable (azul). El déficit de torque ($\sim 15\%$) se integra en un error de posición $\theta_m \sim 4\%$.}
 
 % -------------------------------------------------------------------
 %  SLIDE 111 — Lazos de Control de Corrientes (intro + FT)
@@ -2359,8 +2301,8 @@ K_{sia} &= J_{eq}\,\omega_n^3  \;=\; 10\,129{,}778 \;\;\frac{\text{N}\cdot\text{
 %  SLIDE 125 — Figura mapa de polos
 % -------------------------------------------------------------------
 \figslide{Mapa de polos: planta, lazos de corriente y PID}{%
-Polos en el plano $s$: planta a lazo abierto (cruces), lazos de corriente (cuadrado, $-5000$~rad/s) y polos de lazo cerrado del PID (círculos, $-800$ y $-600\pm j\,529$). Izquierda: vista completa mostrando la separación de escalas. Derecha: zoom planta vs.\ PID.%
-}{mapa_polos_5_2_2.png}{Polos en el plano $s$: planta a lazo abierto (cruces), lazos de corriente (cuadrado, $-5000$) y polos de lazo cerrado del PID ($-800$ y $-600 \pm j\,529$).}
+Polos en el plano $s$ (cuadrados sólidos, diferenciados por color): planta a lazo abierto (azul), lazos de corriente (verde, $-5000$~rad/s) y polos de lazo cerrado del PID (rojo, $-800$ y $-600\pm j\,529$). Izquierda: vista completa mostrando la separación de escalas. Derecha: zoom planta vs.\ PID.%
+}{mapa_polos_5_2_2.png}{Polos en el plano $s$ (cuadrados sólidos por color): planta a lazo abierto (azul), lazos de corriente (verde, $-5000$) y polos de lazo cerrado del PID (rojo, $-800$ y $-600 \pm j\,529$).}
 
 % -------------------------------------------------------------------
 %  SLIDE 126 — Separación de escalas
@@ -2390,8 +2332,8 @@ Polos en el plano $s$: planta a lazo abierto (cruces), lazos de corriente (cuadr
 %  SLIDE 127 — Figura migración polos PID
 % -------------------------------------------------------------------
 \figslide{Migración de polos del PID al variar $m_l$}{%
-Trayectoria de los polos de lazo cerrado al barrer $m_l$ de $0$ a $1{,}5$~kg con ganancias fijas nominales. \emph{Colorbar} en $m_l$. El nominal ($m_l=0$) se marca con círculo y el peor caso ($m_l=1{,}5$~kg) con cuadrado.%
-}{migracion_polos_pid.png}{Migración de los polos de lazo cerrado del PID al variar $m_l$ de $0$ a $1{,}5$~kg con ganancias fijas. Nominal ($m_l=0$): círculo; peor caso ($m_l=1{,}5$): cuadrado.}
+Trayectoria de los polos de lazo cerrado al barrer $m_l$ de $0$ a $1{,}5$~kg con ganancias fijas nominales. \emph{Colorbar} en $m_l$. El nominal ($m_l=0$) se marca con rombo sólido y el peor caso ($m_l=1{,}5$~kg) con cuadrado sólido.%
+}{migracion_polos_pid.png}{Migración de los polos de lazo cerrado del PID al variar $m_l$ de $0$ a $1{,}5$~kg con ganancias fijas. Nominal ($m_l=0$): rombo sólido; peor caso ($m_l=1{,}5$): cuadrado sólido.}
 
 % ===================================================================
 %  BLOQUE — 5.2.3 Observador de estado de orden reducido
@@ -2692,6 +2634,13 @@ La comparación directa muestra que limitar la tensión del inversor a $39{,}19$
 
 
 % -------------------------------------------------------------------
+%  SLIDE 150b — Segunda medida: saturación de la consigna de corriente
+% -------------------------------------------------------------------
+\figslide{Segunda medida: saturación de la consigna de corriente}{%
+Se satura la consigna de corriente en el modulador de torque para no imponer desde el arranque una corriente que supere la corriente pico del motor. Aun así, el accionamiento \textbf{no} logra cumplir la consigna sin exceder sus especificaciones: la limitación por sí sola no basta y obliga a revisar la forma de la consigna.%
+}{corrientes_comparacion.png}{Aun con saturación en la consigna de corriente, el accionamiento no puede cumplir la consigna sin superar sus especificaciones.}
+
+% -------------------------------------------------------------------
 %  SLIDE 151 — Figura perfil trapezoidal de velocidad
 % -------------------------------------------------------------------
 \figslide{Tercera medida: perfil trapezoidal de velocidad}{%
@@ -2905,7 +2854,7 @@ Respuesta del observador aumentado con acción integral: desaparece el error de 
 %  SLIDE 164 — Planteo del ensayo térmico
 % -------------------------------------------------------------------
 \begin{frame}{Planteo del ensayo térmico}
-{\small\color{uncGray}Se evalúa la evolución de la temperatura del bobinado del estator $T_s(t)$ ciclo a ciclo bajo operación repetitiva, hasta detectar si supera el límite admisible.}\par
+{\small\color{uncGray}Se evalúa la evolución de la temperatura del bobinado del estator $T_s^\circ(t)$ ciclo a ciclo bajo operación repetitiva, hasta detectar si supera el límite admisible.}\par
 \vspace{3mm}
 
 \textbf{Ciclo de operación repetitivo de 15 s:}
@@ -2932,7 +2881,7 @@ T^\circ_{s,max} = 115\,^\circ\text{C}
 % -------------------------------------------------------------------
 %  SLIDE 165 — Evolución térmica
 % -------------------------------------------------------------------
-\figslide{Evolución térmica $T_s(t)$ bajo operación repetitiva}{%
+\figslide{Evolución térmica $T_s^\circ(t)$ bajo operación repetitiva}{%
 La temperatura del bobinado crece de forma acumulativa ciclo a ciclo sin alcanzar equilibrio térmico. El cruce con la línea de $115\,^\circ$C ocurre a $t=225{,}9$~s, equivalente a $\approx 15$ ciclos completos $+\,0{,}9$~s del ciclo 16.%
 }{5_2_5_C_comportamiento_termico.png}{Evolución de $T_s^\circ(t)$ bajo operación repetitiva ($T_{amb}^\circ=25\,^\circ$C, $T_{ld}=5$~N$\cdot$m); supera $T^\circ_{s,max}=115\,^\circ$C a los $225{,}9$~s.}
 
@@ -2945,7 +2894,7 @@ La temperatura del bobinado crece de forma acumulativa ciclo a ciclo sin alcanza
 
 \textbf{Resultado:}
 \begin{itemize}
-\item $T_s$ supera $115\,^\circ$C a $t = 225{,}9$~s ($\approx 15$ ciclos $+ 0{,}9$~s del ciclo 16).
+\item $T_s^\circ$ supera $115\,^\circ$C a $t = 225{,}9$~s ($\approx 15$ ciclos $+ 0{,}9$~s del ciclo 16).
 \item La temperatura crece sin alcanzar equilibrio térmico.
 \end{itemize}
 
@@ -2979,7 +2928,7 @@ El sistema \textbf{NO} satisface el requerimiento térmico de operación continu
 \hline
 $i_{as},\,i_{bs},\,i_{cs}$ & LP 2$^{do}$ orden & $\omega_n = 6000$~rad/s, $\zeta = 1$ & $p_{1,2} = -6000$ \\
 $\theta_m$ & LP 2$^{do}$ orden & $\omega_n = 2000$~rad/s, $\zeta = 1$ & $p_{1,2} = -2000$ \\
-$T_s$ & LP 1$^{er}$ orden & $\tau = 20$~s & $p = -1/\tau = -0{,}05$ \\
+$T_s^\circ$ & LP 1$^{er}$ orden & $\tau = 20$~s & $p = -1/\tau = -0{,}05$ \\
 \hline
 \end{tabular}
 \normalsize
@@ -3319,9 +3268,9 @@ Diagrama de bloques del controlador de posición discretizado: la acción integr
 \item Generador de trayectoria $\to$ referencias cinemáticas.
 \item Observador de estado $\to$ $\hat{\omega}_m$, $\hat{\theta}_m$ a partir de $\theta_m$ y $T_e^{*}$.
 \item Controlador PID de posición $\to$ $T_m^{**}$.
-\item Modulador de torque $\to$ $i_{qs}^{*}$.
-\item Modulador de corriente $\to$ $v_{qs}^{*}$, $v_{ds}^{*}$, $v_{0s}^{*}$.
-\item Desacople de retroalimentaciones $\to$ $v_{qs}$, $v_{ds}$, $v_{0s}$.
+\item Modulador de torque $\to$ $i_{qs}^{r*}$.
+\item Modulador de corriente $\to$ $v_{qs}^{r*}$, $v_{ds}^{r*}$, $v_{0s}^{*}$.
+\item Desacople de retroalimentaciones $\to$ $v_{qs}^{r}$, $v_{ds}^{r}$, $v_{0s}$.
 \item Transformaciones de Park directa e inversa.
 \end{itemize}
 
@@ -3348,6 +3297,33 @@ El modelo codificado discreto reproduce la respuesta de posición del modelo con
 \figslide{Comparación continuo vs codificado: velocidad}{%
 Misma conclusión para la velocidad. El modelo codificado cumple con creces las expectativas de seguimiento de consigna, con un error despreciable de origen numérico proveniente de la discretización. Cierre del bloque de codificación.%
 }{comp_codcont_vel.png}{Comparación de seguimiento de consigna de velocidad del modelo continuo vs el codificado discreto.}
+
+% ===================================================================
+%  BLOQUE — Conclusiones
+% ===================================================================
+\subsection{Conclusiones}
+
+% -------------------------------------------------------------------
+%  SLIDE — Conclusiones (I): modelado y control
+% -------------------------------------------------------------------
+\begin{frame}{Conclusiones (I): modelado y control}
+\begin{itemize}\small
+\item Del modelo \textbf{no lineal de 6 estados} en coordenadas $qd0$ se derivó un \textbf{LTI equivalente aumentado de 4 estados} por linealización por realimentación NL (ley mínima sobre $v_{ds}^{r}$ + ley complementaria sobre $v_{qs}^{r}$ que cancelan los acoplamientos electromagnéticos cruzados). La simulación comparativa verificó la equivalencia NL–LTI; la dinámica residual de $i_{ds}^{r}$ es transitoria, con $\tau_d = L_d/R_s \approx 6{,}24$~ms.
+\item $i_{ds}^{r}$ resultó \textbf{no controlable} desde $v_{qs}^{r}$ y \textbf{no observable} desde $\theta_m$: justifica la cancelación polo–cero y habilita un \textbf{observador reducido} de la parte mecánica a partir del sensor de posición.
+\item \textbf{Control en cascada:} modulador de torque con desacople completo y torque precalculado (gravitatorio y viscoso); lazos $P$ de corriente con polo en $-5000$~rad/s; PID externo por sintonía serie ($\zeta=0{,}75$, $\omega_n=800$~rad/s). El observador mecánico se ubicó con polos dobles en $-3200$~rad/s y luego debió \textbf{aumentarse con acción integral} (tres polos en $-3200$) para eliminar el offset de estimación ante perturbaciones de carga.
+\end{itemize}
+\end{frame}
+
+% -------------------------------------------------------------------
+%  SLIDE — Conclusiones (II): desempeño, discretización y mejoras
+% -------------------------------------------------------------------
+\begin{frame}{Conclusiones (II): desempeño, discretización y líneas de mejora}
+\begin{itemize}\small
+\item \textbf{Verificación de desempeño:} ante consignas con discontinuidades de aceleración/velocidad las corrientes exceden lo nominal $\Rightarrow$ generador de trayectorias con perfil trapezoidal de aceleración (\textbf{curva en S}). Bajo operación cíclica ($T_{amb}^\circ=25\,^\circ$C, $T_{ld}=5$~N$\cdot$m) la temperatura supera $115\,^\circ$C a $225{,}9$~s ($\approx 15$ ciclos): no cumple operación continua repetitiva. Modelando sensores e inversor como pasa-bajos, hubo que escalar los polos de sensores en $N=3$ y duplicar el ancho de banda del inversor a $12000$~rad/s.
+\item \textbf{Discretización:} regla de Tustin con $T_s \leq 1{,}25\times 10^{-4}$~s (integradores del PID y del observador) y frontera digital–analógica con ZOH; la codificación modular en \textit{MATLAB Functions} resultó equivalente al diseño en bloques.
+\item \textbf{Líneas de mejora:} campo orientado con máximo torque por amperio (MTPA); disipación térmica activa o reformulación del ciclo de trabajo; evaluación de robustez ante variación de $J_l$ y $b_l$; y validación experimental sobre plataforma física.
+\end{itemize}
+\end{frame}
 
 % -------------------------------------------------------------------
 %  SLIDE 213 — Referencias bibliograficas
