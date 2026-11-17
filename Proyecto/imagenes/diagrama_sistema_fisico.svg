@@ -1,0 +1,319 @@
+<svg viewBox="0 0 1620 865" xmlns="http://www.w3.org/2000/svg" font-family="'Times New Roman','Liberation Serif',Georgia,serif">
+  <rect x="0" y="0" width="1620" height="865" fill="#ffffff"/>
+
+  <!-- marcos de subsistemas -->
+  <rect x="35"  y="160" width="390" height="665" rx="12" fill="#F6F6F6" stroke="#9A9A9A" stroke-width="1.6" stroke-dasharray="8 5"/>
+  <rect x="440" y="160" width="480" height="665" rx="12" fill="#EAF4FB" stroke="#7FAFD0" stroke-width="1.6" stroke-dasharray="8 5"/>
+  <rect x="930" y="160" width="650" height="665" rx="12" fill="#FFFBE6" stroke="#CDB75C" stroke-width="1.6" stroke-dasharray="8 5"/>
+  <text x="230"  y="190" text-anchor="middle" font-size="14" font-weight="bold" fill="#555555" letter-spacing="0.4">SUBSISTEMA ELÉCTRICO (POTENCIA)</text>
+  <text x="676"  y="183" text-anchor="middle" font-size="14" font-weight="bold" fill="#34698F" letter-spacing="0.4">SUBSISTEMA</text>
+  <text x="676"  y="201" text-anchor="middle" font-size="14" font-weight="bold" fill="#34698F" letter-spacing="0.4">ELECTROMAGNÉTICO + TÉRMICO</text>
+  <text x="1255" y="190" text-anchor="middle" font-size="14" font-weight="bold" fill="#8A7320" letter-spacing="0.4">SUBSISTEMA MECÁNICO (TRANSMISIÓN + CARGA)</text>
+
+  <!-- cuadros de salida de sensores -->
+  <rect x="375" y="48" width="210" height="84" rx="8" fill="#FFF6DC" stroke="#E07B00" stroke-width="2"/>
+  <text x="480" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#8A4500" letter-spacing="0.5">SENSORES DE CORRIENTE</text>
+  <rect x="748" y="48" width="164" height="84" rx="8" fill="#FFF6DC" stroke="#E07B00" stroke-width="2"/>
+  <text x="830" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#8A4500" letter-spacing="0.5">SONDA TÉRMICA</text>
+  <rect x="985" y="48" width="190" height="84" rx="8" fill="#FFF6DC" stroke="#E07B00" stroke-width="2"/>
+  <text x="1080" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#8A4500" letter-spacing="0.5">ENCODER / RESOLVER</text>
+
+  <!-- batería / bus DC -->
+  <polyline points="105,435 105,400 215,400" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+  <polyline points="105,560 105,600 215,600" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="84"  y1="435" x2="126" y2="435" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="94"  y1="460" x2="116" y2="460" stroke="#1a1a1a" stroke-width="5"/>
+  <line x1="84"  y1="485" x2="126" y2="485" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="94"  y1="510" x2="116" y2="510" stroke="#1a1a1a" stroke-width="5"/>
+  <line x1="84"  y1="535" x2="126" y2="535" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="94"  y1="560" x2="116" y2="560" stroke="#1a1a1a" stroke-width="5"/>
+  <text x="80" y="416" text-anchor="middle" font-size="19" fill="#1a1a1a">+</text>
+  <text x="80" y="596" text-anchor="middle" font-size="21" fill="#1a1a1a">−</text>
+  <text x="105" y="642" text-anchor="middle" font-size="14" fill="#333333">Bus DC</text>
+
+  <!-- inversor trifásico: IGBT + diodos de recirculación -->
+  <rect x="215" y="350" width="195" height="300" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.2"/>
+  <text x="312" y="338" text-anchor="middle" font-size="17" font-weight="bold" fill="#1a1a1a">Inversor 3φ</text>
+  <text x="312" y="671" text-anchor="middle" font-size="12.5" fill="#444444">6 IGBT + diodos de recirculación</text>
+  <text x="312" y="688" text-anchor="middle" font-size="12.5" fill="#444444">conmutación PWM</text>
+  <circle cx="215" cy="400" r="4" fill="#1a1a1a"/>
+  <circle cx="215" cy="600" r="4" fill="#1a1a1a"/>
+  <line x1="215" y1="400" x2="380" y2="400" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="215" y1="600" x2="380" y2="600" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="250" y1="400" x2="250" y2="406" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="250" y1="442" x2="250" y2="458" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="250" y1="494" x2="250" y2="600" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="250" y1="406" x2="250" y2="414" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="250" y1="414" x2="243" y2="420" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="243" y1="419" x2="243" y2="429" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="239" y1="422" x2="239" y2="426" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="239" y1="424" x2="231" y2="424" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="243" y1="428" x2="250" y2="434" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="250" y1="434" x2="250" y2="442" stroke="#1a1a1a" stroke-width="1.8"/>
+  <polygon points="248.8,433.4 243.7,432.1 247.1,428.1" fill="#1a1a1a"/>
+  <line x1="250" y1="406" x2="264" y2="406" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="250" y1="442" x2="264" y2="442" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="264" y1="406" x2="264" y2="417" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="259.5" y1="417" x2="268.5" y2="417" stroke="#1a1a1a" stroke-width="2"/>
+  <polygon points="259.5,431 268.5,431 264,417" fill="#1a1a1a"/>
+  <line x1="264" y1="431" x2="264" y2="442" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="250" y1="458" x2="250" y2="466" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="250" y1="466" x2="243" y2="472" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="243" y1="471" x2="243" y2="481" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="239" y1="474" x2="239" y2="478" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="239" y1="476" x2="231" y2="476" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="243" y1="480" x2="250" y2="486" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="250" y1="486" x2="250" y2="494" stroke="#1a1a1a" stroke-width="1.8"/>
+  <polygon points="248.8,485.4 243.7,484.1 247.1,480.1" fill="#1a1a1a"/>
+  <line x1="250" y1="458" x2="264" y2="458" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="250" y1="494" x2="264" y2="494" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="264" y1="458" x2="264" y2="469" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="259.5" y1="469" x2="268.5" y2="469" stroke="#1a1a1a" stroke-width="2"/>
+  <polygon points="259.5,483 268.5,483 264,469" fill="#1a1a1a"/>
+  <line x1="264" y1="483" x2="264" y2="494" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="250" y1="450" x2="410" y2="450" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="250" cy="450" r="3.2" fill="#1a1a1a"/>
+  <circle cx="410" cy="450" r="4.5" fill="#1a1a1a"/>
+  <line x1="315" y1="400" x2="315" y2="456" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="315" y1="492" x2="315" y2="508" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="315" y1="544" x2="315" y2="600" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="315" y1="456" x2="315" y2="464" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="315" y1="464" x2="308" y2="470" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="308" y1="469" x2="308" y2="479" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="304" y1="472" x2="304" y2="476" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="304" y1="474" x2="296" y2="474" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="308" y1="478" x2="315" y2="484" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="315" y1="484" x2="315" y2="492" stroke="#1a1a1a" stroke-width="1.8"/>
+  <polygon points="313.8,483.4 308.7,482.1 312.1,478.1" fill="#1a1a1a"/>
+  <line x1="315" y1="456" x2="329" y2="456" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="315" y1="492" x2="329" y2="492" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="329" y1="456" x2="329" y2="467" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="324.5" y1="467" x2="333.5" y2="467" stroke="#1a1a1a" stroke-width="2"/>
+  <polygon points="324.5,481 333.5,481 329,467" fill="#1a1a1a"/>
+  <line x1="329" y1="481" x2="329" y2="492" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="315" y1="508" x2="315" y2="516" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="315" y1="516" x2="308" y2="522" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="308" y1="521" x2="308" y2="531" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="304" y1="524" x2="304" y2="528" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="304" y1="526" x2="296" y2="526" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="308" y1="530" x2="315" y2="536" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="315" y1="536" x2="315" y2="544" stroke="#1a1a1a" stroke-width="1.8"/>
+  <polygon points="313.8,535.4 308.7,534.1 312.1,530.1" fill="#1a1a1a"/>
+  <line x1="315" y1="508" x2="329" y2="508" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="315" y1="544" x2="329" y2="544" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="329" y1="508" x2="329" y2="519" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="324.5" y1="519" x2="333.5" y2="519" stroke="#1a1a1a" stroke-width="2"/>
+  <polygon points="324.5,533 333.5,533 329,519" fill="#1a1a1a"/>
+  <line x1="329" y1="533" x2="329" y2="544" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="315" y1="500" x2="410" y2="500" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="315" cy="500" r="3.2" fill="#1a1a1a"/>
+  <circle cx="410" cy="500" r="4.5" fill="#1a1a1a"/>
+  <line x1="380" y1="400" x2="380" y2="506" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="380" y1="542" x2="380" y2="558" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="380" y1="594" x2="380" y2="600" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="380" y1="506" x2="380" y2="514" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="380" y1="514" x2="373" y2="520" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="373" y1="519" x2="373" y2="529" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="369" y1="522" x2="369" y2="526" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="369" y1="524" x2="361" y2="524" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="373" y1="528" x2="380" y2="534" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="380" y1="534" x2="380" y2="542" stroke="#1a1a1a" stroke-width="1.8"/>
+  <polygon points="378.8,533.4 373.7,532.1 377.1,528.1" fill="#1a1a1a"/>
+  <line x1="380" y1="506" x2="394" y2="506" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="380" y1="542" x2="394" y2="542" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="394" y1="506" x2="394" y2="517" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="389.5" y1="517" x2="398.5" y2="517" stroke="#1a1a1a" stroke-width="2"/>
+  <polygon points="389.5,531 398.5,531 394,517" fill="#1a1a1a"/>
+  <line x1="394" y1="531" x2="394" y2="542" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="380" y1="558" x2="380" y2="566" stroke="#1a1a1a" stroke-width="1.8"/>
+  <line x1="380" y1="566" x2="373" y2="572" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="373" y1="571" x2="373" y2="581" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="369" y1="574" x2="369" y2="578" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="369" y1="576" x2="361" y2="576" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="373" y1="580" x2="380" y2="586" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="380" y1="586" x2="380" y2="594" stroke="#1a1a1a" stroke-width="1.8"/>
+  <polygon points="378.8,585.4 373.7,584.1 377.1,580.1" fill="#1a1a1a"/>
+  <line x1="380" y1="558" x2="394" y2="558" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="380" y1="594" x2="394" y2="594" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="394" y1="558" x2="394" y2="569" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="389.5" y1="569" x2="398.5" y2="569" stroke="#1a1a1a" stroke-width="2"/>
+  <polygon points="389.5,583 398.5,583 394,569" fill="#1a1a1a"/>
+  <line x1="394" y1="583" x2="394" y2="594" stroke="#1a1a1a" stroke-width="1.6"/>
+  <line x1="380" y1="550" x2="410" y2="550" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="380" cy="550" r="3.2" fill="#1a1a1a"/>
+  <circle cx="410" cy="550" r="4.5" fill="#1a1a1a"/>
+
+  <!-- cables trifásicos -->
+  <line x1="410" y1="450" x2="692" y2="450" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="410" y1="500" x2="680" y2="500" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="410" y1="550" x2="692" y2="550" stroke="#1a1a1a" stroke-width="2"/>
+
+  <!-- sensores de corriente -->
+  <g stroke="#E07B00" stroke-width="1.6" stroke-dasharray="5 4" fill="none">
+    <line x1="460" y1="435" x2="460" y2="132"/>
+    <line x1="490" y1="485" x2="490" y2="132"/>
+    <line x1="520" y1="535" x2="520" y2="132"/>
+  </g>
+  <circle cx="460" cy="450" r="15" fill="#FFCC66" stroke="#E07B00" stroke-width="2"/>
+  <text x="460" y="454.5" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7A4A00">CT</text>
+  <circle cx="490" cy="500" r="15" fill="#FFCC66" stroke="#E07B00" stroke-width="2"/>
+  <text x="490" y="504.5" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7A4A00">CT</text>
+  <circle cx="520" cy="550" r="15" fill="#FFCC66" stroke="#E07B00" stroke-width="2"/>
+  <text x="520" y="554.5" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#7A4A00">CT</text>
+
+  <!-- motor PMSM -->
+  <circle cx="790" cy="500" r="110" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.5"/>
+  <text x="742" y="368" text-anchor="middle" font-size="17" font-weight="bold" fill="#1a1a1a">PMSM</text>
+  <text x="790" y="640" text-anchor="middle" font-size="13" fill="#444444">estator en Y · neutro NO accesible</text>
+  <circle cx="692" cy="450" r="4" fill="#1a1a1a"/>
+  <circle cx="680" cy="500" r="4" fill="#1a1a1a"/>
+  <circle cx="692" cy="550" r="4" fill="#1a1a1a"/>
+  <text x="676" y="471" text-anchor="middle" font-size="13" font-style="italic" fill="#1a1a1a">a</text>
+  <text x="664" y="521" text-anchor="middle" font-size="13" font-style="italic" fill="#1a1a1a">b</text>
+  <text x="676" y="571" text-anchor="middle" font-size="13" font-style="italic" fill="#1a1a1a">c</text>
+  <g stroke="#1a1a1a" stroke-width="1.8" fill="none">
+    <line x1="692" y1="450" x2="706" y2="450"/>
+    <rect x="706" y="442" width="38" height="16" fill="#ffffff"/>
+    <line x1="744" y1="450" x2="752" y2="450"/>
+    <path d="M752,450 A9,9 0 0 1 770,450 A9,9 0 0 1 788,450 A9,9 0 0 1 806,450 A9,9 0 0 1 824,450"/>
+    <line x1="824" y1="450" x2="850" y2="450"/>
+    <line x1="680" y1="500" x2="706" y2="500"/>
+    <rect x="706" y="492" width="38" height="16" fill="#ffffff"/>
+    <line x1="744" y1="500" x2="752" y2="500"/>
+    <path d="M752,500 A9,9 0 0 1 770,500 A9,9 0 0 1 788,500 A9,9 0 0 1 806,500 A9,9 0 0 1 824,500"/>
+    <line x1="824" y1="500" x2="850" y2="500"/>
+    <line x1="692" y1="550" x2="706" y2="550"/>
+    <rect x="706" y="542" width="38" height="16" fill="#ffffff"/>
+    <line x1="744" y1="550" x2="752" y2="550"/>
+    <path d="M752,550 A9,9 0 0 1 770,550 A9,9 0 0 1 788,550 A9,9 0 0 1 806,550 A9,9 0 0 1 824,550"/>
+    <line x1="824" y1="550" x2="850" y2="550"/>
+    <line x1="850" y1="450" x2="850" y2="550" stroke-width="2"/>
+  </g>
+  <circle cx="850" cy="500" r="5" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="861" y="496" font-size="13.5" font-style="italic" fill="#1a1a1a">n</text>
+  <text x="853" y="516" text-anchor="middle" font-size="10.5" fill="#555555">(flotante)</text>
+
+  <!-- sonda RTD -->
+  <line x1="833.5" y1="348" x2="833.5" y2="132" stroke="#E07B00" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <rect x="829" y="352" width="9" height="35" rx="4.5" fill="#ffffff" stroke="#E07B00" stroke-width="2"/>
+  <line x1="833.5" y1="362" x2="833.5" y2="386" stroke="#E07B00" stroke-width="3"/>
+  <circle cx="833.5" cy="392" r="7" fill="#E07B00" stroke="#E07B00"/>
+  <text x="848" y="372" font-size="13" font-weight="bold" fill="#A04D00">RTD</text>
+
+  <!-- eje motor -->
+  <rect x="900" y="491" width="160" height="18" fill="#C9C9C9" stroke="#1a1a1a" stroke-width="1.5"/>
+  <rect x="1060" y="484" width="14" height="32" fill="#8C8C8C" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="1002" y="583" text-anchor="middle" font-size="12.5" fill="#555555">(eje motor)</text>
+
+  <!-- encoder -->
+  <line x1="1075" y1="405" x2="1075" y2="132" stroke="#E07B00" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <line x1="1030" y1="449" x2="1030" y2="488" stroke="#E07B00" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <rect x="975" y="405" width="140" height="42" rx="6" fill="#FFF3E0" stroke="#E07B00" stroke-width="2"/>
+  <text x="1045" y="431" text-anchor="middle" font-size="13.5" fill="#7A4A00">Encoder / Resolver</text>
+
+  <!-- reductora planetaria -->
+  <polygon points="1075,452 1183,468 1183,532 1075,548" fill="#D2D2D2" stroke="#1a1a1a" stroke-width="2"/>
+  <g stroke="#1a1a1a" stroke-width="1.4">
+    <line x1="1088.5" y1="454" x2="1088.5" y2="447"/>
+    <line x1="1102"   y1="456" x2="1102"   y2="449"/>
+    <line x1="1115.5" y1="458" x2="1115.5" y2="451"/>
+    <line x1="1129"   y1="460" x2="1129"   y2="453"/>
+    <line x1="1142.5" y1="462" x2="1142.5" y2="455"/>
+    <line x1="1156"   y1="464" x2="1156"   y2="457"/>
+    <line x1="1169.5" y1="466" x2="1169.5" y2="459"/>
+  </g>
+  <text x="1129" y="496" text-anchor="middle" font-size="13" fill="#1a1a1a">Reductora</text>
+  <text x="1129" y="512" text-anchor="middle" font-size="13" fill="#1a1a1a">planetaria</text>
+  <text x="1093" y="580" font-size="15" font-weight="bold" font-style="italic" fill="#C62828">r</text>
+  <text x="1104" y="580" font-size="15" font-weight="bold" fill="#C62828">= 120 : 1</text>
+
+  <!-- eje de salida -->
+  <rect x="1183" y="492" width="80" height="16" fill="#C9C9C9" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="1230" y="479" text-anchor="middle" font-size="12.5" fill="#555555">(eje carga)</text>
+
+  <!-- péndulo -->
+  <rect x="1260" y="484" width="56" height="7" fill="#B5B5B5" stroke="#333333" stroke-width="1"/>
+  <circle cx="1274" cy="500" r="11" fill="#777777" stroke="#333333" stroke-width="1.5"/>
+  <line x1="1274" y1="514" x2="1274" y2="778" stroke="#999999" stroke-width="1.4" stroke-dasharray="6 5"/>
+  <g stroke="#AAAAAA" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="1274" y1="500" x2="1234.3" y2="521.1"/>
+    <line x1="1403" y1="743" x2="1363.3" y2="764.1"/>
+  </g>
+  <line x1="1234.3" y1="521.1" x2="1363.3" y2="764.1" stroke="#777777" stroke-width="1.3"/>
+  <line x1="1238.3" y1="519" x2="1230.3" y2="523.2" stroke="#777777" stroke-width="1.3"/>
+  <line x1="1367.3" y1="762" x2="1359.3" y2="766.2" stroke="#777777" stroke-width="1.3"/>
+  <g transform="rotate(-28 1274 500)">
+    <rect x="1266" y="502" width="16" height="258" rx="8" fill="#E8E8E8" stroke="#1a1a1a" stroke-width="2"/>
+    <circle cx="1274" cy="631" r="5" fill="#111111"/>
+  </g>
+  <circle cx="1274" cy="500" r="4.5" fill="#111111"/>
+  <path d="M 1274 560 A 60 60 0 0 0 1302.1 553" fill="none" stroke="#C62828" stroke-width="2"/>
+  <circle cx="1403" cy="743" r="32" fill="#FFD54F" stroke="#1a1a1a" stroke-width="2"/>
+  <line x1="1342" y1="610" x2="1418" y2="578" stroke="#555555" stroke-width="1.2"/>
+  <path d="M 1433.9 706.2 A 48 48 0 0 1 1433.9 779.8" fill="none" stroke="#C62828" stroke-width="2.2"/>
+  <polygon points="1426.2,786.2 1436.8,783.2 1431,776.4" fill="#C62828"/>
+  <line x1="1520" y1="612" x2="1520" y2="692" stroke="#1565C0" stroke-width="2.5"/>
+  <polygon points="1520,706 1513.5,690 1526.5,690" fill="#1565C0"/>
+  <text x="1534" y="660" font-size="16" font-style="italic" fill="#1565C0">g</text>
+
+  <!-- etiquetas con subíndices (posicionadas absolutas) -->
+  <text x="430.6" y="112.0" font-size="15" font-style="italic" fill="#1a1a1a">i</text>
+  <text x="434.8" y="115.5" font-size="11" font-style="italic" fill="#1a1a1a">as</text>
+  <text x="444.6" y="112.0" font-size="15" font-style="italic" fill="#1a1a1a">(t), i</text>
+  <text x="470.4" y="115.5" font-size="11" font-style="italic" fill="#1a1a1a">bs</text>
+  <text x="480.2" y="112.0" font-size="15" font-style="italic" fill="#1a1a1a">(t), i</text>
+  <text x="506.0" y="115.5" font-size="11" font-style="italic" fill="#1a1a1a">cs</text>
+  <text x="515.2" y="112.0" font-size="15" font-style="italic" fill="#1a1a1a">(t)</text>
+  <text x="813.6" y="112.0" font-size="15" font-style="italic" fill="#1a1a1a">T</text>
+  <text x="822.0" y="115.5" font-size="11" font-style="italic" fill="#1a1a1a">s</text>
+  <text x="826.2" y="112.0" font-size="15" font-style="italic" fill="#1a1a1a">°(t)</text>
+  <text x="1065.3" y="112.0" font-size="15" font-style="italic" fill="#1a1a1a">θ</text>
+  <text x="1072.6" y="115.5" font-size="11" font-style="italic" fill="#1a1a1a">m</text>
+  <text x="1080.6" y="112.0" font-size="15" font-style="italic" fill="#1a1a1a">(t)</text>
+  <text x="140.0" y="503.0" font-size="16" font-style="italic" fill="#1a1a1a">V</text>
+  <text x="149.8" y="506.5" font-size="11.5" font-style="italic" fill="#1a1a1a">DC</text>
+  <text x="528.0" y="429.0" font-size="13.5" font-style="italic" fill="#1a1a1a">v</text>
+  <text x="534.0" y="432.0" font-size="10" font-style="italic" fill="#1a1a1a">as</text>
+  <text x="542.9" y="429.0" font-size="13.5" font-style="italic" fill="#1a1a1a">(t), v</text>
+  <text x="568.4" y="432.0" font-size="10" font-style="italic" fill="#1a1a1a">bs</text>
+  <text x="577.3" y="429.0" font-size="13.5" font-style="italic" fill="#1a1a1a">(t), v</text>
+  <text x="602.7" y="432.0" font-size="10" font-style="italic" fill="#1a1a1a">cs</text>
+  <text x="611.1" y="429.0" font-size="13.5" font-style="italic" fill="#1a1a1a">(t)</text>
+  <text x="709.2" y="578.0" font-size="13" font-style="italic" fill="#1a1a1a">R</text>
+  <text x="717.1" y="581.0" font-size="10" font-style="italic" fill="#1a1a1a">s</text>
+  <text x="721.0" y="578.0" font-size="13" font-style="italic" fill="#1a1a1a">(T</text>
+  <text x="732.6" y="581.0" font-size="10" font-style="italic" fill="#1a1a1a">s</text>
+  <text x="736.5" y="578.0" font-size="13" font-style="italic" fill="#1a1a1a">)</text>
+  <text x="782.4" y="576.0" font-size="13" font-style="italic" fill="#1a1a1a">L</text>
+  <text x="789.7" y="579.0" font-size="10" font-style="italic" fill="#1a1a1a">s</text>
+  <text x="970.1" y="540.0" font-size="14.5" font-style="italic" fill="#1a1a1a">T</text>
+  <text x="978.2" y="543.5" font-size="11" font-style="italic" fill="#1a1a1a">m</text>
+  <text x="986.1" y="540.0" font-size="14.5" font-style="italic" fill="#1a1a1a">, ω</text>
+  <text x="1003.6" y="543.5" font-size="11" font-style="italic" fill="#1a1a1a">m</text>
+  <text x="1011.6" y="540.0" font-size="14.5" font-style="italic" fill="#1a1a1a">, θ</text>
+  <text x="1025.9" y="543.5" font-size="11" font-style="italic" fill="#1a1a1a">m</text>
+  <text x="983.9" y="562.0" font-size="14" font-style="italic" fill="#1a1a1a">J</text>
+  <text x="990.2" y="565.5" font-size="11" font-style="italic" fill="#1a1a1a">m</text>
+  <text x="998.1" y="562.0" font-size="14" font-style="italic" fill="#1a1a1a">, b</text>
+  <text x="1012.1" y="565.5" font-size="11" font-style="italic" fill="#1a1a1a">m</text>
+  <text x="1204.2" y="462.0" font-size="14.5" font-style="italic" fill="#1a1a1a">T</text>
+  <text x="1212.3" y="465.5" font-size="11" font-style="italic" fill="#1a1a1a">q</text>
+  <text x="1217.8" y="462.0" font-size="14.5" font-style="italic" fill="#1a1a1a">, ω</text>
+  <text x="1235.3" y="465.5" font-size="11" font-style="italic" fill="#1a1a1a">l</text>
+  <text x="1238.3" y="462.0" font-size="14.5" font-style="italic" fill="#1a1a1a">, θ</text>
+  <text x="1252.7" y="465.5" font-size="11" font-style="italic" fill="#1a1a1a">l</text>
+  <text x="1330.0" y="487.0" font-size="14" font-style="italic" fill="#666666">b</text>
+  <text x="1337.0" y="490.5" font-size="10.5" font-style="italic" fill="#666666">l</text>
+  <text x="1284.6" y="664.0" font-size="14" font-style="italic" fill="#555555">l</text>
+  <text x="1288.5" y="667.5" font-size="10.5" font-style="italic" fill="#555555">l</text>
+  <text x="1285.8" y="585.0" font-size="15" font-style="italic" fill="#C62828">θ</text>
+  <text x="1293.2" y="588.5" font-size="11" font-style="italic" fill="#C62828">l</text>
+  <text x="1395.6" y="749.0" font-size="16" font-style="italic" fill="#1a1a1a">m</text>
+  <text x="1407.1" y="752.5" font-size="12" font-style="italic" fill="#1a1a1a">l</text>
+  <text x="1424.0" y="582.0" font-size="14" font-style="italic" fill="#1a1a1a">m, l</text>
+  <text x="1445.0" y="585.5" font-size="10.5" font-style="italic" fill="#1a1a1a">cm</text>
+  <text x="1457.2" y="582.0" font-size="14" font-style="italic" fill="#1a1a1a">, J</text>
+  <text x="1470.5" y="585.5" font-size="10.5" font-style="italic" fill="#1a1a1a">cm</text>
+  <text x="1458.0" y="750.0" font-size="15" font-style="italic" fill="#C62828">T</text>
+  <text x="1466.3" y="753.5" font-size="11" font-style="italic" fill="#C62828">ld</text>
+</svg>

@@ -14,7 +14,7 @@ else
     error('No se encuentra "parametros_sistema_completo.m".');
 end
 
-R_s0 = R_sREF;          % Resistencia nominal (punto de operación T_s = 20°C)
+R_s0 = R_sREF * (1 + 3.9e-3*(29.5-20));   % R_s en operacion T_s=29.5C (media de la sim 5.1.6), NO a 20C. = 1.058 Ohm
 kt   = 1.5 * P_p * lambda_r;  % Constante de torque electromagnético
 
 %% 2. DEFINICIÓN DE SEÑALES DE ENTRADA
@@ -39,7 +39,7 @@ tld_func = @(t) T_LD_AMP * ( ...
 
 A_aug = [0,    1,          0,          0;
          0, -b_eq/J_eq,  kt/J_eq,      0;
-         0,    0,       -R_s0/L_q,      0;
+         0, -lambda_r*P_p/L_q, -R_s0/L_q,  0;   % back-EMF (lambda_m*P_p): acopla i_qs con omega_m -> par complejo zeta=0.527
          0,    0,          0,    -R_s0/L_d];
 
 B_aug = [0,         0;
@@ -414,27 +414,30 @@ text( abs(ax_lims(2))*margin_x, -abs(ax_lims(4))*margin_y, ...
 % === Formato final ===
 xlabel('\omega_m [rad/s]', 'FontSize', 13, 'FontWeight', 'bold');
 ylabel('T_{em} [N \cdot m]', 'FontSize', 13, 'FontWeight', 'bold');
-title({'Torque Electromagn\''etico vs Velocidad Angular - Cuadrantes de Operaci\''on'; ...
+title({'Torque Electromagnético vs Velocidad Angular - Cuadrantes de Operación'; ...
        'Modelo NL con Ley de Control (caso i_{ds}(0) = 0 A)'}, ...
     'FontSize', 13, 'FontWeight', 'bold');
 
 lgd = legend('Location', 'eastoutside', 'FontSize', 8.5, 'Box', 'on');
 title(lgd, 'Transitorios y Referencias', 'FontSize', 9);
+exportgraphics(fig8, 'imagenes/sim_torque_vs_velocidad.png', 'Resolution', 150);
 
-% --- Figura 8b: Trayectoria en Plano de Corrientes (gráfica separada) ---
+% --- Figura 8b: Trayectoria en Plano de Corrientes (3 casos superpuestos) ---
 fig8b = figure('Name', 'Plano de Corrientes i_ds vs i_qs', 'Color', 'w', ...
-    'Position', [200 80 900 600]);
-
-hold on; grid on; box on;
+    'Position', [200 100 900 400]);
+hold on; grid on; grid minor; box on;
 for k = 1:3
-    plot(res_nl{k}(:,3), res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.2);
+    plot(res_nl{k}(:,3), res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.6);
     plot(res_nl{k}(1,3), res_nl{k}(1,4), 'o', 'Color', case_colors{k}, ...
         'MarkerSize', 8, 'MarkerFaceColor', case_colors{k}, 'HandleVisibility', 'off');
 end
-xlabel('i_{qs} [A]', 'FontSize', 12); ylabel('i_{ds} [A]', 'FontSize', 12);
-title('Trayectoria en Plano de Corrientes (i_{ds} vs i_{qs}) - Modelo NL', 'FontSize', 13, 'FontWeight', 'bold');
-legend(case_names, 'Location', 'best');
 xline(0, 'k--', 'HandleVisibility', 'off'); yline(0, 'k--', 'HandleVisibility', 'off');
+ylabel('i_{ds}^r [A]', 'FontSize', 14); xlabel('i_{qs}^r [A]', 'FontSize', 14);
+title('Plano de corrientes i_{ds}^r vs i_{qs}^r - Modelo NL', 'FontSize', 15, 'FontWeight', 'bold');
+legend(case_names, 'FontSize', 11, 'Location', 'northeast');
+set(gca, 'FontSize', 13, 'GridAlpha', 0.3, 'MinorGridAlpha', 0.1);
+ylim([-0.6 0.6]);   % i_ds es chico: fijamos escala comun para apreciar el decaimiento
+exportgraphics(fig8b, 'imagenes/sim_ids_vs_iqs.png', 'Resolution', 300);
 
 % --- Figura 9: Ángulo de torque del rotor ---
 fig9 = figure('Name', 'Ángulo de Torque', 'Color', 'w', 'Position', [400 100 900 400]);
@@ -474,15 +477,16 @@ event_names = { ...
 % Usamos caso k=1 (i_ds(0) = 0) del modelo LTI
 y_lti_nom = res_lti{1};  % [theta_m, omega_m, i_qs, i_ds]
 
-fprintf('\n--- Métricas por transitorio (modelo LTI, i_ds(0) = 0 A) ---\n');
-fprintf('%-6s | %-25s | %10s | %10s | %10s | %10s | %8s\n', ...
-    'Trans', 'Evento', 'w_end', 'iq_ss', 'tr_iq', 'ts_iq', 'Mp_iq');
-fprintf('%-6s | %-25s | %10s | %10s | %10s | %10s | %8s\n', ...
-    '', '', '[rad/s]', '[A]', '[ms]', '[ms]', '[%]');
+fprintf('\n--- Métricas por transitorio sobre omega_m (modelo LTI, i_ds(0) = 0 A) ---\n');
+fprintf('%-5s | %-20s | %8s | %6s | %6s | %6s | %6s | %8s | %8s\n', ...
+    'Trans', 'Evento', 'wm_ss', 'Mp[%]', 'tp[ms]', 'tr[ms]', 'ts[ms]', 'iqs_pic', 'iqs_reg');
 fprintf('%s\n', repmat('-', 1, 95));
 
-% Almacenar para LaTeX
-metricas = NaN(10, 5);  % [w_end, iq_ss, tr_iq, ts_iq, Mp_iq]
+% Modo electromecanico dominante (par complejo de A_aug, zeta=0.527)
+ev    = eig(A_aug);
+ev_c  = ev(abs(imag(ev)) > 1e-6);
+wn_em = abs(ev_c(1));   zeta_em = -real(ev_c(1))/wn_em;
+
 latex_rows = strings(10, 1);
 
 for s = 1:10
@@ -496,91 +500,46 @@ for s = 1:10
         idx_fin = length(t_sim);
     end
 
-    t_seg = t_sim(idx_ini:idx_fin) - t_sim(idx_ini);
+    t_seg  = t_sim(idx_ini:idx_fin) - t_sim(idx_ini);
+    w_seg  = y_lti_nom(idx_ini:idx_fin, 2);   % omega_m
+    iq_seg = y_lti_nom(idx_ini:idx_fin, 3);   % i_qs
 
-    % --- omega_m: valor al final del segmento ---
-    w_seg = y_lti_nom(idx_ini:idx_fin, 2);
-    w_end = w_seg(end);
-
-    % --- i_qs: métricas de transitorio ---
-    vqs_prev = u_vqs(max(idx_ini - 1, 1));
-    vqs_post = u_vqs(idx_ini);
-    hubo_escalon_vqs = abs(vqs_post - vqs_prev) > 1e-9;
-    iq_seg = y_lti_nom(idx_ini:idx_fin, 3);
-    iq_ini = iq_seg(1);    % valor inicial del segmento
-    iq_ss = vqs_post / R_s0;  % valor de régimen teórico del eje q
-    delta_iq = iq_ss - iq_ini;  % cambio total teórico
-
-    if hubo_escalon_vqs && abs(delta_iq) > 1e-6
-        % Tiempo de crecimiento: 10% a 90% del cambio
-        iq_10 = iq_ini + 0.1 * delta_iq;
-        iq_90 = iq_ini + 0.9 * delta_iq;
-        if delta_iq > 0
-            idx_10 = find(iq_seg >= iq_10, 1);
-            idx_90 = find(iq_seg >= iq_90, 1);
-        else
-            idx_10 = find(iq_seg <= iq_10, 1);
-            idx_90 = find(iq_seg <= iq_90, 1);
-        end
-        if ~isempty(idx_10) && ~isempty(idx_90) && idx_90 > idx_10
-            tr_iq = (t_seg(idx_90) - t_seg(idx_10)) * 1000;
-        else
-            tr_iq = NaN;
-        end
-
-        % Tiempo de establecimiento: ±1% respecto al valor de régimen teórico
-        banda = 0.01 * abs(delta_iq);
-        settled = abs(iq_seg - iq_ss) <= banda;
-        idx_settled = find(settled, 1, 'first');
-        if ~isempty(idx_settled) && all(settled(idx_settled:end))
-            ts_iq = t_seg(idx_settled) * 1000;
-        else
-            ts_iq = NaN;
-        end
-
-        % Sobrepico respecto al cambio
-        if delta_iq > 0
-            Mp_iq = (max(iq_seg) - iq_ss) / abs(delta_iq) * 100;
-        else
-            Mp_iq = (min(iq_seg) - iq_ss) / delta_iq * 100;  % delta_iq < 0
-        end
-        if Mp_iq < 0.01; Mp_iq = 0; end
+    % --- Metricas sobre omega_m (variable subamortiguada, par complejo) ---
+    w0  = w_seg(1);
+    wss = mean(w_seg(max(end-19,1):end));      % velocidad de regimen del segmento
+    if abs(wss - w0) > 1e-3
+        S  = stepinfo(w_seg - w0, t_seg, wss - w0, 'SettlingTimeThreshold', 0.01);
+        Mp = S.Overshoot;  tp = S.PeakTime*1e3;  tr = S.RiseTime*1e3;  ts = S.SettlingTime*1e3;
     else
-        tr_iq = NaN;
-        ts_iq = NaN;
-        Mp_iq = NaN;
+        Mp = NaN; tp = NaN; tr = NaN; ts = NaN;
     end
 
-    metricas(s,:) = [w_end, iq_ss, tr_iq, ts_iq, Mp_iq];
+    % --- i_qs: pico y regimen (es un pico de torque que decae, NO un primer orden) ---
+    [~, im] = max(abs(iq_seg));
+    iq_pico = iq_seg(im);
+    iq_reg  = mean(iq_seg(max(end-19,1):end));
 
-    tr_txt = '--';
-    ts_txt = '--';
-    mp_txt = '--';
-    if ~isnan(tr_iq), tr_txt = sprintf('%.2f', tr_iq); end
-    if ~isnan(ts_iq), ts_txt = sprintf('%.2f', ts_iq); end
-    if ~isnan(Mp_iq), mp_txt = sprintf('%.2f', Mp_iq); end
+    fprintf('  %2d  | %-20s | %8.1f | %6.1f | %6.1f | %6.1f | %6.1f | %8.2f | %8.3f\n', ...
+        s, event_names{s}, wss, Mp, tp, tr, ts, iq_pico, iq_reg);
 
-    fprintf('  %2d   | %-25s | %10.2f | %10.4f | %10s | %10s | %8s\n', ...
-        s, event_names{s}, w_end, iq_ss, tr_txt, ts_txt, mp_txt);
-
-    latex_rows(s) = sprintf([ ...
-        '%d & $%s$ & %6.0f & %6.2f & %s & %s & %s \\\\'], ...
-        s, strrep(event_names{s}, '->', '\to '), w_end, iq_ss, ...
-        strrep(tr_txt, '.', '{,}'), strrep(ts_txt, '.', '{,}'), strrep(mp_txt, '.', '{,}'));
+    f1 = @(x) strrep(sprintf('%.1f', x), '.', '{,}');
+    f2 = @(x) strrep(sprintf('%.2f', x), '.', '{,}');
+    latex_rows(s) = sprintf('%d & $%s$ & $%s$ & $%s$ & $%s$ & $%s$ & $%s$ & $%s$ & $%s$ \\\\', ...
+        s, strrep(event_names{s}, '->', '\to '), f1(wss), f1(Mp), f1(tp), f1(tr), f1(ts), f2(iq_pico), f2(iq_reg));
 end
 
-fprintf('\n--- Influencia relativa de las acciones externas ---\n');
-fprintf('tau_e = L_q/R_s0 = %.2f ms (dinámica eléctrica rápida de i_qs)\n', L_q/R_s0*1000);
-fprintf('t_s(1%%) teorico = tau_e * ln(100) = %.2f ms\n', L_q/R_s0 * log(100) * 1000);
-fprintf('\n--- Filas LaTeX sugeridas para la tabla ---\n');
+fprintf('\n--- Filas LaTeX sugeridas (coinciden con la tabla del informe) ---\n');
 for s = 1:10
     fprintf('%s\n', latex_rows(s));
 end
-fprintf('tau_m = J_eq/b_eq = %.2f s  (dinámica mecánica lenta de omega_m)\n', J_eq/b_eq);
-fprintf('Ratio tau_m/tau_e ≈ %.0f:1\n', (J_eq/b_eq)/(L_q/R_s0));
-fprintf('=> v_qs* domina la corriente i_qs (respuesta rápida, ~5*tau_e ≈ %.1f ms)\n', 5*L_q/R_s0*1000);
-fprintf('=> T_ld perturba omega_m directamente (respuesta lenta, ~5*tau_m ≈ %.1f s)\n', 5*J_eq/b_eq);
-fprintf('=> Los escalones de v_qs* producen cambios abruptos en i_qs; los de T_ld no afectan i_qs.\n');
+
+fprintf('\n--- Influencia relativa de las acciones externas ---\n');
+fprintf('Modo electromecanico dominante: zeta = %.3f, w_n = %.1f rad/s (par complejo de A_aug).\n', zeta_em, wn_em);
+fprintf('=> v_qs* es dominante: lleva omega_m a la velocidad de vacio con sobrepico ~%.0f%%, y produce el pico de i_qs.\n', ...
+    exp(-pi*zeta_em/sqrt(1-zeta_em^2))*100);
+fprintf('=> T_ld perturba omega_m y TAMBIEN desplaza i_qs en regimen (la corriente debe suministrar el par de carga T_ld/r).\n');
+fprintf('=> NO hay escalas tau_e/tau_m separadas: la back-EMF las fusiona en el modo complejo (tau ~ %.0f ms).\n', ...
+    1/abs(real(ev_c(1)))*1000);
 
 %% =====================================================================
 %  SECCIÓN (c): COMPARACIÓN i_ds(t) PARA LOS 3 CASOS
@@ -589,13 +548,14 @@ fprintf('\n=== SECCIÓN (c): EFECTO DE i_ds(0) ===\n');
 
 % --- Figura 10a: i_ds(t) modelo NL - 3 condiciones iniciales ---
 fig10a = figure('Name', 'i_ds NL - 3 casos', 'Color', 'w', 'Position', [450 100 900 400]);
-hold on; grid on; box on;
+hold on; grid on; grid minor; box on;
 for k = 1:3
-    plot(t_sim, res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.5);
+    plot(t_sim, res_nl{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.6);
 end
-ylabel('i_{ds}^r [A]', 'FontSize', 12); xlabel('Tiempo [s]', 'FontSize', 12);
-title('Corriente i_{ds}^r(t) - Modelo NL: efecto de la condición inicial', 'FontSize', 13, 'FontWeight', 'bold');
-legend(case_names, 'Location', 'northeast');
+ylabel('i_{ds}^r [A]', 'FontSize', 14); xlabel('Tiempo [s]', 'FontSize', 14);
+title('Corriente i_{ds}^r(t) - Modelo NL: efecto de la condición inicial', 'FontSize', 15, 'FontWeight', 'bold');
+legend(case_names, 'FontSize', 11, 'Location', 'northeast');
+set(gca, 'FontSize', 13, 'GridAlpha', 0.3, 'MinorGridAlpha', 0.1);
 xlim([0 0.1]);  % Zoom a los primeros 100 ms donde ocurre el decaimiento
 
 exportgraphics(fig10a, 'imagenes/sim_ids_NL_3casos.png', 'Resolution', 300);
@@ -603,13 +563,14 @@ fprintf('   -> Exportada: imagenes/sim_ids_NL_3casos.png\n');
 
 % --- Figura 10b: i_ds(t) modelo LTI - 3 condiciones iniciales ---
 fig10b = figure('Name', 'i_ds LTI - 3 casos', 'Color', 'w', 'Position', [500 100 900 400]);
-hold on; grid on; box on;
+hold on; grid on; grid minor; box on;
 for k = 1:3
-    plot(t_sim, res_lti{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.5);
+    plot(t_sim, res_lti{k}(:,4), '-', 'Color', case_colors{k}, 'LineWidth', 1.6);
 end
-ylabel('i_{ds}^r [A]', 'FontSize', 12); xlabel('Tiempo [s]', 'FontSize', 12);
-title('Corriente i_{ds}^r(t) - Modelo LTI: efecto de la condición inicial', 'FontSize', 13, 'FontWeight', 'bold');
-legend(case_names, 'Location', 'northeast');
+ylabel('i_{ds}^r [A]', 'FontSize', 14); xlabel('Tiempo [s]', 'FontSize', 14);
+title('Corriente i_{ds}^r(t) - Modelo LTI: efecto de la condición inicial', 'FontSize', 15, 'FontWeight', 'bold');
+legend(case_names, 'FontSize', 11, 'Location', 'northeast');
+set(gca, 'FontSize', 13, 'GridAlpha', 0.3, 'MinorGridAlpha', 0.1);
 xlim([0 0.1]);  % Zoom a los primeros 100 ms
 
 exportgraphics(fig10b, 'imagenes/sim_ids_LTI_3casos.png', 'Resolution', 300);
@@ -673,26 +634,25 @@ for j = 1:2
 end
 
 % --- Figura 11: Field Forcing/Weakening - i_ds (gráfico principal para informe) ---
-fig11 = figure('Name', 'Field Forcing/Weakening - i_ds', 'Color', 'w', 'Position', [500 50 900 450]);
-hold on; grid on; box on;
+fig11 = figure('Name', 'Field Forcing/Weakening - i_ds', 'Color', 'w', 'Position', [500 100 900 400]);
+hold on; grid on; grid minor; box on;
 
 % Caso base NL (sin v_ds*)
-plot(t_sim, res_nl{1}(:,4), 'k-', 'LineWidth', 1.5, 'DisplayName', 'Base NL (v_{ds}^*=0)');
+plot(t_sim, res_nl{1}(:,4), 'k-', 'LineWidth', 1.6, 'DisplayName', 'Base NL (v_{ds}^*=0)');
 plot(t_sim, res_lti{1}(:,4), 'k--', 'LineWidth', 1.2, 'DisplayName', 'Base LTI');
 
 % Field forcing NL y LTI
-plot(t_sim, res_ff{1}(:,4), 'r-', 'LineWidth', 1.5, 'DisplayName', 'FF NL (v_{ds}^*=+1.96V)');
+plot(t_sim, res_ff{1}(:,4), 'r-', 'LineWidth', 1.6, 'DisplayName', 'FF NL (v_{ds}^*=+1.96V)');
 plot(t_sim, res_ff_lti{1}(:,4), 'r--', 'LineWidth', 1.2, 'DisplayName', 'FF LTI');
 
 % Field weakening NL y LTI
-plot(t_sim, res_ff{2}(:,4), 'b-', 'LineWidth', 1.5, 'DisplayName', 'FW NL (v_{ds}^*=-1.96V)');
+plot(t_sim, res_ff{2}(:,4), 'b-', 'LineWidth', 1.6, 'DisplayName', 'FW NL (v_{ds}^*=-1.96V)');
 plot(t_sim, res_ff_lti{2}(:,4), 'b--', 'LineWidth', 1.2, 'DisplayName', 'FW LTI');
 
-ylabel('i_{ds}^r [A]', 'FontSize', 12); xlabel('Tiempo [s]', 'FontSize', 12);
-title({'Field Forcing / Weakening: efecto sobre i_{ds}^r(t)'; ...
-       'Comparación Modelo NL vs LTI (i_{ds}^r(0) = 0 A)'}, ...
-    'FontSize', 13, 'FontWeight', 'bold');
-legend('Location', 'best', 'FontSize', 9);
+ylabel('i_{ds}^r [A]', 'FontSize', 14); xlabel('Tiempo [s]', 'FontSize', 14);
+title('Field forcing / weakening: efecto sobre i_{ds}^r(t)', 'FontSize', 15, 'FontWeight', 'bold');
+legend('Location', 'best', 'FontSize', 10);
+set(gca, 'FontSize', 13, 'GridAlpha', 0.3, 'MinorGridAlpha', 0.1);
 xlim([0 t_final]);
 
 exportgraphics(fig11, 'imagenes/sim_ff_ids.png', 'Resolution', 300);

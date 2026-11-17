@@ -30,7 +30,7 @@ C_ts = 0.818;       % +/- 1%    [W/(°C/s)] Capacitancia térmica del estator
 R_ts_amb = 146.7;   % +/- 1%    [°C/W] Resistencia térmica estator-ambiente
 R_sREF = 1.02;      % +/- 1%    [Ohm] Resistencia de referencia estator (T=20°C)
 T_sREF = 20;        %           [°C] Temperatura de referencia
-T_amb = 20;         %           [°C] Temperatura ambiente
+T_amb = 25;         %           [°C] Temperatura ambiente (operación)
 
 %% Subsistema Electromagnético
 P_p = 3;            % Pares de polos
@@ -40,7 +40,7 @@ L_d = 6.6e-3;       % +/- 1%    [H] Inductancia estator (eje directo)
 L_ls = 0.8e-3;      % +/- 1%    [H] Inductancia de dispersión
 
 %% Especificaciones de Operación
-n_l_nom = 60;       % [rpm] Velocidad nominal (salida)
+n_l_nom = 55;       % [rpm] Velocidad nominal de carga (= n_m,nom/r = 6600/120)
 T_q_nom = 17;       % [N.m] Torque nominal (salida, régimen continuo)
 T_q_max = 45;       % [N.m] Torque pico (salida, corta duración)
 

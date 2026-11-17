@@ -5,3 +5,14 @@
 *.r2025a
 *.r2025b
 *.original
+
+# LaTeX auxiliary/build files
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
